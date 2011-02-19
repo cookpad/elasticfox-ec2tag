@@ -14,7 +14,7 @@
             <menuitem oncommand="ec2ui_VolumeTreeView.viewDetails(event);"
               label="&ec2ui.contextmenu.details.label;" />
             <menuitem oncommand="ec2ui_VolumeTreeView.tag(event);"
-              label="Add Tag" />
+              label="Edit EC2 Tag" />
             <menuseparator />
             <menuitem id="volumes.context.attach"
               oncommand="ec2ui_VolumeTreeView.attachVolume();"
@@ -68,7 +68,7 @@
               tooltiptext="&ec2ui.detachvol.tip;" />
             <toolbarbutton image="images/info.png" style="-moz-box-pack:center;"
               oncommand="ec2ui_VolumeTreeView.tag();"
-              tooltiptext="Add Tag" />
+              tooltiptext="Edit EC2 Tag" />
           </hbox>
         </toolbar>
         <tree id="ec2ui.volumes.view" seltype="single" enableColumnDrag="true"
@@ -124,7 +124,7 @@
             <menuitem oncommand="ec2ui_SnapshotTreeView.viewDetails(event);"
               label="&ec2ui.contextmenu.details.label;" />
             <menuitem oncommand="ec2ui_SnapshotTreeView.tag(event);"
-              label="Add Tag" />
+              label="Edit EC2 Tag" />
             <menuseparator />
             <menuitem oncommand="ec2ui_SnapshotTreeView.createVolume();"
               label="&ec2ui.snapshot.contextmenu.createvol.label;" />
@@ -153,7 +153,7 @@
               tooltiptext="&ec2ui.deletesnap.tip;" />
             <toolbarbutton image="images/info.png" style="-moz-box-pack:center;"
               oncommand="ec2ui_SnapshotTreeView.tag();"
-              tooltiptext="Add Tag" />
+              tooltiptext="Edit EC2 Tag" />
             <menulist id="ec2ui_SnapshotTreeView.snapshot.type" selectedIndex="0"
               oncommand="ec2ui_SnapshotTreeView.snapshotTypeChanged();">
               <menupopup>

@@ -15,7 +15,7 @@
               <menuitem oncommand="ec2ui_AMIsTreeView.viewDetails();"
                 label="&ec2ui.contextmenu.details.label;" />
               <menuitem oncommand="ec2ui_AMIsTreeView.tag(event);"
-                label="Add Tag" />
+                label="Edit EC2 Tag" />
               <menuseparator />
               <menuitem id="amis.context.register"
                 oncommand="ec2ui_AMIsTreeView.registerNewImage();"
@@ -60,7 +60,7 @@
                 oncommand="ec2ui_AMIsTreeView.deregisterImage();" />
               <toolbarbutton image="images/info.png" style="-moz-box-pack:center;"
                 oncommand="ec2ui_AMIsTreeView.tag();"
-                tooltiptext="Add Tag" />
+                tooltiptext="Edit EC2 Tag" />
               <menulist id="ec2ui_AMIsTreeView.image.type" selectedIndex="0"
                oncommand="ec2ui_AMIsTreeView.imageTypeChanged();">
                 <menupopup>

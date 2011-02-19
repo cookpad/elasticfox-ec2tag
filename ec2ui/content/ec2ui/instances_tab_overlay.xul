@@ -13,7 +13,7 @@
           <menuitem oncommand="ec2ui_InstancesTreeView.viewDetails(event);"
             label="&ec2ui.contextmenu.details.label;" />
           <menuitem oncommand="ec2ui_InstancesTreeView.tag(event);"
-            label="Add Tag" />
+            label="Edit EC2 Tag" />
           <menuseparator />
           <menuitem id="instances.context.start"
             oncommand="ec2ui_InstancesTreeView.startInstance();"
@@ -94,7 +94,7 @@
             tooltiptext="&ec2ui.instances.connect.tip;" />
           <toolbarbutton image="images/info.png" style="-moz-box-pack:center;"
             oncommand="ec2ui_InstancesTreeView.tag();"
-            tooltiptext="Add Tag" />
+            tooltiptext="Edit EC2 Tag" />
           <checkbox id="ec2ui.instances.noterminated" label="Don't show Terminated Instances"
             checked="false" oncommand="ec2ui_InstancesTreeView.invalidate();"/>
         </hbox>
