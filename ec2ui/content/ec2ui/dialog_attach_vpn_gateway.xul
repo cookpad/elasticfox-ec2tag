@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.attachvpngateway"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    buttons="accept,cancel"
+    ondialogaccept="return ec2_VpnGatewayAttacher.attachVpnGateway();"
+    ondialogcancel="return true;" onload="ec2_VpnGatewayAttacher.init();"
+    title="Attach VPN Gateway to VPC" buttonlabelaccept="Attach">
+
+    <script type="application/x-javascript" src="chrome://ec2ui/content/attach_vpn_gateway_dialog.js" />
+    <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+
+    <vbox flex="1">
+        <grid flex="1">
+            <columns>
+                <column />
+                <column />
+            </columns>
+            <rows>
+                <!-- VPC -->
+                <row>
+                    <label control="ec2ui.attachvpngateway.vpcid"
+                           value="Virtual Private Cloud: "/>
+                    <hbox>
+                        <menulist id="ec2ui.attachvpngateway.vpcid"/>
+                    </hbox>
+               </row>
+
+               <!-- VPN GW -->
+                <row>
+                    <label control="ec2ui.attachvpngateway.vgwid"
+                           value="VPN Gateway: "/>
+                    <hbox>
+                        <menulist id="ec2ui.attachvpngateway.vgwid"/>
+                    </hbox>
+                </row>
+            </rows>
+        </grid>
+    </vbox>
+</dialog>

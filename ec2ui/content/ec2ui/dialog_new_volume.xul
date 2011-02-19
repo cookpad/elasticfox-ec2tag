@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.newvolume" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="accept,cancel" ondialogaccept="return ec2_VolumeCreator.create();" ondialogcancel="return true;"
+  onload="ec2_VolumeCreator.init();" title="Create Volume" buttonlabelaccept="Create">
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/newvolumedialog.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/utils.js" />
+
+  <vbox flex="1">
+    <grid flex="1">
+      <columns>
+        <column />
+        <column />
+      </columns>
+      <rows>
+        <row>
+          <label control="ec2ui.newvolume.size" value="&ec2ui.volumes.size.label;" />
+          <textbox id="ec2ui.newvolume.size" size="40" />
+        </row>
+        <row>
+          <label control="ec2ui.newvolume.snapshotId" value="&ec2ui.snapshots.id.label;" />
+          <menulist id="ec2ui.newvolume.snapshotId" editable="true" />
+        </row>
+        <row>
+          <label control="ec2ui.newvolume.availabilityzonelist" value="&ec2ui.availabilityZone.label;" />
+          <menulist id="ec2ui.newvolume.availabilityzonelist" />
+        </row>
+        <row>
+          <label control="ec2ui.newvolume.tag" value="Tag" />
+          <textbox id="ec2ui.newvolume.tag" size="40" />
+        </row>
+      </rows>
+    </grid>
+  </vbox>
+</dialog>
+

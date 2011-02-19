@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.ami.detail" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="accept" ondialogaccept="return true;"
+  onload="ec2_AMIDetails.init();" title="AMI Details">
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/amidetaildialog.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+
+  <vbox flex="1">
+    <grid flex="1">
+      <columns>
+        <column />
+        <column />
+        <column />
+      </columns>
+      <rows>
+        <row>
+          <label control="ec2ui.ami.id" value="Image ID:" />
+          <textbox id="ec2ui.ami.id" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.ami.location" value="Manifest:" />
+          <textbox id="ec2ui.ami.location" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.ami.aki" value="AKI:" />
+          <textbox id="ec2ui.ami.aki" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.ami.ari" value="ARI:" />
+          <textbox id="ec2ui.ami.ari" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.ami.state" value="State:" />
+          <textbox id="ec2ui.ami.state" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.ami.ownerid" value="Owner ID:" />
+          <textbox id="ec2ui.ami.ownerid" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.ami.ispublic" value="Visibility:" />
+          <textbox id="ec2ui.ami.ispublic" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.ami.arch" value="Architecture:" />
+          <textbox id="ec2ui.ami.arch" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.ami.platform" value="Platform:" />
+          <textbox id="ec2ui.ami.platform" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.ami.snapshotId" value="Snapshot ID:" />
+          <textbox id="ec2ui.ami.snapshotId" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.ami.tag" value="Tag:" />
+          <textbox id="ec2ui.ami.tag" size="40" readonly="true" />
+        </row>
+      </rows>
+    </grid>
+  </vbox>
+</dialog>
+

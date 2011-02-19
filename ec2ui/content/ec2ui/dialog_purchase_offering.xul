@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.purchase.offering"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  buttons="accept,cancel" ondialogcancel="return true;"
+  ondialogaccept="return ec2_OfferingPurchaser.purchase();"
+  buttonlabelaccept="Continue"
+  onload="ec2_OfferingPurchaser.init();" title="Purchase Reserved Instances">
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/purchaseofferingdialog.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+
+  <vbox flex="1">
+    <hbox>
+      <image src="images/cash.png"/>
+      <caption label="Review, Specify Number of Instances, and click Continue" />
+  </hbox>
+    <groupbox orient="vertical" pack="start" flex="1">
+      <caption label="Information" />
+      <grid flex="1" align="baseline">
+        <columns>
+          <column />
+          <column />
+          <column />
+        </columns>
+        <rows>
+          <row>
+            <label control="ec2ui.purchase.offering.id" value="&ec2ui.offerings.id.label;:" />
+            <textbox id="ec2ui.purchase.offering.id" size="30" readonly="true" />
+          </row>
+          <row>
+            <label control="ec2ui.purchase.offering.instType"
+              value="&ec2ui.offerings.instType.label;:" />
+            <textbox id="ec2ui.purchase.offering.instType" size="30" readonly="true" />
+          </row>
+          <row>
+            <label control="ec2ui.offering.azone" value="&ec2ui.availabilityZone.label;:" />
+            <textbox id="ec2ui.purchase.offering.azone" size="30" readonly="true" />
+          </row>
+          <row>
+            <label control="ec2ui.offering.duration" value="&ec2ui.offerings.duration.label;:" />
+            <textbox id="ec2ui.purchase.offering.duration" size="30" readonly="true" />
+          </row>
+          <row>
+            <label control="ec2ui.purchase.offering.usagePrice" value="&ec2ui.offerings.usagePrice.label;:" />
+            <textbox id="ec2ui.purchase.offering.usagePrice" size="30" readonly="true" />
+          </row>
+          <row>
+            <label control="ec2ui.purchase.offering.description" value="&ec2ui.description.label;:" />
+            <textbox id="ec2ui.purchase.offering.description" multiline="true" cols="50" rows="3"
+              wrap="true" style="font-family: monospace;" readonly="true"/>
+          </row>
+        </rows>
+      </grid>
+    </groupbox>
+    <groupbox orient="horizontal" pack="center" align="baseline" flex="1">
+      <caption label="One-time Payment Details" />
+      <vbox flex="1" pack="center" align="center">
+        <grid flex="1" align="baseline">
+          <columns>
+            <column />
+            <column />
+          </columns>
+          <rows>
+            <row>
+              <label control="ec2ui.purchase.offering.fixedPrice" value="&ec2ui.offerings.fixedPrice.label;:" />
+              <textbox id="ec2ui.purchase.offering.fixedPrice" size="10" readonly="true" />
+            </row>
+            <row>
+              <label control="ec2ui.purchase.offering.count" value="&ec2ui.rsvdInst.count.label;:" />
+              <textbox id="ec2ui.purchase.offering.count" size="10"
+                onkeypress="ec2_OfferingPurchaser.calculateTotalCosts();" />
+            </row>
+            <row>
+              <html:hr />
+              <html:hr />
+            </row>
+            <row>
+              <label control="ec2ui.purchase.offering.totalPrice" value="Total One-time Payment (Due Now):" />
+              <textbox id="ec2ui.purchase.offering.totalPrice" size="10" readonly="true"/>
+            </row>
+          </rows>
+        </grid>
+      </vbox>
+    </groupbox>
+  </vbox>
+</dialog>

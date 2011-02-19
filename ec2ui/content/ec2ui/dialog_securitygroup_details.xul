@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.secgroup.detail" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	buttons="accept" ondialogaccept="return true;"
+	onload="ec2_SecurityGroupDetails.init();" title="Security Group Details">
+
+	<script type="application/x-javascript" src="chrome://ec2ui/content/securitygroupdetaildialog.js" />
+	<script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+
+	<vbox flex="1">
+		<grid flex="1">
+			<columns>
+				<column />
+				<column />
+				<column />
+			</columns>
+			<rows>
+				<row>
+					<label control="ec2ui.secgroup.name" value="Name:" />
+					<textbox id="ec2ui.secgroup.name" size="40" readonly="true" />
+				</row>
+				<row>
+					<label control="ec2ui.secgroup.ownerid" value="Owner Id:" />
+					<textbox id="ec2ui.secgroup.ownerid" size="40" readonly="true" />
+				</row>
+				<row>
+					<label control="ec2ui.secgroup.description" value="Description:" />
+					<textbox id="ec2ui.secgroup.description" size="40" readonly="true" />
+				</row>
+			</rows>
+		</grid>
+	</vbox>
+</dialog>
+

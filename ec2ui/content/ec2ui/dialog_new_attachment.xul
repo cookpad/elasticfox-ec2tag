@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.newattachment" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="accept,cancel" ondialogaccept="return ec2_VolumeAttacher.attach();" ondialogcancel="return true;"
+  onload="ec2_VolumeAttacher.init();" title="Attach Volume" buttonlabelaccept="Attach">
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/newattachmentdialog.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/utils.js" />
+
+  <vbox flex="1">
+    <grid flex="1">
+      <columns>
+        <column />
+        <column />
+      </columns>
+      <rows>
+        <row>
+          <label control="ec2ui.newattachment.volumeId" value="&ec2ui.volumes.id.label;" />
+          <textbox id="ec2ui.newattachment.volumeId" size="30" readonly="true"/>
+        </row>
+        <row>
+          <label id="ec2ui.newattachment.instanceLabel" control="ec2ui.newattachment.instanceId" value="&ec2ui.instances.id.label;" />
+          <menulist id="ec2ui.newattachment.instanceId" editable="true" size="30"
+            oncommand="ec2_VolumeAttacher.enableOrDisableDeviceField();"/>
+        </row>
+        <row>
+          <label control="ec2ui.newattachment.device" value="&ec2ui.volumes.attachment.device.label;" />
+          <textbox id="ec2ui.newattachment.device" size="30" />
+        </row>
+      </rows>
+    </grid>
+    <groupbox>
+      <description>Linux devices: /dev/sda through /dev/sdp</description>
+    </groupbox>
+  </vbox>
+</dialog>

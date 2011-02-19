@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.eip.detail" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="accept" ondialogaccept="return true;"
+  onload="ec2_ElasticIPDetails.init();" title="ElasticIP Details">
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/eipdetaildialog.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+
+  <vbox flex="1">
+    <grid flex="1">
+      <columns>
+        <column />
+        <column />
+        <column />
+      </columns>
+      <rows>
+        <row>
+          <label control="ec2ui.eip.address" value="IP Address:" />
+          <textbox id="ec2ui.eip.address" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.eip.instanceid" value="Instance ID:" />
+          <textbox id="ec2ui.eip.instanceid" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.eip.tag" value="Tag:" />
+          <textbox id="ec2ui.eip.tag" size="40" readonly="true" />
+        </row>
+      </rows>
+    </grid>
+  </vbox>
+</dialog>
+

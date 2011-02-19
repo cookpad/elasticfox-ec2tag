@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://ec2ui/skin/ec2ui.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+
+<overlay id="Elasticfox"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  xmlns:html="http://www.w3.org/1999/xhtml" >
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/session.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/preferences.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/client.js" />
+
+  <menupopup id="menu_ToolsPopup">
+    <menuitem id="ec2ui_menu" oncommand="ec2ui_session.openMainWindow();" insertafter="javascriptConsole,devToolsSeparator" label="Elasticfox"/>
+  </menupopup>
+  <!-- statusbar id="status-bar">
+    <statusbarpanel id="efox-statusicon" label="Hello, World" onclick="ec2ui_session.openMainWindow();">
+      <image tooltiptext="Open Elasticfox" id="efox-statusImage"
+        src="chrome://ec2ui/content/images/cash.png"/>
+    </statusbarpanel>
+  </statusbar -->
+</overlay>

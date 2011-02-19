@@ -1,0 +1,297 @@
+<!ENTITY ec2ui.credentials.manage.label "Credentials">
+<!ENTITY ec2ui.endpoints.manage.label "Regions">
+<!ENTITY ec2ui.tools.manage.label "Tools">
+<!ENTITY ec2ui.accountids.manage.label "Account IDs">
+<!ENTITY ec2ui.about.label "About">
+<!ENTITY ec2ui.description.label "Description">
+
+<!ENTITY ec2ui.tabs.instances.label "Instances">
+<!ENTITY ec2ui.tabs.images.label "Images">
+<!ENTITY ec2ui.tabs.keypairs.label "KeyPairs">
+<!ENTITY ec2ui.tabs.secgroups.label "Security Groups">
+<!ENTITY ec2ui.tabs.availzones.label "Availability Zones">
+<!ENTITY ec2ui.tabs.eips.label "Elastic IPs">
+<!ENTITY ec2ui.tabs.volumes.label "Volumes and Snapshots">
+<!ENTITY ec2ui.tabs.bundleTasks.label "Bundle Tasks">
+<!ENTITY ec2ui.tabs.leases.label "Reserved Instances">
+<!ENTITY ec2ui.tabs.vpcs.label "Virtual Private Clouds">
+<!ENTITY ec2ui.tabs.vpns.label "VPN Connections">
+
+<!ENTITY ec2ui.captions.images.images.label "Machine Images (AMIs)">
+<!ENTITY ec2ui.captions.images.attribs.label "Launch Permissions">
+<!ENTITY ec2ui.captions.images.instances.label "Your Instances">
+<!ENTITY ec2ui.captions.images.launchsecgroups.label "Security Groups">
+<!ENTITY ec2ui.captions.images.launchparams.label "User Data">
+
+<!ENTITY ec2ui.captions.newinstances.vpc.label "Virtual Private Cloud">
+<!ENTITY ec2ui.captions.newinstances.usevpc.label "Launch in VPC:">
+
+<!ENTITY ec2ui.images.id.label "ID">
+<!ENTITY ec2ui.images.manifest.label "Manifest">
+<!ENTITY ec2ui.images.state.label "State">
+<!ENTITY ec2ui.images.owner.label "Owner">
+<!ENTITY ec2ui.images.ownerAlias.label "Owner Alias">
+<!ENTITY ec2ui.images.visibility.label "Visibility">
+<!ENTITY ec2ui.images.architecture.label "Architecture">
+<!ENTITY ec2ui.images.rootDeviceType.label "Root Device Type">
+<!ENTITY ec2ui.images.name.label "Name">
+
+<!ENTITY ec2ui.instances.resid.label "Reservation ID">
+<!ENTITY ec2ui.instances.owner.label "Owner">
+<!ENTITY ec2ui.instances.groups.label "Groups">
+<!ENTITY ec2ui.instances.id.label "Instance ID">
+<!ENTITY ec2ui.instances.imageId.label "AMI">
+<!ENTITY ec2ui.instances.kernelId.label "AKI">
+<!ENTITY ec2ui.instances.ramdiskId.label "ARI">
+<!ENTITY ec2ui.instances.vpcId.label "VPC">
+<!ENTITY ec2ui.instances.subnetId.label "Subnet">
+<!ENTITY ec2ui.instances.state.label "State">
+<!ENTITY ec2ui.instances.publicDnsName.label "Public DNS">
+<!ENTITY ec2ui.instances.privateDnsName.label "Private DNS">
+<!ENTITY ec2ui.instances.privateIpAddress.label "Private IP">
+<!ENTITY ec2ui.instances.keyName.label "Key">
+<!ENTITY ec2ui.instances.reason.label "Reason">
+<!ENTITY ec2ui.instances.amiLaunchIdx.label "Idx">
+<!ENTITY ec2ui.instances.instanceType.label "Type">
+<!ENTITY ec2ui.instances.launchTime.label "Local Launch Time">
+<!ENTITY ec2ui.instances.rootDeviceType.label "Root Device Type">
+
+<!ENTITY ec2ui.captions.kernels.akis.label "Kernel Images (AKIs)">
+<!ENTITY ec2ui.captions.kernels.aris.label "Ramdisk Images (ARIs)">
+
+<!ENTITY ec2ui.kernels.id.label "AKI ID">
+<!ENTITY ec2ui.ramdisks.id.label "ARI ID">
+
+<!ENTITY ec2ui.captions.keypairs.label "Your Keypairs">
+<!ENTITY ec2ui.keypairs.name.label "Name">
+<!ENTITY ec2ui.keypairs.fingerprint.label "Fingerprint">
+
+<!ENTITY ec2ui.captions.azones.label "Availability Zones">
+<!ENTITY ec2ui.azones.name.label "Name">
+<!ENTITY ec2ui.azones.state.label "State">
+
+<!ENTITY ec2ui.captions.eip.label "Your Elastic IPs">
+<!ENTITY ec2ui.eip.address.label "Address">
+
+<!ENTITY ec2ui.captions.secgroups.groups.label "Your Groups">
+<!ENTITY ec2ui.captions.secgroups.permissions.label "Group Permissions">
+
+<!ENTITY ec2ui.permissions.protocol.label "Protocol">
+<!ENTITY ec2ui.permissions.fromport.label "From Port/ICMP Type">
+<!ENTITY ec2ui.permissions.toport.label "To Port/ICMP Code">
+<!ENTITY ec2ui.permissions.groups.label "Source User:Group">
+<!ENTITY ec2ui.permissions.cidrs.label "Source CIDR">
+
+<!ENTITY ec2ui.captions.volumes.volumes.label "Created Volumes">
+<!ENTITY ec2ui.captions.volumes.snapshots.label "Saved Snapshots">
+
+<!ENTITY ec2ui.volumes.id.label "VOL ID">
+<!ENTITY ec2ui.volumes.size.label "Size (GB)">
+<!ENTITY ec2ui.volumes.status.label "Status">
+<!ENTITY ec2ui.volumes.createTime.label "Local Creation Date">
+<!ENTITY ec2ui.volumes.attachment.device.label "Device">
+<!ENTITY ec2ui.volumes.attachment.status.label "Attachment Status">
+<!ENTITY ec2ui.volumes.attachment.attachTime.label "Attach Time">
+
+<!ENTITY ec2ui.snapshots.id.label "SNAP ID">
+<!ENTITY ec2ui.snapshots.status.label "Status">
+<!ENTITY ec2ui.snapshots.startTime.label "Local Start Time">
+<!ENTITY ec2ui.snapshots.progress.label "Progress">
+<!ENTITY ec2ui.snapshots.volumeSize.label "Volume Size">
+<!ENTITY ec2ui.snapshots.owner.label "Owner">
+<!ENTITY ec2ui.snapshots.ownerAlias.label "Owner Alias">
+
+<!ENTITY ec2ui.captions.bundleTasks.label "Your Bundle Tasks">
+
+<!ENTITY ec2ui.captions.vpcs.vpcs.label "Your Virtual Private Clouds">
+
+<!ENTITY ec2ui.vpcs.id.label "VPC ID">
+<!ENTITY ec2ui.vpcs.cidrblock.label "CIDR">
+<!ENTITY ec2ui.vpcs.state.label "State">
+<!ENTITY ec2ui.vpcs.dhcpoptions.label "DHCP Options">
+
+<!ENTITY ec2ui.vpc.contextmenu.createsubnet.label "Create a Subnet in this VPC">
+<!ENTITY ec2ui.vpc.contextmenu.attachvpngw.label "Attach a VPN Gateway to this VPC">
+<!ENTITY ec2ui.vpc.contextmenu.setdhcpoptions.label "Set DHCP Options on this VPC">
+<!ENTITY ec2ui.vpc.contextmenu.delete.label "Delete this VPC">
+<!ENTITY ec2ui.vpc.contextmenu.copyvpcid.label "Copy VPC ID to Clipboard">
+
+<!ENTITY ec2ui.captions.subnets.subnets.label "Your Subnets">
+
+<!ENTITY ec2ui.subnets.id.label "Subnet ID">
+<!ENTITY ec2ui.subnets.state.label "State">
+<!ENTITY ec2ui.subnets.cidrblock.label "CIDR">
+<!ENTITY ec2ui.subnets.availableip.label "Available IPs">
+<!ENTITY ec2ui.subnets.availabilityzone.label "Availability Zone">
+
+<!ENTITY ec2ui.subnet.contextmenu.launch.label "Launch instance(s) on this Subnet">
+<!ENTITY ec2ui.subnet.contextmenu.delete.label "Delete this Subnet">
+<!ENTITY ec2ui.subnet.contextmenu.copysubnetid.label "Copy Subnet ID to Clipboard">
+
+<!ENTITY ec2ui.captions.dhcpopts.dhcpopts.label "Your DHCP Options Sets">
+<!ENTITY ec2ui.dhcpopts.contextmenu.delete.label "Delete DHCP Option Set">
+<!ENTITY ec2ui.dhcpopts.contextmenu.copydhcpoptsid.label "Copy DHCP Options Set ID to Clipboard">
+
+<!ENTITY ec2ui.dhcpopts.id.label "DHCP Options Set ID">
+<!ENTITY ec2ui.dhcpopts.options.label "Options">
+
+<!ENTITY ec2ui.captions.vpngateways.vpngateways.label "Your VPN Gateways">
+<!ENTITY ec2ui.vpngateway.contextmenu.createvpnconnection.label "Create a VPN Connection">
+<!ENTITY ec2ui.vpngateway.contextmenu.attachvpc.label "Attach a VPC to this VPN Gateway">
+<!ENTITY ec2ui.vpngateway.contextmenu.delete.label "Delete this VPN Gateway">
+<!ENTITY ec2ui.vpngateway.contextmenu.copyvgwid.label "Copy VPN Gateway ID to the Clipboard">
+<!ENTITY ec2ui.vpngateways.id.label "ID">
+<!ENTITY ec2ui.vpngateways.availabilityZone.label "Availability Zone">
+<!ENTITY ec2ui.vpngateways.type.label "Type">
+<!ENTITY ec2ui.vpngateways.state.label "State">
+
+<!ENTITY ec2ui.captions.customergateways.customergateways.label "Your Customer Gateways">
+<!ENTITY ec2ui.customergateway.contextmenu.createvpnconnection.label "Create a VPN Connection">
+<!ENTITY ec2ui.customergateway.contextmenu.delete.label "Delete this Customer Gateway">
+<!ENTITY ec2ui.customergateway.contextmenu.copycgwid.label "Copy Customer Gateway ID to Clipboard">
+<!ENTITY ec2ui.customergateways.id.label "ID">
+<!ENTITY ec2ui.customergateways.type.label "Type">
+<!ENTITY ec2ui.customergateways.state.label "State">
+<!ENTITY ec2ui.customergateways.ipaddress.label "IP Address">
+<!ENTITY ec2ui.customergateways.bgpasn.label "BGP ASN">
+
+<!ENTITY ec2ui.captions.vpnconnections.vpnconnections.label "Your VPN Connections">
+<!ENTITY ec2ui.vpnconnection.contextmenu.delete.label "Delete this VPN Connection">
+<!ENTITY ec2ui.vpnconnection.contextmenu.config.label "Save Customer Gateway Configuration">
+<!ENTITY ec2ui.vpnconnection.contextmenu.copyvpnconnectionsid.label "Copy VPN Connection ID to Clipboard">
+
+<!ENTITY ec2ui.vpnconnections.id.label "ID">
+<!ENTITY ec2ui.vpnconnections.type.label "Type">
+<!ENTITY ec2ui.vpnconnections.state.label "State">
+<!ENTITY ec2ui.vpnconnections.cgwid.label "Customer Gateway ID">
+<!ENTITY ec2ui.vpnconnections.vgwid.label "VPN Gateway ID">
+
+<!ENTITY ec2ui.captions.vpngateways.attachments.label "Attachments for Selected VPN Gateway">
+<!ENTITY ec2ui.vpnattachment.contextmenu.delete.label "Detach">
+<!ENTITY ec2ui.vpnattachments.vgwId.label "VPN Gateway ID">
+<!ENTITY ec2ui.vpnattachments.vpcId.label "VPC ID">
+<!ENTITY ec2ui.vpnattachments.state.label "State">
+
+<!ENTITY ec2ui.bundleTasks.id.label "Bundle ID">
+<!ENTITY ec2ui.bundleTasks.state.label "Bundle State">
+<!ENTITY ec2ui.bundleTasks.startTime.label "Bundle Start Time">
+<!ENTITY ec2ui.bundleTasks.updateTime.label "Last Update Time">
+<!ENTITY ec2ui.bundleTasks.s3.bucket.label "S3 Bucket">
+<!ENTITY ec2ui.bundleTasks.s3.prefix.label "S3 Prefix">
+<!ENTITY ec2ui.bundleTasks.errorMessage.label "Error Message">
+
+<!ENTITY ec2ui.captions.leases.offerings.label "Reserved Instances Offerings">
+<!ENTITY ec2ui.captions.leases.rsvdInst.label "Your Reserved Instances">
+
+<!ENTITY ec2ui.offerings.id.label "Offering ID">
+<!ENTITY ec2ui.offerings.instType.label "Instance Type">
+<!ENTITY ec2ui.offerings.duration.label "Duration (years)">
+<!ENTITY ec2ui.offerings.fixedPrice.label "One-time Payment/Instance (US$)">
+<!ENTITY ec2ui.offerings.usagePrice.label "Usage Price/Instance (US$)">
+
+<!ENTITY ec2ui.rsvdInst.id.label "Reserved Instances ID">
+<!ENTITY ec2ui.rsvdInst.instType.label "Instance Type">
+<!ENTITY ec2ui.rsvdInst.duration.label "Duration (years)">
+<!ENTITY ec2ui.rsvdInst.remaining.label "Days Remaining">
+<!ENTITY ec2ui.rsvdInst.fixedPrice.label "One-time Payment/Instance (US$)">
+<!ENTITY ec2ui.rsvdInst.usagePrice.label "Usage Price/Instance (US$)">
+<!ENTITY ec2ui.rsvdInst.count.label "Number of Instances">
+<!ENTITY ec2ui.rsvdInst.state.label "State">
+
+<!ENTITY ec2ui.platform.label "Platform">
+<!ENTITY ec2ui.availabilityZone.label "Availability Zone">
+
+<!ENTITY ec2ui.contextmenu.details.label "View Details">
+<!ENTITY ec2ui.contextmenu.copyid.label "Copy ID to clipboard">
+
+<!ENTITY ec2ui.images.contextmenu.register.label "Register a new AMI">
+<!ENTITY ec2ui.images.contextmenu.deregister.label "Deregister this AMI">
+
+<!ENTITY ec2ui.instances.contextmenu.copyid.label "Copy Instance ID to clipboard">
+
+<!ENTITY ec2ui.addresses.contextmenu.associate.label "Associate Elastic IP with Instance">
+
+<!ENTITY ec2ui.volume.contextmenu.createsnap.label "Create a new snapshot from this volume">
+<!ENTITY ec2ui.volume.contextmenu.attach.label "Attach this volume">
+<!ENTITY ec2ui.volume.contextmenu.detach.label "Detach this volume">
+<!ENTITY ec2ui.volume.contextmenu.forcedetach.label "Force detach this volume">
+<!ENTITY ec2ui.volume.contextmenu.delete.label "Delete this volume">
+<!ENTITY ec2ui.volume.contextmenu.create.label "Create new volume">
+<!ENTITY ec2ui.volume.contextmenu.copyvolid.label "Copy Volume ID to clipboard">
+
+<!ENTITY ec2ui.snapshot.contextmenu.createvol.label "Create new volume from this snapshot">
+<!ENTITY ec2ui.snapshot.contextmenu.delete.label "Delete this snapshot">
+<!ENTITY ec2ui.snapshot.contextmenu.copysnapid.label "Copy Snapshot ID to clipboard">
+
+
+<!ENTITY ec2ui.bundleTasks.contextmenu.register.label "Register AMI">
+<!ENTITY ec2ui.bundleTasks.contextmenu.cancel.label "Cancel Bundle Task">
+<!ENTITY ec2ui.bundleTasks.contextmenu.copybunid.label "Copy Bundle ID to clipboard">
+
+<!ENTITY ec2ui.credentials.tip "Manage AWS credentials for accessing Amazon EC2">
+<!ENTITY ec2ui.endpoints.tip "Manage Amazon EC2 Regions">
+<!ENTITY ec2ui.tools.tip "Manage local tools">
+<!ENTITY ec2ui.accountids.tip "Configure friendler names for known EC2 account IDs">
+<!ENTITY ec2ui.about.tip "All about this extension">
+
+<!ENTITY ec2ui.refresh.tip "Refresh">
+<!ENTITY ec2ui.createvpc.tip "Create a new VPC">
+<!ENTITY ec2ui.deletevpc.tip "Delete this VPC">
+
+<!ENTITY ec2ui.createsubnet.tip "Create a new Subnet">
+<!ENTITY ec2ui.deletesubnet.tip "Delete this Subnet">
+
+<!ENTITY ec2ui.createdhcpoptions.tip "Create a new DHCP Options Set">
+<!ENTITY ec2ui.deletedhcpoptions.tip "Delete this DHCP Options Set">
+<!ENTITY ec2ui.createvpngateway.tip "Create a new VPN Gateway">
+<!ENTITY ec2ui.deletevpngateway.tip "Delete this VPN Gateway">
+<!ENTITY ec2ui.attachvpngateway.tip "Attach this VPN Gateway to a VPC">
+<!ENTITY ec2ui.createcustomergateway.tip "Create a new Customer Gateway">
+<!ENTITY ec2ui.deletecustomergateway.tip "Delete this Customer Gateway">
+<!ENTITY ec2ui.createvpnconnection.tip "Create a new VPN Connection">
+<!ENTITY ec2ui.deletevpnconnection.tip "Delete this VPN Connection">
+<!ENTITY ec2ui.deletevpnattachment.tip "Detach">
+<!ENTITY ec2ui.getcustomerconfig.tip "Save Customer Gateway Configuration">
+
+<!ENTITY ec2ui.images.powerup.tip "Launch Instance(s)">
+<!ENTITY ec2ui.images.register.tip "Register AMI">
+<!ENTITY ec2ui.images.deregister.tip "Deregister AMI">
+
+<!ENTITY ec2ui.launchperms.add.tip "Allow new user to launch this AMI">
+<!ENTITY ec2ui.launchperms.remove.tip "Revoke launch permissions for the selected user">
+<!ENTITY ec2ui.launchperms.public.tip "Allow any user to launch this AMI">
+<!ENTITY ec2ui.launchperms.reset.tip "Reset to defaults">
+
+<!ENTITY ec2ui.instances.reboot.tip "Reboot Selected Instances">
+<!ENTITY ec2ui.instances.powerdown.tip "Terminate Selected Instances">
+<!ENTITY ec2ui.instances.console.tip "Show Console Output">
+<!ENTITY ec2ui.instances.connect.tip "Connect To Instance">
+<!ENTITY ec2ui.instances.start.tip "Start an EBS-backed Instance">
+<!ENTITY ec2ui.instances.stop.tip "Stop an EBS-backed Instance">
+
+<!ENTITY ec2ui.keypairs.create.tip "Create a new keypair">
+<!ENTITY ec2ui.keypairs.delete.tip "Delete selected keypair">
+
+<!ENTITY ec2ui.eips.allocate.tip "Allocate a new address">
+<!ENTITY ec2ui.eips.associate.tip "Associate selected address">
+<!ENTITY ec2ui.eips.disassociate.tip "Disassociate selected address">
+<!ENTITY ec2ui.eips.release.tip "Release selected address">
+
+<!ENTITY ec2ui.secgroups.create.tip "Create Security Group">
+<!ENTITY ec2ui.secgroups.delete.tip "Delete Selected Group">
+
+<!ENTITY ec2ui.secgroups.ownerId.label "Owner">
+<!ENTITY ec2ui.secgroups.name.label "Name">
+
+<!ENTITY ec2ui.permissions.authorize.tip "Grant Permission">
+<!ENTITY ec2ui.permissions.revoke.tip "Revoke Permission">
+
+<!ENTITY ec2ui.createvolfromsnap.tip "Create new volume from this snapshot">
+<!ENTITY ec2ui.deletesnap.tip "Delete this snapshot">
+<!ENTITY ec2ui.deletevol.tip "Delete this volume">
+<!ENTITY ec2ui.createvol.tip "Create new volume">
+<!ENTITY ec2ui.createsnapfromvol.tip "Create new snapshot from this volume">
+<!ENTITY ec2ui.attachvol.tip "Attach this volume to an instance">
+<!ENTITY ec2ui.detachvol.tip "Detach this volume from its instance">
+
+<!ENTITY ec2ui.cancelBundleTask.tip "Cancel this Bundle Task">

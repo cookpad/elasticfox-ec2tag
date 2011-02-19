@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.manageendpoints" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="extra2,extra1,cancel" ondialogcancel="return true;"
+  ondialogextra1="ec2ui_endpointManager.saveEndpoint();"
+  ondialogextra2="ec2ui_endpointManager.removeEndpoint();"
+  buttonlabelcancel="Close" buttonlabelextra1="Add" buttonlabelextra2="Remove"
+  defaultButton="extra1" buttonpack="start" buttonalign="start"
+  onload="ec2ui_endpointManager.initDialog();" title="Manage EC2 Regions">
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/utils.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/preferences.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/endpoint_manager.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/endpointsview.js" />
+
+  <vbox flex="1">
+    <vbox flex="1">
+      <tree id="ec2ui.endpoints.view" onselect="ec2ui_endpointManager.selectMapping();" flex="1" rows="5">
+        <treecols>
+          <treecol id="endpoint.name" label="Endpoint Name" flex="1" persist="width ordinal hidden" />
+          <treecol id="endpoint.url" label="Endpoint URL" flex="1" persist="width ordinal hidden" />
+          <!--
+          <treecol id="endpoint.version" label="API Version" flex="1" persist="width ordinal hidden" />
+          -->
+        </treecols>
+        <treechildren />
+      </tree>
+    </vbox>
+
+    <grid>
+      <columns>
+        <column />
+        <column />
+      </columns>
+      <rows>
+        <row>
+          <label control="ec2ui.endpoints.name" value="Region Name:" />
+          <textbox id="ec2ui.endpoints.name" size="20" />
+        </row>
+        <row>
+          <label control="ec2ui.endpoints.url" value="Endpoint URL:" />
+          <textbox id="ec2ui.endpoints.url" size="40" />
+        </row>
+        <!--
+        <row>
+          <label control="ec2ui.endpoints.version" value="API Version:" />
+          <textbox id="ec2ui.endpoints.version" size="40" />
+        </row>
+        -->
+      </rows>
+    </grid>
+  </vbox>
+</dialog>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://ec2ui/skin/ec2ui.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <tabpanel id="availzones_tab" flex="1">
+    <groupbox orient="vertical" flex="1" id="azones.tree.holder">
+      <caption label="&ec2ui.captions.azones.label;" />
+      <toolbar style="padding: 0px 3px; -moz-box-align: center">
+        <toolbarbutton image="images/refresh.png" oncommand="ec2ui_AvailZoneTreeView.refresh()"
+          tooltiptext="&ec2ui.refresh.tip;" />
+      </toolbar>
+      <tree enableColumnDrag="true" id="ec2ui.azones.view" flex="1">
+        <treecols>
+          <treecol id="azone.name" label="&ec2ui.azones.name.label;" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="azone.state" label="&ec2ui.azones.state.label;" flex="5"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+        </treecols>
+        <treechildren id="azone.tree.children" context="azone.tree.contextmenu" />
+      </tree>
+    </groupbox>
+  </tabpanel>
+</overlay>

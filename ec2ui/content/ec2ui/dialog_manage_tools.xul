@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.managetools" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    buttons="accept" ondialogaccept="return ec2ui_toolsManager.saveDialog()"
+    onload="return ec2ui_toolsManager.initDialog();" title="Manage EC2 Tools" buttonlabelcancel="Close">
+
+    <script type="application/x-javascript" src="chrome://ec2ui/content/utils.js" />
+    <script type="application/x-javascript" src="chrome://ec2ui/content/preferences.js" />
+    <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+    <script type="application/x-javascript" src="chrome://ec2ui/content/tools_manager.js" />
+
+    <vbox flex="1">
+        <grid>
+            <columns>
+                <column />
+                <column />
+            </columns>
+            <rows>
+                <row>
+                    <label control="ec2ui.tools.ssh.command" value="SSH Command:" />
+                    <hbox>
+                        <textbox id="ec2ui.tools.ssh.command" size="40" />
+                    </hbox>
+                </row>
+                <row>
+                    <label control="ec2ui.tools.ssh.args" value="SSH Arguments:" />
+                    <hbox>
+                        <textbox id="ec2ui.tools.ssh.args" size="40" />
+                    </hbox>
+                </row>
+                <row>
+                    <label control="ec2ui.tools.ssh.key" value="SSH Key Template:" />
+                    <hbox>
+                        <textbox id="ec2ui.tools.ssh.key" size="40" />
+                    </hbox>
+                </row>
+                <row>
+                    <label control="ec2ui.tools.ec2.key.template" value="EC2 Private Key Template:" />
+                    <hbox>
+                        <textbox id="ec2ui.tools.ec2.key.template" size="40" />
+                    </hbox>
+                </row>
+                <row>
+                    <label control="ec2ui.tools.ssh.user" value="SSH User:" />
+                    <hbox>
+                        <textbox id="ec2ui.tools.ssh.user" size="40" />
+                    </hbox>
+                </row>
+                <row>
+                    <label control="ec2ui.tools.rdp.command" value="RDP Command:" />
+                    <hbox>
+                        <textbox id="ec2ui.tools.rdp.command" size="40" />
+                    </hbox>
+                </row>
+                <row>
+                    <label control="ec2ui.tools.rdp.args" value="RDP Arguments:" />
+                    <hbox>
+                        <textbox id="ec2ui.tools.rdp.args" size="40" />
+                    </hbox>
+                </row>
+            </rows>
+        </grid>
+        <hbox>
+            <description>${home} - Your home directory.</description>
+        </hbox>
+        <hbox>
+            <description>${keyname} - The EC2 keypair name the instance was launched with.</description>
+        </hbox>
+        <hbox>
+            <description>${host} - The public DNS name of the EC2 instance.</description>
+        </hbox>
+        <hbox>
+            <description>${key} - The (interpolated) key template.</description>
+        </hbox>
+        <hbox>
+            <description>${user} - The configured user name.</description>
+        </hbox>
+        <hbox>
+            <description>${pass} - The Administrator password for a Windows instance.</description>
+        </hbox>
+    </vbox>
+
+</dialog>
+

@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://ec2ui/skin/ec2ui.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <tabpanel id="leases_tab" flex="1">
+    <vbox flex="1">
+      <groupbox orient="vertical" flex="1">
+        <caption label="&ec2ui.captions.leases.offerings.label;" />
+        <popupset>
+          <popup id="ec2ui.offerings.contextmenu" >
+            <menuitem oncommand="ec2ui_LeaseOfferingsTreeView.viewDetails(event);"
+              label="&ec2ui.contextmenu.details.label;" />
+            <menuseparator />
+              <menuitem oncommand="ec2ui_LeaseOfferingsTreeView.purchaseOffering();"
+              label="Purchase Reserved Instances Offering" />
+            <menuseparator />
+            <menuitem oncommand="ec2ui_LeaseOfferingsTreeView.copyToClipBoard('id');"
+              label="&ec2ui.contextmenu.copyid.label;" />
+          </popup>
+        </popupset>
+        <toolbar style="padding: 0px 3px; -moz-box-align: center">
+          <hbox flex="10">
+            <textbox id="ec2ui.offerings.search" size="15" value=""
+              onkeypress="ec2ui_LeaseOfferingsTreeView.searchChanged(event);" />
+            <toolbarbutton image="images/refresh.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_LeaseOfferingsTreeView.refresh();"
+              tooltiptext="&ec2ui.refresh.tip;" />
+            <toolbarbutton image="images/cash.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_LeaseOfferingsTreeView.purchaseOffering();"
+              tooltiptext="PurchaseOffering" />
+          </hbox>
+        </toolbar>
+        <tree id="ec2ui.offerings.view" seltype="single" enableColumnDrag="true"
+          ondblclick="ec2ui_LeaseOfferingsTreeView.viewDetails(event)"
+          onselect="ec2ui_LeaseOfferingsTreeView.selectionChanged(event)" flex="1">
+          <treecols>
+            <treecol id="offering.id" label="&ec2ui.offerings.id.label;" flex="3"
+              sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="offering.instanceType" label="&ec2ui.offerings.instType.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="offering.azone" label="&ec2ui.availabilityZone.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="offering.duration" label="&ec2ui.offerings.duration.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="offering.fixedPrice" label="&ec2ui.offerings.fixedPrice.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="offering.usagePrice" label="&ec2ui.offerings.usagePrice.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="offering.description" label="&ec2ui.description.label;"
+              flex="2" persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+          </treecols>
+          <treechildren context="ec2ui.offerings.contextmenu"/>
+        </tree>
+      </groupbox>
+      <splitter style="width: 4px; max-height: 4px;" persist="state"
+        collapse="after" resizebefore="closest">
+        <grippy />
+      </splitter>
+      <groupbox orient="vertical" flex="1">
+        <caption label="&ec2ui.captions.leases.rsvdInst.label;" />
+        <popupset>
+          <popup id="ec2ui.rsvdInst.contextmenu">
+            <menuitem oncommand="ec2ui_ReservedInstancesTreeView.viewDetails();"
+              label="&ec2ui.contextmenu.details.label;" />
+            <menuseparator />
+            <menuitem oncommand="ec2ui_ReservedInstancesTreeView.copyToClipboard('id');"
+              label="&ec2ui.contextmenu.copyid.label;" />
+          </popup>
+        </popupset>
+        <toolbar style="padding: 0px 3px; -moz-box-align: center">
+          <hbox flex="10">
+            <textbox id="ec2ui.rsvdInst.search" size="15" value=""
+              onkeypress="ec2ui_ReservedInstancesTreeView.searchChanged(event);" />
+            <toolbarbutton image="images/refresh.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_ReservedInstancesTreeView.refresh()"
+              tooltiptext="&ec2ui.refresh.tip;" />
+          </hbox>
+        </toolbar>
+        <tree id="ec2ui.rsvdInst.view" seltype="single" enableColumnDrag="true"
+          ondblclick="ec2ui_ReservedInstancesTreeView.viewDetails(event)"
+          onselect="ec2ui_ReservedInstancesTreeView.selectionChanged(event)" flex="1">
+          <treecols>
+            <treecol id="rsvdInst.id" label="&ec2ui.rsvdInst.id.label;" flex="3"
+              sortDirection="ascending" persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="rsvdInst.instanceType" label="&ec2ui.rsvdInst.instType.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="rsvdInst.azone" label="&ec2ui.availabilityZone.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="rsvdInst.start" label="&ec2ui.snapshots.startTime.label;" flex="2"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="rsvdInst.duration" label="&ec2ui.rsvdInst.duration.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="rsvdInst.fixedPrice" label="&ec2ui.rsvdInst.fixedPrice.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="rsvdInst.usagePrice" label="&ec2ui.rsvdInst.usagePrice.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="rsvdInst.count" label="&ec2ui.rsvdInst.count.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="rsvdInst.description" label="&ec2ui.description.label;"
+              flex="2" persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="rsvdInst.state" label="&ec2ui.rsvdInst.state.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+          </treecols>
+          <treechildren context="ec2ui.rsvdInst.contextmenu"/>
+        </tree>
+      </groupbox>
+    </vbox>
+  </tabpanel>
+</overlay>

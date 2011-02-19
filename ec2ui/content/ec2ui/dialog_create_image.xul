@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.createImage.instructions"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  buttons="accept,cancel"
+  ondialogaccept="return ec2_CreateImageDialog.createImage();"
+  ondialogcancel="return true;"
+  onload="ec2_CreateImageDialog.init();" title="Create EBS AMI of Instance">
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/createImageDialog.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+
+  <vbox flex="1">
+    <grid flex="1">
+      <columns>
+        <column />
+        <column />
+      </columns>
+      <rows>
+        <row>
+          <label control="ec2ui.createImage.instanceid" value="Instance ID:" />
+          <textbox id="ec2ui.createImage.instanceid" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.createImage.amiName" value="AMI Name:" />
+          <textbox type="autocomplete" autocompletesearch="form-history"
+            id="ec2ui.createImage.amiName" size="30" value="" />
+        </row>
+        <row>
+          <label control="ec2ui.createImage.amiDescription" value="AMI Description:" />
+          <textbox type="autocomplete" autocompletesearch="form-history"
+            id="ec2ui.createImage.amiDescription" size="30" value="" />
+        </row>
+        <row>
+          <label control="ec2ui.createImage.noReboot" value="Snapshot without rebooting instance: "/>
+          <checkbox id="ec2ui.createImage.noReboot" checked="false"/>
+        </row>
+      </rows>
+    </grid>
+  </vbox>
+</dialog>

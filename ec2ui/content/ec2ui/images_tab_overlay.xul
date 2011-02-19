@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://ec2ui/skin/ec2ui.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <tabpanel id="images_tab" flex="1">
+    <vbox flex="1">
+      <hbox flex="2">
+        <groupbox flex="9" orient="vertical">
+          <caption label="Images" />
+          <popupset>
+            <menupopup id="ec2ui.images.contextmenu"
+              onpopupshowing="ec2ui_AMIsTreeView.enableOrDisableItems(event);">
+              <menuitem oncommand="ec2ui_AMIsTreeView.viewDetails();"
+                label="&ec2ui.contextmenu.details.label;" />
+              <menuitem oncommand="ec2ui_AMIsTreeView.tag(event);"
+                label="Add Tag" />
+              <menuseparator />
+              <menuitem id="amis.context.register"
+                oncommand="ec2ui_AMIsTreeView.registerNewImage();"
+                label="&ec2ui.images.contextmenu.register.label;" />
+              <menuitem id="amis.context.deregister"
+                oncommand="ec2ui_AMIsTreeView.deregisterImage();"
+                label="&ec2ui.images.contextmenu.deregister.label;" />
+              <menuitem id="amis.context.migrate"
+                oncommand="ec2ui_AMIsTreeView.migrateImage();"
+                label="Migrate AMI and Register" />
+              <menuitem id="amis.context.delete"
+                oncommand="ec2ui_AMIsTreeView.deleteImage();"
+                label="Delete AMI Parts and Deregister" />
+              <menuitem id="amis.context.deleteSnapshotAndDeregister"
+                oncommand="ec2ui_AMIsTreeView.deleteSnapshotAndDeregister();"
+                label="Delete Snapshot and Deregister AMI" />
+              <menuseparator />
+              <menuitem id="amis.context.launch"
+                oncommand="ec2ui_AMIsTreeView.launchNewInstances();"
+                label="Launch instance(s) of this AMI" />
+              <menuseparator />
+              <menuitem oncommand="ec2ui_AMIsTreeView.copyToClipBoard('id');"
+                label="&ec2ui.contextmenu.copyid.label;" />
+            </menupopup>
+          </popupset>
+          <toolbar style="padding: 0px 3px;">
+            <hbox flex="10">
+              <textbox id="ec2ui.images.search" size="15" value=""
+                onkeypress="ec2ui_AMIsTreeView.searchChanged(event);" />
+              <toolbarbutton image="images/refresh.png"
+                style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+                oncommand="ec2ui_AMIsTreeView.refresh()"
+                tooltiptext="&ec2ui.refresh.tip;" />
+              <toolbarbutton image="images/powerup.png" style="-moz-box-pack:center;"
+                oncommand="ec2ui_AMIsTreeView.launchNewInstances();"
+                tooltiptext="&ec2ui.images.powerup.tip;" />
+              <toolbarbutton image="images/registerami.png"
+                tooltiptext="&ec2ui.images.register.tip;"
+                oncommand="ec2ui_AMIsTreeView.registerNewImage();" />
+              <toolbarbutton image="images/deregisterami.png"
+                tooltiptext="&ec2ui.images.deregister.tip;"
+                oncommand="ec2ui_AMIsTreeView.deregisterImage();" />
+              <toolbarbutton image="images/info.png" style="-moz-box-pack:center;"
+                oncommand="ec2ui_AMIsTreeView.tag();"
+                tooltiptext="Add Tag" />
+              <menulist id="ec2ui_AMIsTreeView.image.type" selectedIndex="0"
+               oncommand="ec2ui_AMIsTreeView.imageTypeChanged();">
+                <menupopup>
+                  <menuitem label="No Filter " value="all"/>
+                  <menuitem label="All AMIs" value="ami"/>
+                  <menuitem label="All AMIs with EBS Root Device" value="rdt_ebs"/>
+                  <menuitem label="All AMIs with Instance Store Root Device" value="rdt_is"/>
+                  <menuitem label="My AMIs" value="my_ami"/>
+                  <menuitem label="My AMIs with EBS Root Device" value="my_ami_rdt_ebs"/>
+                  <menuitem label="Amazon AMIs" value="amzn"/>
+                  <menuitem label="Amazon AMIs with EBS Root Device" value="amzn_rdt_ebs"/>
+                  <menuitem label="All AKIs" value="aki"/>
+                  <menuitem label="All ARIs" value="ari"/>
+                </menupopup>
+              </menulist>
+            </hbox>
+          </toolbar>
+          <tree id="ec2ui.images.view" seltype="single" enableColumnDrag="true"
+            ondblclick="ec2ui_AMIsTreeView.viewDetails(event)"
+            onselect="ec2ui_AMIsTreeView.selectionChanged(event)" flex="1">
+            <treecols>
+              <treecol id="ami.id" label="&ec2ui.images.id.label;" flex="1"
+                sortDirection="ascending"
+                persist="width ordinal hidden sortDirection" />
+              <splitter class="tree-splitter" />
+              <treecol id="ami.location" label="&ec2ui.images.manifest.label;" flex="3"
+                persist="width ordinal hidden sortDirection" />
+              <splitter class="tree-splitter" />
+              <treecol id="ami.state" label="&ec2ui.images.state.label;" flex="1"
+                persist="width ordinal hidden sortDirection" />
+              <splitter class="tree-splitter" />
+              <treecol id="ami.owner" label="&ec2ui.images.owner.label;" flex="1"
+                persist="width ordinal hidden sortDirection" />
+              <splitter class="tree-splitter" />
+              <treecol id="ami.ownerAlias" label="&ec2ui.images.ownerAlias.label;" flex="1"
+                persist="width ordinal hidden sortDirection" />
+              <splitter class="tree-splitter" />
+              <treecol id="ami.isPublic" label="&ec2ui.images.visibility.label;" flex="1"
+                persist="width ordinal hidden sortDirection" />
+              <splitter class="tree-splitter" />
+              <treecol id="ami.arch" label="&ec2ui.images.architecture.label;" flex="1"
+                persist="width ordinal hidden sortDirection" />
+              <splitter class="tree-splitter" />
+              <treecol id="ami.platform" label="&ec2ui.platform.label;" flex="1"
+                persist="width ordinal hidden sortDirection" />
+              <splitter class="tree-splitter" />
+              <treecol id="ami.rootDeviceType" label="&ec2ui.images.rootDeviceType.label;" flex="1"
+                persist="width ordinal hidden sortDirection" />
+              <splitter class="tree-splitter" />
+              <treecol id="ami.name" label="&ec2ui.images.name.label;" flex="1"
+                persist="width ordinal hidden sortDirection" />
+              <splitter class="tree-splitter" />
+              <treecol id="ami.description" label="&ec2ui.description.label;" flex="1"
+                persist="width ordinal hidden sortDirection" />
+              <splitter class="tree-splitter" />
+              <treecol id="ami.tag" label="Tag" flex="2"
+                persist="width ordinal hidden sortDirection" />
+              <splitter class="tree-splitter" />
+            </treecols>
+            <treechildren context="ec2ui.images.contextmenu"/>
+          </tree>
+        </groupbox>
+        <splitter style="max-width: 4px; height: 4px;" persist="state" collapse="after"
+          resizebefore="closest">
+          <grippy />
+        </splitter>
+        <groupbox flex="1" orient="vertical">
+          <caption label="&ec2ui.captions.images.attribs.label;" />
+          <toolbar style="padding: 0px 3px; -moz-box-align: center">
+            <toolbarbutton image="images/refresh.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_AMIsTreeView.refreshLaunchPermissions()"
+              tooltiptext="&ec2ui.refresh.tip;" />
+            <toolbarbutton image="images/addlaunchperm.png" style="-moz-box-pack:center;"
+              oncommand="ec2ui_AMIsTreeView.addLaunchPermission();"
+              tooltiptext="&ec2ui.launchperms.add.tip;" />
+            <toolbarbutton image="images/removelaunchperm.png" style="-moz-box-pack:center;"
+              oncommand="ec2ui_AMIsTreeView.removeLaunchPermission();"
+              tooltiptext="&ec2ui.launchperms.remove.tip;" />
+            <toolbarbutton image="images/makeamipublic.png" style="-moz-box-pack:center;"
+              oncommand="ec2ui_AMIsTreeView.addGlobalLaunchPermission();"
+              tooltiptext="&ec2ui.launchperms.public.tip;" />
+            <toolbarbutton image="images/resetlaunchperms.png" style="-moz-box-pack:center;"
+              tooltiptext="&ec2ui.launchperms.reset.tip;"
+              oncommand="ec2ui_AMIsTreeView.resetLaunchPermissions();" />
+          </toolbar>
+          <listbox id="ec2ui.launchpermissions.list" seltype="single" rows="4"
+            ondblclick="ec2ui_AMIsTreeView.copyAccountIdToClipBoard(event)" flex="1" />
+        </groupbox>
+      </hbox>
+    </vbox>
+  </tabpanel>
+</overlay>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.delete.ami" style="width:450px; height:150px;"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  buttons="accept" ondialogaccept="return true;"
+  buttondisabledaccept="true" buttonlabelaccept="Done"
+  onload="ec2ui_AMIDeleter.init();"
+  title="Elasticfox AMI Deleter">
+
+  <script type="application/x-javascript"
+    src="chrome://ec2ui/content/deleteamidialog.js" />
+  <script type="application/x-javascript"
+    src="chrome://ec2ui/content/controller.js" />
+  <script type="application/x-javascript"
+    src="chrome://ec2ui/content/session.js" />
+  <script type="application/x-javascript"
+    src="chrome://ec2ui/content/preferences.js" />
+  <script type="application/x-javascript"
+    src="chrome://ec2ui/content/utils.js" />
+
+  <groupbox flex="1">
+    <caption label="AMI Deletion Progress" />
+    <spacer style="height: 6px" />
+    <progressmeter id="ec2ui.delete.ami.progress" value="0"
+      style="height: 4px; margin: 4px;" mode="determined" />
+    <spacer style="height: 10px" />
+    <hbox>
+      <label style="font-weight: bold;" value="Current Operation:" />
+      <label id="ec2ui.delete.ami.current" value="Initializing..." />
+    </hbox>
+    <spacer style="height: 10px" />
+  </groupbox>
+</dialog>

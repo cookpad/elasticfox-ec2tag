@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+  <Description about="urn:mozilla:install-manifest">
+    <em:id>{2204c510-88f3-11db-b606-0800200c9a66}</em:id>
+    <em:type>2</em:type>
+    <em:version>1.7.000116</em:version>
+    <em:file resource="urn:mozilla:extension:file:ec2ui.jar"/>
+
+    <!-- Target Application this extension can install into,
+         with minimum and maximum supported versions. -->
+    <em:targetApplication>
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+        <em:minVersion>2.0</em:minVersion>
+        <em:maxVersion>4.0</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+
+    <!-- Front End MetaData -->
+    <em:name>Elasticfox</em:name>
+    <em:description>A graphical interface to Amazon's EC2 web service.</em:description>
+    <em:creator>James Greenfield (icons originally by Ken Saunders http://www.mouserunner.com)</em:creator>
+    <em:homepageURL>http://ec2.amazonaws.com</em:homepageURL>
+    <em:updateURL>https://s3.amazonaws.com/ec2-downloads/ec2ui.rdf</em:updateURL>
+  </Description>
+
+  <Description about="urn:mozilla:extension:file:ec2ui.jar"
+                   em:package="content/ec2ui/"
+                   em:skin="skin/classic/ec2ui/">
+    <em:locale>locale/ec2ui/en-US/</em:locale>
+  </Description>
+</RDF>

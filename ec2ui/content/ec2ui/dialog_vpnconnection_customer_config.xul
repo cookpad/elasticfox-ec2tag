@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.vpnconnection.customerconfig" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="accept" 
+  ondialogaccept="return ec2_VpnConnectionCustomerConfig.viewConfig();"
+  ondialogcancel="return true;" 
+  title="View Customer Gateway Configuration" buttonlabelaccept="Get Config"
+  onload="ec2_VpnConnectionCustomerConfig.init();">
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/vpnconnection_customer_config_dialog.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+
+  <vbox flex="1">
+    <grid flex="1">
+      <columns>
+        <column />
+        <column />
+        <column />
+      </columns>
+      <rows>
+        <row>
+          <label control="ec2ui.vpncustomerconfig.cgwtype" value="Device Type: " />
+          <menulist id="ec2ui.vpncustomerconfig.cgwtype" />
+        </row>
+      </rows>
+    </grid>
+  </vbox>
+</dialog>
+

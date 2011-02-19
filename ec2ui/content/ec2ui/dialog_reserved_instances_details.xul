@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.reservedInstances.detail"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="accept" ondialogaccept="return true;"
+  onload="ec2_ReservedInstancesDetails.init();" title="Reserved Instances Details">
+
+  <script type="application/x-javascript"
+    src="chrome://ec2ui/content/reservedinstancesdetaildialog.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/utils.js" />
+
+  <vbox flex="1">
+    <grid flex="1">
+      <columns>
+        <column />
+        <column />
+        <column />
+      </columns>
+      <rows>
+        <row>
+          <label control="ec2ui.rsvdInst.id" value="&ec2ui.rsvdInst.id.label;:" />
+          <textbox id="ec2ui.rsvdInst.id" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.rsvdInst.instType" value="&ec2ui.rsvdInst.instType.label;:" />
+          <textbox id="ec2ui.rsvdInst.instType" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.rsvdInst.azone" value="&ec2ui.availabilityZone.label;" />
+          <textbox id="ec2ui.rsvdInst.azone" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.rsvdInst.start" value="&ec2ui.snapshots.startTime.label;:" />
+          <textbox id="ec2ui.rsvdInst.start" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.rsvdInst.duration" value="&ec2ui.rsvdInst.duration.label;:" />
+          <textbox id="ec2ui.rsvdInst.duration" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.rsvdInst.daysremaining" value="Days Remaining:" />
+          <textbox id="ec2ui.rsvdInst.daysremaining" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.rsvdInst.fixedPrice" value="&ec2ui.rsvdInst.fixedPrice.label;:" />
+          <textbox id="ec2ui.rsvdInst.fixedPrice" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.rsvdInst.usagePrice" value="&ec2ui.rsvdInst.usagePrice.label;:" />
+          <textbox id="ec2ui.rsvdInst.usagePrice" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.rsvdInst.count" value="&ec2ui.rsvdInst.count.label;:" />
+          <textbox id="ec2ui.rsvdInst.count" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.rsvdInst.description" value="&ec2ui.description.label;:" />
+          <textbox id="ec2ui.rsvdInst.description" multiline="true" cols="50" rows="3"
+            wrap="true" style="font-family: monospace;" readonly="true"/>
+        </row>
+        <row>
+          <label control="ec2ui.rsvdInst.state" value="&ec2ui.rsvdInst.state.label;:" />
+          <textbox id="ec2ui.rsvdInst.state" size="40" readonly="true" />
+        </row>
+      </rows>
+    </grid>
+  </vbox>
+</dialog>

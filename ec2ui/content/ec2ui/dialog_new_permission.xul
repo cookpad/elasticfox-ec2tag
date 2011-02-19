@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.newpermission" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="accept,cancel" ondialogaccept="return ec2_Authorizer.authorize();" ondialogcancel="return true;"
+  onload="ec2_Authorizer.init();" title="Grant New Permission" buttonlabelaccept="Add">
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/newpermissionauthorizer.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/utils.js" />
+
+  <groupbox flex="1" orient="vertical" id="ec2ui.newpermission.add.box">
+    <caption id="ec2ui.newpermission.add.caption"
+      label="Add New Permission for Security Group: " />
+    <tabbox flex="1">
+      <tabs id="ec2ui.newpermission.tabs">
+        <tab label="External" selected="true" />
+        <tab label="Group" />
+      </tabs>
+
+      <tabpanels flex="1">
+        <tabpanel id="ec2ui.newpermission.tab.external" orient="vertical"
+          flex="1">
+
+          <description>
+            Select a protocol and specify a host/range
+          </description>
+
+          <groupbox orient="vertical" flex="1">
+            <caption label="Protocol Details" />
+            <grid flex="1">
+              <columns>
+                <column />
+              </columns>
+              <rows>
+                <row>
+                  <hbox flex="0">
+                    <menulist id="ec2ui.newpermission.protocol" selectedIndex="0" size="50">
+                      <menupopup>
+                        <menuitem label="SSH" value="ssh"
+                          oncommand="ec2_Authorizer.displayProtocolDetails(false);"
+                          />
+                        <menuitem label="RDP" value="rdp"
+                          oncommand="ec2_Authorizer.displayProtocolDetails(false);"
+                          />
+                        <menuitem label="HTTP" value="http"
+                          oncommand="ec2_Authorizer.displayProtocolDetails(false);"
+                          />
+                        <menuitem label="HTTPS" value="https"
+                          oncommand="ec2_Authorizer.displayProtocolDetails(false);"
+                          />
+                        <menuitem label="POP3" value="pop3"
+                          oncommand="ec2_Authorizer.displayProtocolDetails(false);"
+                          />
+                        <menuitem label="IMAP" value="imap"
+                          oncommand="ec2_Authorizer.displayProtocolDetails(false);"
+                          />
+                        <menuitem label="Secure POP3" value="spop"
+                          oncommand="ec2_Authorizer.displayProtocolDetails(false);"
+                          />
+                        <menuitem label="Secure IMAP" value="simap"
+                          oncommand="ec2_Authorizer.displayProtocolDetails(false);"
+                          />
+                        <menuitem label="DNS" value="dns"
+                          oncommand="ec2_Authorizer.displayProtocolDetails(false);"
+                          />
+                        <menuitem label="SMTP" value="smtp"
+                          oncommand="ec2_Authorizer.displayProtocolDetails(false);"
+                          />
+                        <menuitem label="SMTPS" value="smtps"
+                          oncommand="ec2_Authorizer.displayProtocolDetails(false);"
+                          />
+                        <menuitem label="MYSQL" value="mysql"
+                          oncommand="ec2_Authorizer.displayProtocolDetails(false);"
+                          />
+                        <menuitem label="Microsoft SQL Server" value="mssql"
+                          oncommand="ec2_Authorizer.displayProtocolDetails(false);"
+                          />
+                        <menuitem label="LDAP" value="ldap"
+                          oncommand="ec2_Authorizer.displayProtocolDetails(false);"
+                          />
+                        <menuitem label="Other" value="other"
+                          oncommand="ec2_Authorizer.displayProtocolDetails(true);" />
+                      </menupopup>
+                    </menulist>
+                  </hbox>
+                </row>
+                <row>
+                  <deck id="ec2ui.newpermission.deck.protocol" selectedIndex="0">
+                    <hbox flex="1" align="pack">
+                      <label value="Protocol" />
+                      <menulist id="ec2ui.newpermission.protocol.menuitem" size="30" selectedIndex="0">
+                        <menupopup>
+                          <menuitem label="TCP/IP" value="tcp" />
+                          <menuitem label="UDP/IP" value="udp" />
+                        </menupopup>
+                      </menulist>
+                    </hbox>
+                    <hbox flex="1" align="pack">
+                      <label value="Protocol" />
+                      <menulist id="ec2ui.newpermission.other" size="30" selectedIndex="0">
+                        <menupopup>
+                          <menuitem label="TCP/IP" value="tcp" oncommand="ec2_Authorizer.selectProtocolDataDeck(1);" />
+                          <menuitem label="UDP/IP" value="udp" oncommand="ec2_Authorizer.selectProtocolDataDeck(1);" />
+                          <menuitem label="ICMP" value="icmp" oncommand="ec2_Authorizer.selectProtocolDataDeck(2);" />
+                        </menupopup>
+                      </menulist>
+                    </hbox>
+                  </deck>
+                </row>
+                <row>
+                  <deck id="ec2ui.newpermission.deck.protocol.data" selectedIndex="0">
+                    <hbox flex="1" align="pack">
+                      <label value="Port" />
+                      <textbox id="ec2ui.newpermission.knownport" value="" size="10" />
+                    </hbox>
+                    <hbox flex="1" align="pack">
+                      <label control="ec2ui.newpermission.fromport" value="Port Range:" />
+                      <textbox id="ec2ui.newpermission.fromport" value="0" size="10"/>
+                      <label control="ec2ui.newpermission.toport" value="to" />
+                      <textbox id="ec2ui.newpermission.toport" value="0" size="10"/>
+                    </hbox>
+                    <hbox flex="1" align="pack">
+                      <label control="ec2ui.newpermission.icmptype" value="ICMP Type" />
+                      <textbox id="ec2ui.newpermission.icmptype" value="-1" size="10" />
+                      <label control="ec2ui.newpermission.icmpcode" value="ICMP Code" />
+                      <textbox id="ec2ui.newpermission.icmpcode" value="-1" size="10" />
+                    </hbox>
+                  </deck>
+                </row>
+              </rows>
+            </grid>
+          </groupbox>
+
+          <groupbox orient="vertical" flex="1">
+            <caption label="Host/Network Details" />
+            <radiogroup id="ec2ui.newpermission.hostnet.group" orient="vertical">
+              <grid flex="1">
+                <columns>
+                  <column />
+                  <column />
+                  <column />
+                </columns>
+                <rows>
+                  <row>
+                    <radio id="host" value="host" label="Host" selected="true" />
+                    <textbox id="ec2ui.newpermission.source.host" />
+                    <button id="get-host-button" label="Get My Host Address"
+                      default="true" oncommand="ec2_Authorizer.getHostAddress();" />
+                  </row>
+                  <row>
+                    <radio id="range" value="range" label="Network" />
+                    <textbox id="ec2ui.newpermission.source.range" />
+                    <button id="get-network-button" label="Get My Network Range"
+                      default="true" oncommand="ec2_Authorizer.getHostNetwork();" />
+                  </row>
+                </rows>
+              </grid>
+            </radiogroup>
+          </groupbox>
+        </tabpanel>
+
+        <tabpanel id="ec2ui.newpermission.tab.group" orient="vertical"
+          flex="1">
+
+          <description>
+            Specify a User and Group you would like to authorize
+          </description>
+          <spacer style="height: 10px" />
+          <grid flex="1">
+            <columns>
+              <column />
+              <column />
+            </columns>
+            <rows>
+              <row>
+                <label control="ec2ui.newpermission.source.user" value="User ID" />
+                <textbox id="ec2ui.newpermission.source.user" value="" />
+              </row>
+              <row>
+                <label control="ec2ui.newpermission.source.group" value="Group" />
+                <menulist id="ec2ui.newpermission.source.group" editable="true" selectedIndex="0"/>
+              </row>
+            </rows>
+          </grid>
+        </tabpanel>
+      </tabpanels>
+    </tabbox>
+  </groupbox>
+</dialog>

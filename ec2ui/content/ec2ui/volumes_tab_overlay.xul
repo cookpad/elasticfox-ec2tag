@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://ec2ui/skin/ec2ui.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <tabpanel id="volumes_tab" flex="1">
+    <vbox flex="1">
+      <groupbox orient="vertical" flex="1">
+        <caption label="&ec2ui.captions.volumes.volumes.label;" />
+        <popupset>
+          <popup id="ec2ui.volumes.contextmenu"
+            onpopupshowing="ec2ui_VolumeTreeView.enableOrDisableItems();">
+            <menuitem oncommand="ec2ui_VolumeTreeView.viewDetails(event);"
+              label="&ec2ui.contextmenu.details.label;" />
+            <menuitem oncommand="ec2ui_VolumeTreeView.tag(event);"
+              label="Add Tag" />
+            <menuseparator />
+            <menuitem id="volumes.context.attach"
+              oncommand="ec2ui_VolumeTreeView.attachVolume();"
+              label="&ec2ui.volume.contextmenu.attach.label;" />
+            <menuitem id="volumes.context.detach"
+              oncommand="ec2ui_VolumeTreeView.detachVolume();"
+              label="&ec2ui.volume.contextmenu.detach.label;" />
+            <menuitem id="volumes.context.forcedetach"
+              oncommand="ec2ui_VolumeTreeView.forceDetachVolume();"
+              label="&ec2ui.volume.contextmenu.forcedetach.label;" />
+            <menuseparator />
+            <menuitem oncommand="ec2ui_VolumeTreeView.createSnapshot();"
+              label="&ec2ui.volume.contextmenu.createsnap.label;" />
+            <menuseparator />
+            <menuitem oncommand="ec2ui_VolumeTreeView.createVolume();"
+              label="&ec2ui.volume.contextmenu.create.label;" />
+            <menuitem oncommand="ec2ui_VolumeTreeView.deleteVolume();"
+              label="&ec2ui.volume.contextmenu.delete.label;" />
+            <menuseparator />
+            <menuitem oncommand="ec2ui_VolumeTreeView.copyToClipBoard('id');"
+              label="&ec2ui.volume.contextmenu.copyvolid.label;" />
+          </popup>
+        </popupset>
+        <toolbar style="padding: 0px 3px; -moz-box-align: center">
+          <hbox flex="10">
+            <textbox id="ec2ui.volumes.search" size="15" value=""
+              onkeypress="ec2ui_VolumeTreeView.searchChanged(event);" />
+            <toolbarbutton image="images/refresh.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VolumeTreeView.refresh()"
+              tooltiptext="&ec2ui.refresh.tip;" />
+            <toolbarbutton image="images/createvol.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VolumeTreeView.createVolume()"
+              tooltiptext="&ec2ui.createvol.tip;" />
+            <toolbarbutton image="images/delete.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VolumeTreeView.deleteVolume()"
+              tooltiptext="&ec2ui.deletevol.tip;" />
+            <toolbarbutton image="images/createsnap.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VolumeTreeView.createSnapshot()"
+              tooltiptext="&ec2ui.createsnapfromvol.tip;" />
+            <toolbarbutton image="images/attach.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VolumeTreeView.attachVolume()"
+              tooltiptext="&ec2ui.attachvol.tip;" />
+            <toolbarbutton image="images/detach.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VolumeTreeView.detachVolume()"
+              tooltiptext="&ec2ui.detachvol.tip;" />
+            <toolbarbutton image="images/info.png" style="-moz-box-pack:center;"
+              oncommand="ec2ui_VolumeTreeView.tag();"
+              tooltiptext="Add Tag" />
+          </hbox>
+        </toolbar>
+        <tree id="ec2ui.volumes.view" seltype="single" enableColumnDrag="true"
+          ondblclick="ec2ui_VolumeTreeView.viewDetails(event)"
+          onselect="ec2ui_VolumeTreeView.selectionChanged(event)" flex="1">
+          <treecols>
+            <treecol id="vol.id" label="&ec2ui.volumes.id.label;" flex="1"
+              sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vol.size" label="&ec2ui.volumes.size.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vol.snapshotId" label="&ec2ui.snapshots.id.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vol.availabilityZone" label="&ec2ui.availabilityZone.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vol.status" label="&ec2ui.volumes.status.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vol.createTime" label="&ec2ui.volumes.createTime.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vol.instanceId" label="&ec2ui.instances.id.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vol.device" label="&ec2ui.volumes.attachment.device.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vol.attachStatus" label="&ec2ui.volumes.attachment.status.label;"
+              flex="1" persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vol.attachTime" label="&ec2ui.volumes.attachment.attachTime.label;"
+              flex="1" persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vol.tag" label="Tag" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+          </treecols>
+          <treechildren context="ec2ui.volumes.contextmenu"/>
+        </tree>
+      </groupbox>
+      <splitter style="width: 4px; max-height: 4px;" persist="state"
+        collapse="after" resizebefore="closest">
+        <grippy />
+      </splitter>
+      <groupbox orient="vertical" flex="1">
+        <caption label="&ec2ui.captions.volumes.snapshots.label;" />
+        <popupset>
+          <popup id="ec2ui.snapshots.contextmenu">
+            <menuitem oncommand="ec2ui_SnapshotTreeView.viewDetails(event);"
+              label="&ec2ui.contextmenu.details.label;" />
+            <menuitem oncommand="ec2ui_SnapshotTreeView.tag(event);"
+              label="Add Tag" />
+            <menuseparator />
+            <menuitem oncommand="ec2ui_SnapshotTreeView.createVolume();"
+              label="&ec2ui.snapshot.contextmenu.createvol.label;" />
+            <menuitem oncommand="ec2ui_SnapshotTreeView.deleteSnapshot();"
+              label="&ec2ui.snapshot.contextmenu.delete.label;" />
+            <menuseparator />
+            <menuitem oncommand="ec2ui_SnapshotTreeView.copyToClipBoard('id');"
+              label="&ec2ui.snapshot.contextmenu.copysnapid.label;" />
+          </popup>
+        </popupset>
+        <toolbar style="padding: 0px 3px; -moz-box-align: center">
+          <hbox flex="10">
+            <textbox id="ec2ui.snapshots.search" size="15" value=""
+              onkeypress="ec2ui_SnapshotTreeView.searchChanged(event);" />
+            <toolbarbutton image="images/refresh.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_SnapshotTreeView.refresh()"
+              tooltiptext="&ec2ui.refresh.tip;" />
+            <toolbarbutton image="images/createvolfromsnap.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_SnapshotTreeView.createVolume()"
+              tooltiptext="&ec2ui.createvolfromsnap.tip;" />
+            <toolbarbutton image="images/delete.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_SnapshotTreeView.deleteSnapshot()"
+              tooltiptext="&ec2ui.deletesnap.tip;" />
+            <toolbarbutton image="images/info.png" style="-moz-box-pack:center;"
+              oncommand="ec2ui_SnapshotTreeView.tag();"
+              tooltiptext="Add Tag" />
+            <menulist id="ec2ui_SnapshotTreeView.snapshot.type" selectedIndex="0"
+              oncommand="ec2ui_SnapshotTreeView.snapshotTypeChanged();">
+              <menupopup>
+                <menuitem label="No Filter" value="all"/>
+                <menuitem label="My Snapshots" value="my_snapshots"/>
+              </menupopup>
+            </menulist>
+          </hbox>
+        </toolbar>
+        <tree id="ec2ui.snapshots.view" seltype="single" enableColumnDrag="true"
+          ondblclick="ec2ui_SnapshotTreeView.viewDetails(event)"
+          onselect="ec2ui_SnapshotTreeView.selectionChanged(event)" flex="1">
+          <treecols>
+            <treecol id="snap.id" label="&ec2ui.snapshots.id.label;" flex="1"
+              sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="snap.volumeId" label="&ec2ui.volumes.id.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="snap.status" label="&ec2ui.snapshots.status.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="snap.startTime" label="&ec2ui.snapshots.startTime.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="snap.progress" label="&ec2ui.snapshots.progress.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="snap.volumeSize" label="&ec2ui.snapshots.volumeSize.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="snap.description" label="&ec2ui.description.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="snap.owner" label="&ec2ui.snapshots.owner.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <treecol id="snap.ownerAlias" label="&ec2ui.snapshots.ownerAlias.label;" flex="1"
+              hidden="true" persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="snap.tag" label="Tag" flex="1"
+              persist="width ordinal hidden sortDirection" />
+          </treecols>
+          <treechildren context="ec2ui.snapshots.contextmenu"/>
+        </tree>
+      </groupbox>
+    </vbox>
+  </tabpanel>
+</overlay>

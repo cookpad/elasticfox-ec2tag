@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.retrycancel"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="accept,cancel"
+  ondialogaccept="return retry();"
+  ondialogcancel="return cancel();"
+  onload="init();"
+  title="Retry or Cancel?"
+  buttonlabelaccept="Retry">
+
+  <script type="application/x-javascript">
+  function init() {
+      document.getElementById("ec2ui.retrycancel.message").value = window.arguments[0];
+      document.getElementById("ec2ui.retrycancel.faultCode").value = window.arguments[1];
+      document.getElementById("ec2ui.retrycancel.requestId").value = window.arguments[2];
+      document.getElementById("ec2ui.retrycancel.error").value = window.arguments[3];
+  }
+
+  function retry() {
+      window.arguments[4].value = true;
+      return true;
+  }
+
+  function cancel() {
+      window.arguments[4].value = false;
+      return true;
+  }
+  </script>
+
+  <vbox flex="1">
+    <description id="ec2ui.retrycancel.message">An Error Occurred</description>
+    <spacer style="height: 10px" />
+    <grid flex="1">
+      <columns>
+        <column />
+        <column />
+      </columns>
+      <rows>
+        <row>
+          <label value="Request ID:" />
+          <label id="ec2ui.retrycancel.requestId" value="" />
+        </row>
+        <row>
+          <label value="Fault Code:" />
+          <label id="ec2ui.retrycancel.faultCode" value="" />
+        </row>
+        <row>
+          <label value="Details:" />
+          <textbox id="ec2ui.retrycancel.error" multiline="true" cols="50" rows="3" wrap="true"
+            style="font-family: monospace;" readonly="true"/>
+        </row>
+      </rows>
+    </grid>
+  </vbox>
+</dialog>
+

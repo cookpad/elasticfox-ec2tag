@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.newinstances" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="accept,cancel" ondialogaccept="return ec2_InstanceLauncher.launch();" ondialogcancel="return true;"
+  onload="ec2_InstanceLauncher.init();" title="Launch new instance(s)" buttonlabelaccept="Launch">
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/utils.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/newinstancesdialog.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/base64.js" />
+
+  <vbox flex="1">
+    <grid flex="1">
+      <columns>
+        <column />
+        <column />
+        <column />
+      </columns>
+      <rows>
+        <row>
+          <label control="ec2ui.newinstances.ami" value="AMI ID:" />
+          <textbox id="ec2ui.newinstances.ami" size="40" value="1" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.newinstances.ami.tag" value="AMI Tag:" />
+          <textbox id="ec2ui.newinstances.ami.tag" size="40" value="1" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.newinstances.ami.location" value="AMI Manifest:" />
+          <textbox id="ec2ui.newinstances.ami.location" size="40" value="1" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.newinstances.aki" value="AKI ID:" />
+          <menulist id="ec2ui.newinstances.aki" size="40" value=""
+            editable="true"/>
+        </row>
+        <row>
+          <label control="ec2ui.newinstances.ari" value="ARI ID:" />
+          <menulist id="ec2ui.newinstances.ari" size="40" value=""
+            editable="true"/>
+        </row>
+        <row>
+          <label control="ec2ui.newinstances.instancetypelist" value="Instance Type:" />
+          <menulist id="ec2ui.newinstances.instancetypelist" />
+        </row>
+        <row>
+          <label control="ec2ui.newinstances.min" value="Number of instances - Min: " />
+          <hbox>
+            <textbox id="ec2ui.newinstances.min" size="10" value="1" />
+            <label control="ec2ui.newinstances.max" value="Max:" />
+            <textbox id="ec2ui.newinstances.max" size="10" value="1" />
+          </hbox>
+        </row>
+        <row>
+          <label control="ec2ui.newinstances.tag" value="New Instance(s) Tag:" />
+          <textbox id="ec2ui.newinstances.tag" size="40" value="" />
+        </row>
+        <row>
+          <label control="ec2ui.newinstances.keypairlist" value="KeyPair:" />
+          <menulist id="ec2ui.newinstances.keypairlist" />
+        </row>
+        <row>
+          <label control="ec2ui.newinstances.availabilityzonelist" value="Availability Zone:" />
+          <menulist id="ec2ui.newinstances.availabilityzonelist" />
+        </row>
+        <row>
+          <label control="ec2ui.newinstances.properties" value="Additional Info:" />
+          <textbox id="ec2ui.newinstances.properties" size="40" />
+        </row>
+        <groupbox flex="1" id="ec2ui.newinstances.vpc.box">
+          <caption label="&ec2ui.captions.newinstances.vpc.label;" />
+          <grid flex="1">
+            <columns>
+              <column />
+              <column />
+            </columns>
+            <rows>
+              <row>
+                <label control="ec2ui.newinstances.usevpc"
+                  value="&ec2ui.captions.newinstances.usevpc.label;" />
+                <checkbox id="ec2ui.newinstances.usevpc"
+                  checked="false"
+                  oncommand="ec2_InstanceLauncher.useVpcChanged();"/>
+              </row>
+              <row>
+                <label control="ec2ui.newinstances.vpcId" value="VPC: "/>
+                <menulist id="ec2ui.newinstances.vpcId"
+                  oncommand="ec2_InstanceLauncher.vpcIdSelected();"/>
+              </row>
+              <row>
+                <label control="ec2ui.newinstances.subnetId" value="Subnet: "/>
+                <menulist id="ec2ui.newinstances.subnetId" />
+              </row>
+              <row>
+                <label control="ec2ui.newinstances.ipAddress" value="IP Address: "/>
+                <textbox id="ec2ui.newinstances.ipAddress" size="40" editable="true"/>
+              </row>
+
+            </rows>
+          </grid>
+        </groupbox>
+        <groupbox flex="1" id="ec2ui.newinstances.secgroups.box">
+          <caption label="&ec2ui.captions.images.launchsecgroups.label;" />
+          <grid flex="1">
+            <columns>
+              <column />
+              <column />
+              <column />
+            </columns>
+            <rows>
+              <row>
+                <label control="ec2ui.newinstances.secgroups.unused" value="Available Groups" />
+                <spacer flex="1" />
+                <label control="ec2ui.newinstances.secgroups.used" value="Launch in" />
+              </row>
+              <row>
+                <listbox rows="3" id="ec2ui.newinstances.secgroups.unused" seltype="multiple">
+                  <listcols>
+                    <listcol flex="1" />
+                  </listcols>
+                </listbox>
+                <vbox flex="1" pack="center">
+                  <button image="images/right.png"
+                    oncommand="ec2_InstanceLauncher.addSecurityGroup();" />
+                  <button image="images/left.png"
+                    oncommand="ec2_InstanceLauncher.removeSecurityGroup();" />
+                </vbox>
+                <listbox rows="3" id="ec2ui.newinstances.secgroups.used" seltype="multiple">
+                  <listcols>
+                    <listcol flex="1" />
+                  </listcols>
+                </listbox>
+              </row>
+            </rows>
+          </grid>
+        </groupbox>
+        <groupbox flex="1">
+          <caption label="&ec2ui.captions.images.launchparams.label;" />
+          <textbox id="ec2ui.newinstances.userdata" multiline="true" cols="50" rows="2" wrap="false"
+            style="font-family: monospace;" />
+          <hbox pack="end" flex="1">
+            <button label="Open File" oncommand="ec2_InstanceLauncher.loadUserDataFromFile(false);" />
+            <button label="Open Binary File" oncommand="ec2_InstanceLauncher.loadUserDataFromFile(true);" />
+          </hbox>
+        </groupbox>
+      </rows>
+    </grid>
+  </vbox>
+</dialog>
+

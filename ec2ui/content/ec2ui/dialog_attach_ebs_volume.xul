@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.attachebsvolume"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="accept,cancel"
+  ondialogaccept="return ec2_EBSVolumeAttacher.attach();"
+  ondialogcancel="return true;"
+  onload="ec2_EBSVolumeAttacher.init();" title="Attach EBS Volume to Instance"
+  buttonlabelaccept="Attach">
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/attachebsvolumedialog.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/utils.js" />
+
+  <vbox flex="1">
+    <grid flex="1">
+      <columns>
+        <column />
+        <column />
+      </columns>
+      <rows>
+        <row>
+          <label id="ec2ui.attachebsvolume.instanceLabel" control="ec2ui.attachebsvolume.instanceId"
+          value="&ec2ui.instances.id.label;" />
+          <textbox id="ec2ui.attachebsvolume.instanceId" readonly="true" size="30"/>
+        </row>
+        <row>
+          <label control="ec2ui.attachebsvolume.volumeId" value="&ec2ui.volumes.id.label;" />
+          <menulist id="ec2ui.attachebsvolume.volumeId" size="30" />
+        </row>
+        <row>
+          <label control="ec2ui.attachebsvolume.device" value="&ec2ui.volumes.attachment.device.label;" />
+          <textbox id="ec2ui.attachebsvolume.device" size="30" />
+        </row>
+      </rows>
+    </grid>
+    <groupbox>
+      <description>Linux devices: /dev/sda through /dev/sdp</description>
+    </groupbox>
+  </vbox>
+</dialog>
+

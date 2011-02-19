@@ -1,0 +1,270 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://ec2ui/skin/ec2ui.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <tabpanel id="vpns_tab" flex="1">
+    <vbox flex="1">
+      <groupbox orient="vertical" flex="1">
+        <caption label="&ec2ui.captions.vpnconnections.vpnconnections.label;" />
+        <popupset>
+          <popup id="ec2ui.vpnconnections.contextmenu">
+            <menuitem oncommand="ec2ui_VpnConnectionTreeView.tag(event);"
+              label="Add Tag" />
+            <menuseparator />
+            <menuitem oncommand="ec2ui_VpnConnectionTreeView.deleteVpnConnection();"
+                      label="&ec2ui.vpnconnection.contextmenu.delete.label;" />
+            <menuitem oncommand="ec2ui_VpnConnectionTreeView.getCustomerConfig();"
+                      label="&ec2ui.vpnconnection.contextmenu.config.label;" />
+            <menuseparator />
+            <menuitem oncommand="ec2ui_VpnConnectionTreeView.copyToClipBoard('id');"
+              label="&ec2ui.vpnconnection.contextmenu.copyvpnconnectionsid.label;" />
+          </popup>
+        </popupset>
+        <toolbar style="padding: 0px 3px; -moz-box-align: center">
+          <hbox flex="10">
+            <textbox id="ec2ui.vpnconnections.search" size="15" value=""
+              type="autocomplete" autocompletesearch="form-history"
+              onkeypress="ec2ui_VpnConnectionTreeView.searchChanged(event);" />
+            <toolbarbutton image="images/refresh.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VpnConnectionTreeView.refresh()"
+              tooltiptext="&ec2ui.refresh.tip;" />
+            <toolbarbutton image="images/createvpnconn.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VpnConnectionTreeView.createVpnConnection(null, null)"
+              tooltiptext="&ec2ui.createvpnconnection.tip;" />
+            <toolbarbutton image="images/delete.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VpnConnectionTreeView.deleteVpnConnection()"
+              tooltiptext="&ec2ui.deletevpnconnection.tip;" />
+            <toolbarbutton image="images/get_customer_config.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VpnConnectionTreeView.getCustomerConfig()"
+              tooltiptext="&ec2ui.getcustomerconfig.tip;"/>
+            <toolbarbutton image="images/info.png" style="-moz-box-pack:center;"
+              oncommand="ec2ui_VpnConnectionTreeView.tag();"
+              tooltiptext="Add Tag" />
+          </hbox>
+        </toolbar>
+        <tree id="ec2ui.vpnconnections.view" seltype="single" enableColumnDrag="true"
+          onselect="ec2ui_VpnConnectionTreeView.selectionChanged(event)" flex="1">
+          <treecols>
+            <treecol id="vpnConnection.id" label="&ec2ui.vpnconnections.id.label;" flex="1"
+              sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vpnConnection.vgwId" label="&ec2ui.vpnconnections.vgwid.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vpnConnection.cgwId" label="&ec2ui.vpnconnections.cgwid.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vpnConnection.type" label="&ec2ui.vpnconnections.type.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vpnConnection.state" label="&ec2ui.vpnconnections.state.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vpnConnection.tag" label="Tag" flex="1"
+              persist="width ordinal hidden sortDirection" />
+          </treecols>
+          <treechildren context="ec2ui.vpnconnections.contextmenu"/>
+        </tree>
+      </groupbox>
+      <splitter style="width: 4px; max-height: 4px;" persist="state"
+        collapse="after" resizebefore="closest">
+        <grippy />
+      </splitter>
+      <hbox flex="2">
+      <groupbox orient="vertical" flex="1">
+        <caption label="&ec2ui.captions.vpngateways.vpngateways.label;" />
+        <popupset>
+          <popup id="ec2ui.vpngateways.contextmenu"
+            onpopupshowing="ec2ui_VpnGatewayTreeView.enableOrDisableItems();">
+            <menuitem oncommand="ec2ui_VpnGatewayTreeView.tag(event);"
+              label="Add Tag" />
+            <menuseparator />
+            <!-- Create VPN Connection -->
+            <menuitem oncommand="ec2ui_VpnGatewayTreeView.createVpnConnection();"
+                      label="&ec2ui.vpngateway.contextmenu.createvpnconnection.label;" />
+
+            <!-- Attach to VPC -->
+            <menuitem oncommand="ec2ui_VpnGatewayTreeView.attachToVpc();"
+                      label="&ec2ui.vpngateway.contextmenu.attachvpc.label;" />
+
+            <!-- Delete -->
+            <menuitem oncommand="ec2ui_VpnGatewayTreeView.deleteVpnGateway();"
+                      label="&ec2ui.vpngateway.contextmenu.delete.label;" />
+
+            <menuseparator />
+            <!-- Copy ID -->
+            <menuitem oncommand="ec2ui_VpnGatewayTreeView.copyToClipBoard('id');"
+              label="&ec2ui.vpngateway.contextmenu.copyvgwid.label;" />
+          </popup>
+        </popupset>
+        <toolbar style="padding: 0px 3px; -moz-box-align: center">
+          <hbox flex="10">
+            <textbox id="ec2ui.vpngateways.search" size="15" value=""
+              type="autocomplete" autocompletesearch="form-history"
+              onkeypress="ec2ui_VpnGatewayTreeView.searchChanged(event);" />
+            <toolbarbutton image="images/refresh.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VpnGatewayTreeView.refresh()"
+              tooltiptext="&ec2ui.refresh.tip;" />
+            <toolbarbutton image="images/createvpngw.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VpnGatewayTreeView.createVpnGateway()"
+              tooltiptext="&ec2ui.createvpngateway.tip;" />
+            <toolbarbutton image="images/delete.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VpnGatewayTreeView.deleteVpnGateway()"
+              tooltiptext="&ec2ui.deletevpngateway.tip;" />
+            <toolbarbutton image="images/attach.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VpnGatewayTreeView.attachToVpc();"
+              tooltiptext="&ec2ui.attachvpngateway.tip;" />
+             
+            <toolbarbutton image="images/info.png" style="-moz-box-pack:center;"
+              oncommand="ec2ui_VpnGatewayTreeView.tag();"
+              tooltiptext="Add Tag" />
+          </hbox>
+        </toolbar>
+        <tree id="ec2ui.vpngateways.view" seltype="single" enableColumnDrag="true"
+          onselect="ec2ui_VpnGatewayTreeView.selectionChanged(event)" flex="1">
+          <treecols>
+            <treecol id="vpnGateway.id" label="&ec2ui.vpngateways.id.label;" flex="1"
+              sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vpnGateway.availabilityZone" label="&ec2ui.vpngateways.availabilityZone.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vpnGateway.type" label="&ec2ui.vpngateways.type.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vpnGateway.state" label="&ec2ui.vpngateways.state.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vpnGateway.tag" label="Tag" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+          </treecols>
+          <treechildren context="ec2ui.vpngateways.contextmenu"/>
+        </tree>
+      </groupbox>
+      <splitter style="max-width: 4px; height: 4px;" persist="state" collapse="after" resizebefore="closest">
+          <grippy />
+      </splitter>
+      <groupbox orient="vertical" flex="1">
+        <caption label="&ec2ui.captions.vpngateways.attachments.label;" />
+        <popupset>
+          <popup id="ec2ui.vpnattachments.contextmenu"
+            onpopupshowing="ec2ui_VpnAttachmentTreeView.enableOrDisableItems();">
+            <!-- Delete -->
+            <menuitem oncommand="ec2ui_VpnAttachmentTreeView.deleteVpnAttachment();"
+                      label="&ec2ui.vpnattachment.contextmenu.delete.label;" />
+
+          </popup>
+        </popupset>
+        <toolbar style="padding: 0px 3px; -moz-box-align: center">
+          <hbox flex="10">
+            <toolbarbutton image="images/detach.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VpnAttachmentTreeView.deleteVpnAttachment()"
+              tooltiptext="&ec2ui.deletevpnattachment.tip;" />
+          </hbox>
+        </toolbar>
+        <tree id="ec2ui.vpnattachments.view" seltype="single" enableColumnDrag="true"
+          onselect="ec2ui_VpnAttachmentTreeView.selectionChanged(event)" flex="1">
+          <treecols>
+            <treecol id="vpnattachment.vgwId" label="&ec2ui.vpnattachments.vgwId.label;" flex="1"
+              sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vpnattachment.vpcId" label="&ec2ui.vpnattachments.vpcId.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vpnattachment.state" label="&ec2ui.vpnattachments.state.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+          </treecols>
+          <treechildren context="ec2ui.vpnattachments.contextmenu"/>
+        </tree>
+      </groupbox>
+      </hbox>
+      <splitter style="width: 4px; max-height: 4px;" persist="state"
+        collapse="after" resizebefore="closest">
+        <grippy />
+      </splitter>
+      <groupbox orient="vertical" flex="1">
+        <caption label="&ec2ui.captions.customergateways.customergateways.label;" />
+        <popupset>
+          <popup id="ec2ui.customergateways.contextmenu">
+            <menuitem oncommand="ec2ui_CustomerGatewayTreeView.tag(event);"
+              label="Add Tag" />
+            <menuseparator />
+            <!-- Create VPN Connection -->
+            <menuitem oncommand="ec2ui_CustomerGatewayTreeView.createVpnConnection();"
+                      label="&ec2ui.customergateway.contextmenu.createvpnconnection.label;" />
+
+            <!-- Delete -->
+            <menuitem oncommand="ec2ui_CustomerGatewayTreeView.deleteCustomerGateway();"
+                      label="&ec2ui.customergateway.contextmenu.delete.label;" />
+
+            <menuseparator />
+            <menuitem oncommand="ec2ui_CustomerGatewayTreeView.copyToClipBoard('id');"
+              label="&ec2ui.customergateway.contextmenu.copycgwid.label;" />
+          </popup>
+        </popupset>
+        <toolbar style="padding: 0px 3px; -moz-box-align: center">
+          <hbox flex="10">
+            <textbox id="ec2ui.customergateways.search" size="15" value=""
+              type="autocomplete" autocompletesearch="form-history"
+              onkeypress="ec2ui_CustomerGatewayTreeView.searchChanged(event);" />
+            <toolbarbutton image="images/refresh.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_CustomerGatewayTreeView.refresh()"
+              tooltiptext="&ec2ui.refresh.tip;" />
+            <toolbarbutton image="images/createcgw.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_CustomerGatewayTreeView.createCustomerGateway();" 
+              tooltiptext="&ec2ui.createcustomergateway.tip;" />
+            <toolbarbutton image="images/delete.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_CustomerGatewayTreeView.deleteCustomerGateway()"
+              tooltiptext="&ec2ui.deletecustomergateway.tip;" />
+            <toolbarbutton image="images/info.png" style="-moz-box-pack:center;"
+              oncommand="ec2ui_CustomerGatewayTreeView.tag();"
+              tooltiptext="Add Tag" />
+          </hbox>
+        </toolbar>
+        <tree id="ec2ui.customergateways.view" seltype="single" enableColumnDrag="true"
+          onselect="ec2ui_CustomerGatewayTreeView.selectionChanged(event)" flex="1">
+          <treecols>
+            <treecol id="customerGateway.id" label="&ec2ui.customergateways.id.label;" flex="1"
+              sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="customerGateway.type" label="&ec2ui.customergateways.type.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="customerGateway.state" label="&ec2ui.customergateways.state.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="customerGateway.ipAddress" label="&ec2ui.customergateways.ipaddress.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="customerGateways.bgpAsn" label="&ec2ui.customergateways.bgpasn.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="customerGateways.tag" label="Tag" flex="1"
+              persist="width ordinal hidden sortDirection" />
+          </treecols>
+          <treechildren context="ec2ui.customergateways.contextmenu"/>
+        </tree>
+      </groupbox>
+    </vbox>
+  </tabpanel>
+</overlay>

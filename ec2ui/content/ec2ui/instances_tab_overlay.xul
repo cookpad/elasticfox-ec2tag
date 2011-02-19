@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://ec2ui/skin/ec2ui.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <tabpanel id="instances_tab" flex="1">
+    <groupbox flex="1" orient="vertical">
+      <caption label="&ec2ui.captions.images.instances.label;" />
+      <popupset>
+        <popup id="ec2ui.instances.contextmenu"
+          onpopupshowing="ec2ui_InstancesTreeView.enableOrDisableItems(event);">
+          <menuitem oncommand="ec2ui_InstancesTreeView.viewDetails(event);"
+            label="&ec2ui.contextmenu.details.label;" />
+          <menuitem oncommand="ec2ui_InstancesTreeView.tag(event);"
+            label="Add Tag" />
+          <menuseparator />
+          <menuitem id="instances.context.start"
+            oncommand="ec2ui_InstancesTreeView.startInstance();"
+            label="Start" />
+          <menuitem oncommand="ec2ui_InstancesTreeView.launchMore();"
+            label="Launch More of these" />
+          <menuitem oncommand="ec2ui_InstancesTreeView.associateWithEIP();"
+            label="&ec2ui.addresses.contextmenu.associate.label;" />
+          <menuitem oncommand="ec2ui_InstancesTreeView.attachEBSVolume();"
+            label="Attach an EBS Volume" />
+          <menuitem id="instances.context.bundle"
+            oncommand="ec2ui_InstancesTreeView.showBundleDialog();"
+            label="Bundle into an S3 AMI" />
+          <menuitem id="instances.context.createimage"
+            oncommand="ec2ui_InstancesTreeView.showCreateImageDialog();"
+            label="Create Image (EBS AMI)" />
+          <menuitem oncommand="ec2ui_InstancesTreeView.rebootInstance();"
+            label="Reboot" />
+          <menuitem oncommand="ec2ui_InstancesTreeView.terminateInstance();"
+            label="Terminate" />
+          <menuitem id="instances.context.stop"
+            oncommand="ec2ui_InstancesTreeView.stopInstance();"
+            label="Stop" />
+          <menuitem id="instances.context.forceStop"
+            oncommand="ec2ui_InstancesTreeView.forceStopInstance();"
+            label="Force Stop" />
+          <menuseparator />
+          <menuitem oncommand="ec2ui_InstancesTreeView.fetchConsoleOutput();"
+            label="Show Console Output" />
+          <menuitem id="instances.context.getPassword"
+            oncommand="ec2ui_InstancesTreeView.getAdminPassword(false);"
+            label="Get Administrator Password" />
+          <menuseparator />
+          <menuitem oncommand="ec2ui_InstancesTreeView.copyToClipBoard('id');"
+            label="&ec2ui.instances.contextmenu.copyid.label;" />
+          <menuitem oncommand="ec2ui_InstancesTreeView.copyToClipBoard('publicDnsName');"
+            label="Copy Public DNS Name to clipboard" />
+          <menuitem oncommand="ec2ui_InstancesTreeView.copyToClipBoard('privateDnsName');"
+            label="Copy Private DNS Name to clipboard" />
+          <menuitem oncommand="ec2ui_InstancesTreeView.copyToClipBoard('privateIpAddress');"
+            label="Copy Private IP Address to clipboard" />
+          <menuseparator />
+          <menuitem id="instances.context.connect"
+            oncommand="ec2ui_InstancesTreeView.connectToSelectedInstances();"
+            label="Connect to Instance" />
+        </popup>
+      </popupset>
+      <toolbar style="padding: 0px 3px; -moz-box-align: center">
+        <hbox flex="10">
+          <textbox id="ec2ui.instances.search" size="15" value=""
+            type="autocomplete" autocompletesearch="form-history"
+            onkeypress="ec2ui_InstancesTreeView.searchChanged(event);" />
+          <toolbarbutton image="images/refresh.png"
+            oncommand="ec2ui_InstancesTreeView.refresh()"
+            tooltiptext="&ec2ui.refresh.tip;" />
+          <toolbarseparator />
+          <toolbarbutton image="images/start.png" style="-moz-box-pack:center;"
+            oncommand="ec2ui_InstancesTreeView.startInstance();"
+            id="instances.button.start"
+            tooltiptext="&ec2ui.instances.start.tip;" />
+          <toolbarbutton image="images/stop.png" style="-moz-box-pack:center;"
+            oncommand="ec2ui_InstancesTreeView.stopInstance();"
+            id="instances.button.stop"
+            tooltiptext="&ec2ui.instances.stop.tip;" />
+          <toolbarbutton image="images/reboot.png" style="-moz-box-pack:center;"
+            oncommand="ec2ui_InstancesTreeView.rebootInstance();"
+            tooltiptext="&ec2ui.instances.reboot.tip;" />
+          <toolbarseparator />
+          <toolbarbutton image="images/powerdown.png" style="-moz-box-pack:center;"
+            oncommand="ec2ui_InstancesTreeView.terminateInstance();"
+            tooltiptext="&ec2ui.instances.powerdown.tip;" />
+          <toolbarseparator />
+          <toolbarbutton image="images/get_console_output.png" style="-moz-box-pack:center;"
+            oncommand="ec2ui_InstancesTreeView.fetchConsoleOutput();"
+            tooltiptext="&ec2ui.instances.console.tip;" />
+          <toolbarbutton image="images/ssh.png" style="-moz-box-pack:center;"
+            oncommand="ec2ui_InstancesTreeView.connectToSelectedInstances();"
+            tooltiptext="&ec2ui.instances.connect.tip;" />
+          <toolbarbutton image="images/info.png" style="-moz-box-pack:center;"
+            oncommand="ec2ui_InstancesTreeView.tag();"
+            tooltiptext="Add Tag" />
+          <checkbox id="ec2ui.instances.noterminated" label="Don't show Terminated Instances"
+            checked="false" oncommand="ec2ui_InstancesTreeView.invalidate();"/>
+        </hbox>
+      </toolbar>
+
+      <tree id="ec2ui.instances.view" ondblclick="ec2ui_InstancesTreeView.viewDetails(event)"
+        onselect="ec2ui_InstancesTreeView.selectionChanged(event)"
+        enableColumnDrag="true" flex="1">
+        <treecols>
+          <treecol id="instance.resId" label="&ec2ui.instances.resid.label;"
+            flex="2" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.ownerId" label="&ec2ui.instances.owner.label;"
+            flex="2" sortDirection="ascending" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.id" label="&ec2ui.instances.id.label;"
+            flex="2" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.imageId" label="&ec2ui.instances.imageId.label;"
+            flex="2" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.kernelId" label="&ec2ui.instances.kernelId.label;"
+            flex="2" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.ramdiskId" label="&ec2ui.instances.ramdiskId.label;"
+            flex="2" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.vpcId" label="&ec2ui.instances.vpcId.label;"
+            flex="9" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.subnetId" label="&ec2ui.instances.subnetId.label;"
+            flex="9" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.state" label="&ec2ui.instances.state.label;"
+            flex="3" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.publicDnsName" label="&ec2ui.instances.publicDnsName.label;"
+            flex="9" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.privateDnsName" label="&ec2ui.instances.privateDnsName.label;"
+            flex="9" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.privateIpAddress" label="&ec2ui.instances.privateIpAddress.label;"
+            flex="9" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.keyName" label="&ec2ui.instances.keyName.label;"
+            flex="3" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.groups" label="&ec2ui.instances.groups.label;"
+            flex="5" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.reason" label="&ec2ui.instances.reason.label;"
+            flex="7" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.amiLaunchIdx" label="&ec2ui.instances.amiLaunchIdx.label;"
+            flex="1" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.instanceType" label="&ec2ui.instances.instanceType.label;"
+            flex="1" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.launchTimeDisp" label="&ec2ui.instances.launchTime.label;"
+            flex="2" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.placement.availabilityZone"
+            label="&ec2ui.availabilityZone.label;" flex="1"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.rootDeviceType"
+            label="&ec2ui.instances.rootDeviceType.label;" flex="1"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.tag" label="Tag" flex="1"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.platform" label="&ec2ui.platform.label;"
+            flex="2" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+        </treecols>
+        <treechildren context="ec2ui.instances.contextmenu" />
+      </tree>
+    </groupbox>
+  </tabpanel>
+</overlay>

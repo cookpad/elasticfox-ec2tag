@@ -1,0 +1,33 @@
+This is a Mozilla Firefox extension for interacting with Amazon EC2. The source code
+also functions as an example of how to use the Amazon EC2 Query API from
+JavaScript.
+
+Usage:
+
+The extension can be installed by opening the .xpi file contained in the archive that includes
+this README file. Alternatively, the latest version of the .xpi file is hosted in Amazon
+S3 at the following URL:
+
+  http://s3.amazonaws.com/ec2-downloads/ec2ui.xpi
+
+If you visit the link above using Mozilla Firefox you will be prompted regarding the
+installation of the extension.
+
+Prerequisites:
+
+This extension requires Mozilla Firefox version 1.5.0 or later.
+
+Source Code:
+
+The full source code is available at http://sourceforge.net/projects/elasticfox/
+
+The .xpi file is really just a renamed ZIP archive. Your garden variety ZIP utilities can be 
+used to unzip it. Within this archive you will find a file named ec2ui.jar. This is also just
+a renamed JAR archive so you can explore it in the same way. This JAR file contains the bulk
+of the interesting source code. Highlights include:
+
+  content/ec2ui/client.js
+    This file contains the logic to construct and sign requests to Amazon EC2.
+
+  content/ec2ui/controller.js
+    This file wraps client.js and includes logic to unpack Amazon EC2 responses.

@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.createdhcpoptions"
+    xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+    buttons="accept,cancel"
+    ondialogaccept="return ec2_DhcpoptsCreator.createDhcpOptions();"
+    ondialogcancel="return true;" onload="ec2_DhcpoptsCreator.init();"
+    title="Create a new DHCP Options Set" buttonlabelaccept="Create DHCP Options Set">
+
+    <script type="application/x-javascript" src="chrome://ec2ui/content/create_dhcp_options_dialog.js" />
+    <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+
+    <vbox flex="1">
+        <label value="Enter values for the DHCP options you wish to set."/>
+        <grid flex="1">
+            <columns>
+                <column />
+                <column />
+            </columns>
+            <rows>
+                <!-- one row per option:
+                     domain-name (single
+                     domain-name-servers (4 addrs separated by ,)
+                     ntp-servers (4 addrs separated by ,)
+                     netbios-name-servers (4 addrs separated by ,)
+                     netbios-node-type (1,2,4,8)
+                -->
+                <row>
+                    <label id="ec2ui.newdhcpoptions.lab0"
+                           control="ec2ui.newdhcpoptions.opt0"/>
+                    <vbox>
+                        <label id="ec2ui.newdhcpoptions.desc0"/>
+                        <textbox id="ec2ui.newdhcpoptions.opt0" size="20"/> 
+                    </vbox>
+                </row>
+                <row>
+                    <label id="ec2ui.newdhcpoptions.lab1"
+                           control="ec2ui.newdhcpoptions.opt1"/>
+                    <vbox>
+                        <label id="ec2ui.newdhcpoptions.desc1"/>
+                        <textbox id="ec2ui.newdhcpoptions.opt1" size="20"/> 
+                    </vbox>
+                </row>
+                <row>
+                    <label id="ec2ui.newdhcpoptions.lab2"
+                           control="ec2ui.newdhcpoptions.opt2"/>
+                    <vbox>
+                        <label id="ec2ui.newdhcpoptions.desc2"/>
+                        <textbox id="ec2ui.newdhcpoptions.opt2" size="20"/> 
+                    </vbox>
+                </row>
+                <row>
+                    <label id="ec2ui.newdhcpoptions.lab3"
+                           control="ec2ui.newdhcpoptions.opt3"/>
+                    <vbox>
+                        <label id="ec2ui.newdhcpoptions.desc3"/>
+                        <textbox id="ec2ui.newdhcpoptions.opt3" size="20"/> 
+                    </vbox>
+                </row>
+                <row>
+                    <label id="ec2ui.newdhcpoptions.lab4"
+                           control="ec2ui.newdhcpoptions.opt4"/>
+                    <vbox>
+                        <label id="ec2ui.newdhcpoptions.desc4"/>
+                        <textbox id="ec2ui.newdhcpoptions.opt4" size="20"/> 
+                    </vbox>
+                </row>
+            </rows>
+        </grid>
+    </vbox>
+</dialog>

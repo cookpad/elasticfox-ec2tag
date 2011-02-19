@@ -1,0 +1,210 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://ec2ui/skin/ec2ui.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <tabpanel id="vpcs_tab" flex="1">
+    <vbox flex="1">
+      <groupbox orient="vertical" flex="1">
+        <caption label="&ec2ui.captions.vpcs.vpcs.label;" />
+        <popupset>
+          <popup id="ec2ui.vpcs.contextmenu"
+            onpopupshowing="ec2ui_VpcTreeView.enableOrDisableItems();">
+            <menuitem oncommand="ec2ui_VpcTreeView.tag(event);"
+              label="Add Tag" />
+            <menuseparator />
+            <!-- Create subnet -->
+            <menuitem oncommand="ec2ui_VpcTreeView.createSubnet();"
+                      label="&ec2ui.vpc.contextmenu.createsubnet.label;" />
+
+            <!-- Attach to VPN GW -->
+            <menuitem oncommand="ec2ui_VpcTreeView.attachToVpnGateway();"
+                      label="&ec2ui.vpc.contextmenu.attachvpngw.label;" />
+
+            <!-- Set DHCP Options -->
+            <menuitem oncommand="ec2ui_VpcTreeView.setDhcpOptions();"
+                      label="&ec2ui.vpc.contextmenu.setdhcpoptions.label;" />
+
+            <!-- Delete -->
+            <menuitem oncommand="ec2ui_VpcTreeView.deleteVpc();"
+                      label="&ec2ui.vpc.contextmenu.delete.label;" />
+
+            <menuseparator />
+            <!-- Copy ID -->
+            <menuitem oncommand="ec2ui_VpcTreeView.copyToClipBoard('id');"
+              label="&ec2ui.vpc.contextmenu.copyvpcid.label;" />
+          </popup>
+        </popupset>
+        <toolbar style="padding: 0px 3px; -moz-box-align: center">
+          <hbox flex="10">
+            <textbox id="ec2ui.vpcs.search" size="15" value=""
+              type="autocomplete" autocompletesearch="form-history"
+              onkeypress="ec2ui_VpcTreeView.searchChanged(event);" />
+            <toolbarbutton image="images/refresh.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VpcTreeView.refresh()"
+              tooltiptext="&ec2ui.refresh.tip;" />
+            <toolbarbutton image="images/createvpc.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VpcTreeView.createVpc()"
+              tooltiptext="&ec2ui.createvpc.tip;" />
+            <toolbarbutton image="images/delete.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_VpcTreeView.deleteVpc()"
+              tooltiptext="&ec2ui.deletevpc.tip;" />
+            <toolbarbutton image="images/info.png" style="-moz-box-pack:center;"
+              oncommand="ec2ui_VpcTreeView.tag();"
+              tooltiptext="Add Tag" />
+          </hbox>
+        </toolbar>
+        <tree id="ec2ui.vpcs.view" seltype="single" enableColumnDrag="true"
+          onselect="ec2ui_VpcTreeView.selectionChanged(event)" flex="1">
+          <treecols>
+            <treecol id="vpc.id" label="&ec2ui.vpcs.id.label;" flex="1"
+              sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vpc.cidr" label="&ec2ui.vpcs.cidrblock.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vpc.state" label="&ec2ui.vpcs.state.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vpc.dhcpOptionsId" label="&ec2ui.vpcs.dhcpoptions.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="vpc.tag" label="Tag" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+          </treecols>
+          <treechildren context="ec2ui.vpcs.contextmenu"/>
+        </tree>
+      </groupbox>
+      <splitter style="width: 4px; max-height: 4px;" persist="state"
+        collapse="after" resizebefore="closest">
+        <grippy />
+      </splitter>
+      <groupbox orient="vertical" flex="1">
+        <caption label="&ec2ui.captions.subnets.subnets.label;" />
+        <popupset>
+          <popup id="ec2ui.subnets.contextmenu">
+            <menuitem oncommand="ec2ui_SubnetTreeView.tag(event);"
+              label="Add Tag" />
+            <menuseparator />
+            <menuitem oncommand="ec2ui_SubnetTreeView.deleteSubnet();"
+                      label="&ec2ui.subnet.contextmenu.delete.label;" />
+            <menuseparator />
+            <menuitem oncommand="ec2ui_SubnetTreeView.copyToClipBoard('id');"
+              label="&ec2ui.subnet.contextmenu.copysubnetid.label;" />
+          </popup>
+        </popupset>
+        <toolbar style="padding: 0px 3px; -moz-box-align: center">
+          <hbox flex="10">
+            <textbox id="ec2ui.subnets.search" size="15" value=""
+              type="autocomplete" autocompletesearch="form-history"
+              onkeypress="ec2ui_SubnetTreeView.searchChanged(event);" />
+            <toolbarbutton image="images/refresh.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_SubnetTreeView.refresh()"
+              tooltiptext="&ec2ui.refresh.tip;" />
+            <toolbarbutton image="images/createsubnet.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_SubnetTreeView.createSubnet()"
+              tooltiptext="&ec2ui.createsubnet.tip;" />
+            <toolbarbutton image="images/delete.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_SubnetTreeView.deleteSubnet()"
+              tooltiptext="&ec2ui.deletesubnet.tip;" />
+            <toolbarbutton image="images/info.png" style="-moz-box-pack:center;"
+              oncommand="ec2ui_SubnetTreeView.tag();"
+              tooltiptext="Add Tag" />
+          </hbox>
+        </toolbar>
+        <tree id="ec2ui.subnets.view" seltype="single" enableColumnDrag="true"
+          onselect="ec2ui_SubnetTreeView.selectionChanged(event)" flex="1">
+          <treecols>
+            <treecol id="subnet.id" label="&ec2ui.subnets.id.label;" flex="1"
+              sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="subnet.vpcId" label="&ec2ui.vpcs.id.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="subnet.cidr" label="&ec2ui.subnets.cidrblock.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="subnet.state" label="&ec2ui.subnets.state.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="subnet.availableIp" label="&ec2ui.subnets.availableip.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="subnet.availabilityZone" label="&ec2ui.subnets.availabilityzone.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="subnet.tag" label="Tag" flex="1"
+              persist="width ordinal hidden sortDirection" />
+          </treecols>
+          <treechildren context="ec2ui.subnets.contextmenu"/>
+        </tree>
+      </groupbox>
+      <splitter style="width: 4px; max-height: 4px;" persist="state"
+        collapse="after" resizebefore="closest">
+        <grippy />
+      </splitter>
+      <groupbox orient="vertical" flex="1">
+        <caption label="&ec2ui.captions.dhcpopts.dhcpopts.label;" />
+        <popupset>
+          <popup id="ec2ui.dhcpopts.contextmenu">
+            <menuitem oncommand="ec2ui_DhcpoptsTreeView.tag(event);"
+              label="Add Tag" />
+            <menuseparator />
+            <menuitem oncommand="ec2ui_DhcpoptsTreeView.deleteDhcpOptions();"
+                      label="&ec2ui.dhcpopts.contextmenu.delete.label;" />
+            <menuseparator />
+            <menuitem oncommand="ec2ui_DhcpoptsTreeView.copyToClipBoard('id');"
+              label="&ec2ui.dhcpopts.contextmenu.copydhcpoptsid.label;" />
+          </popup>
+        </popupset>
+        <toolbar style="padding: 0px 3px; -moz-box-align: center">
+          <hbox flex="10">
+            <textbox id="ec2ui.dhcpopts.search" size="15" value=""
+              type="autocomplete" autocompletesearch="form-history"
+              onkeypress="ec2ui_DhcpoptsTreeView.searchChanged(event);" />
+            <toolbarbutton image="images/refresh.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_DhcpoptsTreeView.refresh()"
+              tooltiptext="&ec2ui.refresh.tip;" />
+            <toolbarbutton image="images/createdhcpoptions.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_DhcpoptsTreeView.createDhcpOptions()"
+              tooltiptext="&ec2ui.createdhcpoptions.tip;" />
+            <toolbarbutton image="images/delete.png"
+              style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+              oncommand="ec2ui_DhcpoptsTreeView.deleteDhcpOptions()"
+              tooltiptext="&ec2ui.deletedhcpoptions.tip;" />
+            <toolbarbutton image="images/info.png" style="-moz-box-pack:center;"
+              oncommand="ec2ui_DhcpoptsTreeView.tag();"
+              tooltiptext="Add Tag" />
+          </hbox>
+        </toolbar>
+        <tree id="ec2ui.dhcpoptions.view" seltype="single" enableColumnDrag="true"
+          onselect="ec2ui_DhcpoptsTreeView.selectionChanged(event)" flex="1">
+          <treecols>
+            <treecol id="dhcpoption.id" label="&ec2ui.dhcpopts.id.label;" flex="1"
+              sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="dhcpoption.options" label="&ec2ui.dhcpopts.options.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="dhcpoption.tag" label="Tag" flex="1"
+              persist="width ordinal hidden sortDirection" />
+          </treecols>
+          <treechildren context="ec2ui.dhcpopts.contextmenu"/>
+        </tree>
+      </groupbox>
+    </vbox>
+  </tabpanel>
+</overlay>

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.snapshot.detail" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="accept" ondialogaccept="return true;"
+  onload="ec2_SnapshotDetails.init();" title="Snapshot Details">
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/snapshotdetaildialog.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+
+  <vbox flex="1">
+    <grid flex="1">
+      <columns>
+        <column />
+        <column />
+        <column />
+      </columns>
+      <rows>
+        <row>
+          <label control="ec2ui.snapshot.id" value="&ec2ui.snapshots.id.label;" />
+          <textbox id="ec2ui.snapshot.id" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.snapshot.volumeId" value="&ec2ui.volumes.id.label;" />
+          <textbox id="ec2ui.snapshot.volumeId" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.snapshot.description" value="&ec2ui.description.label;" />
+          <textbox id="ec2ui.snapshot.description" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.snapshot.volumeSize" value="&ec2ui.snapshots.volumeSize.label;" />
+          <textbox id="ec2ui.snapshot.volumeSize" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.snapshot.owner" value="&ec2ui.snapshots.owner.label;" />
+          <textbox id="ec2ui.snapshot.owner" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.snapshot.ownerAlias" value="&ec2ui.snapshots.ownerAlias.label;" />
+          <textbox id="ec2ui.snapshot.ownerAlias" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.snapshot.status" value="&ec2ui.snapshots.status.label;" />
+          <textbox id="ec2ui.snapshot.status" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.snapshot.startTime" value="&ec2ui.snapshots.startTime.label;"/>
+          <textbox id="ec2ui.snapshot.startTime" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.snapshot.progress" value="&ec2ui.snapshots.progress.label;" />
+          <textbox id="ec2ui.snapshot.progress" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.snapshot.progress" value="Tag" />
+          <textbox id="ec2ui.snapshot.tag" size="40" readonly="true" />
+        </row>
+      </rows>
+    </grid>
+  </vbox>
+</dialog>
+

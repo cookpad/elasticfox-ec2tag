@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.about" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  buttons="accept" ondialogaccept="return true;" onload="updateAPIVersion();"
+  title="About">
+
+  <script type="application/x-javascript">
+  function openURL(url) {
+    window.close();
+    window.arguments[0].openURL(url);
+  }
+  function updateAPIVersion() {
+    document.getElementById("ec2ui.apiversion").innerHTML = window.arguments[0].getApiVersion();
+  }
+  </script>
+
+  <vbox flex="1">
+    <groupbox>
+      <description class="header">Elasticfox version 1.7 build 000116 (EC2 API <html:span id="ec2ui.apiversion">API-VERSION</html:span>)</description>
+      <description><html:p>Elasticfox is a Firefox extension for interacting with Amazon's EC2 web service.</html:p></description>
+      <description><html:p><html:a target="_blank" href="" onclick="openURL('http://sourceforge.net/projects/elasticfox/'); return false" style="color: blue; text-decoration: underline">sourceforge.net/projects/elasticfox</html:a></html:p></description>
+    </groupbox>
+    <vbox>
+      <description>Icons were provided by <html:a target="_blank" href="" onclick="openURL('http://www.mouserunner.com/'); return false" style="color: blue; text-decoration: underline">Ken Saunders</html:a>. </description>
+      <description>Elasticfox is licensed under the <html:a target="_blank" href="" onclick="openURL('http://www.apache.org/licenses/'); return false" style="color: blue; text-decoration: underline">Apache 2.0</html:a> license.</description>
+    </vbox>
+  </vbox>
+</dialog>

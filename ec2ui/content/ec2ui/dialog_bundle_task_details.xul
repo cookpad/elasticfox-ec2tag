@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.bundleTask.detail" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="accept" ondialogaccept="return true;"
+  onload="ec2_BundleTaskDetails.init();" title="Bundle Task Details">
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/bundletaskdetailsdialog.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+
+  <vbox flex="1">
+    <grid flex="1">
+      <columns>
+        <column />
+        <column />
+        <column />
+      </columns>
+      <rows>
+        <row>
+          <label control="ec2ui.bundleTask.id" value="Bundle ID:" />
+          <textbox id="ec2ui.bundleTask.id" size="50" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.bundleTask.instanceId" value="Instance ID:" />
+          <textbox id="ec2ui.bundleTask.instanceId" size="50" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.bundleTask.state" value="State:" />
+          <textbox id="ec2ui.bundleTask.state" size="50" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.bundleTask.startTime" value="Start Time:" />
+          <textbox id="ec2ui.bundleTask.startTime" size="50" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.bundleTask.updateTime" value="Update Time:" />
+          <textbox id="ec2ui.bundleTask.updateTime" size="50" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.bundleTask.s3bucket" value="S3 Bucket:" />
+          <textbox id="ec2ui.bundleTask.s3bucket" size="50" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.bundleTask.s3prefix" value="S3 Prefix:" />
+          <textbox id="ec2ui.bundleTask.s3prefix" size="50" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.bundleTask.errorMsg" value="Error Message:" />
+          <textbox id="ec2ui.bundleTask.errorMsg" size="50" readonly="true" />
+        </row>
+      </rows>
+    </grid>
+  </vbox>
+</dialog>

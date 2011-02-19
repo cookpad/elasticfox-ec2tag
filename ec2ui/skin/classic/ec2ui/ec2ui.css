@@ -1,0 +1,18 @@
+treechildren::-moz-tree-cell(instance_pending)       { background-color: #FFFFCC; }
+treechildren::-moz-tree-cell(instance_running)       { background-color: #C3DDC3; }
+treechildren::-moz-tree-cell(instance_shutting_down) { background-color: #FFCC99; }
+treechildren::-moz-tree-cell(instance_deleting) { background-color: #FFCC99; }
+treechildren::-moz-tree-cell(instance_terminated)    { background-color: #FFCCCC; }
+treechildren::-moz-tree-cell(instance_deleted)    { background-color: #FFCCCC; }
+treechildren::-moz-tree-cell(instance_detached)    { background-color: #FFCCCC; }
+treechildren::-moz-tree-cell(instance_stopping)    { background-color: #DDA0DD; }
+treechildren::-moz-tree-cell(instance_stopped)    { background-color: #BA55D3; }
+
+treechildren::-moz-tree-cell(image_available)        { background-color: #C3DDC3; }
+treechildren::-moz-tree-cell(image_deregistered)     { background-color: #CCCCCC; }
+
+treechildren::-moz-tree-cell(image_public)           { background-color: #FFFF99; }
+treechildren::-moz-tree-cell(image_private)          { background-color: transparent; }
+
+treechildren::-moz-tree-cell(image_amazon)           { background-color: #FFFF99; }
+treechildren::-moz-tree-cell(image_amazon)           { background-color: #FFFF99; }
