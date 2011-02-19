@@ -460,6 +460,31 @@ var ec2ui_utils = {
         }
     },
 
+    tagMultipleEC2Resources : function(list, session, attr) {
+        if (!list || !session) return;
+
+        if (!attr) {
+            attr = "id";
+        }
+
+        var tag = prompt("Tag " + list[0][attr] + ", etc with? (To untag, just clear the string)",
+                         list[0].tag || "");
+
+        if (tag == null) return;
+
+        var res = null;
+        tag = tag.trim();
+        var resIds = new Array();
+        for (var i = 0; i < list.length; ++i) {
+            res = list[i];
+            res.tag = tag;
+            session.setResourceTag(res[attr], res.tag);
+            resIds.push(res[attr]);
+        }
+
+        __tagging2ec2__(resIds, session, tag);
+    },
+
     winRegex : new RegExp(/^Windows/i),
     macRegex : new RegExp(/^Mac/),
 
