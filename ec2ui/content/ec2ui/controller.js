@@ -661,6 +661,7 @@ var ec2ui_controller = {
         var xmlDoc = objResponse.xmlDoc;
 
         var list = new Array();
+        var tags = new Object();
         var img = null;
         var items = xmlDoc.evaluate("/ec2:DescribeImagesResponse/ec2:imagesSet/ec2:item",
                                     xmlDoc,
@@ -700,9 +701,13 @@ var ec2ui_controller = {
                           name,
                           description,
                           snapshotId));
+
+
+            this.walkTagSet(items.snapshotItem(i), "imageId", tags);
         }
 
-        this.addResourceTags(list, ec2ui_session.model.resourceMap.images, "id");
+        this.addEC2Tag(list, "id", tags);
+        //this.addResourceTags(list, ec2ui_session.model.resourceMap.images, "id");
         ec2ui_model.updateImages(list);
         if (objResponse.callback)
             objResponse.callback(list);
@@ -1156,7 +1161,7 @@ var ec2ui_controller = {
             }
         }
 
-        this.addEC2Tag(list, ec2ui_session.model.resourceMap.instances, "id", tags);
+        this.addEC2Tag(list, "id", tags);
         ec2ui_model.updateInstances(list);
         if (objResponse.callback)
             objResponse.callback(list);
@@ -1213,7 +1218,7 @@ var ec2ui_controller = {
         ec2ui_session.setResourceTags(resourceType, new_tags);
     },
 
-    addEC2Tag : function (list, resourceType, attribute, tags) {
+    addEC2Tag : function (list, attribute, tags) {
         if (!list || list.length == 0) {
             return;
         }
