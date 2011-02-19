@@ -1151,28 +1151,7 @@ var ec2ui_controller = {
                         continue;
                     }
 
-                    var instanceId = getNodeValueByName(instanceItem, "instanceId");
-                    var tagSet = instanceItem.getElementsByTagName("tagSet")[0];
-
-                    if (tagSet) {
-                        var tagSetItems = tagSet.getElementsByTagName("item");
-                        var tagArray = new Array();
-
-                        for (var j = 0; j < tagSetItems.length; j++) {
-                            var tagSetItem = tagSetItems[j];
-                            var tagSetItemKey = getNodeValueByName(tagSetItem, "key");
-                            var tagSetItemValue = getNodeValueByName(tagSetItem, "value");
-                            var keyValue = tagSetItemKey + ":" + tagSetItemValue;
-
-                            if (tagSetItemKey == "Name") {
-                                tagArray.unshift(keyValue);
-                            } else {
-                                tagArray.push(keyValue);
-                            }
-                        }
-
-                        tags[instanceId] = tagArray.join(", ");
-                    }
+                    this.walkTagSet(instanceItem, "instanceId", tags);
                 }
             }
         }
@@ -1181,6 +1160,31 @@ var ec2ui_controller = {
         ec2ui_model.updateInstances(list);
         if (objResponse.callback)
             objResponse.callback(list);
+    },
+
+    walkTagSet : function(item, idName, tags) {
+        var instanceId = getNodeValueByName(item, idName);
+        var tagSet = item.getElementsByTagName("tagSet")[0];
+
+        if (tagSet) {
+            var tagSetItems = tagSet.getElementsByTagName("item");
+            var tagArray = new Array();
+
+            for (var i= 0; i < tagSetItems.length; i++) {
+                var tagSetItem = tagSetItems[i];
+                var tagSetItemKey = getNodeValueByName(tagSetItem, "key");
+                var tagSetItemValue = getNodeValueByName(tagSetItem, "value");
+                var keyValue = tagSetItemKey + ":" + tagSetItemValue;
+
+                if (tagSetItemKey == "Name") {
+                    tagArray.unshift(keyValue);
+                } else {
+                    tagArray.push(keyValue);
+                }
+            }
+
+            tags[instanceId] = tagArray.join(", ");
+        }
     },
 
     addResourceTags : function (list, resourceType, attribute) {
