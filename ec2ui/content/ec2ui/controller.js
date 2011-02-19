@@ -1123,6 +1123,7 @@ var ec2ui_controller = {
         var xmlDoc = objResponse.xmlDoc;
 
         var list = new Array();
+        var tags = new Object();
         var items = xmlDoc.evaluate("/ec2:DescribeInstancesResponse/ec2:reservationSet/ec2:item",
                                     xmlDoc,
                                     this.getNsResolver(),
@@ -1142,39 +1143,64 @@ var ec2ui_controller = {
             if (instanceItems) {
                 var resList = this.unpackReservationInstances(resId, ownerId, groups, instanceItems);
                 list = list.concat(resList);
+
+                for (var j = 0; j < instanceItems.length; j++) {
+                    var instanceItem = instanceItems[j];
+
+                    if (instanceItem.nodeName == '#text') {
+                        continue;
+                    }
+
+                    var instanceId = getNodeValueByName(instanceItem, "instanceId");
+                    var tagSet = instanceItem.getElementsByTagName("tagSet")[0];
+
+                    if (tagSet) {
+                        var tagSetItems = tagSet.getElementsByTagName("item");
+                        var tagArray = new Array();
+
+                        for (var j = 0; j < tagSetItems.length; j++) {
+                            var tagSetItem = tagSetItems[j];
+                            var tagSetItemKey = getNodeValueByName(tagSetItem, "key");
+                            var tagSetItemValue = getNodeValueByName(tagSetItem, "value");
+                            var keyValue = tagSetItemKey + ":" + tagSetItemValue;
+
+                            if (tagSetItemKey == "Name") {
+                                tagArray.unshift(keyValue);
+                            } else {
+                                tagArray.push(keyValue);
+                            }
+                        }
+
+                        tags[instanceId] = tagArray.join(", ");
+                    }
+                }
             }
         }
 
-        this.addResourceTags(list, ec2ui_session.model.resourceMap.instances, "id");
+        this.addResourceTags(list, ec2ui_session.model.resourceMap.instances, "id", tags);
         ec2ui_model.updateInstances(list);
         if (objResponse.callback)
             objResponse.callback(list);
     },
 
-    addResourceTags : function (list, resourceType, attribute) {
+    addResourceTags : function (list, resourceType, attribute, tags) {
         if (!list || list.length == 0) {
             return;
         }
-
-        var tags = ec2ui_session.getResourceTags(resourceType);
 
         if (!tags) {
             return;
         }
 
-        var new_tags = ec2ui_prefs.getEmptyWrappedMap();
         var res = null;
         var tag = null;
         for (var i in list) {
             res = list[i];
-            tag = tags.get(res[attribute]);
+            tag = tags[res[attribute]];
             if (tag && tag.length) {
-                res.tag = unescape(tag);
-                new_tags.put(res[attribute], escape(res.tag));
+                res.tag = tag
             }
         }
-        // Now that we've built the new set of instance tags, persist them
-        ec2ui_session.setResourceTags(resourceType, new_tags);
     },
 
     retrieveBundleTaskFromResponse : function (item) {
