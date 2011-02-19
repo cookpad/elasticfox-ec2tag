@@ -310,14 +310,20 @@ function tagEC2Resource(res, session, attr) {
     if (tag == null)
         return;
 
-    try {
-        tag = tag.trim();
-        res.tag = tag;
-        session.setResourceTag(res[attr], res.tag);
+    tag = tag.trim();
+    res.tag = tag;
+    session.setResourceTag(res[attr], res.tag);
 
-        var resIds = new Array();
+    __tagging2ec2__([res[attr]], session, tag);
+}
+
+function __tagging2ec2__(resIds, session, tagString) {
+  var multiIds = new Array();
+  var multiTags = new Array();
+
+  try {
         var tags = new Array();
-        var keyValues = tag.split(/\s*,\s*/);
+        var keyValues = tagString.split(/\s*,\s*/);
 
         for (var i = 0; i < keyValues.length; i++) {
             var kv = keyValues[i].split(/\s*:\s*/, 2);
@@ -328,11 +334,20 @@ function tagEC2Resource(res, session, attr) {
                 continue;
             }
 
-            resIds.push(res[attr]);
-            tags.push(kv);
+            tags.push([key, value]);
         }
 
-        if (resIds.length > 0) {
+        for (var i = 0; i < resIds.length; i++) {
+            var resId = resIds[i];
+
+            for (var j = 0; j < tags.length; j++) {
+                multiIds.push(resId);
+            }
+
+            multiTags = multiTags.concat(tags);
+        }
+
+        if (multiIds.length > 0 && multiTags.length > 0) {
             session.controller.describeTags(resIds, function(described) {
                 var delResIds = new Array();
                 var delKyes = new Array();
@@ -342,11 +357,11 @@ function tagEC2Resource(res, session, attr) {
                   delKyes.push(described[i][1]);
                 }
 
-                if (delResIds.length > 0) {
+                if (delResIds.length > 0 && delKyes.length > 0) {
                     session.controller.deleteTags(delResIds, delKyes);
                 }
 
-                session.controller.createTags(resIds, tags);
+                session.controller.createTags(multiIds, multiTags);
             });
         }
     } catch (e) {
