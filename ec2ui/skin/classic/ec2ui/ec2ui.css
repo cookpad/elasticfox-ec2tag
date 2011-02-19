@@ -1,3 +1,7 @@
+#elasticfoxButton {
+  list-style-image: url("chrome://ec2ui/skin/button.png");
+}
+
 treechildren::-moz-tree-cell(instance_pending)       { background-color: #FFFFCC; }
 treechildren::-moz-tree-cell(instance_running)       { background-color: #C3DDC3; }
 treechildren::-moz-tree-cell(instance_shutting_down) { background-color: #FFCC99; }

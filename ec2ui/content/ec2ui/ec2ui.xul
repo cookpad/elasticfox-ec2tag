@@ -15,6 +15,13 @@
   <menupopup id="menu_ToolsPopup">
     <menuitem id="ec2ui_menu" oncommand="ec2ui_session.openMainWindow();" insertafter="javascriptConsole,devToolsSeparator" label="Elasticfox"/>
   </menupopup>
+  <toolbarpalette id="BrowserToolbarPalette">
+    <toolbarbutton
+      id="elasticfoxButton"
+      label="Elasticfox"
+      oncommand="ec2ui_session.openMainWindow();"
+    />
+  </toolbarpalette>
   <!-- statusbar id="status-bar">
     <statusbarpanel id="efox-statusicon" label="Hello, World" onclick="ec2ui_session.openMainWindow();">
       <image tooltiptext="Open Elasticfox" id="efox-statusImage"
