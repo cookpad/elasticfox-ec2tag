@@ -1177,13 +1177,39 @@ var ec2ui_controller = {
             }
         }
 
-        this.addResourceTags(list, ec2ui_session.model.resourceMap.instances, "id", tags);
+        this.addEC2Tag(list, ec2ui_session.model.resourceMap.instances, "id", tags);
         ec2ui_model.updateInstances(list);
         if (objResponse.callback)
             objResponse.callback(list);
     },
 
-    addResourceTags : function (list, resourceType, attribute, tags) {
+    addResourceTags : function (list, resourceType, attribute) {
+        if (!list || list.length == 0) {
+            return;
+        }
+
+        var tags = ec2ui_session.getResourceTags(resourceType);
+
+        if (!tags) {
+            return;
+        }
+
+        var new_tags = ec2ui_prefs.getEmptyWrappedMap();
+        var res = null;
+        var tag = null;
+        for (var i in list) {
+            res = list[i];
+            tag = tags.get(res[attribute]);
+            if (tag && tag.length) {
+                res.tag = unescape(tag);
+                new_tags.put(res[attribute], escape(res.tag));
+            }
+        }
+        // Now that we've built the new set of instance tags, persist them
+        ec2ui_session.setResourceTags(resourceType, new_tags);
+    },
+
+    addEC2Tag : function (list, resourceType, attribute, tags) {
         if (!list || list.length == 0) {
             return;
         }
