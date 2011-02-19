@@ -124,6 +124,7 @@ var ec2ui_controller = {
         var xmlDoc = objResponse.xmlDoc;
 
         var list = new Array();
+        var tags = new Object();
         var items = xmlDoc.evaluate("/ec2:DescribeVolumesResponse/ec2:volumeSet/ec2:item",
                                     xmlDoc,
                                     this.getNsResolver(),
@@ -155,9 +156,11 @@ var ec2ui_controller = {
                 attachTime.setISO8601(getNodeValueByName(items.snapshotItem(i), "attachTime"));
             }
             list.push(new Volume(id, size, snapshotId, zone, status, createTime, instanceId, device, attachStatus, attachTime));
+
+            this.walkTagSet(items.snapshotItem(i), "volumeId", tags);
         }
 
-        this.addResourceTags(list, ec2ui_session.model.resourceMap.volumes, "id");
+        this.addEC2Tag(list, "id", tags);
         ec2ui_model.updateVolumes(list);
         if (objResponse.callback)
             objResponse.callback(list);
@@ -171,6 +174,7 @@ var ec2ui_controller = {
         var xmlDoc = objResponse.xmlDoc;
 
         var list = new Array();
+        var tags = new Object();
         var items = xmlDoc.evaluate("/ec2:DescribeSnapshotsResponse/ec2:snapshotSet/ec2:item",
                                     xmlDoc,
                                     this.getNsResolver(),
@@ -188,9 +192,11 @@ var ec2ui_controller = {
             var ownerId = getNodeValueByName(items.snapshotItem(i), "ownerId")
             var ownerAlias = getNodeValueByName(items.snapshotItem(i), "ownerAlias")
             list.push(new Snapshot(id, volumeId, status, startTime, progress, volumeSize, description, ownerId, ownerAlias));
+
+            this.walkTagSet(items.snapshotItem(i), "snapshotId", tags);
         }
 
-        this.addResourceTags(list, ec2ui_session.model.resourceMap.snapshots, "id");
+        this.addEC2Tag(list, "id", tags);
         ec2ui_model.updateSnapshots(list);
         if (objResponse.callback)
             objResponse.callback(list);
@@ -707,7 +713,6 @@ var ec2ui_controller = {
         }
 
         this.addEC2Tag(list, "id", tags);
-        //this.addResourceTags(list, ec2ui_session.model.resourceMap.images, "id");
         ec2ui_model.updateImages(list);
         if (objResponse.callback)
             objResponse.callback(list);
