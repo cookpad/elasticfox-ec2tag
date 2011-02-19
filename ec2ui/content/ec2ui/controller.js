@@ -1179,6 +1179,7 @@ var ec2ui_controller = {
         if (tagSet) {
             var tagSetItems = tagSet.getElementsByTagName("item");
             var tagArray = new Array();
+            var nameTag = null;
 
             for (var i= 0; i < tagSetItems.length; i++) {
                 var tagSetItem = tagSetItems[i];
@@ -1187,10 +1188,16 @@ var ec2ui_controller = {
                 var keyValue = tagSetItemKey + ":" + tagSetItemValue;
 
                 if (tagSetItemKey == "Name") {
-                    tagArray.unshift(keyValue);
+                    nameTag = keyValue;
                 } else {
                     tagArray.push(keyValue);
                 }
+            }
+
+            tagArray.sort();
+
+            if (nameTag) {
+                tagArray.unshift(nameTag);
             }
 
             tags[instanceId] = tagArray.join(", ");

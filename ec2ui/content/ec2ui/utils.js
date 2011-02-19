@@ -299,6 +299,17 @@ function tagResource(res, session, attr) {
     if (tag == null)
         return;
 
+    res.tag = tag.trim();
+    session.setResourceTag(res[attr], res.tag);
+}
+
+function tagEC2Resource(res, session, attr) {
+    if (!attr) attr = "id";
+    var tag = prompt("Tag " + res[attr] + " with? (To untag, just clear the string)",
+                     res.tag || "");
+    if (tag == null)
+        return;
+
     try {
         tag = tag.trim();
         res.tag = tag;
@@ -310,23 +321,34 @@ function tagResource(res, session, attr) {
 
         for (var i = 0; i < keyValues.length; i++) {
             var kv = keyValues[i].split(/\s*:\s*/, 2);
+            var key = (kv[0] || "").trim();
+            var value = (kv[1] || "").trim();
+
+            if (key.length == 0 || value.length == 0) {
+                continue;
+            }
 
             resIds.push(res[attr]);
             tags.push(kv);
         }
 
-        session.controller.describeTags(resIds, function(described) {
-            var delResIds = new Array();
-            var delKyes = new Array();
+        if (resIds.length > 0) {
+            session.controller.describeTags(resIds, function(described) {
+                var delResIds = new Array();
+                var delKyes = new Array();
 
-            for (var i = 0; i < described.length; i++) {
-              delResIds.push(described[i][0]);
-              delKyes.push(described[i][1]);
-            }
+                for (var i = 0; i < described.length; i++) {
+                  delResIds.push(described[i][0]);
+                  delKyes.push(described[i][1]);
+                }
 
-            session.controller.deleteTags(delResIds, delKyes);
-            session.controller.createTags(resIds, tags);
-        });
+                if (delResIds.length > 0) {
+                    session.controller.deleteTags(delResIds, delKyes);
+                }
+
+                session.controller.createTags(resIds, tags);
+            });
+        }
     } catch (e) {
         alert(e);
     }
