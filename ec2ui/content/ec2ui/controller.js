@@ -2045,5 +2045,73 @@ var ec2ui_controller = {
         }
 
         eval("this."+responseObject.requestType+"(responseObject)");
+    },
+
+    createTags : function (resIds, tags, callback) {
+        var params = new Array();
+
+        for (var i = 0; i < resIds.length; i++) {
+            params.push(["ResourceId." + (i + 1)   , resIds[i]]);
+            params.push(["Tag." + (i + 1) + ".Key"  , tags[i][0]]);
+            params.push(["Tag." + (i + 1) + ".Value", tags[i][1]]);
+        }
+
+        ec2_httpclient.queryEC2("CreateTags", params, this, true, "onCompleteCreateTags", callback);
+    },
+
+    onCompleteCreateTags : function (objResponse) {
+        if (objResponse.callback) {
+            objResponse.callback();
+        }
+    },
+
+    deleteTags : function (resIds, keys, callback) {
+        var params = new Array();
+
+        for (var i = 0; i < resIds.length; i++) {
+            params.push(["ResourceId." + (i + 1), resIds[i]]);
+            params.push(["Tag." + (i + 1) + ".Key", keys[i]]);
+        }
+
+        ec2_httpclient.queryEC2("DeleteTags", params, this, true, "onCompleteDeleteTags", callback);
+    },
+
+    onCompleteDeleteTags : function (objResponse) {
+        if (objResponse.callback) {
+            objResponse.callback();
+        }
+    },
+
+    describeTags : function (resIds, callback) {
+        var params = new Array();
+
+        for (var i = 0; i < resIds.length; i++) {
+            params.push(["Filter." + (i + 1) + ".Name", "resource-id"]);
+            params.push(["Filter." + (i + 1) + ".Value.1", resIds[i]]);
+        }
+
+        ec2_httpclient.queryEC2("DescribeTags", params, this, true, "onCompleteDescribeTags", callback);
+    },
+
+    onCompleteDescribeTags : function (objResponse) {
+        var xmlDoc = objResponse.xmlDoc;
+        var items = xmlDoc.evaluate("/ec2:DescribeTagsResponse/ec2:tagSet/ec2:item",
+                                    xmlDoc,
+                                    this.getNsResolver(),
+                                    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                                    null);
+
+        var tags = new Array();
+
+        for (var i = 0; i < items.snapshotLength; ++i) {
+            var resid = getNodeValueByName(items.snapshotItem(i), "resourceId");
+            var key = getNodeValueByName(items.snapshotItem(i), "key");
+            var value = getNodeValueByName(items.snapshotItem(i), "value");
+            tags.push([resid, key, value]);
+        }
+
+        if (objResponse.callback) {
+            objResponse.callback(tags);
+        }
     }
 };

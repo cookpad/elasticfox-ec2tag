@@ -299,8 +299,37 @@ function tagResource(res, session, attr) {
     if (tag == null)
         return;
 
-    res.tag = tag.trim();
-    session.setResourceTag(res[attr], res.tag);
+    try {
+        tag = tag.trim();
+        res.tag = tag;
+        session.setResourceTag(res[attr], res.tag);
+
+        var resIds = new Array();
+        var tags = new Array();
+        var keyValues = tag.split(/\s*,\s*/);
+
+        for (var i = 0; i < keyValues.length; i++) {
+            var kv = keyValues[i].split(/\s*:\s*/, 2);
+
+            resIds.push(res[attr]);
+            tags.push(kv);
+        }
+
+        session.controller.describeTags(resIds, function(described) {
+            var delResIds = new Array();
+            var delKyes = new Array();
+
+            for (var i = 0; i < described.length; i++) {
+              delResIds.push(described[i][0]);
+              delKyes.push(described[i][1]);
+            }
+
+            session.controller.deleteTags(delResIds, delKyes);
+            session.controller.createTags(resIds, tags);
+        });
+    } catch (e) {
+        alert(e);
+    }
 }
 
 function parseHeaders(headers) {
