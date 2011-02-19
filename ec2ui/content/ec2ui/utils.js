@@ -347,23 +347,27 @@ function __tagging2ec2__(resIds, session, tagString) {
             multiTags = multiTags.concat(tags);
         }
 
-        if (multiIds.length > 0 && multiTags.length > 0) {
-            session.controller.describeTags(resIds, function(described) {
-                var delResIds = new Array();
-                var delKyes = new Array();
-
-                for (var i = 0; i < described.length; i++) {
-                  delResIds.push(described[i][0]);
-                  delKyes.push(described[i][1]);
-                }
-
-                if (delResIds.length > 0 && delKyes.length > 0) {
-                    session.controller.deleteTags(delResIds, delKyes);
-                }
-
-                session.controller.createTags(multiIds, multiTags);
-            });
+        if (multiIds.length == 0) {
+            multiIds = resIds;
         }
+
+        session.controller.describeTags(resIds, function(described) {
+            var delResIds = new Array();
+            var delKyes = new Array();
+
+            for (var i = 0; i < described.length; i++) {
+              delResIds.push(described[i][0]);
+              delKyes.push(described[i][1]);
+            }
+
+            if (delResIds.length > 0 && delKyes.length > 0) {
+                session.controller.deleteTags(delResIds, delKyes);
+            }
+
+            if (multiTags.length > 0) {
+                session.controller.createTags(multiIds, multiTags);
+            }
+        });
     } catch (e) {
         alert(e);
     }
