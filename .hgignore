@@ -2,3 +2,4 @@ syntax: glob
 *.xpi
 **/*.jar
 chrome
+.DS_Store
