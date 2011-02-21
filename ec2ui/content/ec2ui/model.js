@@ -106,7 +106,23 @@ function Instance(resId, ownerId, groupList, instanceId, imageId, kernelId,
     this.platform = platform;
     this.vpcId = vpcId;
     this.subnetId = subnetId;
-    if (tag) this.tag = tag;
+
+    if (tag) {
+      this.tag = tag;
+
+      var kvs = tag.split(/\s*,\s*/);
+
+      for (var i = 0; i < kvs.length; i++) {
+        var kv = kvs[i].split(/\s*:\s*/, 2);
+        var key = kv[0].trim();
+        var value = kv[1].trim();
+
+        if (key == "Name") {
+          this.name = value;
+          break;
+        }
+      }
+    }
     this.rootDeviceType = rootDeviceType;
 }
 

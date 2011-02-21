@@ -104,6 +104,8 @@
         onselect="ec2ui_InstancesTreeView.selectionChanged(event)"
         enableColumnDrag="true" flex="1">
         <treecols>
+          <treecol id="instance.name" label="Name"
+            flex="2" persist="width ordinal hidden sortDirection" />
           <treecol id="instance.resId" label="&ec2ui.instances.resid.label;"
             flex="2" persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />

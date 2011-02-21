@@ -1,5 +1,6 @@
 var ec2ui_InstancesTreeView = {
     COLNAMES : [
+       'instance.name',
        'instance.resId',
        'instance.ownerId',
        'instance.id',
