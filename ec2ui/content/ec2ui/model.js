@@ -60,7 +60,10 @@ function Snapshot(id, volumeId, status, startTime, progress, volumeSize, descrip
     this.owner = owner;
     this.ownerAlias = ownerAlias;
 
-    if (tag) this.tag = tag;
+    if (tag) {
+        this.tag = tag;
+        __addNameTagToModel__(tag, this);
+    }
 }
 
 function Volume(id, size, snapshotId, zone, status, createTime, instanceId, device, attachStatus, attachTime, tag) {
@@ -76,7 +79,10 @@ function Volume(id, size, snapshotId, zone, status, createTime, instanceId, devi
     if (attachStatus != "") {
       this.attachTime = attachTime.strftime('%Y-%m-%d %H:%M:%S');
     }
-    if (tag) this.tag = tag;
+    if (tag) {
+      this.tag = tag;
+      __addNameTagToModel__(tag, this);
+    }
 }
 
 function Instance(resId, ownerId, groupList, instanceId, imageId, kernelId,
@@ -108,8 +114,8 @@ function Instance(resId, ownerId, groupList, instanceId, imageId, kernelId,
     this.subnetId = subnetId;
 
     if (tag) {
-      this.tag = tag;
-      __addNameTagToModel__(tag, this);
+        this.tag = tag;
+        __addNameTagToModel__(tag, this);
     }
 
     this.rootDeviceType = rootDeviceType;

@@ -75,6 +75,9 @@
           ondblclick="ec2ui_VolumeTreeView.viewDetails(event)"
           onselect="ec2ui_VolumeTreeView.selectionChanged(event)" flex="1">
           <treecols>
+            <treecol id="vol.name" label="Name" flex="1"
+              sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
             <treecol id="vol.id" label="&ec2ui.volumes.id.label;" flex="1"
               sortDirection="ascending"
               persist="width ordinal hidden sortDirection" />
@@ -167,6 +170,9 @@
           ondblclick="ec2ui_SnapshotTreeView.viewDetails(event)"
           onselect="ec2ui_SnapshotTreeView.selectionChanged(event)" flex="1">
           <treecols>
+            <treecol id="snap.name" label="Name" flex="1"
+              sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
             <treecol id="snap.id" label="&ec2ui.snapshots.id.label;" flex="1"
               sortDirection="ascending"
               persist="width ordinal hidden sortDirection" />
