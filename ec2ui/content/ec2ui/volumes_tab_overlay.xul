@@ -160,8 +160,8 @@
             <menulist id="ec2ui_SnapshotTreeView.snapshot.type" selectedIndex="0"
               oncommand="ec2ui_SnapshotTreeView.snapshotTypeChanged();">
               <menupopup>
-                <menuitem label="No Filter" value="all"/>
                 <menuitem label="My Snapshots" value="my_snapshots"/>
+                <menuitem label="No Filter" value="all"/>
               </menupopup>
             </menulist>
           </hbox>
