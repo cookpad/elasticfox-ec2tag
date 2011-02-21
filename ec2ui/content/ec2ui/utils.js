@@ -312,6 +312,7 @@ function tagEC2Resource(res, session, attr) {
 
     tag = tag.trim();
     res.tag = tag;
+    __addNameTagToModel__(tag, res);
     session.setResourceTag(res[attr], res.tag);
 
     __tagging2ec2__([res[attr]], session, tag);
@@ -410,6 +411,21 @@ function secondsToYears(secs) {
     return dur.toString();
 }
 
+function __addNameTagToModel__(tag, model) {
+    var kvs = tag.split(/\s*,\s*/);
+
+    for (var i = 0; i < kvs.length; i++) {
+        var kv = kvs[i].split(/\s*:\s*/, 2);
+        var key = kv[0].trim();
+        var value = kv[1].trim();
+
+        if (key == "Name") {
+            model.name = value;
+            break;
+        }
+    }
+}
+
 var protPortMap = {
     ssh : "22",
     rdp : "3389",
@@ -482,6 +498,7 @@ var ec2ui_utils = {
         for (var i = 0; i < list.length; ++i) {
             res = list[i];
             res.tag = tag;
+            __addNameTagToModel__(tag, res);
             session.setResourceTag(res[attr], res.tag);
             resIds.push(res[attr]);
         }

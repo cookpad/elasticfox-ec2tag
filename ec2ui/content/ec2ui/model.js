@@ -109,20 +109,9 @@ function Instance(resId, ownerId, groupList, instanceId, imageId, kernelId,
 
     if (tag) {
       this.tag = tag;
-
-      var kvs = tag.split(/\s*,\s*/);
-
-      for (var i = 0; i < kvs.length; i++) {
-        var kv = kvs[i].split(/\s*:\s*/, 2);
-        var key = kv[0].trim();
-        var value = kv[1].trim();
-
-        if (key == "Name") {
-          this.name = value;
-          break;
-        }
-      }
+      __addNameTagToModel__(tag, this);
     }
+
     this.rootDeviceType = rootDeviceType;
 }
 
