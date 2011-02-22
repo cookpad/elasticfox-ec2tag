@@ -99,7 +99,7 @@
     <spacer style="height: 4px" />
 
     <tabbox id="ec2ui.primary.tabs" flex="1">
-      <tabs id="ec2ui.tabs" onselect="ec2ui_session.tabSelectionChanged(event);">
+      <tabs id="ec2ui.tabs" onselect="ec2ui_session.tabSelectionChanged(event);" style="font-size:x-small;">
         <tab label="&ec2ui.tabs.instances.label;" />
         <tab label="&ec2ui.tabs.images.label;" />
         <tab label="&ec2ui.tabs.keypairs.label;" />
