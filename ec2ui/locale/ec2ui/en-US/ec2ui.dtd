@@ -9,13 +9,13 @@
 <!ENTITY ec2ui.tabs.images.label "Images">
 <!ENTITY ec2ui.tabs.keypairs.label "KeyPairs">
 <!ENTITY ec2ui.tabs.secgroups.label "Security Groups">
-<!ENTITY ec2ui.tabs.availzones.label "Availability Zones">
+<!ENTITY ec2ui.tabs.availzones.label "AZ">
 <!ENTITY ec2ui.tabs.eips.label "Elastic IPs">
-<!ENTITY ec2ui.tabs.volumes.label "Volumes and Snapshots">
-<!ENTITY ec2ui.tabs.bundleTasks.label "Bundle Tasks">
-<!ENTITY ec2ui.tabs.leases.label "Reserved Instances">
-<!ENTITY ec2ui.tabs.vpcs.label "Virtual Private Clouds">
-<!ENTITY ec2ui.tabs.vpns.label "VPN Connections">
+<!ENTITY ec2ui.tabs.volumes.label "Vols and Snaps">
+<!ENTITY ec2ui.tabs.bundleTasks.label "BT">
+<!ENTITY ec2ui.tabs.leases.label "RI">
+<!ENTITY ec2ui.tabs.vpcs.label "VPC">
+<!ENTITY ec2ui.tabs.vpns.label "VPNC">
 
 <!ENTITY ec2ui.captions.images.images.label "Machine Images (AMIs)">
 <!ENTITY ec2ui.captions.images.attribs.label "Launch Permissions">
