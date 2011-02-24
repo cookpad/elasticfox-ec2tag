@@ -112,6 +112,7 @@
         <treecols>
           <treecol id="instance.name" label="Name"
             flex="2" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
           <treecol id="instance.resId" label="&ec2ui.instances.resid.label;"
             flex="2" persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />

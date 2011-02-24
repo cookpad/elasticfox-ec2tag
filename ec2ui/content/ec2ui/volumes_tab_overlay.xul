@@ -78,6 +78,7 @@
             <treecol id="vol.name" label="Name" flex="1"
               sortDirection="ascending"
               persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
             <treecol id="vol.id" label="&ec2ui.volumes.id.label;" flex="1"
               sortDirection="ascending"
               persist="width ordinal hidden sortDirection" />
@@ -173,6 +174,7 @@
             <treecol id="snap.name" label="Name" flex="1"
               sortDirection="ascending"
               persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
             <treecol id="snap.id" label="&ec2ui.snapshots.id.label;" flex="1"
               sortDirection="ascending"
               persist="width ordinal hidden sortDirection" />
