@@ -3,3 +3,6 @@ syntax: glob
 **/*.jar
 chrome
 .DS_Store
+*.dmg
+*.app
+Frameworks
