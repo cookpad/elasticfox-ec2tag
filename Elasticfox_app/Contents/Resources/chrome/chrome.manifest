@@ -1,0 +1,7 @@
+overlay	chrome://browser/content/browser.xul	chrome://ec2ui/content/ec2ui.xul
+content	ec2ui	jar:ec2ui.jar!/content/ec2ui/
+
+skin	ec2ui	classic/1.0	jar:ec2ui.jar!/skin/classic/ec2ui/
+
+locale	ec2ui	en-US	jar:ec2ui.jar!/locale/ec2ui/en-US/
+/locale/ec2ui/en-US/
