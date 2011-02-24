@@ -307,8 +307,8 @@ function tagEC2Resource(res, session, attr) {
     if (!attr) attr = "id";
     var tag = prompt("Tag " + res[attr] + " with? (To untag, just clear the string)",
                      res.tag || "");
-    if (tag == null)
-        return;
+
+    if (!tag) { tag = ""; }
 
     tag = tag.trim();
     res.tag = tag;
@@ -419,13 +419,15 @@ function __addNameTagToModel__(tag, model) {
     for (var i = 0; i < kvs.length; i++) {
         var kv = kvs[i].split(/\s*:\s*/, 2);
         var key = kv[0].trim();
-        var value = kv[1].trim();
+        var value = (kv[1] || "").trim();
 
         if (key == "Name") {
             model.name = value;
-            break;
+            return;
         }
     }
+
+    model.name = null;
 }
 
 function __concatTags__(a, b) {
@@ -438,7 +440,7 @@ function __concatTags__(a, b) {
         for (var i = 0; i < kvs.length; i++) {
             var kv = kvs[i].split(/\s*:\s*/, 2);
             var key = kv[0].trim();
-            var value = kv[1].trim();
+            var value = (kv[1] || "").trim();
 
             if (key && value) {
                 hash[key] = value;
@@ -523,7 +525,7 @@ var ec2ui_utils = {
         var tag = prompt("Tag " + list[0][attr] + ", etc with? (To untag, just clear the string)",
                          list[0].tag || "");
 
-        if (tag == null) return;
+        if (!tag) return;
 
         var res = null;
         tag = tag.trim();
