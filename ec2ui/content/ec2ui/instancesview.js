@@ -823,6 +823,8 @@ var ec2ui_InstancesTreeView = {
         document.getElementById("instances.context.start").disabled = optDisabled;
         document.getElementById("instances.context.stop").disabled = optDisabled;
         document.getElementById("instances.context.forceStop").disabled = optDisabled;
+        document.getElementById("instances.context.showTerminationProtection").disabled = optDisabled;
+        document.getElementById("instances.context.changeTerminationProtection").disabled = optDisabled;
         document.getElementById("instances.button.start").disabled = optDisabled;
         document.getElementById("instances.button.stop").disabled = optDisabled;
     },
@@ -903,6 +905,61 @@ var ec2ui_InstancesTreeView = {
             }
         }
         ec2ui_session.controller.stopInstances(instanceIds, force, wrap);
+    },
+
+    showTerminationProtection : function() {
+        var instanceIds = this.getSelectedInstanceIds();
+
+        if (instanceIds.length > 1) {
+          alert("Cannot change two or more instances.")
+          return;
+        }
+
+        var instanceId = instanceIds[0];
+
+        ec2ui_session.controller.describeInstanceAttribute(instanceId, "disableApiTermination", function(value) {
+            value = (value == "true")
+            var msg = null;
+
+            if (value) {
+                msg = "Termination Protection: enable";
+            } else {
+                msg = "Termination Protection: disable";
+            }
+
+            alert(msg);
+        });
+    },
+
+    changeTerminationProtection : function() {
+        var instanceIds = this.getSelectedInstanceIds();
+
+        if (instanceIds.length > 1) {
+          alert("Cannot change two or more instances.")
+          return;
+        }
+
+        var instanceId = instanceIds[0];
+        var me = this;
+
+        ec2ui_session.controller.describeInstanceAttribute(instanceId, "disableApiTermination", function(value) {
+            value = (value == "true")
+            var msg = null;
+
+            if (value) {
+                msg = "Termination Protection: enable -> disable ?";
+            } else {
+                msg = "Termination Protection: disable -> enable ?";
+            }
+
+            if (confirm(msg)) {
+                me.doChangeTerminationProtection(instanceId, !value);
+            }
+        });
+    },
+
+    doChangeTerminationProtection : function(instanceId, enable) {
+        ec2ui_session.controller.modifyInstanceAttribute(instanceId, ["DisableApiTermination", enable]);
     },
 
     startInstance : function() {

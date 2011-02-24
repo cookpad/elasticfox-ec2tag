@@ -40,6 +40,12 @@
           <menuitem id="instances.context.forceStop"
             oncommand="ec2ui_InstancesTreeView.forceStopInstance();"
             label="Force Stop" />
+          <menuitem id="instances.context.showTerminationProtection"
+            oncommand="ec2ui_InstancesTreeView.showTerminationProtection();"
+            label="Show Termination Protection" />
+          <menuitem id="instances.context.changeTerminationProtection"
+            oncommand="ec2ui_InstancesTreeView.changeTerminationProtection();"
+            label="Change Termination Protection" />
           <menuseparator />
           <menuitem oncommand="ec2ui_InstancesTreeView.fetchConsoleOutput();"
             label="Show Console Output" />
