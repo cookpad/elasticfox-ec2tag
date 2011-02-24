@@ -246,6 +246,7 @@ var ec2_InstanceLauncher = {
         var typeMenu = document.getElementById("ec2ui.newinstances.instancetypelist");
         // Add the instance sizes based on AMI architecture
         if (this.image.arch == "x86_64") {
+            typeMenu.appendItem("t1.micro", "t1.micro");
             typeMenu.appendItem("m1.large", "m1.large");
             typeMenu.appendItem("m1.xlarge", "m1.xlarge");
             typeMenu.appendItem("c1.xlarge", "c1.xlarge");
@@ -253,6 +254,7 @@ var ec2_InstanceLauncher = {
             typeMenu.appendItem("m2.2xlarge", "m2.2xlarge");
             typeMenu.appendItem("m2.4xlarge", "m2.4xlarge");
         } else {
+            typeMenu.appendItem("t1.micro", "t1.micro");
             typeMenu.appendItem("m1.small", "m1.small");
             typeMenu.appendItem("c1.medium", "c1.medium");
         }
