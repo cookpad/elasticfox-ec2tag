@@ -308,7 +308,8 @@ function tagEC2Resource(res, session, attr) {
     var tag = prompt("Tag " + res[attr] + " with? (To untag, just clear the string)",
                      res.tag || "");
 
-    if (!tag) { tag = ""; }
+    if (tag == null)
+        return;
 
     tag = tag.trim();
     res.tag = tag;
