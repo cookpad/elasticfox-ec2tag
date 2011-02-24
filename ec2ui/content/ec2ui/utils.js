@@ -318,7 +318,7 @@ function tagEC2Resource(res, session, attr) {
     __tagging2ec2__([res[attr]], session, tag);
 }
 
-function __tagging2ec2__(resIds, session, tagString) {
+function __tagging2ec2__(resIds, session, tagString, disableDeleteTags) {
   var multiIds = new Array();
   var multiTags = new Array();
 
@@ -361,8 +361,10 @@ function __tagging2ec2__(resIds, session, tagString) {
               delKyes.push(described[i][1]);
             }
 
-            if (delResIds.length > 0 && delKyes.length > 0) {
-                session.controller.deleteTags(delResIds, delKyes);
+            if (!disableDeleteTags) {
+                if (delResIds.length > 0 && delKyes.length > 0) {
+                    session.controller.deleteTags(delResIds, delKyes);
+                }
             }
 
             if (multiTags.length > 0) {
@@ -424,6 +426,37 @@ function __addNameTagToModel__(tag, model) {
             break;
         }
     }
+}
+
+function __concatTags__(a, b) {
+    if (!a) { a = ""; }
+    if (!b) { b = ""; }
+
+    function putTagsToHash(tagString, hash) {
+        var kvs = tagString.split(/\s*,\s*/);
+
+        for (var i = 0; i < kvs.length; i++) {
+            var kv = kvs[i].split(/\s*:\s*/, 2);
+            var key = kv[0].trim();
+            var value = kv[1].trim();
+
+            if (key && value) {
+                hash[key] = value;
+            }
+        }
+    }
+
+    var tags = new Object();
+    var tagArray = new Array();
+
+    putTagsToHash(a, tags);
+    putTagsToHash(b, tags);
+
+    for (var i in tags) {
+        tagArray.push(i + ":" + tags[i]);
+    }
+
+    return tagArray.join(", ");
 }
 
 var protPortMap = {
@@ -497,13 +530,13 @@ var ec2ui_utils = {
         var resIds = new Array();
         for (var i = 0; i < list.length; ++i) {
             res = list[i];
-            res.tag = tag;
-            __addNameTagToModel__(tag, res);
+            res.tag = __concatTags__(res.tag, tag);
+            __addNameTagToModel__(res.tag, res);
             session.setResourceTag(res[attr], res.tag);
             resIds.push(res[attr]);
         }
 
-        __tagging2ec2__(resIds, session, tag);
+        __tagging2ec2__(resIds, session, tag, true);
     },
 
     winRegex : new RegExp(/^Windows/i),
