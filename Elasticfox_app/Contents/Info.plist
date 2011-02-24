@@ -7,9 +7,9 @@
 	<key>CFBundleGetInfoString</key>
 	<string>ElasticfoxX</string>
 	<key>CFBundleIconFile</key>
-	<string>webrunner.icns</string>
+	<string>AMAZON.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>webapps.webrunner</string>
+	<string>xulrunner.elasticfox</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
