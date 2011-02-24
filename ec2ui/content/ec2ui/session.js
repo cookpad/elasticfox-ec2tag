@@ -160,26 +160,26 @@ var ec2ui_session =
         case "Elastic IPs":
             eval("ec2ui_ElasticIPTreeView." + toCall);
             break;
-        case "Volumes and Snapshots":
+        case "Vols and Snaps":
             eval("ec2ui_VolumeTreeView." + toCall);
             eval("ec2ui_SnapshotTreeView." + toCall);
             break;
-        case "Bundle Tasks":
+        case "BT":
             eval("ec2ui_BundleTasksTreeView." + toCall);
             break;
-        case "Availability Zones":
+        case "AZ":
             eval("ec2ui_AvailZoneTreeView." + toCall);
             break;
-        case "Reserved Instances":
+        case "RI":
             eval("ec2ui_LeaseOfferingsTreeView." + toCall);
             eval("ec2ui_ReservedInstancesTreeView." + toCall);
             break;
-        case "Virtual Private Clouds":
+        case "VPC":
             eval("ec2ui_VpcTreeView." + toCall);
             eval("ec2ui_SubnetTreeView." + toCall);
             eval("ec2ui_DhcpoptsTreeView." + toCall);
             break;
-        case "VPN Connections":
+        case "VPNC":
             eval("ec2ui_VpnConnectionTreeView." + toCall);
             eval("ec2ui_VpnGatewayTreeView." + toCall);
             eval("ec2ui_CustomerGatewayTreeView." + toCall);
