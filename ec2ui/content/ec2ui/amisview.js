@@ -130,7 +130,7 @@ var ec2ui_AMIsTreeView = {
     },
 
     searchChanged : function(event) {
-        document.getElementById("ec2ui_AMIsTreeView.image.type").selectedIndex = 0;
+        document.getElementById("ec2ui_AMIsTreeView.image.type").selectedIndex = 1;
         if (this.searchTimer) {
             clearTimeout(this.searchTimer);
         }
