@@ -933,12 +933,6 @@ var ec2ui_InstancesTreeView = {
 
     changeTerminationProtection : function() {
         var instanceIds = this.getSelectedInstanceIds();
-
-        if (instanceIds.length > 1) {
-          alert("Cannot change two or more instances.")
-          return;
-        }
-
         var instanceId = instanceIds[0];
         var me = this;
 
@@ -953,7 +947,9 @@ var ec2ui_InstancesTreeView = {
             }
 
             if (confirm(msg)) {
-                me.doChangeTerminationProtection(instanceId, !value);
+                for (var i = 0; i < instanceIds.length; i++) {
+                  me.doChangeTerminationProtection(instanceIds[i], !value);
+                }
             }
         });
     },
