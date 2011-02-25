@@ -100,6 +100,9 @@ var ec2ui_PermissionsTreeView = {
             } else {
                 ec2ui_session.controller.authorizeSourceGroup(
                     newPerm.groupName,
+                    newPerm.ipProtocol,
+                    newPerm.fromPort,
+                    newPerm.toPort,
                     newPerm.sourceSecurityGroupName,
                     newPerm.sourceSecurityGroupOwnerId,
                     wrap
@@ -154,6 +157,9 @@ var ec2ui_PermissionsTreeView = {
             } else {
                 ec2ui_session.controller.revokeSourceGroup(
                 group.name,
+                permission.protocol,
+                permission.fromPort,
+                permission.toPort,
                 permission.groupTuples[0][1],
                 permission.groupTuples[0][0],
                 wrap

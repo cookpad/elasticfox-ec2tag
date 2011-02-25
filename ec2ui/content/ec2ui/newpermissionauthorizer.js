@@ -22,6 +22,8 @@ var ec2_Authorizer = {
         var radioSel = document.getElementById("ec2ui.newpermission.hostnet.group").selectedItem.value;
         var textbox = null;
         var cidrStr = null;
+        var textbox_group = null;
+        var textbox_user = null;
         if (radioSel == "host") {
           textbox = document.getElementById("ec2ui.newpermission.source.host");
           if (textbox.value == "") {
@@ -41,11 +43,24 @@ var ec2_Authorizer = {
             return false;
           }
           cidrStr = textbox.value.trim();
+        } else if (radioSel == "group") {
+          textbox_group = document.getElementById("ec2ui.newpermission.source.group");
+          textbox_user = document.getElementById("ec2ui.newpermission.source.user");
+          if (!textbox_user.value || !textbox_group.value) {
+            alert("Please provide a source group / user");
+            return false;
+          }
+
+          newPerm.sourceSecurityGroupName = textbox_group.value;
+          newPerm.sourceSecurityGroupOwnerId = textbox_user.value;
         }
 
-        if (!this.validateCIDR(cidrStr, textbox)) {
-          return false;
+        if (radioSel != "group") {
+          if (!this.validateCIDR(cidrStr, textbox)) {
+            return false;
+          }
         }
+
         newPerm.cidrIp = cidrStr;
         var protocol = document.getElementById("ec2ui.newpermission.protocol").value;
         if (protocol == "other") {
@@ -91,6 +106,7 @@ var ec2_Authorizer = {
 
         break;
       }
+      /*
       case "Group":
       {
         if (!this.validateSourceUserGroup()) {
@@ -103,6 +119,7 @@ var ec2_Authorizer = {
 
         break;
       }
+      */
     }
 
     this.retVal.ok = true;

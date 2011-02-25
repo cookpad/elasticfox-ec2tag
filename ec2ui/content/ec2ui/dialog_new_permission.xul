@@ -16,7 +16,9 @@
     <tabbox flex="1">
       <tabs id="ec2ui.newpermission.tabs">
         <tab label="External" selected="true" />
+        <!--
         <tab label="Group" />
+        -->
       </tabs>
 
       <tabpanels flex="1">
@@ -155,12 +157,25 @@
                     <button id="get-network-button" label="Get My Network Range"
                       default="true" oncommand="ec2_Authorizer.getHostNetwork();" />
                   </row>
+                  <row>
+                    <radio id="group" value="group" label="group" />
+                    <rows>
+                      <row>
+                        <label control="ec2ui.newpermission.source.user" value="User ID" />
+                        <textbox id="ec2ui.newpermission.source.user" value="" />
+                      </row>
+                      <row>
+                        <label control="ec2ui.newpermission.source.group" value="Group" />
+                        <menulist id="ec2ui.newpermission.source.group" editable="true" selectedIndex="0"/>
+                      </row>
+                    </rows>
+                  </row>
                 </rows>
               </grid>
             </radiogroup>
           </groupbox>
         </tabpanel>
-
+<!--
         <tabpanel id="ec2ui.newpermission.tab.group" orient="vertical"
           flex="1">
 
@@ -185,6 +200,7 @@
             </rows>
           </grid>
         </tabpanel>
+-->
       </tabpanels>
     </tabbox>
   </groupbox>

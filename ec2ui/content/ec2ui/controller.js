@@ -1862,11 +1862,14 @@ var ec2ui_controller = {
         ec2_httpclient.queryEC2("AuthorizeSecurityGroupIngress", params, this, true, "onCompleteAuthorizeSecurityGroupIngress", callback);
     },
 
-    authorizeSourceGroup : function (groupName, sourceSecurityGroupName, sourceSecurityGroupOwnerId, callback) {
+    authorizeSourceGroup : function (groupName, ipProtocol, fromPort, toPort, sourceSecurityGroupName, sourceSecurityGroupOwnerId, callback) {
         var params = []
         params.push(["GroupName", groupName]);
-        params.push(["SourceSecurityGroupName", sourceSecurityGroupName]);
-        params.push(["SourceSecurityGroupOwnerId", sourceSecurityGroupOwnerId]);
+        params.push(["IpPermissions.1.IpProtocol", ipProtocol]);
+        params.push(["IpPermissions.1.FromPort", fromPort]);
+        params.push(["IpPermissions.1.ToPort", toPort]);
+        params.push(["IpPermissions.1.Groups.1.GroupName", sourceSecurityGroupName]);
+        params.push(["IpPermissions.1.Groups.1.UserId", sourceSecurityGroupOwnerId]);
         ec2_httpclient.queryEC2("AuthorizeSecurityGroupIngress", params, this, true, "onCompleteAuthorizeSecurityGroupIngress", callback);
     },
 
@@ -1885,11 +1888,14 @@ var ec2ui_controller = {
         ec2_httpclient.queryEC2("RevokeSecurityGroupIngress", params, this, true, "onCompleteRevokeSecurityGroupIngress", callback);
     },
 
-    revokeSourceGroup : function (groupName, sourceSecurityGroupName, sourceSecurityGroupOwnerId, callback) {
+    revokeSourceGroup : function (groupName, ipProtocol, fromPort, toPort, sourceSecurityGroupName, sourceSecurityGroupOwnerId, callback) {
         var params = []
         params.push(["GroupName", groupName]);
-        params.push(["SourceSecurityGroupName", sourceSecurityGroupName]);
-        params.push(["SourceSecurityGroupOwnerId", sourceSecurityGroupOwnerId]);
+        params.push(["IpPermissions.1.IpProtocol", ipProtocol]);
+        params.push(["IpPermissions.1.FromPort", fromPort]);
+        params.push(["IpPermissions.1.ToPort", toPort]);
+        params.push(["IpPermissions.1.Groups.1.GroupName", sourceSecurityGroupName]);
+        params.push(["IpPermissions.1.Groups.1.UserId", sourceSecurityGroupOwnerId]);
         ec2_httpclient.queryEC2("RevokeSecurityGroupIngress", params, this, true, "onCompleteRevokeSecurityGroupIngress", callback);
     },
 
