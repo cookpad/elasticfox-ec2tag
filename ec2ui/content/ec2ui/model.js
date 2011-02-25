@@ -532,7 +532,26 @@ var ec2ui_model = {
     },
 
     updateAddresses : function(list) {
+        if (!this.instances) {
+            ec2ui_session.controller.describeInstances();
+        }
+
         this.addresses = list;
+
+        if (this.instances && list) {
+            var instanceNames = new Object();
+
+            for (var i = 0; i < this.instances.length; i++) {
+                var instance = this.instances[i];
+                instanceNames[instance.id] = instance.name;
+            }
+
+            for (var i = 0; i < list.length; i++) {
+                var address = list[i];
+                address.instanceName = instanceNames[address.instanceid];
+            }
+        }
+
         this.notifyComponents("addresses");
     },
 

@@ -49,6 +49,9 @@
           <treecol id="eip.instanceid" label="&ec2ui.instances.id.label;" flex="3"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
+          <treecol id="eip.instanceName" label="Instance Name" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
           <treecol id="eip.tag" label="Tag" flex="5"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
