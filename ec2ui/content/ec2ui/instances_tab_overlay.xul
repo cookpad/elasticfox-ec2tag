@@ -10,6 +10,7 @@
       <popupset>
         <popup id="ec2ui.instances.contextmenu"
           onpopupshowing="ec2ui_InstancesTreeView.enableOrDisableItems(event);">
+          <menuitem label="-" />
           <menuitem oncommand="ec2ui_InstancesTreeView.viewDetails(event);"
             label="&ec2ui.contextmenu.details.label;" />
           <menuitem oncommand="ec2ui_InstancesTreeView.tag(event);"
@@ -40,6 +41,7 @@
           <menuitem id="instances.context.forceStop"
             oncommand="ec2ui_InstancesTreeView.forceStopInstance();"
             label="Force Stop" />
+          <menuseparator />
           <menuitem id="instances.context.showTerminationProtection"
             oncommand="ec2ui_InstancesTreeView.showTerminationProtection();"
             label="Show Termination Protection" />
@@ -106,7 +108,12 @@
         </hbox>
       </toolbar>
 
+      <!--
       <tree id="ec2ui.instances.view" ondblclick="ec2ui_InstancesTreeView.viewDetails(event)"
+        onselect="ec2ui_InstancesTreeView.selectionChanged(event)"
+        enableColumnDrag="true" flex="1">
+        -->
+      <tree id="ec2ui.instances.view"
         onselect="ec2ui_InstancesTreeView.selectionChanged(event)"
         enableColumnDrag="true" flex="1">
         <treecols>
