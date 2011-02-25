@@ -35,9 +35,14 @@
             oncommand="ec2ui_SecurityGroupsTreeView.deleteSelected();" />
         </hbox>
       </toolbar>
+      <!--
       <tree id="ec2ui.securitygroups.view" seltype="single"
         enableColumnDrag="true"
         ondblclick="ec2ui_SecurityGroupsTreeView.viewDetails(event);"
+        onselect="ec2ui_SecurityGroupsTreeView.selectionChanged(event);" flex="1">
+      -->
+      <tree id="ec2ui.securitygroups.view" seltype="single"
+        enableColumnDrag="true"
         onselect="ec2ui_SecurityGroupsTreeView.selectionChanged(event);" flex="1">
         <treecols>
           <treecol id="securitygroup.ownerId"
@@ -84,8 +89,12 @@
             tooltiptext="&ec2ui.permissions.revoke.tip;" />
         </hbox>
       </toolbar>
+      <!--
       <tree id="ec2ui.permissions.view"
         ondblclick="ec2ui_PermissionsTreeView.viewDetails(event);"
+        enableColumnDrag="true" flex="1">
+        -->
+      <tree id="ec2ui.permissions.view"
         enableColumnDrag="true" flex="1">
         <treecols>
           <treecol id="permission.protocol"
