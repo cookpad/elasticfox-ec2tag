@@ -897,7 +897,7 @@ var ec2ui_InstancesTreeView = {
         if (instanceIds.length == 0)
             return;
 
-        var confirmed = confirm("Terminate instances: "+ instanceLabels.join(', ') +"?");
+        var confirmed = confirm("Terminate instances: \n"+ instanceLabels.join("\n") +"?");
         if (!confirmed)
             return;
 
@@ -926,7 +926,7 @@ var ec2ui_InstancesTreeView = {
         if (instanceIds.length == 0)
             return;
 
-        var confirmed = confirm("Stop instances: "+ instanceLabels.join(', ')+"?");
+        var confirmed = confirm("Stop instances: \n"+ instanceLabels.join("\n")+"?");
         if (!confirmed)
             return;
 
@@ -940,27 +940,39 @@ var ec2ui_InstancesTreeView = {
     },
 
     showTerminationProtection : function() {
-        var instanceIds = this.getSelectedInstanceIds();
+        try {
+        var instances = this.getSelectedInstanceNamedIds();
+        var instanceIds = instances[0];
+        var instanceLabels = instances[1];
 
+        /*
         if (instanceIds.length > 1) {
           alert("Cannot change two or more instances.")
           return;
         }
+        */
 
-        var instanceId = instanceIds[0];
+        var statusList = new Array();
 
-        ec2ui_session.controller.describeInstanceAttribute(instanceId, "disableApiTermination", function(value) {
-            value = (value == "true")
-            var msg = null;
+        function pushStatusToArray(instanceLabel, status) {
+            statusList.push(status + " | " + instanceLabel);
 
-            if (value) {
-                msg = "Termination Protection: enable";
-            } else {
-                msg = "Termination Protection: disable";
+            if (statusList.length == instanceIds.length) {
+                alert(statusList.join("\n"));
             }
+        }
 
-            alert(msg);
-        });
+        function __describeInstanceAttribute__(instanceId, instanceLabel) {
+            ec2ui_session.controller.describeInstanceAttribute(instanceId, "disableApiTermination", function(value) {
+                value = (value == "true");
+                pushStatusToArray(instanceLabel, (value ? "enable" : "disable"));
+            });
+        }
+
+        for (var i = 0; i < instanceIds.length; i++) {
+            __describeInstanceAttribute__(instanceIds[i], instanceLabels[i]);
+        }
+        } catch(e) { alert(e); }
     },
 
     changeTerminationProtection : function() {
