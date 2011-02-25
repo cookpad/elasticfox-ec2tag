@@ -78,8 +78,12 @@
               </menulist>
             </hbox>
           </toolbar>
+          <!--
           <tree id="ec2ui.images.view" seltype="single" enableColumnDrag="true"
             ondblclick="ec2ui_AMIsTreeView.viewDetails(event)"
+            onselect="ec2ui_AMIsTreeView.selectionChanged(event)" flex="1">
+            -->
+          <tree id="ec2ui.images.view" seltype="single" enableColumnDrag="true"
             onselect="ec2ui_AMIsTreeView.selectionChanged(event)" flex="1">
             <treecols>
               <treecol id="ami.id" label="&ec2ui.images.id.label;" flex="1"
