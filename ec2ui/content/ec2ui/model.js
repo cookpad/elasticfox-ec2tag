@@ -438,7 +438,36 @@ var ec2ui_model = {
     },
 
     updateSnapshots : function(list) {
+        if (!this.images) {
+            ec2ui_session.controller.describeImages();
+        }
+
         this.snapshots = list;
+
+        if (this.images && list) {
+            var amiNames = new Object();
+
+            for (var i = 0; i < this.images.length; i++) {
+                var image = this.images[i];
+                amiNames[image.id] = image.name;
+            }
+
+            for (var i = 0; i < list.length; i++) {
+                var snapshot = list[i];
+                var snapshotAmiId = null;
+                var m = null;
+
+                if (snapshot.description && (m = snapshot.description.match(/\bami-\w+\b/))) {
+                    snapshotAmiId = m[0];
+                }
+
+                if (snapshotAmiId) {
+                    snapshot.amiId = snapshotAmiId;
+                    snapshot.amiName = amiNames[snapshotAmiId];
+                }
+            }
+        }
+
         this.notifyComponents("snapshots");
     },
 

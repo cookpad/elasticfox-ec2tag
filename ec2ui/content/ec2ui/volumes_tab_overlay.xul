@@ -200,6 +200,12 @@
             <treecol id="snap.description" label="&ec2ui.description.label;" flex="1"
               persist="width ordinal hidden sortDirection" />
             <splitter class="tree-splitter" />
+            <treecol id="snap.amiId" label="AMI ID" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="snap.amiName" label="AMI Name" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
             <treecol id="snap.owner" label="&ec2ui.snapshots.owner.label;" flex="1"
               persist="width ordinal hidden sortDirection" />
             <treecol id="snap.ownerAlias" label="&ec2ui.snapshots.ownerAlias.label;" flex="1"
