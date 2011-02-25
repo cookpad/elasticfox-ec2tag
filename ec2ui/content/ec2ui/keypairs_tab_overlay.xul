@@ -21,8 +21,11 @@
         <toolbarbutton image="images/delete.png" tooltiptext="&ec2ui.keypairs.delete.tip;"
           oncommand="ec2ui_KeypairTreeView.deleteSelected();" />
       </toolbar>
+      <!--
       <tree enableColumnDrag="true" id="ec2ui.keypairs.view"
         ondblclick="ec2ui_KeypairTreeView.viewDetails(event)" flex="1">
+        -->
+      <tree enableColumnDrag="true" id="ec2ui.keypairs.view" flex="1">
         <treecols>
           <treecol id="keypair.name" label="&ec2ui.keypairs.name.label;" flex="1"
             sortDirection="ascending" persist="width ordinal hidden sortDirection" />
