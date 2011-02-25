@@ -71,8 +71,12 @@
               tooltiptext="Edit EC2 Tag" />
           </hbox>
         </toolbar>
+        <!--
         <tree id="ec2ui.volumes.view" seltype="single" enableColumnDrag="true"
           ondblclick="ec2ui_VolumeTreeView.viewDetails(event)"
+          onselect="ec2ui_VolumeTreeView.selectionChanged(event)" flex="1">
+          -->
+        <tree id="ec2ui.volumes.view" seltype="single" enableColumnDrag="true"
           onselect="ec2ui_VolumeTreeView.selectionChanged(event)" flex="1">
           <treecols>
             <treecol id="vol.name" label="Name" flex="1"
@@ -170,8 +174,12 @@
             </menulist>
           </hbox>
         </toolbar>
+        <!--
         <tree id="ec2ui.snapshots.view" seltype="single" enableColumnDrag="true"
           ondblclick="ec2ui_SnapshotTreeView.viewDetails(event)"
+          onselect="ec2ui_SnapshotTreeView.selectionChanged(event)" flex="1">
+          -->
+        <tree id="ec2ui.snapshots.view" seltype="single" enableColumnDrag="true"
           onselect="ec2ui_SnapshotTreeView.selectionChanged(event)" flex="1">
           <treecols>
             <treecol id="snap.name" label="Name" flex="1"
