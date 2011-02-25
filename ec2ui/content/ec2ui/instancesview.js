@@ -115,15 +115,17 @@ var ec2ui_InstancesTreeView = {
 
     getSelectedInstanceNamedIds : function() {
         var instanceIdsWithName = this.getSelectedInstanceIdsWithName();
+        var instanceIds = new Array();
         var instances = new Array();
 
         for (var i = 0; i < instanceIdsWithName.length; i++) {
             var instanceId = instanceIdsWithName[i][0];
             var instanceName = instanceIdsWithName[i][1];
-            instances.push(instanceName + '(' + instanceId + ')');
+            instanceIds.push(instanceId);
+            instances.push(instanceName + '@' + instanceId);
         }
 
-        return instances;
+        return [instanceIds, instances];
     },
 
     tag : function(event) {
@@ -888,11 +890,14 @@ var ec2ui_InstancesTreeView = {
     },
 
     terminateInstance : function() {
-        var instanceIds = this.getSelectedInstanceIds();
+        var instances = this.getSelectedInstanceNamedIds();
+        var instanceIds = instances[0];
+        var instanceLabels = instances[1];
+
         if (instanceIds.length == 0)
             return;
 
-        var confirmed = confirm("Terminate instances: "+ instanceIds.join(', ') +"?");
+        var confirmed = confirm("Terminate instances: "+ instanceLabels.join(', ') +"?");
         if (!confirmed)
             return;
 
@@ -914,11 +919,14 @@ var ec2ui_InstancesTreeView = {
     },
 
     doStopInstances : function(force) {
-        var instanceIds = this.getSelectedInstanceIds();
+        var instances = this.getSelectedInstanceNamedIds();
+        var instanceIds = instances[0];
+        var instanceLabels = instances[1];
+
         if (instanceIds.length == 0)
             return;
 
-        var confirmed = confirm("Stop instances: "+ instanceIds.join(', ')+"?");
+        var confirmed = confirm("Stop instances: "+ instanceLabels.join(', ')+"?");
         if (!confirmed)
             return;
 
