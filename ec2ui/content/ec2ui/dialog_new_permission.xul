@@ -146,7 +146,7 @@
                 </columns>
                 <rows>
                   <row>
-                    <radio id="host" value="host" label="Host" selected="true" />
+                    <radio id="host" value="host" label="Host" />
                     <textbox id="ec2ui.newpermission.source.host" />
                     <button id="get-host-button" label="Get My Host Address"
                       default="true" oncommand="ec2_Authorizer.getHostAddress();" />
@@ -158,7 +158,7 @@
                       default="true" oncommand="ec2_Authorizer.getHostNetwork();" />
                   </row>
                   <row>
-                    <radio id="group" value="group" label="group" />
+                    <radio id="group" value="group" label="group" selected="true" />
                     <rows>
                       <row>
                         <label control="ec2ui.newpermission.source.user" value="User ID" />
