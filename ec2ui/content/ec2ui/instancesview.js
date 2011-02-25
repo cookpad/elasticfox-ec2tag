@@ -102,6 +102,30 @@ var ec2ui_InstancesTreeView = {
         return instanceIds;
     },
 
+    getSelectedInstanceIdsWithName : function() {
+        var instanceIds = new Array();
+        for(var i in this.instanceList) {
+            if (this.selection.isSelected(i)) {
+                instanceIds.push([this.instanceList[i].id, this.instanceList[i].name]);
+            }
+        }
+
+        return instanceIds;
+    },
+
+    getSelectedInstanceNamedIds : function() {
+        var instanceIdsWithName = this.getSelectedInstanceIdsWithName();
+        var instances = new Array();
+
+        for (var i = 0; i < instanceIdsWithName.length; i++) {
+            var instanceId = instanceIdsWithName[i][0];
+            var instanceName = instanceIdsWithName[i][1];
+            instances.push(instanceName + '(' + instanceId + ')');
+        }
+
+        return instances;
+    },
+
     tag : function(event) {
         var instances = this.getSelectedInstances();
 
