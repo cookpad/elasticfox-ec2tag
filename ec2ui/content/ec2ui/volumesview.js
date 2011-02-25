@@ -20,7 +20,7 @@ function getEC2WindowsDeviceList() {
 var ec2ui_VolumeTreeView = {
     COLNAMES:
     ['vol.id','vol.size','vol.snapshotId','vol.availabilityZone','vol.status',
-    'vol.createTime', 'vol.instanceId', 'vol.device', 'vol.attachStatus',
+    'vol.createTime', 'vol.instanceId', 'vol.instanceName', 'vol.device', 'vol.attachStatus',
     'vol.attachTime', 'vol.tag'],
     imageIdRegex : new RegExp("^vol-"),
 

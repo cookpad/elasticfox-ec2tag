@@ -101,6 +101,9 @@
             <treecol id="vol.instanceId" label="&ec2ui.instances.id.label;" flex="1"
               persist="width ordinal hidden sortDirection" />
             <splitter class="tree-splitter" />
+            <treecol id="vol.instanceName" label="Instance Name" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
             <treecol id="vol.device" label="&ec2ui.volumes.attachment.device.label;" flex="1"
               persist="width ordinal hidden sortDirection" />
             <splitter class="tree-splitter" />
