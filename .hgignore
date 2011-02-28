@@ -7,3 +7,4 @@ Elasticfox_app/Contents/Resources/chrome/*.jar
 *.app
 Frameworks
 elasticfox-win
+*setup.exe
