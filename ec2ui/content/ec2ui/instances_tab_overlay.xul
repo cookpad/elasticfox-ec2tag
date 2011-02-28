@@ -54,6 +54,8 @@
           <menuitem id="instances.context.getPassword"
             oncommand="ec2ui_InstancesTreeView.getAdminPassword(false);"
             label="Get Administrator Password" />
+          <menuitem oncommand="ec2ui_InstancesTreeView.showUserData();"
+            label="Show User Data" />
           <menuseparator />
           <menuitem oncommand="ec2ui_InstancesTreeView.copyToClipBoard('id');"
             label="&ec2ui.instances.contextmenu.copyid.label;" />

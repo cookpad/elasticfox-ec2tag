@@ -956,7 +956,7 @@ var ec2ui_InstancesTreeView = {
 
         function __describeInstanceAttribute__(instanceId, instanceLabel) {
             ec2ui_session.controller.describeInstanceAttribute(instanceId, "userData", function(value) {
-                pushStatusToArray(instanceLabel, value);
+                pushStatusToArray(instanceLabel, (value ? Base64.decode(value) : "(empty)"));
             });
         }
 
