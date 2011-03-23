@@ -7,6 +7,6 @@ pref("signon.SignonFileName", "signons.txt");
 pref("browser.dom.window.dump.enabled", true);
 pref("javascript.options.showInConsole", true);
 pref("javascript.options.strict", true);
-pref("nglayout.debug.disable_xul_cache", true);
 pref("nglayout.debug.disable_xul_fastload", true);
 */
+./Elasticfox_app/Contents/Resources/defaults/preferences/prefs.js

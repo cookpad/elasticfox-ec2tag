@@ -41,7 +41,7 @@
    <runconfirm> 0</>
    <uninclude> 1</>
    <unicon> Uninstall</>
-   <unshortcut> 0</>
+   <unshortcut> 1</>
    <unrun> </>
    <silent> 0</>
    <unfeed> </>
@@ -63,7 +63,8 @@
       
    </registry>
    <shcut listview >
-      <_><shpath>prog</><shname>Elasticfox</><tarpath>inst</><tarname>Elasticfox</><cmdline></><workpath>inst</><workcust></><icon></></>
+      <_><shpath>prog</><shname>Elasticfox</><tarpath>inst</><tarname>Elasticfox</><cmdline></><workpath>inst</><workcust></><icon>Amazon_64.ico</></>
+<_><shpath>desk</><shname>Elasticfox</><tarpath>inst</><tarname>Elasticfox</><cmdline></><workpath>inst</><workcust></><icon>Amazon_64.ico</></>
 
    </shcut>
    <ini listview >
