@@ -965,6 +965,45 @@ var ec2ui_InstancesTreeView = {
         }
     },
 
+
+    changeUserData: function() {
+      try {
+        var instances = this.getSelectedInstanceNamedIds();
+        var instanceIds = instances[0];
+        var instanceLabels = instances[1];
+
+        if (instanceIds.length == 0) {
+            alert('Please select one instance.');
+            return
+        } else if (instanceIds.length > 1) {
+            alert('Cannot select multi instances.');
+            return;
+        }
+
+        var instanceId = instanceIds[0];
+        var instanceLabel = instanceLabels[0]
+        var returnValue = {accepted:false , result:null};
+
+        ec2ui_session.controller.describeInstanceAttribute(instanceId, "userData", function(value) {
+            openDialog('chrome://ec2ui/content/dialog_user_data.xul',
+                       null,
+                       'chrome,centerscreen,modal,width=400,height=250',
+                       instanceLabel,
+                       (value ? Base64.decode(value) : ''),
+                       returnValue);
+
+            if (returnValue.result == null) {
+                return;
+            }
+
+            var attribute = ['UserData', Base64.encode(returnValue.result)];
+            ec2ui_session.controller.modifyInstanceAttribute(instanceId, attribute);
+        });
+      } catch(e) {
+      alert(e);
+      }
+    },
+
     showTerminationProtection : function() {
         var instances = this.getSelectedInstanceNamedIds();
         var instanceIds = instances[0];

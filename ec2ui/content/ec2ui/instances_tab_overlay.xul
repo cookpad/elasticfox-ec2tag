@@ -42,6 +42,15 @@
             oncommand="ec2ui_InstancesTreeView.forceStopInstance();"
             label="Force Stop" />
           <menuseparator />
+          <!--
+          <menuitem id="instances.context.showUserData"
+            oncommand="ec2ui_InstancesTreeView.showUserData();"
+            label="Show User Data" />
+            -->
+          <menuitem id="instances.context.changeUserData"
+            oncommand="ec2ui_InstancesTreeView.changeUserData();"
+            label="Show/Edit User Data" />
+          <menuseparator />
           <menuitem id="instances.context.showTerminationProtection"
             oncommand="ec2ui_InstancesTreeView.showTerminationProtection();"
             label="Show Termination Protection" />
@@ -54,8 +63,6 @@
           <menuitem id="instances.context.getPassword"
             oncommand="ec2ui_InstancesTreeView.getAdminPassword(false);"
             label="Get Administrator Password" />
-          <menuitem oncommand="ec2ui_InstancesTreeView.showUserData();"
-            label="Show User Data" />
           <menuseparator />
           <menuitem oncommand="ec2ui_InstancesTreeView.copyToClipBoard('id');"
             label="&ec2ui.instances.contextmenu.copyid.label;" />
