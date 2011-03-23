@@ -22,8 +22,11 @@ var ec2ui_SnapshotTreeView = {
         var type = document.getElementById("ec2ui_SnapshotTreeView.snapshot.type").value;
         if (type == "my_snapshots") {
             var groups = ec2ui_model.getSecurityGroups();
-            var group = groups[0];
-            var currentUser = ec2ui_session.lookupAccountId(group.ownerId);
+
+            if (groups) {
+                var group = groups[0];
+                var currentUser = ec2ui_session.lookupAccountId(group.ownerId);
+            }
         }
 
         var snapshots = ec2ui_model.snapshots;
