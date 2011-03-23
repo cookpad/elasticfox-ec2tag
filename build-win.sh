@@ -9,7 +9,8 @@ mv ec2ui.jar ..
 cd ..
 rm -rf ec2ui/
 cd ..
-rsync -rl "/cygdrive/c/Program Files/xulrunner" ./
+rsync -rl /usr/local/xulrunner ./
+cp /usr/local/xulrunner/xulrunner-stub.exe ./elasticfox.exe
 cd ../
 cygstart -w elasticfox.ci
-mv setup.exe Elasticfox-ec2tag-0.2.4-setup.exe
+mv setup.exe Elasticfox-ec2tag-0.2.5-setup.exe

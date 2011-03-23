@@ -8,3 +8,4 @@ Elasticfox_app/Contents/Resources/chrome/*.jar
 Frameworks
 elasticfox-win
 *setup.exe
+*.log
