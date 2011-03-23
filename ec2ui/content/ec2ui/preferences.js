@@ -438,6 +438,8 @@ var ec2ui_prefs = {
             endpointmap['us-east-1'] = new Endpoint('us-east-1', 'https://ec2.us-east-1.amazonaws.com');
             endpointmap['eu-west-1'] = new Endpoint('eu-west-1', 'https://ec2.eu-west-1.amazonaws.com');
             endpointmap['us-west-1'] = new Endpoint('us-west-1', 'https://ec2.us-west-1.amazonaws.com');
+            endpointmap['ap-southeast-1'] = new Endpoint('us-west-1', 'https://ec2.ap-southeast-1.amazonaws.com');
+            endpointmap['ap-northeast-1'] = new Endpoint('us-west-1', 'https://ec2.ap-northeast-1.amazonaws.com');
         }
 
         return new WrappedMapEndpoints(endpointmap, this);
