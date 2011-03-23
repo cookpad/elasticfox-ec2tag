@@ -251,6 +251,7 @@ var ec2ui_session =
             // be invalidated or refreshed
             this.tabSelectionChanged();
         } else {
+            /*
             // There are no credentials in the system.
             // Let's ask the user to enter them
             var promptService =
@@ -276,6 +277,7 @@ var ec2ui_session =
             } else {
                 this.manageCredentials();
             }
+            */
         }
     },
 
