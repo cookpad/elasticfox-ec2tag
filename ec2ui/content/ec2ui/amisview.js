@@ -62,14 +62,17 @@ var ec2ui_AMIsTreeView = {
         this.ownerDisplayFilter = "";
         if (type.value == "my_ami" || type.value == "my_ami_rdt_ebs") {
             var groups = ec2ui_model.getSecurityGroups();
-            var group = groups[0];
-            var currentUser = ec2ui_session.lookupAccountId(group.ownerId);
-            this.imageIdRegex = regExs["ami"];
 
-            if (type.value == "my_ami")
-              this.rootDeviceType = "";
-            else
-              this.rootDeviceType = "ebs";
+            if (groups) {
+                var group = groups[0];
+                var currentUser = ec2ui_session.lookupAccountId(group.ownerId);
+                this.imageIdRegex = regExs["ami"];
+
+                if (type.value == "my_ami")
+                  this.rootDeviceType = "";
+                else
+                  this.rootDeviceType = "ebs";
+            }
         } else if (type.value == "amzn" || type.value == "amzn_rdt_ebs") {
             this.ownerDisplayFilter = "amazon";
 
