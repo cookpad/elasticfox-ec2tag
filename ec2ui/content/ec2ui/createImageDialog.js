@@ -19,7 +19,7 @@ var ec2_CreateImageDialog = {
         this.retVal.amiName = this.getAmiName().value;
         this.retVal.amiDescription = this.getAmiDescription().value;
 
-        var regex = new RegExp("^[0-9a-zA-Z\_\(\)\,\/\-]{3,128}$");
+        var regex = new RegExp("^[.0-9a-zA-Z\_\(\)\,\/\-]{3,128}$");
         if (!this.retVal.amiName.match(regex)) {
             alert ("The AMI Name is not formatted properly; it must be 3-128 characters "+
                    "in length containing alphanumerics, parantheses, commas, slashes, dashes, and underscores.");
