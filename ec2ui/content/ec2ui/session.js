@@ -261,7 +261,7 @@ var ec2ui_session =
             // if the user says no, the return value will not be 0.
             // In this case, just fall out
             if (promptService.confirmEx(
-                    window,
+                    null,
                     "AWS Credentials Needed",
                     text,
                     promptService.STD_YES_NO_BUTTONS |
