@@ -62,7 +62,7 @@
                 oncommand="ec2ui_AMIsTreeView.tag();"
                 tooltiptext="Edit EC2 Tag" />
               <menulist id="ec2ui_AMIsTreeView.image.type" selectedIndex="0"
-               oncommand="ec2ui_AMIsTreeView.imageTypeChanged();" >
+               oncommand="ec2ui_AMIsTreeView.imageTypeChanged();">
                 <menupopup>
                   <menuitem label="My AMIs" value="my_ami"/>
                   <menuitem label="No Filter " value="all"/>
