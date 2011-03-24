@@ -122,6 +122,7 @@ var ec2ui_InstancesTreeView = {
             var instanceId = instanceIdsWithName[i][0];
             var instanceName = instanceIdsWithName[i][1];
             instanceIds.push(instanceId);
+            if (!instanceName) { instanceName = '(no name)'; }
             instances.push(instanceName + '@' + instanceId);
         }
 
