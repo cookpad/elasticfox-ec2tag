@@ -4,6 +4,7 @@ var ec2_InstanceDetails = {
         var instance = window.arguments[1];
         document.getElementById("ec2ui.instance.resid").value = instance.resId;
         document.getElementById("ec2ui.instance.instanceid").value = instance.id;
+        document.getElementById("ec2ui.instance.name").value = instance.name;
 
         var amiLabel = session.getResourceTag(instance.imageId);
         if (amiLabel && amiLabel.length)
