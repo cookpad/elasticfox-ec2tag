@@ -12,6 +12,8 @@
           onpopupshowing="ec2ui_InstancesTreeView.enableOrDisableItems(event);">
           <menuitem oncommand="ec2ui_InstancesTreeView.viewDetails(event);"
             label="&ec2ui.contextmenu.details.label;" />
+          <menuitem oncommand="ec2ui_InstancesTreeView.tag(event);"
+            label="Edit EC2 Tag" />
           <menuseparator />
           <menu label="Instance Lifecycle">
             <menupopup>
@@ -31,8 +33,6 @@
             </menupopup>
           </menu>
           <menuseparator />
-          <menuitem oncommand="ec2ui_InstancesTreeView.tag(event);"
-            label="Edit EC2 Tag" />
           <menuitem oncommand="ec2ui_InstancesTreeView.launchMore();"
             label="Launch More of these" />
           <menuitem oncommand="ec2ui_InstancesTreeView.associateWithEIP();"
