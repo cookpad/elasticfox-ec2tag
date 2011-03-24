@@ -106,7 +106,7 @@ function Instance(resId, ownerId, groupList, instanceId, imageId, kernelId,
     this.launchTime = launchTime;
     this.launchTimeDisp = launchTime.strftime('%Y-%m-%d %H:%M:%S');
 
-    this.groups = this.groupList.join(', ');
+    this.groups = this.groupList.sort.join(', ');
 
     this.placement = placement;
     this.platform = platform;
