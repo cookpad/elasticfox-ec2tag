@@ -151,6 +151,7 @@ var ec2ui_AMIsTreeView = {
                 inst = list[i];
                 inst.tag = tag;
                 ec2ui_session.setResourceTag(inst.id, tag);
+                __tagging2ec2__([inst.id], session, tag);
             }
         }
         if (ec2ui_prefs.isRefreshOnChangeEnabled()) {
