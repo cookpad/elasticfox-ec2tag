@@ -64,14 +64,18 @@
             oncommand="ec2ui_InstancesTreeView.getAdminPassword(false);"
             label="Get Administrator Password" />
           <menuseparator />
-          <menuitem oncommand="ec2ui_InstancesTreeView.copyToClipBoard('id');"
-            label="&ec2ui.instances.contextmenu.copyid.label;" />
-          <menuitem oncommand="ec2ui_InstancesTreeView.copyToClipBoard('publicDnsName');"
-            label="Copy Public DNS Name to clipboard" />
-          <menuitem oncommand="ec2ui_InstancesTreeView.copyToClipBoard('privateDnsName');"
-            label="Copy Private DNS Name to clipboard" />
-          <menuitem oncommand="ec2ui_InstancesTreeView.copyToClipBoard('privateIpAddress');"
-            label="Copy Private IP Address to clipboard" />
+          <menu label="Copy to clipboard">
+            <menupopup>
+              <menuitem oncommand="ec2ui_InstancesTreeView.copyToClipBoard('id');"
+                label="&ec2ui.instances.contextmenu.copyid.label;" />
+              <menuitem oncommand="ec2ui_InstancesTreeView.copyToClipBoard('publicDnsName');"
+                label="Copy Public DNS Name to clipboard" />
+              <menuitem oncommand="ec2ui_InstancesTreeView.copyToClipBoard('privateDnsName');"
+                label="Copy Private DNS Name to clipboard" />
+              <menuitem oncommand="ec2ui_InstancesTreeView.copyToClipBoard('privateIpAddress');"
+                label="Copy Private IP Address to clipboard" />
+            </menupopup>
+          </menu>
           <menuseparator />
           <menuitem id="instances.context.connect"
             oncommand="ec2ui_InstancesTreeView.connectToSelectedInstances();"
