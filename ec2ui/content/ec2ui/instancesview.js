@@ -159,7 +159,7 @@ var ec2ui_InstancesTreeView = {
         window.openDialog(
             "chrome://ec2ui/content/dialog_instance_details.xul",
             null,
-            "chrome,centerscreen,modal",
+            "chrome,centerscreen,modeless",
             ec2ui_session,
             instance
             );
