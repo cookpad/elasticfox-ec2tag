@@ -10,7 +10,6 @@
       <popupset>
         <popup id="ec2ui.instances.contextmenu"
           onpopupshowing="ec2ui_InstancesTreeView.enableOrDisableItems(event);">
-          <menuitem label="-" />
           <menuitem oncommand="ec2ui_InstancesTreeView.viewDetails(event);"
             label="&ec2ui.contextmenu.details.label;" />
           <menuitem oncommand="ec2ui_InstancesTreeView.tag(event);"
