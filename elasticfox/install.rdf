@@ -20,11 +20,10 @@
     </em:targetApplication>
 
     <!-- Front End MetaData -->
-    <em:name>Elasticfox</em:name>
-    <em:description>A graphical interface to Amazon's EC2 web service.</em:description>
-    <em:creator>James Greenfield (icons originally by Ken Saunders http://www.mouserunner.com)</em:creator>
-    <em:homepageURL>http://ec2.amazonaws.com</em:homepageURL>
-    <em:updateURL>https://s3.amazonaws.com/ec2-downloads/ec2ui.rdf</em:updateURL>
+    <em:name>Elasticfox-ec2tag</em:name>
+    <em:description>A improved Elasticfox</em:description>
+    <em:creator>Genki Sugawara (originally James Greenfield / icons originally by Ken Saunders http://www.mouserunner.com)</em:creator>
+    <em:homepageURL>https://bitbucket.org/winebarrel/elasticfox-ec2tag</em:homepageURL>
   </Description>
 
   <Description about="urn:mozilla:extension:file:ec2ui.jar"
