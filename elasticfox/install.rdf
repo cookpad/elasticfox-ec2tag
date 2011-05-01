@@ -4,9 +4,9 @@
      xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 
   <Description about="urn:mozilla:install-manifest">
-    <em:id>{2204c510-88f3-11db-b606-0800200c9a66}</em:id>
+    <em:id>{2564a6b0-73ab-11e0-a1f0-0800200c9a66}</em:id>
     <em:type>2</em:type>
-    <em:version>1.7.000116-ec2tag-0.2.5</em:version>
+    <em:version>1.7.000116-ec2tag-0.2.6</em:version>
     <em:file resource="urn:mozilla:extension:file:ec2ui.jar"/>
 
     <!-- Target Application this extension can install into,
@@ -15,7 +15,7 @@
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
         <em:minVersion>2.0</em:minVersion>
-        <em:maxVersion>4.0</em:maxVersion>
+        <em:maxVersion>4.*</em:maxVersion>
       </Description>
     </em:targetApplication>
 
