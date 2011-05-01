@@ -20,3 +20,7 @@ treechildren::-moz-tree-cell(image_private)          { background-color: transpa
 
 treechildren::-moz-tree-cell(image_amazon)           { background-color: #FFFF99; }
 treechildren::-moz-tree-cell(image_amazon)           { background-color: #FFFF99; }
+
+#ec2ui_menu {
+  list-style-image: url('menuicon.png');
+}

@@ -13,7 +13,7 @@
   <script type="application/x-javascript" src="chrome://ec2ui/content/client.js" />
 
   <menupopup id="menu_ToolsPopup">
-    <menuitem id="ec2ui_menu" oncommand="ec2ui_session.openMainWindow();" insertafter="javascriptConsole,devToolsSeparator" label="Elasticfox-ec2tag"/>
+    <menuitem id="ec2ui_menu" class="menuitem-iconic" oncommand="ec2ui_session.openMainWindow();" insertafter="javascriptConsole,devToolsSeparator" label="Elasticfox-ec2tag"/>
   </menupopup>
   <toolbarpalette id="BrowserToolbarPalette">
     <toolbarbutton
