@@ -66,6 +66,10 @@
     <stringbundle id="ec2ui.properties.bundle" src="chrome://ec2ui/locale/ec2ui.properties" />
   </stringbundleset>
 
+  <box>
+    <html:link rel="icon" href="favicon.ico" />
+  </box>
+
   <vbox flex="1">
     <toolbar style="padding: 0px 1px; -moz-box-align: center">
       <toolbarbutton label="&ec2ui.endpoints.manage.label;"
