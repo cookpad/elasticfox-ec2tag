@@ -325,12 +325,15 @@ function __tagging2ec2__(resIds, session, tagString, disableDeleteTags) {
 
   try {
         var tags = new Array();
-        var keyValues = tagString.split(/\s*,\s*/);
+        tagString += ',';
+        var keyValues = (tagString.match(/\s*[^,":]+\s*:\s*("(?:[^"]|"")*"|[^,]*)\s*,\s*/g) || []);
 
         for (var i = 0; i < keyValues.length; i++) {
             var kv = keyValues[i].split(/\s*:\s*/, 2);
             var key = (kv[0] || "").trim();
             var value = (kv[1] || "").trim();
+            value = value.replace(/,\s*$/, '').trim();
+            value = value.replace(/^"/, '').replace(/"$/, '').replace(/""/, '"');
 
             if (key.length == 0 || value.length == 0) {
                 continue;
@@ -436,14 +439,22 @@ function __concatTags__(a, b) {
     if (!b) { b = ""; }
 
     function putTagsToHash(tagString, hash) {
-        var kvs = tagString.split(/\s*,\s*/);
+        tagString += ',';
+        var kvs = (tagString.match(/\s*[^,":]+\s*:\s*("(?:[^"]|"")*"|[^,]*)\s*,\s*/g) || []);
 
         for (var i = 0; i < kvs.length; i++) {
             var kv = kvs[i].split(/\s*:\s*/, 2);
             var key = kv[0].trim();
             var value = (kv[1] || "").trim();
+            value = value.replace(/,\s*$/, '').trim();
+            value = value.replace(/^"/, '').replace(/"$/, '').replace(/""/, '"');
 
             if (key && value) {
+                if (/[,"]/.test(value)) {
+                    value = value.replace(/"/g, '""');
+                    value = '"' + value + '"';
+                }
+
                 hash[key] = value;
             }
         }

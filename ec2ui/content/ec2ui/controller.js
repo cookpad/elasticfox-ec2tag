@@ -1185,6 +1185,12 @@ var ec2ui_controller = {
                 var tagSetItem = tagSetItems[i];
                 var tagSetItemKey = getNodeValueByName(tagSetItem, "key");
                 var tagSetItemValue = getNodeValueByName(tagSetItem, "value");
+
+                if (/[,"]/.test(tagSetItemValue)) {
+                    tagSetItemValue = tagSetItemValue.replace(/"/g, '""');
+                    tagSetItemValue = '"' + tagSetItemValue + '"';
+                }
+
                 var keyValue = tagSetItemKey + ":" + tagSetItemValue;
 
                 if (tagSetItemKey == "Name") {
