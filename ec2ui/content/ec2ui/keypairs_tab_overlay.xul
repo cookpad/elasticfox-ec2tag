@@ -8,10 +8,10 @@
     <groupbox flex="1" id="keypairs.tree.holder" orient="vertical">
       <caption label="&ec2ui.captions.keypairs.label;" />
       <popupset>
-        <popup id="keypair.tree.contextmenu">
+        <menupopup id="keypair.tree.contextmenu">
           <menuitem oncommand="ec2ui_KeypairTreeView.createKeypair()" label="Create a new keypair" />
           <menuitem oncommand="ec2ui_KeypairTreeView.deleteSelected();" label="Delete this keypair" />
-        </popup>
+        </menupopup>
       </popupset>
       <toolbar style="padding: 0px 3px; -moz-box-align: center">
         <toolbarbutton image="images/refresh.png" oncommand="ec2ui_KeypairTreeView.refresh()"

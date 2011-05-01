@@ -9,7 +9,7 @@
       <groupbox orient="vertical" flex="1">
         <caption label="&ec2ui.captions.vpnconnections.vpnconnections.label;" />
         <popupset>
-          <popup id="ec2ui.vpnconnections.contextmenu">
+          <menupopup id="ec2ui.vpnconnections.contextmenu">
             <menuitem oncommand="ec2ui_VpnConnectionTreeView.tag(event);"
               label="Add Tag" />
             <menuseparator />
@@ -20,7 +20,7 @@
             <menuseparator />
             <menuitem oncommand="ec2ui_VpnConnectionTreeView.copyToClipBoard('id');"
               label="&ec2ui.vpnconnection.contextmenu.copyvpnconnectionsid.label;" />
-          </popup>
+          </menupopup>
         </popupset>
         <toolbar style="padding: 0px 3px; -moz-box-align: center">
           <hbox flex="10">
@@ -81,7 +81,7 @@
       <groupbox orient="vertical" flex="1">
         <caption label="&ec2ui.captions.vpngateways.vpngateways.label;" />
         <popupset>
-          <popup id="ec2ui.vpngateways.contextmenu"
+          <menupopup id="ec2ui.vpngateways.contextmenu"
             onpopupshowing="ec2ui_VpnGatewayTreeView.enableOrDisableItems();">
             <menuitem oncommand="ec2ui_VpnGatewayTreeView.tag(event);"
               label="Add Tag" />
@@ -102,7 +102,7 @@
             <!-- Copy ID -->
             <menuitem oncommand="ec2ui_VpnGatewayTreeView.copyToClipBoard('id');"
               label="&ec2ui.vpngateway.contextmenu.copyvgwid.label;" />
-          </popup>
+          </menupopup>
         </popupset>
         <toolbar style="padding: 0px 3px; -moz-box-align: center">
           <hbox flex="10">
@@ -160,13 +160,13 @@
       <groupbox orient="vertical" flex="1">
         <caption label="&ec2ui.captions.vpngateways.attachments.label;" />
         <popupset>
-          <popup id="ec2ui.vpnattachments.contextmenu"
+          <menupopup id="ec2ui.vpnattachments.contextmenu"
             onpopupshowing="ec2ui_VpnAttachmentTreeView.enableOrDisableItems();">
             <!-- Delete -->
             <menuitem oncommand="ec2ui_VpnAttachmentTreeView.deleteVpnAttachment();"
                       label="&ec2ui.vpnattachment.contextmenu.delete.label;" />
 
-          </popup>
+          </menupopup>
         </popupset>
         <toolbar style="padding: 0px 3px; -moz-box-align: center">
           <hbox flex="10">
@@ -201,7 +201,7 @@
       <groupbox orient="vertical" flex="1">
         <caption label="&ec2ui.captions.customergateways.customergateways.label;" />
         <popupset>
-          <popup id="ec2ui.customergateways.contextmenu">
+          <menupopup id="ec2ui.customergateways.contextmenu">
             <menuitem oncommand="ec2ui_CustomerGatewayTreeView.tag(event);"
               label="Add Tag" />
             <menuseparator />
@@ -216,7 +216,7 @@
             <menuseparator />
             <menuitem oncommand="ec2ui_CustomerGatewayTreeView.copyToClipBoard('id');"
               label="&ec2ui.customergateway.contextmenu.copycgwid.label;" />
-          </popup>
+          </menupopup>
         </popupset>
         <toolbar style="padding: 0px 3px; -moz-box-align: center">
           <hbox flex="10">

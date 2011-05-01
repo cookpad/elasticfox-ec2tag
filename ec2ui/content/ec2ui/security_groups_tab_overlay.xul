@@ -8,7 +8,7 @@
     <groupbox orient="vertical" flex="2">
       <caption label="&ec2ui.captions.secgroups.groups.label;" />
       <popupset>
-        <popup id="ec2ui.secgroups.contextmenu">
+        <menupopup id="ec2ui.secgroups.contextmenu">
           <menuitem
             oncommand="ec2ui_PermissionsTreeView.grantPermission();"
             label="Grant New Permission" />
@@ -19,7 +19,7 @@
           <menuitem
             oncommand="ec2ui_SecurityGroupsTreeView.deleteSelected();"
             label="Delete this security group" />
-        </popup>
+        </menupopup>
       </popupset>
       <toolbar style="padding: 0px 3px; -moz-box-align: center">
         <hbox flex="10">
@@ -71,11 +71,11 @@
     <groupbox orient="vertical" flex="3">
       <caption label="&ec2ui.captions.secgroups.permissions.label;" />
       <popupset>
-        <popup id="ec2ui.permissions.contextmenu">
+        <menupopup id="ec2ui.permissions.contextmenu">
           <menuitem
             oncommand="ec2ui_PermissionsTreeView.revokePermission();"
             label="Revoke this permission" />
-        </popup>
+        </menupopup>
       </popupset>
       <toolbar style="padding: 0px 3px; -moz-box-align: center">
         <hbox>

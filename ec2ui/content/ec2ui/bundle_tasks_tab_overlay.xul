@@ -8,7 +8,7 @@
     <groupbox flex="1" orient="vertical">
       <caption label="&ec2ui.captions.bundleTasks.label;" />
       <popupset>
-        <popup id="ec2ui.bundleTasks.contextmenu"
+        <menupopup id="ec2ui.bundleTasks.contextmenu"
           onpopupshown="ec2ui_BundleTasksTreeView.enableOrDisableItems();">
           <menuitem oncommand="ec2ui_BundleTasksTreeView.viewDetails();"
             label="&ec2ui.contextmenu.details.label;" />
@@ -24,7 +24,7 @@
             label="&ec2ui.bundleTasks.contextmenu.copybunid.label;" />
           <menuitem oncommand="ec2ui_BundleTasksTreeView.copyToClipBoard('instanceId');"
             label="&ec2ui.instances.contextmenu.copyid.label;" />
-        </popup>
+        </menupopup>
       </popupset>
       <toolbar style="padding: 0px 3px; -moz-box-align: center">
         <hbox flex="10">

@@ -8,7 +8,7 @@
     <groupbox flex="1" orient="vertical">
       <caption label="&ec2ui.captions.images.instances.label;" />
       <popupset>
-        <popup id="ec2ui.instances.contextmenu"
+        <menupopup id="ec2ui.instances.contextmenu"
           onpopupshowing="ec2ui_InstancesTreeView.enableOrDisableItems(event);">
           <menuitem oncommand="ec2ui_InstancesTreeView.viewDetails(event);"
             label="&ec2ui.contextmenu.details.label;" />
@@ -81,7 +81,7 @@
           <menuitem id="instances.context.connect"
             oncommand="ec2ui_InstancesTreeView.connectToSelectedInstances();"
             label="Connect to Instance" />
-        </popup>
+        </menupopup>
       </popupset>
       <toolbar style="padding: 0px 3px; -moz-box-align: center">
         <hbox flex="10">

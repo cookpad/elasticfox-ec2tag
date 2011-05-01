@@ -8,7 +8,7 @@
     <groupbox orient="vertical" flex="1" id="eip.tree.holder">
       <caption label="&ec2ui.captions.eip.label;" />
       <popupset>
-        <popup id="ec2ui.addresses.contextmenu"
+        <menupopup id="ec2ui.addresses.contextmenu"
           onpopupshowing="ec2ui_ElasticIPTreeView.enableOrDisableItems();">
           <menuitem id="addresses.context.associate"
             oncommand="ec2ui_ElasticIPTreeView.associateAddress();"
@@ -23,7 +23,7 @@
             label="Add Tag" />
           <menuitem oncommand="ec2ui_ElasticIPTreeView.copyToClipBoard('address');"
             label="Copy Elastic IP to Clipboard" />
-        </popup>
+        </menupopup>
       </popupset>
       <toolbar style="padding: 0px 3px; -moz-box-align: center">
         <toolbarbutton image="images/refresh.png" oncommand="ec2ui_ElasticIPTreeView.refresh();"

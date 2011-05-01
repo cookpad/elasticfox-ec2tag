@@ -9,7 +9,7 @@
       <groupbox orient="vertical" flex="1">
         <caption label="&ec2ui.captions.volumes.volumes.label;" />
         <popupset>
-          <popup id="ec2ui.volumes.contextmenu"
+          <menupopup id="ec2ui.volumes.contextmenu"
             onpopupshowing="ec2ui_VolumeTreeView.enableOrDisableItems();">
             <menuitem oncommand="ec2ui_VolumeTreeView.viewDetails(event);"
               label="&ec2ui.contextmenu.details.label;" />
@@ -36,7 +36,7 @@
             <menuseparator />
             <menuitem oncommand="ec2ui_VolumeTreeView.copyToClipBoard('id');"
               label="&ec2ui.volume.contextmenu.copyvolid.label;" />
-          </popup>
+          </menupopup>
         </popupset>
         <toolbar style="padding: 0px 3px; -moz-box-align: center">
           <hbox flex="10">
@@ -131,7 +131,7 @@
       <groupbox orient="vertical" flex="1">
         <caption label="&ec2ui.captions.volumes.snapshots.label;" />
         <popupset>
-          <popup id="ec2ui.snapshots.contextmenu">
+          <menupopup id="ec2ui.snapshots.contextmenu">
             <menuitem oncommand="ec2ui_SnapshotTreeView.viewDetails(event);"
               label="&ec2ui.contextmenu.details.label;" />
             <menuitem oncommand="ec2ui_SnapshotTreeView.tag(event);"
@@ -144,7 +144,7 @@
             <menuseparator />
             <menuitem oncommand="ec2ui_SnapshotTreeView.copyToClipBoard('id');"
               label="&ec2ui.snapshot.contextmenu.copysnapid.label;" />
-          </popup>
+          </menupopup>
         </popupset>
         <toolbar style="padding: 0px 3px; -moz-box-align: center">
           <hbox flex="10">

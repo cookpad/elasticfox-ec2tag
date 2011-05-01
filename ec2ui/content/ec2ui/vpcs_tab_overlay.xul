@@ -9,7 +9,7 @@
       <groupbox orient="vertical" flex="1">
         <caption label="&ec2ui.captions.vpcs.vpcs.label;" />
         <popupset>
-          <popup id="ec2ui.vpcs.contextmenu"
+          <menupopup id="ec2ui.vpcs.contextmenu"
             onpopupshowing="ec2ui_VpcTreeView.enableOrDisableItems();">
             <menuitem oncommand="ec2ui_VpcTreeView.tag(event);"
               label="Add Tag" />
@@ -34,7 +34,7 @@
             <!-- Copy ID -->
             <menuitem oncommand="ec2ui_VpcTreeView.copyToClipBoard('id');"
               label="&ec2ui.vpc.contextmenu.copyvpcid.label;" />
-          </popup>
+          </menupopup>
         </popupset>
         <toolbar style="padding: 0px 3px; -moz-box-align: center">
           <hbox flex="10">
@@ -88,7 +88,7 @@
       <groupbox orient="vertical" flex="1">
         <caption label="&ec2ui.captions.subnets.subnets.label;" />
         <popupset>
-          <popup id="ec2ui.subnets.contextmenu">
+          <menupopup id="ec2ui.subnets.contextmenu">
             <menuitem oncommand="ec2ui_SubnetTreeView.tag(event);"
               label="Add Tag" />
             <menuseparator />
@@ -97,7 +97,7 @@
             <menuseparator />
             <menuitem oncommand="ec2ui_SubnetTreeView.copyToClipBoard('id');"
               label="&ec2ui.subnet.contextmenu.copysubnetid.label;" />
-          </popup>
+          </menupopup>
         </popupset>
         <toolbar style="padding: 0px 3px; -moz-box-align: center">
           <hbox flex="10">
@@ -156,7 +156,7 @@
       <groupbox orient="vertical" flex="1">
         <caption label="&ec2ui.captions.dhcpopts.dhcpopts.label;" />
         <popupset>
-          <popup id="ec2ui.dhcpopts.contextmenu">
+          <menupopup id="ec2ui.dhcpopts.contextmenu">
             <menuitem oncommand="ec2ui_DhcpoptsTreeView.tag(event);"
               label="Add Tag" />
             <menuseparator />
@@ -165,7 +165,7 @@
             <menuseparator />
             <menuitem oncommand="ec2ui_DhcpoptsTreeView.copyToClipBoard('id');"
               label="&ec2ui.dhcpopts.contextmenu.copydhcpoptsid.label;" />
-          </popup>
+          </menupopup>
         </popupset>
         <toolbar style="padding: 0px 3px; -moz-box-align: center">
           <hbox flex="10">

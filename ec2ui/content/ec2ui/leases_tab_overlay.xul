@@ -9,7 +9,7 @@
       <groupbox orient="vertical" flex="1">
         <caption label="&ec2ui.captions.leases.offerings.label;" />
         <popupset>
-          <popup id="ec2ui.offerings.contextmenu" >
+          <menupopup id="ec2ui.offerings.contextmenu" >
             <menuitem oncommand="ec2ui_LeaseOfferingsTreeView.viewDetails(event);"
               label="&ec2ui.contextmenu.details.label;" />
             <menuseparator />
@@ -18,7 +18,7 @@
             <menuseparator />
             <menuitem oncommand="ec2ui_LeaseOfferingsTreeView.copyToClipBoard('id');"
               label="&ec2ui.contextmenu.copyid.label;" />
-          </popup>
+          </menupopup>
         </popupset>
         <toolbar style="padding: 0px 3px; -moz-box-align: center">
           <hbox flex="10">
@@ -71,13 +71,13 @@
       <groupbox orient="vertical" flex="1">
         <caption label="&ec2ui.captions.leases.rsvdInst.label;" />
         <popupset>
-          <popup id="ec2ui.rsvdInst.contextmenu">
+          <menupopup id="ec2ui.rsvdInst.contextmenu">
             <menuitem oncommand="ec2ui_ReservedInstancesTreeView.viewDetails();"
               label="&ec2ui.contextmenu.details.label;" />
             <menuseparator />
             <menuitem oncommand="ec2ui_ReservedInstancesTreeView.copyToClipboard('id');"
               label="&ec2ui.contextmenu.copyid.label;" />
-          </popup>
+          </menupopup>
         </popupset>
         <toolbar style="padding: 0px 3px; -moz-box-align: center">
           <hbox flex="10">
