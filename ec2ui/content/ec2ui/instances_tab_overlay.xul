@@ -48,6 +48,9 @@
           <menuitem id="instances.context.changeUserData"
             oncommand="ec2ui_InstancesTreeView.changeUserData();"
             label="View/Change User Data" />
+          <menuitem id="instances.context.changeInstanceType"
+            oncommand="ec2ui_InstancesTreeView.changeInstanceType();"
+            label="Change Instance Type" />
           <menu label="Termination Protection">
             <menupopup>
               <menuitem id="instances.context.showTerminationProtection"

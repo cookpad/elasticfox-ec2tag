@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://iamfox/locale/main.dtd">
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  title="User Data"
+  buttons="accept,cancel"
+  ondialogaccept="return instanceTypeDialogDoOK();"
+  ondialogcancel="return true;"
+  onload="instanceTypeDialogOnLoad();">
+
+  <label id="instance-type-dialog-instance-type-label" control="instance-type-dialog-instance-type" />
+  <menulist id="instance-type-dialog-instance-type">
+    <menupopup>
+      <menuitem label="t1.micro" value="t1.micro" />
+      <menuseparator />
+      <menuitem label="m1.small (32-bit only)" value="m1.small" />
+      <menuitem label="c1.medium (32-bit only)" value="c1.medium" />
+      <menuseparator />
+      <menuitem label="m1.large (64-but only)" value="m1.large" />
+      <menuitem label="m1.xlarge (64-but only)" value="m1.xlarge" />
+      <menuitem label="m2.xlarge (64-but only)" value="m2.xlarge" />
+      <menuitem label="m2.2xlarge (64-but only)" value="m2.2xlarge" />
+      <menuitem label="m2.4xlarge (64-but only)" value="m2.4xlarge" />
+      <menuitem label="c1.xlarge (64-but only)" value="c1.xlarge" />
+    </menupopup>
+  </menulist>
+
+  <script><![CDATA[
+    function instanceTypeDialogOnLoad() {
+      var instanceLabel = window.arguments[0];
+      var currentData = window.arguments[1];
+
+      var label = document.getElementById('instance-type-dialog-instance-type-label');
+      label.value = instanceLabel + ' Instance Type';
+
+      var instanceType = document.getElementById('instance-type-dialog-instance-type');
+      instanceType.value = currentData;
+    }
+
+    function instanceTypeDialogDoOK() {
+      var returnValue = window.arguments[2];
+      var instanceType = document.getElementById('instance-type-dialog-instance-type');
+      returnValue.result = instanceType.selectedItem.value;
+      return true;
+    }
+  ]]></script>
+</dialog>
