@@ -3,7 +3,7 @@
 <!DOCTYPE window SYSTEM "chrome://iamfox/locale/main.dtd">
 
 <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  title="User Data"
+  title="Instance Type"
   buttons="accept,cancel"
   ondialogaccept="return instanceTypeDialogDoOK();"
   ondialogcancel="return true;"
