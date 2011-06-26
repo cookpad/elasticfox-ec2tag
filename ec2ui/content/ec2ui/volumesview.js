@@ -139,6 +139,7 @@ var ec2ui_VolumeTreeView = {
                     vol.tag = retVal.tag;
                     ec2ui_session.setResourceTag(vol.id, vol.tag);
                     __tagging2ec2__([vol.id], ec2ui_session, vol.tag);
+                    me.refresh();
                 }
             }
         }
