@@ -27,6 +27,22 @@ var ec2ui_controller = {
         ec2_httpclient.queryEC2("RegisterImage", [["ImageLocation", manifestPath]], this, true, "onCompleteRegisterImage", callback);
     },
 
+    registerImageFromSnapshot : function (snapshotId, amiName, amiDescription, architecture, kernelId, ramdiskId, deviceName, deleteOnTermination, callback) {
+        var params = [];
+
+        params.push(['Name', amiName]);
+        amiDescription && params.push(['Description', amiDescription]);
+        params.push(['Architecture', architecture]);
+        kernelId && params.push(['KernelId', kernelId]);
+        ramdiskId && params.push(['RamdiskId', ramdiskId]);
+        params.push(['RootDeviceName', deviceName]);
+        params.push(['BlockDeviceMapping.1.DeviceName', deviceName]);
+        params.push(['BlockDeviceMapping.1.Ebs.SnapshotId', snapshotId]);
+        params.push(['BlockDeviceMapping.1.Ebs.DeleteOnTermination', deleteOnTermination]);
+
+        ec2_httpclient.queryEC2("RegisterImage", params, this, true, "onCompleteRegisterImage", callback);
+    },
+
     onCompleteRegisterImage : function (objResponse) {
         var xmlDoc = objResponse.xmlDoc;
         var imageId = getNodeValueByName(xmlDoc, "imageId");

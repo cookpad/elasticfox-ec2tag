@@ -137,6 +137,10 @@
             <menuitem oncommand="ec2ui_SnapshotTreeView.tag(event);"
               label="Edit EC2 Tag" />
             <menuseparator />
+            <menuitem
+              oncommand="ec2ui_SnapshotTreeView.showRegisterImageFromSnapshotDialog();"
+              label="Register AMI from Snapshot" />
+            <menuseparator />
             <menuitem oncommand="ec2ui_SnapshotTreeView.createVolume();"
               label="&ec2ui.snapshot.contextmenu.createvol.label;" />
             <menuitem oncommand="ec2ui_SnapshotTreeView.deleteSnapshot();"

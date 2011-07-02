@@ -120,6 +120,36 @@ var ec2ui_SnapshotTreeView = {
 
         return fPending;
     },
+
+    showRegisterImageFromSnapshotDialog : function() {
+        var retVal = {ok:null,amiName:null,amiDescription:null};
+        var image = this.getSelectedImage();
+        if (image == null) return;
+
+        window.openDialog("chrome://ec2ui/content/dialog_register_image_from_snapshot.xul",
+                          null,
+                          "chrome,centerscreen,modal",
+                          image.id,
+                          ec2ui_session,
+                          retVal);
+
+        if (retVal.ok) {
+            var wrap = function(id) {
+                alert("A new AMI is registered.\n\n"+
+                      "The AMI ID is: "+id);
+            }
+
+            ec2ui_session.controller.registerImageFromSnapshot(image.id,
+                                                 retVal.amiName,
+                                                 retVal.amiDescription,
+                                                 retVal.architecture,
+                                                 retVal.kernelId,
+                                                 retVal.ramdiskId,
+                                                 retVal.deviceName,
+                                                 retVal.deleteOnTermination,
+                                                 wrap);
+        }
+    },
 };
 
 // poor-man's inheritance
