@@ -139,7 +139,7 @@
             <menuseparator />
             <menuitem
               oncommand="ec2ui_SnapshotTreeView.showRegisterImageFromSnapshotDialog();"
-              label="Register AMI from Snapshot" />
+              label="Register AMI from snapshot" />
             <menuseparator />
             <menuitem oncommand="ec2ui_SnapshotTreeView.createVolume();"
               label="&ec2ui.snapshot.contextmenu.createvol.label;" />
