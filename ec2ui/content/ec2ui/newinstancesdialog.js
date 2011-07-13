@@ -90,28 +90,48 @@ var ec2_InstanceLauncher = {
     },
 
     addSecurityGroup : function() {
-        this.unused = [];
+        var selected_list = [];
+
         for(var i = 0; i < this.unusedSecGroupsList.getRowCount(); i++) {
             var item = this.unusedSecGroupsList.getItemAtIndex(i);
-            if (item.selected) {
+            if (item.selected && item.label) {
                 this.used.push(item.label);
-            } else {
-                this.unused.push(item.label);
+                selected_list.push(item.label);
             }
         }
+
+        for (var i = this.unused.length - 1; i >= 0; i--) {
+            for (var j = 0; j < selected_list.length; j++) {
+                if (this.unused[i] == selected_list[j]) {
+                    this.unused.splice(i, 1);
+                    break;
+                }
+            }
+        }
+
         this.refreshDisplay();
     },
 
     removeSecurityGroup : function() {
-        this.used = [];
+        var selected_list = [];
+
         for(var i = 0; i < this.usedSecGroupsList.getRowCount(); i++) {
             var item = this.usedSecGroupsList.getItemAtIndex(i);
-            if (item.selected) {
+            if (item.selected && item.label) {
                 this.unused.push(item.label);
-            } else {
-                this.used.push(item.label);
+                selected_list.push(item.label);
             }
         }
+
+        for (var i = this.used.length - 1; i >= 0; i--) {
+            for (var j = 0; j < selected_list.length; j++) {
+                if (this.used[i] == selected_list[j]) {
+                    this.used.splice(i, 1);
+                    break;
+                }
+            }
+        }
+
         this.refreshDisplay();
     },
 
