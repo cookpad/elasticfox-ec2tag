@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>EFOX</string>
 	<key>CFBundleVersion</key>
-	<string>0.0.1.20070616-0.2.8-1</string>
+	<string>0.0.1.20070616-0.2.9</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 </dict>
