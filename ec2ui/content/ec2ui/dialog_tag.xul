@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://iamfox/locale/main.dtd">
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  title="User Data"
+  buttons="accept,cancel"
+  ondialogaccept="return tagDialogDoOK();"
+  ondialogcancel="return true;"
+  onload="tagDialogOnLoad();">
+
+  <label id="tag-dialog-tag-label" control="tag-dialog-tag" value="Tag (ex: Key:Values, Key:Values...) " />
+  <textbox id="tag-dialog-tag" multiline="true" flex="1" wrap="false" />
+
+  <script><![CDATA[
+    function tagDialogOnLoad() {
+      var currentTag = window.arguments[0];
+
+      var tag = document.getElementById('tag-dialog-tag');
+      tag.value = currentTag;
+    }
+
+    function tagDialogDoOK() {
+      var returnValue = window.arguments[1];
+      var tag = document.getElementById('tag-dialog-tag');
+      returnValue.result = (tag.value || '').replace(/(\n|\r)+/g, '').trim();
+      return true;
+    }
+  ]]></script>
+</dialog>

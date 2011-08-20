@@ -305,9 +305,16 @@ function tagResource(res, session, attr) {
 
 function tagEC2Resource(res, session, attr) {
     if (!attr) attr = "id";
-    var tag = prompt("Tag " + res[attr] + " with? (To untag, just clear the string)",
-                     res.tag || "");
 
+    var returnValue = {};
+
+    openDialog('chrome://ec2ui/content/dialog_tag.xul',
+        null,
+        'chrome,centerscreen,modal,width=400,height=250',
+        res.tag,
+        returnValue);
+
+    var tag = returnValue.result;
     if (tag == null)
         return;
 
