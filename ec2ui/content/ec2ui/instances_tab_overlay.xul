@@ -126,9 +126,9 @@
             oncommand="ec2ui_InstancesTreeView.showInstancesSummary();"
             label="Summary" />
           <toolbarseparator />
-          <checkbox id="ec2ui.instances.noterminated" label="Don't show Terminated"
+          <checkbox id="ec2ui.instances.noterminated" label="Hide Terminated"
             checked="false" oncommand="ec2ui_InstancesTreeView.invalidate();"/>
-          <checkbox id="ec2ui.instances.nostopped" label="Don't show Stopped"
+          <checkbox id="ec2ui.instances.nostopped" label="Hide Stopped"
             checked="false" oncommand="ec2ui_InstancesTreeView.invalidate();"/>
         </hbox>
       </toolbar>
