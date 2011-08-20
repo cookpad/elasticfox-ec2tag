@@ -150,7 +150,8 @@ var ec2ui_VolumeTreeView = {
     deleteVolume : function () {
         var image = this.getSelectedImage();
         if (image == null) return;
-        var confirmed = confirm("Delete volume " + image.id + "?");
+        var label = image.name ? (image.name + '@' + image.id) : image.id;
+        var confirmed = confirm("Delete volume " + label + "?");
         if (!confirmed)
             return;
         var wrap = function() {
