@@ -207,6 +207,8 @@
 <!ENTITY ec2ui.images.contextmenu.register.label "Register a new AMI">
 <!ENTITY ec2ui.images.contextmenu.deregister.label "Deregister this AMI">
 
+<!ENTITY ec2ui.instances.contextmenu.copyname.label "Copy Name to clipboard">
+
 <!ENTITY ec2ui.instances.contextmenu.copyid.label "Copy Instance ID to clipboard">
 
 <!ENTITY ec2ui.addresses.contextmenu.associate.label "Associate Elastic IP with Instance">
