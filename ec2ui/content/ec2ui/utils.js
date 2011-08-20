@@ -434,6 +434,22 @@ function __addNameTagToModel__(tag, model) {
     model.name = null;
 }
 
+function __tagToName__(tag) {
+    var kvs = (tag || '').split(/\s*,\s*/);
+
+    for (var i = 0; i < kvs.length; i++) {
+        var kv = kvs[i].split(/\s*:\s*/, 2);
+        var key = kv[0].trim();
+        var value = (kv[1] || "").trim();
+
+        if (key == "Name") {
+            return value;
+        }
+    }
+
+    return null;
+}
+
 function __concatTags__(a, b) {
     if (!a) { a = ""; }
     if (!b) { b = ""; }
