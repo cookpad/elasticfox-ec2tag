@@ -38,7 +38,7 @@
       var returnValue = window.arguments[1];
       var tag = document.getElementById('tag-dialog-tag');
       returnValue.accepted = true;
-      returnValue.result = (tag.value || '').replace(/(\n|\r)+/g, '').trim();
+      returnValue.result = (tag.value || '').replace(/(\n|\r)+/g, ' ').trim();
       return true;
     }
   ]]></script>
