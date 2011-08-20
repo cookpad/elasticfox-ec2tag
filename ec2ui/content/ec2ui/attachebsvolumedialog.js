@@ -61,9 +61,23 @@ var ec2_EBSVolumeAttacher = {
                 vol.instanceId.length == 0) {
                 this.volList.push(vol);
                 label = vol.id;
-                tag = vol.tag;
-                if (tag && tag.length) {
-                    label = label + ":" + tag;
+                name = '';
+
+                var kvs = (vol.tag || '').split(/\s*,\s*/);
+
+                for (var i = 0; i < kvs.length; i++) {
+                    var kv = kvs[i].split(/\s*:\s*/, 2);
+                    var key = kv[0].trim();
+                    var value = (kv[1] || "").trim();
+
+                    if (key == "Name") {
+                        name = value;
+                        break;
+                    }
+                }
+
+                if (name && name.length) {
+                    label = label + ":" + name;
                 }
                 volMenu.appendItem(label);
             }
