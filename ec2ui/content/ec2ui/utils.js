@@ -304,7 +304,7 @@ function tagResource(res, session, attr) {
 }
 
 function __tagPrompt__(tag) {
-    var returnValue = {};
+    var returnValue = {accepted:false , result:null};
 
     openDialog('chrome://ec2ui/content/dialog_tag.xul',
         null,
@@ -312,7 +312,7 @@ function __tagPrompt__(tag) {
         tag,
         returnValue);
 
-    return (returnValue.result || '').trim();
+    return returnValue.accepted ? (returnValue.result || '').trim() : null;
 }
 
 function tagEC2Resource(res, session, attr) {

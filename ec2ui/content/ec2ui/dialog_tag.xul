@@ -14,7 +14,21 @@
 
   <script><![CDATA[
     function tagDialogOnLoad() {
-      var currentTag = window.arguments[0];
+      var currentTag = (window.arguments[0] || '').trim();
+
+      if (currentTag) {
+        var tags = [];
+        var keyValues = ((currentTag + ',').match(/\s*[^,":]+\s*:\s*("(?:[^"]|"")*"|[^,]*)\s*,\s*/g) || []);
+
+        for (var i = 0; i < keyValues.length; i++) {
+          var kv = (keyValues[i] || '').replace(/,\s*$/, '').trim();
+          if (kv) { tags.push(kv); }
+        }
+
+        if (tags.length > 0) {
+          currentTag = tags.join(",\n");
+        }
+      }
 
       var tag = document.getElementById('tag-dialog-tag');
       tag.value = currentTag;
@@ -23,6 +37,7 @@
     function tagDialogDoOK() {
       var returnValue = window.arguments[1];
       var tag = document.getElementById('tag-dialog-tag');
+      returnValue.accepted = true;
       returnValue.result = (tag.value || '').replace(/(\n|\r)+/g, '').trim();
       return true;
     }
