@@ -3,7 +3,7 @@
 <!DOCTYPE window SYSTEM "chrome://iamfox/locale/main.dtd">
 
 <dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  title="User Data"
+  title="Tag"
   buttons="accept,cancel"
   ondialogaccept="return tagDialogDoOK();"
   ondialogcancel="return true;"
