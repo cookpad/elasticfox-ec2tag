@@ -179,6 +179,9 @@
                 <menuitem label="No Filter" value="all"/>
               </menupopup>
             </menulist>
+            <toolbarseparator />
+            <checkbox id="ec2ui.snapshots.noami" label="Hide AMI Snapshot"
+              checked="false" oncommand="ec2ui_SnapshotTreeView.invalidate();"/>
           </hbox>
         </toolbar>
         <!--

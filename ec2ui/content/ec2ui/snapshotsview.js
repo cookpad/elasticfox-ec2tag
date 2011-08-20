@@ -29,7 +29,23 @@ var ec2ui_SnapshotTreeView = {
             }
         }
 
-        var snapshots = ec2ui_model.snapshots;
+        var snapshots = (ec2ui_model.snapshots || []);
+        var filterAMI = document.getElementById("ec2ui.snapshots.noami").checked;
+
+        if (filterAMI) {
+          var newSnapshots = [];
+
+          for (var i = 0; i < snapshots.length; i++) {
+            var snap = snapshots[i];
+
+            if (!(snap.amiId || '').trim()) {
+              newSnapshots.push(snap);
+            }
+          }
+
+          snapshots = newSnapshots;
+        }
+
         snapshots = this.filterImages(snapshots, currentUser);
 
         this.displayImages(snapshots);
