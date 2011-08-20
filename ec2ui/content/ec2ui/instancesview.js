@@ -187,8 +187,9 @@ var ec2ui_InstancesTreeView = {
         // No longer need to lowercase this because the patt is created with "i"
         var searchText = this.getSearchText();
         var filterTerm = document.getElementById("ec2ui.instances.noterminated").checked;
+        var filterStop = document.getElementById("ec2ui.instances.nostopped").checked;
         if (searchText.length == 0 &&
-            !filterTerm) {
+            !(filterTerm || filterStop)) {
             return instances;
         }
 
@@ -199,6 +200,10 @@ var ec2ui_InstancesTreeView = {
             inst = instances[i];
             if (filterTerm &&
                 inst.state == "terminated") {
+                continue;
+            }
+            if (filterStop &&
+                inst.state == "stopped") {
                 continue;
             }
             if (inst.id.match(this.instanceIdRegex) &&
