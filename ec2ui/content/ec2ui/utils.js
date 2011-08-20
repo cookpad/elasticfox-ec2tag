@@ -303,18 +303,23 @@ function tagResource(res, session, attr) {
     session.setResourceTag(res[attr], res.tag);
 }
 
-function tagEC2Resource(res, session, attr) {
-    if (!attr) attr = "id";
-
+function __tagPrompt__(tag) {
     var returnValue = {};
 
     openDialog('chrome://ec2ui/content/dialog_tag.xul',
         null,
         'chrome,centerscreen,modal,width=400,height=250',
-        res.tag,
+        tag,
         returnValue);
 
-    var tag = returnValue.result;
+    return (returnValue.result || '').trim();
+}
+
+function tagEC2Resource(res, session, attr) {
+    if (!attr) attr = "id";
+
+    var tag = __tagPrompt__(res.tag);
+
     if (tag == null)
         return;
 
@@ -536,8 +541,7 @@ var ec2ui_utils = {
             attr = "id";
         }
 
-        var tag = prompt("Tag " + list[0][attr] + ", etc with? (To untag, just clear the string)",
-                         list[0].tag || "");
+        var tag = __tagPrompt__(list[0].tag);
 
         if (tag == null) return;
 
@@ -557,8 +561,7 @@ var ec2ui_utils = {
             attr = "id";
         }
 
-        var tag = prompt("Tag " + list[0][attr] + ", etc with? (To untag, just clear the string)",
-                         list[0].tag || "");
+        var tag = __tagPrompt__(list[0].tag);
 
         if (!tag) return;
 
