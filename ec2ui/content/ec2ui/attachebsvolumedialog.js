@@ -51,7 +51,7 @@ var ec2_EBSVolumeAttacher = {
         var volumes = this.ec2ui_session.model.getVolumes();
         var vol = null;
         var label = null;
-        var tag = null;
+        var name = null;
         for(var i in volumes) {
             vol = volumes[i];
             // A volume can be attached to this instance only if:

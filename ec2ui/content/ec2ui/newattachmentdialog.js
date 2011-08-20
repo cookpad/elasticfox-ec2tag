@@ -66,9 +66,9 @@ var ec2_VolumeAttacher = {
         if (this.zone == instances[i].placement.availabilityZone &&
             instances[i].state == "running") {
             var label = instances[i].id;
-            var tag = instances[i].tag;
-            if (tag && tag.length) {
-                label = label + ":" +  tag;
+            var name = __tagToName__(instances[i].tag);
+            if (name && name.length) {
+                label = label + ":" +  name;
             }
             instanceIdMenu.appendItem(label);
         }
