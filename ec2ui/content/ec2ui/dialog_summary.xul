@@ -34,12 +34,12 @@
         </row>
         <row>
           <label control="ec2ui.summary.group" value="Group:" />
-          <textbox id="ec2ui.summary.group" multiline="true" cols="70" rows="10"
+          <textbox id="ec2ui.summary.group" multiline="true" cols="70" rows="5"
             wrap="false" style="font-family: monospace;" readonly="true"/>
         </row>
         <row>
           <label control="ec2ui.summary.availabilityZone" value="AvailabilityZone:" />
-          <textbox id="ec2ui.summary.availabilityZone" multiline="true" cols="70" rows="20"
+          <textbox id="ec2ui.summary.availabilityZone" multiline="true" cols="70" rows="10"
             wrap="false" style="font-family: monospace;" readonly="true"/>
         </row>
       </rows>
