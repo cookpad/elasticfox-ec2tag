@@ -23,6 +23,11 @@
       <description><html:p>Elasticfox is a Firefox extension for interacting with Amazon's EC2 web service.</html:p></description>
       <description><html:p><html:a target="_blank" href="" onclick="openURL('http://sourceforge.net/projects/elasticfox/'); return false" style="color: blue; text-decoration: underline">sourceforge.net/projects/elasticfox</html:a></html:p></description>
     </groupbox>
+    <groupbox>
+      <description class="header">elasticfox-ec2tag version 0.2.9</description>
+      <description><html:p>elasticfox-ec2tag is an improved version of Elasticfox.</html:p></description>
+      <description><html:p><html:a target="_blank" href="" onclick="openURL('https://bitbucket.org/winebarrel/elasticfox-ec2tag/'); return false" style="color: blue; text-decoration: underline">bitbucket.org/winebarrel/elasticfox-ec2tag</html:a></html:p></description>
+    </groupbox>
     <vbox>
       <description>Icons were provided by <html:a target="_blank" href="" onclick="openURL('http://www.mouserunner.com/'); return false" style="color: blue; text-decoration: underline">Ken Saunders</html:a>. </description>
       <description>Elasticfox is licensed under the <html:a target="_blank" href="" onclick="openURL('http://www.apache.org/licenses/'); return false" style="color: blue; text-decoration: underline">Apache 2.0</html:a> license.</description>
