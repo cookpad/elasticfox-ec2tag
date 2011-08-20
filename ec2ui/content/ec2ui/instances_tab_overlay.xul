@@ -122,6 +122,9 @@
           <toolbarbutton image="images/info.png" style="-moz-box-pack:center;"
             oncommand="ec2ui_InstancesTreeView.tag();"
             tooltiptext="Edit EC2 Tag" />
+          <button 
+            oncommand="ec2ui_InstancesTreeView.showInstancesSummary();"
+            label="Summary" />
           <toolbarseparator />
           <checkbox id="ec2ui.instances.noterminated" label="Don't show Terminated"
             checked="false" oncommand="ec2ui_InstancesTreeView.invalidate();"/>

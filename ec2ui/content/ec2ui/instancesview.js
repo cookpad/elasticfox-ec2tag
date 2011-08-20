@@ -1147,6 +1147,15 @@ var ec2ui_InstancesTreeView = {
             );
     },
 
+    showInstancesSummary : function() {
+        window.openDialog(
+            "chrome://ec2ui/content/dialog_summary.xul",
+            null,
+            "chrome,centerscreen,modal",
+            this.instanceList
+            );
+    },
+
     copyToClipBoard : function(fieldName) {
         var instance = this.getSelectedInstance();
         if (instance == null) {
