@@ -36,7 +36,24 @@ var ec2ui_VolumeTreeView = {
 
     invalidate : function() {
         var target = ec2ui_VolumeTreeView;
-        target.displayImages(target.filterImages(ec2ui_model.volumes));
+        var list = (ec2ui_model.volumes || []);
+        var filterRootDev = document.getElementById("ec2ui.volumes.norootdev").checked;
+
+        if (filterRootDev) {
+          var newList = [];
+
+          for (var i = 0; i < list.length; i++) {
+            var volume = list[i];
+
+            if (volume.device != '/dev/sda1') {
+              newList.push(volume);
+            }
+          }
+
+          list = newList;
+        }
+
+        target.displayImages(target.filterImages(list));
     },
 
     searchChanged : function(event) {
