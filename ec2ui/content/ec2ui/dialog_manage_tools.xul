@@ -69,7 +69,19 @@
             <description>${keyname} - The EC2 keypair name the instance was launched with.</description>
         </hbox>
         <hbox>
-            <description>${host} - The public DNS name of the EC2 instance.</description>
+            <description>${host} - The public DNS name / IP address of the EC2 instance.</description>
+        </hbox>
+        <hbox>
+            <description>${publicDnsName} - The public DNS name of the EC2 instance.</description>
+        </hbox>
+        <hbox>
+            <description>${privateDnsName} - The private DNS name of the EC2 instance.</description>
+        </hbox>
+        <hbox>
+            <description>${privateIpAddress} - The private IP address name of the EC2 instance.</description>
+        </hbox>
+        <hbox>
+            <description>${name} - The "Name" tag of the EC2 instance.</description>
         </hbox>
         <hbox>
             <description>${key} - The (interpolated) key template.</description>

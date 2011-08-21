@@ -1410,6 +1410,10 @@ outer:
 
         // ${host}
         argStr = argStr.replace(/\${host}/g, hostname);
+        argStr = argStr.replace(/\${publicDnsName}/g, instance.publicDnsName);
+        argStr = argStr.replace(/\${privateDnsName}/g, instance.privateDnsName);
+        argStr = argStr.replace(/\${privateIpAddress}/g, instance.privateIpAddress);
+        argStr = argStr.replace(/\${name}/g, instance.name);
 
         // Finally, split args into an array
         var args = tokenise(argStr);
