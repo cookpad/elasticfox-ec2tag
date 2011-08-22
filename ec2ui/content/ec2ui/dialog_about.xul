@@ -24,7 +24,7 @@
       <description><html:p><html:a target="_blank" href="" onclick="openURL('http://sourceforge.net/projects/elasticfox/'); return false" style="color: blue; text-decoration: underline">sourceforge.net/projects/elasticfox</html:a></html:p></description>
     </groupbox>
     <groupbox>
-      <description class="header">elasticfox-ec2tag version 0.2.9-2</description>
+      <description class="header">elasticfox-ec2tag version 0.2.9-3</description>
       <description><html:p>elasticfox-ec2tag is an improved version of Elasticfox.</html:p></description>
       <description><html:p><html:a target="_blank" href="" onclick="openURL('https://bitbucket.org/winebarrel/elasticfox-ec2tag/'); return false" style="color: blue; text-decoration: underline">bitbucket.org/winebarrel/elasticfox-ec2tag</html:a></html:p></description>
     </groupbox>
