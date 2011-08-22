@@ -142,6 +142,8 @@ var ec2ui_VolumeTreeView = {
             var me = this;
             var wrap = function(id) {
                 me.refresh();
+                document.getElementById('ec2ui.volumes.search').value = '';
+                me.invalidate();
                 me.selectByImageId(id);
             }
             ec2ui_session.controller.createVolume(retVal.size,
