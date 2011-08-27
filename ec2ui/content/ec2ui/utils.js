@@ -418,8 +418,28 @@ function __calcLinuxMonthlyAmount__(types, endpoint) {
        'm2.4xlarge': 1641.6,
         'c1.xlarge': 547.2
     },
-    'eu-west-1' : {},
-    'ap-southeast-1' : {},
+    'eu-west-1' : {
+         't1.micro': 18.0,
+         'm1.small': 68.4,
+        'c1.medium': 136.8,
+         'm1.large': 273.6,
+        'm1.xlarge': 547.2,
+        'm2.xlarge': 410.4,
+       'm2.2xlarge': 820.8,
+       'm2.4xlarge': 1641.6,
+        'c1.xlarge': 547.2
+    },
+    'ap-southeast-1' : {
+         't1.micro': 18.0,
+         'm1.small': 68.4,
+        'c1.medium': 136.8,
+         'm1.large': 273.6,
+        'm1.xlarge': 547.2,
+        'm2.xlarge': 410.4,
+       'm2.2xlarge': 820.8,
+       'm2.4xlarge': 1641.6,
+        'c1.xlarge': 547.2
+    },
     'ap-northeast-1' : {}
   };
 
@@ -461,8 +481,28 @@ function __calcWindowsMonthlyAmount__(types, endpoint) {
        'm2.4xlarge': 1987.2,
         'c1.xlarge': 892.8
     },
-    'eu-west-1' : {},
-    'ap-southeast-1' : {},
+    'eu-west-1' : {
+         't1.micro': 25.2,
+         'm1.small': 86.4,
+        'c1.medium': 208.8,
+         'm1.large': 345.6,
+        'm1.xlarge': 691.2,
+        'm2.xlarge': 446.4,
+       'm2.2xlarge': 892.8,
+       'm2.4xlarge': 1785.6,
+        'c1.xlarge': 835.2
+    },
+    'ap-southeast-1' : {
+         't1.micro': 25.2,
+         'm1.small': 86.4,
+        'c1.medium': 208.8,
+         'm1.large': 345.6,
+        'm1.xlarge': 691.2,
+        'm2.xlarge': 446.4,
+       'm2.2xlarge': 892.8,
+       'm2.4xlarge': 1785.6,
+        'c1.xlarge': 835.2
+    },
     'ap-northeast-1' : {}
   };
 
