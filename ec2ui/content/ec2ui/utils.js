@@ -394,7 +394,19 @@ function __tagging2ec2__(resIds, session, tagString, disableDeleteTags) {
 
 function __calcLinuxMonthlyAmount__(types, endpoint) {
   var rateSheets = {
-    'us-east-1' : {},
+    'us-east-1' : {
+         't1.micro': 14.4,
+         'm1.small': 61.2,
+        'c1.medium': 122.4,
+         'm1.large': 244.8,
+        'm1.xlarge': 489.6,
+        'm2.xlarge': 360.0,
+       'm2.2xlarge': 720,
+       'm2.4xlarge': 1440,
+        'c1.xlarge': 489.6,
+      'cc1.4xlarge': 1152.0,
+      'cg1.4xlarge': 1512.0
+    },
     'us-west-1' : {},
     'eu-west-1' : {},
     'ap-southeast-1' : {},
@@ -417,7 +429,17 @@ function __calcLinuxMonthlyAmount__(types, endpoint) {
 
 function __calcWindowsMonthlyAmount__(types, endpoint) {
   var rateSheets = {
-    'us-east-1' : {},
+    'us-east-1' : {
+         't1.micro': 86.4,
+         'm1.small': 21.6,
+        'c1.medium': 208.8,
+         'm1.large': 345.6,
+        'm1.xlarge': 691.2,
+        'm2.xlarge': 446.4,
+       'm2.2xlarge': 892.8,
+       'm2.4xlarge': 1785.6,
+        'c1.xlarge': 835.2
+    },
     'us-west-1' : {},
     'eu-west-1' : {},
     'ap-southeast-1' : {},
