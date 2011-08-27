@@ -392,8 +392,50 @@ function __tagging2ec2__(resIds, session, tagString, disableDeleteTags) {
     }
 }
 
-function __calcMonthlyAmount__(types, endpoint) {
-  return endpoint;
+function __calcLinuxMonthlyAmount__(types, endpoint) {
+  var rateSheets = {
+    'us-east-1' : {},
+    'us-west-1' : {},
+    'eu-west-1' : {},
+    'ap-southeast-1' : {},
+    'ap-northeast-1' : {}
+  };
+
+  var rateSheet = rateSheets[endpoint];
+  if (!rateSheet) { return null; }
+
+  var amount = 0;
+
+  for (var t in types) {
+    var n = types[t];
+    var rate = (rateSheet[t] || 0);
+    amount += (n * rate);
+  }
+
+  return amount;
+}
+
+function __calcWindowsMonthlyAmount__(types, endpoint) {
+  var rateSheets = {
+    'us-east-1' : {},
+    'us-west-1' : {},
+    'eu-west-1' : {},
+    'ap-southeast-1' : {},
+    'ap-northeast-1' : {}
+  };
+
+  var rateSheet = rateSheets[endpoint];
+  if (!rateSheet) { return null; }
+
+  var amount = 0;
+
+  for (var t in types) {
+    var n = types[t];
+    var rate = (rateSheet[t] || 0);
+    amount += n * rate;
+  }
+
+  return amount;
 }
 
 function parseHeaders(headers) {

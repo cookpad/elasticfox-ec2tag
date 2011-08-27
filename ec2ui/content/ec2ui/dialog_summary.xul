@@ -25,8 +25,12 @@
           <textbox id="ec2ui.summary.total" size="40" readonly="true" />
         </row>
         <row>
-          <label control="ec2ui.summary.monthly_amount" value="Monthly Amount:" />
-          <textbox id="ec2ui.summary.monthly_amount" size="40" readonly="true" />
+          <label control="ec2ui.summary.linux_monthly_amount" value="Monthly Amount:" />
+          <textbox id="ec2ui.summary.linux_monthly_amount" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.summary.windows_monthly_amount" value="Monthly Amount:" />
+          <textbox id="ec2ui.summary.windows_monthly_amount" size="40" readonly="true" />
         </row>
         <row>
           <label control="ec2ui.summary.state" value="State:" />

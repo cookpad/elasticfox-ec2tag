@@ -50,7 +50,8 @@ var ec2_InstanceSummary = {
        }
 
       document.getElementById("ec2ui.summary.total").value = data.total;
-      document.getElementById("ec2ui.summary.monthly_amount").value = __calcMonthlyAmount__(data.instanceType, endpoint);
+      document.getElementById("ec2ui.summary.linux_monthly_amount").value = '$ ' + __calcLinuxMonthlyAmount__(data.instanceType, endpoint);
+      document.getElementById("ec2ui.summary.windows_monthly_amount").value = '$ ' + __calcWindowsMonthlyAmount__(data.instanceType, endpoint);
       document.getElementById("ec2ui.summary.state").value = JSON.stringify(data.state, null, "  ");
       document.getElementById("ec2ui.summary.instanceType").value = JSON.stringify(data.instanceType, null, "  ");
       document.getElementById("ec2ui.summary.group").value = JSON.stringify(data.group, null, "  ");
