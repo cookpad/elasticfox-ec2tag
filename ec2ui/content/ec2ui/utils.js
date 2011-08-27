@@ -540,6 +540,64 @@ function __calcWindowsMonthlyAmount__(types, endpoint) {
   return amount / 100;
 }
 
+function __calcRILinuxMonthlyAmount__(types, endpoint) {
+  var rateSheets = {
+    'us-east-1' : {
+    },
+    'us-west-1' : {
+    },
+    'eu-west-1' : {
+    },
+    'ap-southeast-1' : {
+    },
+    'ap-northeast-1' : {
+    }
+  };
+
+  var rateSheet = rateSheets[endpoint];
+  if (!rateSheet) { return null; }
+
+  var amount = 0;
+
+  for (var t in types) {
+    var n = types[t];
+    var rate = (rateSheet[t] || 0);
+    amount += (Math.floor(rate * 100) * n);
+  }
+
+  //return amount / 100;
+  return [0, 0, 0];
+}
+
+function __calcRIWindowsMonthlyAmount__(types, endpoint) {
+  var rateSheets = {
+    'us-east-1' : {
+    },
+    'us-west-1' : {
+    },
+    'eu-west-1' : {
+    },
+    'ap-southeast-1' : {
+    },
+    'ap-northeast-1' : {
+    }
+  };
+
+  var rateSheet = rateSheets[endpoint];
+  if (!rateSheet) { return null; }
+
+  var amount = 0;
+
+  for (var t in types) {
+    var n = types[t];
+    var rate = (rateSheet[t] || 0);
+    amount += (Math.floor(rate * 100) * n);
+  }
+
+  //return amount / 100;
+  return [0, 0, 0];
+}
+
 function parseHeaders(headers) {
     var headerArr = new Array();
     var arr = headers.split("\n");
