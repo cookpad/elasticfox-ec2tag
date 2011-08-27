@@ -160,7 +160,7 @@ var ec2ui_ElasticIPTreeView = {
             inst = instList[i];
             if (inst.state == "running") {
                 id = inst.id;
-                tag = inst.tag;
+                tag = __tagToName__(inst.tag);
                 if (tag && tag.length) {
                     id = id + ":" +  tag;
                 }
