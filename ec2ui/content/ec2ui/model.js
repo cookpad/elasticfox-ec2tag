@@ -588,15 +588,18 @@ var ec2ui_model = {
 
         if (this.instances && list) {
             var instanceNames = new Object();
+            var instancePublicDnsNames = new Object();
 
             for (var i = 0; i < this.instances.length; i++) {
                 var instance = this.instances[i];
                 instanceNames[instance.id] = instance.name;
+                instancePublicDnsNames[instance.id] = instance.publicDnsName;
             }
 
             for (var i = 0; i < list.length; i++) {
                 var address = list[i];
                 address.instanceName = instanceNames[address.instanceid];
+                address.instancePublicDnsName = instancePublicDnsNames[address.instanceid];
             }
         }
 

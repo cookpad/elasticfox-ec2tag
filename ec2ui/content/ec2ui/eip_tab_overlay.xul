@@ -23,6 +23,8 @@
             label="Add Tag" />
           <menuitem oncommand="ec2ui_ElasticIPTreeView.copyToClipBoard('address');"
             label="Copy Elastic IP to Clipboard" />
+          <menuitem oncommand="ec2ui_ElasticIPTreeView.copyPublicDnsToClipBoard('address');"
+            label="Copy Public DNS Name to Clipboard" />
         </menupopup>
       </popupset>
       <toolbar style="padding: 0px 3px; -moz-box-align: center">

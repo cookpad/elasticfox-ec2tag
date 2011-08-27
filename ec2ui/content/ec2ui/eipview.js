@@ -283,6 +283,16 @@ var ec2ui_ElasticIPTreeView = {
         copyToClipboard(eip[fieldName]);
     },
 
+    copyPublicDnsToClipBoard : function(fieldName) {
+        var eip = this.getSelectedEip();
+        if (!eip) { return; }
+
+        var publicDnsName = eip.instancePublicDnsName;
+        if (!publicDnsName) { return; }
+
+        copyToClipboard(publicDnsName);
+    },
+
     displayEIPs : function (eipList) {
         if (!eipList) { eipList = []; }
 
