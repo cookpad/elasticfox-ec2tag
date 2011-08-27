@@ -407,7 +407,17 @@ function __calcLinuxMonthlyAmount__(types, endpoint) {
       'cc1.4xlarge': 1152.0,
       'cg1.4xlarge': 1512.0
     },
-    'us-west-1' : {},
+    'us-west-1' : {
+         't1.micro': 18.0,
+         'm1.small': 68.4,
+        'c1.medium': 136.8,
+         'm1.large': 273.6,
+        'm1.xlarge': 547.2,
+        'm2.xlarge': 410.4,
+       'm2.2xlarge': 820.8,
+       'm2.4xlarge': 1641.6,
+        'c1.xlarge': 547.2
+    },
     'eu-west-1' : {},
     'ap-southeast-1' : {},
     'ap-northeast-1' : {}
@@ -440,7 +450,17 @@ function __calcWindowsMonthlyAmount__(types, endpoint) {
        'm2.4xlarge': 1785.6,
         'c1.xlarge': 835.2
     },
-    'us-west-1' : {},
+    'us-west-1' : {
+         't1.micro': 25.2,
+         'm1.small': 93.6,
+        'c1.medium': 223.2,
+         'm1.large': 374.4,
+        'm1.xlarge': 748.8,
+        'm2.xlarge': 496.8,
+       'm2.2xlarge': 993.6,
+       'm2.4xlarge': 1987.2,
+        'c1.xlarge': 892.8
+    },
     'eu-west-1' : {},
     'ap-southeast-1' : {},
     'ap-northeast-1' : {}
