@@ -461,10 +461,10 @@ function __calcLinuxMonthlyAmount__(types, endpoint) {
   for (var t in types) {
     var n = types[t];
     var rate = (rateSheet[t] || 0);
-    amount += (n * rate);
+    amount += (Math.floor(rate * 100) * n);
   }
 
-  return amount;
+  return amount / 100;
 }
 
 function __calcWindowsMonthlyAmount__(types, endpoint) {
@@ -534,10 +534,10 @@ function __calcWindowsMonthlyAmount__(types, endpoint) {
   for (var t in types) {
     var n = types[t];
     var rate = (rateSheet[t] || 0);
-    amount += n * rate;
+    amount += (Math.floor(rate * 100) * n);
   }
 
-  return amount;
+  return amount / 100;
 }
 
 function parseHeaders(headers) {
