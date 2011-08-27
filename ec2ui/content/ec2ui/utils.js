@@ -551,22 +551,32 @@ function __calcRILinuxMonthlyAmount__(types, endpoint) {
     'ap-southeast-1' : {
     },
     'ap-northeast-1' : {
+         'm1.small': [ 239.0,  368.0,  32.4],
+         'm1.large': [ 956.0, 1470.0, 129.6],
+        'm1.xlarge': [1911.0, 2940.0, 259.2],
+         't1.micro': [  57.0,   86.0,  7.92],
+        'm2.xlarge': [1391.0, 2100.0, 194.4],
+       'm2.2xlarge': [2783.0, 4200.0, 388.8],
+       'm2.4xlarge': [5565.0, 8400.0, 770.4],
+        'c1.medium': [ 478.0,  735.0,  64.8],
+        'c1.xlarge': [1911.0, 2940.0, 259.2],
     }
   };
 
   var rateSheet = rateSheets[endpoint];
-  if (!rateSheet) { return null; }
+  if (!rateSheet) { return [0, 0, 0]; }
 
-  var amount = 0;
+  var amounts = [0, 0, 0];
 
   for (var t in types) {
     var n = types[t];
-    var rate = (rateSheet[t] || 0);
-    amount += (Math.floor(rate * 100) * n);
+    var rates = (rateSheet[t] || [0, 0, 0]);
+    amounts[0] += (Math.floor(rates[0] * 100) * n)
+    amounts[1] += (Math.floor(rates[1] * 100) * n)
+    amounts[2] += (Math.floor(rates[2] * 100) * n)
   }
 
-  //return amount / 100;
-  return [0, 0, 0];
+  return [amounts[0] / 100, amounts[1] / 100, amounts[2] / 100];
 }
 
 function __calcRIWindowsMonthlyAmount__(types, endpoint) {
@@ -580,22 +590,32 @@ function __calcRIWindowsMonthlyAmount__(types, endpoint) {
     'ap-southeast-1' : {
     },
     'ap-northeast-1' : {
+         'm1.small': [ 239.0,  368.0,  46.8],
+         'm1.large': [ 956.0, 1470.0, 187.2],
+        'm1.xlarge': [1911.0, 2940.0, 374.4],
+         't1.micro': [  57.0,   86.0, 15.12],
+        'm2.xlarge': [1391.0, 2100.0, 244.8],
+       'm2.2xlarge': [2783.0, 4200.0, 489.6],
+       'm2.4xlarge': [5565.0, 8400.0, 979.2],
+        'c1.medium': [ 478.0,  735.0, 115.2],
+        'c1.xlarge': [1911.0, 2940.0, 460.8],
     }
   };
 
   var rateSheet = rateSheets[endpoint];
-  if (!rateSheet) { return null; }
+  if (!rateSheet) { return [0, 0, 0]; }
 
-  var amount = 0;
+  var amounts = [0, 0, 0];
 
   for (var t in types) {
     var n = types[t];
-    var rate = (rateSheet[t] || 0);
-    amount += (Math.floor(rate * 100) * n);
+    var rates = (rateSheet[t] || [0, 0, 0]);
+    amounts[0] += (Math.floor(rates[0] * 100) * n)
+    amounts[1] += (Math.floor(rates[1] * 100) * n)
+    amounts[2] += (Math.floor(rates[2] * 100) * n)
   }
 
-  //return amount / 100;
-  return [0, 0, 0];
+  return [amounts[0] / 100, amounts[1] / 100, amounts[2] / 100];
 }
 
 function parseHeaders(headers) {
