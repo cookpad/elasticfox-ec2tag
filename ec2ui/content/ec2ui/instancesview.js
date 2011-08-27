@@ -1152,7 +1152,8 @@ var ec2ui_InstancesTreeView = {
             "chrome://ec2ui/content/dialog_summary.xul",
             null,
             "chrome,centerscreen,modal",
-            this.instanceList
+            this.instanceList,
+            ec2ui_session.getActiveEndpoint().name
             );
     },
 

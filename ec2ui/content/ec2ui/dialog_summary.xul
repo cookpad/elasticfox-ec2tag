@@ -10,6 +10,8 @@
 
   <script type="application/x-javascript"
     src="chrome://ec2ui/content/instancesummary.js" />
+  <script type="application/x-javascript"
+    src="chrome://ec2ui/content/utils.js" />
 
   <vbox flex="1">
     <grid flex="1">
@@ -21,6 +23,10 @@
         <row>
           <label control="ec2ui.summary.total" value="Total:" />
           <textbox id="ec2ui.summary.total" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.summary.monthly_amount" value="Monthly Amount:" />
+          <textbox id="ec2ui.summary.monthly_amount" size="40" readonly="true" />
         </row>
         <row>
           <label control="ec2ui.summary.state" value="State:" />

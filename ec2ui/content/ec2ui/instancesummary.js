@@ -1,6 +1,7 @@
 var ec2_InstanceSummary = {
     init : function() {
       var instanceList = window.arguments[0];
+      var endpoint = window.arguments[1];
 
       var data = {
         total: instanceList.length,
@@ -49,6 +50,7 @@ var ec2_InstanceSummary = {
        }
 
       document.getElementById("ec2ui.summary.total").value = data.total;
+      document.getElementById("ec2ui.summary.monthly_amount").value = __calcMonthlyAmount__(data.instanceType, endpoint);
       document.getElementById("ec2ui.summary.state").value = JSON.stringify(data.state, null, "  ");
       document.getElementById("ec2ui.summary.instanceType").value = JSON.stringify(data.instanceType, null, "  ");
       document.getElementById("ec2ui.summary.group").value = JSON.stringify(data.group, null, "  ");

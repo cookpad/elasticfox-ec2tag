@@ -392,6 +392,10 @@ function __tagging2ec2__(resIds, session, tagString, disableDeleteTags) {
     }
 }
 
+function __calcMonthlyAmount__(types, endpoint) {
+  return endpoint;
+}
+
 function parseHeaders(headers) {
     var headerArr = new Array();
     var arr = headers.split("\n");
