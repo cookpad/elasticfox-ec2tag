@@ -256,6 +256,36 @@ function CustomerGateway(id, ipAddress, bgpAsn, state, type, tag) {
     if (tag) this.tag = tag;
 }
 
+function LoadBalancer(LoadBalancerName,CreatedTime,DNSName,Instances,
+                      Protocol,LoadBalancerPort,InstancePort,
+                      Interval,Timeout,HealthyThreshold,UnhealthyThreshold,Target,
+                      azone,CookieName,APolicyName,CookieExpirationPeriod,CPolicyName){
+    this.LoadBalancerName = LoadBalancerName;
+    this.CreatedTime = CreatedTime;
+    this.DNSName = DNSName;
+    this.InstanceId = Instances;
+    this.Protocol = Protocol;
+    this.LoadBalancerPort = LoadBalancerPort;
+    this.InstancePort = InstancePort;
+    this.Interval = Interval;
+    this.Timeout = Timeout;
+    this.HealthyThreshold = HealthyThreshold;
+    this.UnhealthyThreshold = UnhealthyThreshold;
+    this.Target = Target;
+    this.zone = azone;
+    this.CookieName = CookieName;
+    this.APolicyName = APolicyName;
+    this.CookieExpirationPeriod = CookieExpirationPeriod;
+    this.CPolicyName = CPolicyName;
+}
+
+function InstanceHealth(Description,State,InstanceId,ReasonCode){
+    this.Description = Description;
+    this.State = State;
+    this.InstanceId = InstanceId;
+    this.ReasonCode = ReasonCode;
+}
+
 String.prototype.trim = function() {
     return this.replace(/^\s+|\s+$/g,"");
 }
@@ -276,6 +306,8 @@ var ec2ui_model = {
     bundleTasks       : null,
     offerings         : null,
     reservedInstances : null,
+    loadbalancer      : null,
+    InstanceHealth    : null,
     subnets           : null,
     vpcs              : null,
     dhcpOptions       : null,
@@ -312,6 +344,8 @@ var ec2ui_model = {
         this.updateBundleTasks(null);
         this.updateLeaseOfferings(null);
         this.updateReservedInstances(null);
+        this.updateLoadbalancer(null);
+        this.updateInstanceHealth(null);
         this.updateVpcs(null);
         this.updateSubnets(null);
         this.updateDhcpOptions(null);
@@ -652,5 +686,29 @@ var ec2ui_model = {
             ec2ui_session.controller.describeReservedInstances();
         }
         return this.reservedInstances;
+    },
+    
+    updateLoadbalancer : function(list) {
+        this.loadbalancer = list;
+        this.notifyComponents("loadbalancer");
+    },
+
+    getLoadbalancer : function() {
+        if (this.loadbalancer == null) {
+            ec2ui_session.controller.describeLoadBalancers();
+        }
+        return this.loadbalancer;
+    },
+    
+    updateInstanceHealth : function(list) {
+        this.InstanceHealth = list;
+        this.notifyComponents("InstanceHealth");
+    },
+
+    getInstanceHealth : function() {
+        if (this.InstanceHealth == null) {
+            ec2ui_session.controller.describeInstanceHealth();
+        }
+        return this.InstanceHealth;
     }
 }
