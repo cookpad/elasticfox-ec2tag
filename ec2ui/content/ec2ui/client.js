@@ -5,6 +5,8 @@ var ec2_httpclient = {
     uri     : null,
     auxObj  : null,
     serviceURL : null,
+    regions : null,
+    elbURL  : null,
     accessCode : null,
     secretKey : null,
     timers : {},
@@ -12,6 +14,7 @@ var ec2_httpclient = {
     USER_AGENT : "Elasticfox/1.7-000116",
 
     API_VERSION : "2010-11-15",
+    ELB_API_VERSION : "2011-04-05",
 
     VPN_CONFIG_PATH : "http://ec2-downloads.s3.amazonaws.com/",
 
@@ -34,6 +37,8 @@ var ec2_httpclient = {
     setEndpoint : function (endpoint) {
         if (endpoint != null) {
             this.serviceURL = endpoint.url;
+	    this.regions    = endpoint.name;
+	    this.elbURL     = "https://elasticloadbalancing."+this.regions+".amazonaws.com";
         }
     },
 
@@ -150,6 +155,40 @@ var ec2_httpclient = {
         }
         return rsp;
     },
+    
+    queryELB : function (action, params, objActions, isSync, reqType, callback) {
+        if (this.accessCode == null || this.accessCode == "") {
+            log ("No Access Code for user");
+            return;
+        }
+
+        if (this.elbURL == null || this.elbURL == "") {
+            this.setEndpoint(ec2ui_session.getActiveEndpoint());
+        }
+
+        var rsp = null;
+        while(true) {
+            try {
+		rsp = this.queryELBImpl(action, params, objActions, isSync, reqType, callback);    
+		if (rsp.hasErrors) {
+                    if (!this.errorDialog(
+                        "EC2 responded with an error for "+action,
+                        rsp.faultCode,
+                        rsp.requestId,
+                        rsp.faultString)) {
+                        break;
+                    }
+                } else {
+                   break;
+                }
+            } catch (e) {
+                alert ("An error occurred while calling "+action+"\n"+e);
+                rsp = null;
+                break;
+            }
+        }
+        return rsp;
+    },
 
     errorDialog : function(msg, code, rId, fStr) {
         var retry = {value:null};
@@ -202,6 +241,92 @@ var ec2_httpclient = {
 
         queryParams += "&Signature="+encodeURIComponent(sig);
         var url = this.serviceURL + "/";
+
+        log("URL ["+url+"]");
+        log("QueryParams ["+queryParams+"]");
+
+        var timerKey = strSig+":"+formattedTime;
+
+        if (!ec2ui_prefs.isOfflineEnabled()) {
+            var xmlhttp = this.newInstance();
+            if (!xmlhttp) {
+                log("Could not create xmlhttp object");
+                return null;
+            }
+            xmlhttp.open("POST", url, !isSync);
+            xmlhttp.setRequestHeader("User-Agent", this.USER_AGENT);
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xmlhttp.setRequestHeader("Content-Length", queryParams.length);
+            xmlhttp.setRequestHeader("Connection", "close");
+            this.startTimer(timerKey, 30000, xmlhttp.abort);
+            var me = this;
+            if (isSync) {
+                xmlhttp.onreadystatechange = empty;
+            } else {
+                xmlhttp.onreadystatechange = function () {
+                    me.handleAsyncResponse(xmlhttp, callback, reqType, objActions);
+                }
+            }
+
+            try {
+                xmlhttp.send(queryParams);
+                this.stopTimer(timerKey);
+            } catch(e) {
+                if (isSync && !this.stopTimer(timerKey)) {
+                    // A timer didn't exist, this is unexpected
+                    throw e;
+                }
+
+                var faultStr = "Please check your EC2 URL '" + url + "' for correctness, or delete the value in ec2ui.endpoints using about:config and retry.";
+                return this.newResponseObject(null, callback, reqType, true, "Request Error", faultStr, "");
+            }
+        }
+
+        return this.processXMLHTTPResponse(xmlhttp, reqType, isSync, timerKey, objActions, callback);
+    },
+
+    queryELBImpl : function (action, params, objActions, isSync, reqType, callback) {
+        var curTime = new Date();
+        if (ec2ui_session.isAmazonEndpointSelected()) {
+            var formattedTime = this.formatDate(curTime, "yyyy-MM-ddThh:mm:ssZ");
+        }
+        else {
+            var formattedTime = this.formatDate(curTime, "yyyy-MM-ddThh:mm:ss");
+        }
+
+        var sigValues = new Array();
+        sigValues.push(new Array("Action", action));
+        sigValues.push(new Array("AWSAccessKeyId", this.accessCode));
+        sigValues.push(new Array("SignatureVersion","1"));
+        sigValues.push(new Array("Version",this.ELB_API_VERSION));
+        sigValues.push(new Array("Timestamp",formattedTime));
+
+        // Mix in the additional parameters. params must be an Array of tuples as for sigValues above
+        for (var i = 0; i < params.length; i++) {
+            sigValues.push(params[i]);
+        }
+
+        // Sort the parameters by their lowercase name
+        sigValues.sort(this.sigParamCmp);
+
+        // Construct the string to sign and query string
+        var strSig = "";
+        var queryParams = "";
+        for (var i = 0; i < sigValues.length; i++) {
+            strSig += sigValues[i][0] + sigValues[i][1];
+            queryParams += sigValues[i][0] + "=" + encodeURIComponent(sigValues[i][1]);
+            if (i < sigValues.length-1)
+                queryParams += "&";
+        }
+
+        log("StrSig ["+strSig+"]");
+        log("Params ["+queryParams+"]");
+
+        var sig = b64_hmac_sha1(this.secretKey, strSig);
+        log("Sig ["+sig+"]");
+
+        queryParams += "&Signature="+encodeURIComponent(sig);
+        var url = this.elbURL + "/";
 
         log("URL ["+url+"]");
         log("QueryParams ["+queryParams+"]");
