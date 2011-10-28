@@ -67,6 +67,7 @@ var ec2_Createlb = {
 		var cell2 = document.createElement('listcell');
 		var cell3 = document.createElement('listcell');
 		var cell4 = document.createElement('listcell');
+		var cell5 = document.createElement('listcell');
         
 		var cellID = "cellcheck"+Idx;
 		cell1.setAttribute('id',cellID);
@@ -88,6 +89,9 @@ var ec2_Createlb = {
         
 		cell4.setAttribute('label',  Instanceid[i].placement.availabilityZone);
 		row.appendChild(cell4);
+
+		cell5.setAttribute('label',  Instanceid[i].name);
+		row.appendChild(cell5);
     
 		for(var a=0;a<registerid.length;a++)
 		{

@@ -93,9 +93,10 @@
  <listbox id="theList" rows="10" width="550" seltype="multiple" onclick="ec2_Createlb.reg_unreg_instances(event)">
    <listhead>
      <listheader label="&ec2ui.registerlb.register.label;" width="50"/>
-     <listheader label="&ec2ui.registerlb.instanceid.label;" width="200"/>
+     <listheader label="&ec2ui.registerlb.instanceid.label;" width="100"/>
      <listheader label="&ec2ui.registerlb.state.label;" width="100"/>
-     <listheader label="&ec2ui.registerlb.zone.label;" width="150"/>
+     <listheader label="&ec2ui.registerlb.zone.label;" width="100"/>
+     <listheader label="Name" width="100"/>
   </listhead>
   <listcols>
    <listcol/>

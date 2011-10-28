@@ -62,6 +62,7 @@ var ec2ui_RegisterInstances = {
 	    var cell2 = document.createElement('listcell');
 	    var cell3 = document.createElement('listcell');
 	    var cell4 = document.createElement('listcell');
+	    var cell5 = document.createElement('listcell');
         
 	    var cellID = "cellcheck"+Idx;
 	
@@ -81,6 +82,9 @@ var ec2ui_RegisterInstances = {
 	    cell4.setAttribute('label', Instancedetails[i].placement.availabilityZone);
 	    row.appendChild(cell4);
         
+	    cell5.setAttribute('label', Instancedetails[i].name);
+	    row.appendChild(cell5);
+
 	    for(var a=0;a<registerid.length;a++)
 	    {
 		var id = registerid[a];
