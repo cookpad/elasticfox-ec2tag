@@ -287,12 +287,11 @@ var ec2_httpclient = {
 
     queryELBImpl : function (action, params, objActions, isSync, reqType, callback) {
         var curTime = new Date();
-        if (ec2ui_session.isAmazonEndpointSelected()) {
+        //if (ec2ui_session.isAmazonEndpointSelected()) {
             var formattedTime = this.formatDate(curTime, "yyyy-MM-ddThh:mm:ssZ");
-        }
-        else {
-            var formattedTime = this.formatDate(curTime, "yyyy-MM-ddThh:mm:ss");
-        }
+        //else {
+        //    var formattedTime = this.formatDate(curTime, "yyyy-MM-ddThh:mm:ss");
+        //}
 
         var sigValues = new Array();
         sigValues.push(new Array("Action", action));
