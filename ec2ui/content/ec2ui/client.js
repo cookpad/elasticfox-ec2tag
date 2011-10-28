@@ -338,6 +338,7 @@ var ec2_httpclient = {
                 log("Could not create xmlhttp object");
                 return null;
             }
+
             xmlhttp.open("POST", url, !isSync);
             xmlhttp.setRequestHeader("User-Agent", this.USER_AGENT);
             xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -524,7 +525,8 @@ var ec2_httpclient = {
             faultCode : faultCode,
             requestId : requestId,
             faultString : faultString,
-            hasErrors : hasErrors
+            hasErrors : hasErrors,
+            responseText: ("" + xmlhttp.responseText.toString())
         };
     },
 

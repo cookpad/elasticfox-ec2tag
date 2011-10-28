@@ -4,6 +4,9 @@
 <!ENTITY ec2ui.accountids.manage.label "Account IDs">
 <!ENTITY ec2ui.about.label "About">
 <!ENTITY ec2ui.description.label "Description">
+<!ENTITY ec2ui.createTag.label "Create Public Tag">
+<!ENTITY ec2ui.deleteTag.label "Delete Public Tag">
+<!ENTITY ec2ui.publictag.label "Public Tag">
 
 <!ENTITY ec2ui.tabs.instances.label "Instances">
 <!ENTITY ec2ui.tabs.images.label "Images">
@@ -14,6 +17,7 @@
 <!ENTITY ec2ui.tabs.volumes.label "Vols and Snaps">
 <!ENTITY ec2ui.tabs.bundleTasks.label "BT">
 <!ENTITY ec2ui.tabs.leases.label "RI">
+<!ENTITY ec2ui.tabs.loadbalancer.label "ELB">
 <!ENTITY ec2ui.tabs.vpcs.label "VPC">
 <!ENTITY ec2ui.tabs.vpns.label "VPNC">
 
@@ -34,6 +38,7 @@
 <!ENTITY ec2ui.images.visibility.label "Visibility">
 <!ENTITY ec2ui.images.architecture.label "Architecture">
 <!ENTITY ec2ui.images.rootDeviceType.label "Root Device Type">
+<!ENTITY ec2ui.images.register.newimage.manifest.label "AMI Manifest Path">
 <!ENTITY ec2ui.images.name.label "Name">
 
 <!ENTITY ec2ui.instances.resid.label "Reservation ID">
@@ -48,19 +53,22 @@
 <!ENTITY ec2ui.instances.state.label "State">
 <!ENTITY ec2ui.instances.publicDnsName.label "Public DNS">
 <!ENTITY ec2ui.instances.privateDnsName.label "Private DNS">
+<!ENTITY ec2ui.instances.monitoringState.label "Monitoring State">
 <!ENTITY ec2ui.instances.privateIpAddress.label "Private IP">
 <!ENTITY ec2ui.instances.keyName.label "Key">
 <!ENTITY ec2ui.instances.reason.label "Reason">
 <!ENTITY ec2ui.instances.amiLaunchIdx.label "Idx">
 <!ENTITY ec2ui.instances.instanceType.label "Type">
-<!ENTITY ec2ui.instances.launchTime.label "Local Launch Time">
 <!ENTITY ec2ui.instances.rootDeviceType.label "Root Device Type">
+<!ENTITY ec2ui.instances.launchTime.label "Local Launch Time">
 
 <!ENTITY ec2ui.captions.kernels.akis.label "Kernel Images (AKIs)">
 <!ENTITY ec2ui.captions.kernels.aris.label "Ramdisk Images (ARIs)">
 
 <!ENTITY ec2ui.kernels.id.label "AKI ID">
 <!ENTITY ec2ui.ramdisks.id.label "ARI ID">
+<!ENTITY ec2ui.machines.id.label "AMI ID">
+<!ENTITY ec2ui.tag.label "Tag">
 
 <!ENTITY ec2ui.captions.keypairs.label "Your Keypairs">
 <!ENTITY ec2ui.keypairs.name.label "Name">
@@ -72,6 +80,7 @@
 
 <!ENTITY ec2ui.captions.eip.label "Your Elastic IPs">
 <!ENTITY ec2ui.eip.address.label "Address">
+<!ENTITY ec2ui.eips.address.label "IP Address">
 
 <!ENTITY ec2ui.captions.secgroups.groups.label "Your Groups">
 <!ENTITY ec2ui.captions.secgroups.permissions.label "Group Permissions">
@@ -81,6 +90,7 @@
 <!ENTITY ec2ui.permissions.toport.label "To Port/ICMP Code">
 <!ENTITY ec2ui.permissions.groups.label "Source User:Group">
 <!ENTITY ec2ui.permissions.cidrs.label "Source CIDR">
+<!ENTITY ec2ui.permissions.details.groups.label "Source (User,Group)">
 
 <!ENTITY ec2ui.captions.volumes.volumes.label "Created Volumes">
 <!ENTITY ec2ui.captions.volumes.snapshots.label "Saved Snapshots">
@@ -92,6 +102,7 @@
 <!ENTITY ec2ui.volumes.attachment.device.label "Device">
 <!ENTITY ec2ui.volumes.attachment.status.label "Attachment Status">
 <!ENTITY ec2ui.volumes.attachment.attachTime.label "Attach Time">
+<!ENTITY ec2ui.volumes.attachment.description.device "Linux devices: /dev/sda through /dev/sdp">
 
 <!ENTITY ec2ui.snapshots.id.label "SNAP ID">
 <!ENTITY ec2ui.snapshots.status.label "Status">
@@ -180,6 +191,9 @@
 <!ENTITY ec2ui.bundleTasks.s3.prefix.label "S3 Prefix">
 <!ENTITY ec2ui.bundleTasks.errorMessage.label "Error Message">
 
+<!ENTITY ec2ui.bundleInstance.s3.bucket.label "S3 Bucket Name">
+<!ENTITY ec2ui.bundleInstance.s3.image.label "Image Name">
+
 <!ENTITY ec2ui.captions.leases.offerings.label "Reserved Instances Offerings">
 <!ENTITY ec2ui.captions.leases.rsvdInst.label "Your Reserved Instances">
 
@@ -188,6 +202,13 @@
 <!ENTITY ec2ui.offerings.duration.label "Duration (years)">
 <!ENTITY ec2ui.offerings.fixedPrice.label "One-time Payment/Instance (US$)">
 <!ENTITY ec2ui.offerings.usagePrice.label "Usage Price/Instance (US$)">
+<!ENTITY ec2ui.offerings.description.label "Description">
+<!ENTITY ec2ui.offerings.totalPrice.label "Total One-time Payment (Due Now)">
+<!ENTITY ec2ui.offerings.captions.review.label "Review, Specify Number of Instances, and click Continue">
+<!ENTITY ec2ui.offerings.captions.information.label "Information">
+<!ENTITY ec2ui.offerings.captions.payment.label "One-time Payment Details">
+<!ENTITY ec2ui.offerings.purchaseOffering.tip "PurchaseOffering">
+<!ENTITY ec2ui.offerings.contextmenu.purchase.label "Purchase Reserved Instances Offering">
 
 <!ENTITY ec2ui.rsvdInst.id.label "Reserved Instances ID">
 <!ENTITY ec2ui.rsvdInst.instType.label "Instance Type">
@@ -196,22 +217,47 @@
 <!ENTITY ec2ui.rsvdInst.fixedPrice.label "One-time Payment/Instance (US$)">
 <!ENTITY ec2ui.rsvdInst.usagePrice.label "Usage Price/Instance (US$)">
 <!ENTITY ec2ui.rsvdInst.count.label "Number of Instances">
+<!ENTITY ec2ui.rsvdInst.description.label "Description">
 <!ENTITY ec2ui.rsvdInst.state.label "State">
+<!ENTITY ec2ui.rsvdInst.daysremaining.label "Days Remaining">
 
 <!ENTITY ec2ui.platform.label "Platform">
 <!ENTITY ec2ui.availabilityZone.label "Availability Zone">
+<!ENTITY ec2ui.addTag.label "Add Tag">
 
 <!ENTITY ec2ui.contextmenu.details.label "View Details">
 <!ENTITY ec2ui.contextmenu.copyid.label "Copy ID to clipboard">
 
 <!ENTITY ec2ui.images.contextmenu.register.label "Register a new AMI">
 <!ENTITY ec2ui.images.contextmenu.deregister.label "Deregister this AMI">
+<!ENTITY ec2ui.images.contextmenu.migrate.label "Migrate AMI and Register">
+<!ENTITY ec2ui.images.contextmenu.delete.label "Delete AMI Parts and Deregister">
+<!ENTITY ec2ui.images.contextmenu.launch.label "Launch instance(s) of this AMI">
+
+<!ENTITY ec2ui.instances.contextmenu.launchmore.label "Launch More of these">
+<!ENTITY ec2ui.instances.contextmenu.attachebs.label "Attach an EBS Volume">
+<!ENTITY ec2ui.instances.contextmenu.bundle.label "Bundle into an AMI">
+<!ENTITY ec2ui.instances.contextmenu.reboot.label "Reboot">
+<!ENTITY ec2ui.instances.contextmenu.terminate.label "Terminate">
+<!ENTITY ec2ui.instances.contextmenu.stop.label "Stop">
+<!ENTITY ec2ui.instances.contextmenu.forcestop.label "Force Stop">
+<!ENTITY ec2ui.instances.contextmenu.start.label "Start">
+<!ENTITY ec2ui.instances.contextmenu.monitor.label "Monitor">
+<!ENTITY ec2ui.instances.contextmenu.unmonitor.label "Unmonitor">
+<!ENTITY ec2ui.instances.contextmenu.console.label "Show Console Output">
+<!ENTITY ec2ui.instances.contextmenu.password.label "Get Administrator Password">
+<!ENTITY ec2ui.instances.contextmenu.copypublic.label "Copy Public DNS Name to clipboard">
+<!ENTITY ec2ui.instances.contextmenu.copyprivate.label "Copy Private DNS Name to clipboard">
+<!ENTITY ec2ui.instances.contextmenu.connect.label "Connect to Public DNS Name">
 
 <!ENTITY ec2ui.instances.contextmenu.copyname.label "Name">
 
 <!ENTITY ec2ui.instances.contextmenu.copyid.label "Instance ID">
 
 <!ENTITY ec2ui.addresses.contextmenu.associate.label "Associate Elastic IP with Instance">
+<!ENTITY ec2ui.addresses.contextmenu.disassociate.label "Disassociate this address">
+<!ENTITY ec2ui.addresses.contextmenu.release.label "Release this address">
+<!ENTITY ec2ui.addresses.contextmenu.copy.label "Copy Elastic IP to Clipboard">
 
 <!ENTITY ec2ui.volume.contextmenu.createsnap.label "Create a new snapshot from this volume">
 <!ENTITY ec2ui.volume.contextmenu.attach.label "Attach this volume">
@@ -273,6 +319,8 @@
 
 <!ENTITY ec2ui.keypairs.create.tip "Create a new keypair">
 <!ENTITY ec2ui.keypairs.delete.tip "Delete selected keypair">
+<!ENTITY ec2ui.keypairs.contextmenu.create.label "Create a new keypair">
+<!ENTITY ec2ui.keypairs.contextmenu.delete.label "Delete selected keypair">
 
 <!ENTITY ec2ui.eips.allocate.tip "Allocate a new address">
 <!ENTITY ec2ui.eips.associate.tip "Associate selected address">
@@ -284,9 +332,16 @@
 
 <!ENTITY ec2ui.secgroups.ownerId.label "Owner">
 <!ENTITY ec2ui.secgroups.name.label "Name">
+<!ENTITY ec2ui.secgroups.description.label "Description">
+
+<!ENTITY ec2ui.secgroups.contextmenu.authorize.label "Grant New Permission">
+<!ENTITY ec2ui.secgroups.contextmenu.create.label "Create a new security group">
+<!ENTITY ec2ui.secgroups.contextmenu.delete.label "Delete this security group">
 
 <!ENTITY ec2ui.permissions.authorize.tip "Grant Permission">
 <!ENTITY ec2ui.permissions.revoke.tip "Revoke Permission">
+
+<!ENTITY ec2ui.permissions.contextmenu.revoke.label "Revoke this permission">
 
 <!ENTITY ec2ui.createvolfromsnap.tip "Create new volume from this snapshot">
 <!ENTITY ec2ui.deletesnap.tip "Delete this snapshot">
@@ -297,3 +352,243 @@
 <!ENTITY ec2ui.detachvol.tip "Detach this volume from its instance">
 
 <!ENTITY ec2ui.cancelBundleTask.tip "Cancel this Bundle Task">
+
+<!ENTITY ec2ui.instance.console.timestamp.label "Timestamp">
+<!ENTITY ec2ui.instance.console.output.label "Console Output">
+<!ENTITY ec2ui.instance.console.encoding.label "Encoding">
+
+<!ENTITY ec2ui.instances.detail.amimanifest.label "AMI Manifest">
+<!ENTITY ec2ui.instances.detail.monitoring.label "Monitoring">
+<!ENTITY ec2ui.instances.detail.keyname.label "Key Name">
+<!ENTITY ec2ui.instances.detail.securitygrouplist.label "Security Groups">
+<!ENTITY ec2ui.instances.detail.reason.label "Last Reason">
+<!ENTITY ec2ui.instances.detail.amiLaunchIdx.label "AMI Launch Index">
+<!ENTITY ec2ui.instances.detail.instanceType.label "Instance Type">
+<!ENTITY ec2ui.instances.detail.eip.label "Elastic IP">
+<!ENTITY ec2ui.instances.detail.volumelist.label "EBS Volumes">
+
+<!ENTITY ec2ui.copyS3.keys.captions.progress.label "AMI Migration Progress">
+<!ENTITY ec2ui.copyS3.keys.currentOperation.label "Current Operation">
+<!ENTITY ec2ui.copyS3.keys.current.label "Initializing...">
+<!ENTITY ec2ui.copyS3.keys.fileTransfer.label "File Transfer Status">
+
+<!ENTITY ec2ui.deleteami.captions.progress.label "AMI Deletion Progress">
+<!ENTITY ec2ui.deleteami.currentOperation.label "Current Operation">
+<!ENTITY ec2ui.deleteami.current.label "Initializing...">
+
+<!ENTITY ec2ui.accountids.accountid.label "Account ID">
+<!ENTITY ec2ui.accountids.displayname.label "Display Name">
+
+<!ENTITY ec2ui.creds.account.label "Account Name">
+<!ENTITY ec2ui.creds.akid.label "AWS Access Key">
+<!ENTITY ec2ui.creds.secretkey.label "AWS Secret Access Key">
+<!ENTITY ec2ui.creds.region.label "Preferred Region">
+
+<!ENTITY ec2ui.endpoints.name.label "Region Name">
+<!ENTITY ec2ui.endpoints.type.label "Type">
+<!ENTITY ec2ui.endpoints.url.label "Endpoint URL">
+<!ENTITY ec2ui.endpoints.version.label "API Version">
+
+<!ENTITY ec2ui.tools.ssh.command.label "SSH Command">
+<!ENTITY ec2ui.tools.ssh.args.label "SSH Arguments">
+<!ENTITY ec2ui.tools.ssh.key.label "SSH Key Template">
+<!ENTITY ec2ui.tools.key.template.label "EC2 Private Key Template">
+<!ENTITY ec2ui.tools.ssh.user.label "SSH User">
+<!ENTITY ec2ui.tools.rdp.command.label "RDP Command">
+<!ENTITY ec2ui.tools.rdp.args.label "RDP Arguments">
+<!ENTITY ec2ui.tools.description.home "${home} - Your home directory.">
+<!ENTITY ec2ui.tools.description.keyname "${keyname} - The EC2 keypair name the instance was launched with.">
+<!ENTITY ec2ui.tools.description.host "${host} - The public DNS name of the EC2 instance.">
+<!ENTITY ec2ui.tools.description.key "${key} - The (interpolated) key template.">
+<!ENTITY ec2ui.tools.description.user "${user} - The configured user name.">
+<!ENTITY ec2ui.tools.description.pass "${pass} - The Administrator password for a Windows instance.">
+
+<!ENTITY ec2ui.migrate.ami.regions.label "To Region">
+<!ENTITY ec2ui.migrate.ami.prefix.label "Prefix">
+<!ENTITY ec2ui.migrate.ami.bucket.source.label "Source Bucket">
+<!ENTITY ec2ui.migrate.ami.bucket.destination.label "Destination Bucket">
+
+<!ENTITY ec2ui.instances.lunch.ami.tag.label "AMI Tag">
+<!ENTITY ec2ui.instances.lunch.instancetypelist.label "Instance Type">
+<!ENTITY ec2ui.instances.lunch.min.label "Minimum number of instances">
+<!ENTITY ec2ui.instances.lunch.max.label "Maximum number of instances">
+<!ENTITY ec2ui.instances.lunch.tag.label "New Instance(s) Tag">
+<!ENTITY ec2ui.instances.lunch.keypairlist.label "KeyPair">
+<!ENTITY ec2ui.instances.lunch.properties.label "Additional Info">
+<!ENTITY ec2ui.instances.lunch.addressingType.label "Public Address">
+<!ENTITY ec2ui.instances.lunch.secgroups.unused.label "Available Groups">
+<!ENTITY ec2ui.instances.lunch.secgroups.used.label "Launch in">
+<!ENTITY ec2ui.instances.lunch.button.userdata.openFile.label "Open File">
+<!ENTITY ec2ui.instances.lunch.button.userdata.openBinaryFile.label "Open Binary File">
+
+<!ENTITY ec2ui.newpermission.captions.new.label "Add New Permission for Security Group">
+<!ENTITY ec2ui.newpermission.captions.protocol.label "Protocol Details">
+<!ENTITY ec2ui.newpermission.captions.hostNetwork.label "Host/Network Details">
+<!ENTITY ec2ui.newpermission.tab.external.label "External">
+<!ENTITY ec2ui.newpermission.tab.group.label "Group">
+<!ENTITY ec2ui.newpermission.port.label "Port">
+<!ENTITY ec2ui.newpermission.fromport.label "Port Range">
+<!ENTITY ec2ui.newpermission.toport.label "to">
+<!ENTITY ec2ui.newpermission.icmptype.label "ICMP Type">
+<!ENTITY ec2ui.newpermission.icmpcode.label "ICMP Code">
+<!ENTITY ec2ui.newpermission.user.label "User ID">
+<!ENTITY ec2ui.newpermission.group.label "Group">
+<!ENTITY ec2ui.newpermission.radio.host.label "Host">
+<!ENTITY ec2ui.newpermission.radio.network.label "Network">
+<!ENTITY ec2ui.newpermission.button.getHost.label "Get My Host Address">
+<!ENTITY ec2ui.newpermission.button.getNetwork.label "Get My Network Range">
+<!ENTITY ec2ui.newpermission.description.external "Select a protocol and specify a host/range">
+<!ENTITY ec2ui.newpermission.description.group "Specify a User and Group you would like to authorize">
+
+<!ENTITY ec2ui.retrycancel.requestId.label "Request ID">
+<!ENTITY ec2ui.retrycancel.faultCode.label "Fault Code">
+<!ENTITY ec2ui.retrycancel.details.label "Details">
+
+<!ENTITY ec2ui.secgroups.new.name.label "Group Name">
+<!ENTITY ec2ui.secgroups.new.description.label "Description">
+<!ENTITY ec2ui.secgroups.new.enableprot.host "Enable SSH and RDP for this Host?">
+<!ENTITY ec2ui.secgroups.new.enableprot.network "Enable SSH and RDP for your Network (includes this Host)?">
+<!ENTITY ec2ui.secgroups.new.enableprot.none "I will authorize protocols for this group as needed.">
+
+<!ENTITY ec2ui.images.menuitem.noFilter.label "No Filter">
+<!ENTITY ec2ui.images.menuitem.allAMIs.label "All AMIs">
+<!ENTITY ec2ui.images.menuitem.allAMIsEBS.label "All AMIs with EBS Root Device">
+<!ENTITY ec2ui.images.menuitem.allAMIsIS.label "All AMIs with Instance Store Root Device">
+<!ENTITY ec2ui.images.menuitem.myAMIs.label "My AMIs">
+<!ENTITY ec2ui.images.menuitem.myAMIsEBS.label "My AMIs with EBS Root Device">
+<!ENTITY ec2ui.images.menuitem.amazonAMIs.label "Amazon AMIs">
+<!ENTITY ec2ui.images.menuitem.amazonAMIsEBS.label "Amazon AMIs with EBS Root Device">
+<!ENTITY ec2ui.images.menuitem.allAKIs.label "All AKIs">
+<!ENTITY ec2ui.images.menuitem.allARIs.label "All ARIs">
+
+<!ENTITY ec2ui.instances.checkbox.terminated.label "Don't show Terminated Instances">
+
+<!ENTITY ec2ui.dialog.title.about "About">
+<!ENTITY ec2ui.dialog.title.ami_details "AMI Details">
+<!ENTITY ec2ui.dialog.title.attach_ebs_volume "Attach EBS Volume to Instance">
+<!ENTITY ec2ui.dialog.title.bundle_instance "Bundle Instance into an AMI">
+<!ENTITY ec2ui.dialog.title.bundle_task_details "Bundle Task Details">
+<!ENTITY ec2ui.dialog.title.console_output "Instance Console Output">
+<!ENTITY ec2ui.dialog.title.copy_S3_keys "Elasticfox AMI Migrator">
+<!ENTITY ec2ui.dialog.title.create_security_group "Create a new security group">
+<!ENTITY ec2ui.dialog.title.delete_ami "Elasticfox AMI Deleter">
+<!ENTITY ec2ui.dialog.title.eip_details "ElasticIP Details">
+<!ENTITY ec2ui.dialog.title.instance_details "Instance Details">
+<!ENTITY ec2ui.dialog.title.keypair_details "Key Pair Details">
+<!ENTITY ec2ui.dialog.title.manage_accountids "Manage Account IDs">
+<!ENTITY ec2ui.dialog.title.manage_credentials "Manage EC2 Credentials">
+<!ENTITY ec2ui.dialog.title.manage_endpoints "Manage EC2 Regions">
+<!ENTITY ec2ui.dialog.title.manage_tools "Manage EC2 Tools">
+<!ENTITY ec2ui.dialog.title.migrate_ami "Migrate AMI to another Region">
+<!ENTITY ec2ui.dialog.title.new_attachment "Attach Volume">
+<!ENTITY ec2ui.dialog.title.new_instances "Launch new instance(s)">
+<!ENTITY ec2ui.dialog.title.new_permission "Grant New Permission">
+<!ENTITY ec2ui.dialog.title.new_volume "Create Volume">
+<!ENTITY ec2ui.dialog.title.offering_details "Reserved Instances Offering Details">
+<!ENTITY ec2ui.dialog.title.permission_details "Security Group Details">
+<!ENTITY ec2ui.dialog.title.purchase_offering "Purchase Reserved Instances">
+<!ENTITY ec2ui.dialog.title.register_image "Register a new AMI">
+<!ENTITY ec2ui.dialog.title.reserved_instances_details "Reserved Instances Details">
+<!ENTITY ec2ui.dialog.title.retry_cancel "Retry or Cancel?">
+<!ENTITY ec2ui.dialog.title.securitygroup_details "Security Group Details">
+<!ENTITY ec2ui.dialog.title.select_eip "Associate Address with Instance">
+<!ENTITY ec2ui.dialog.title.snapshot_details "Snapshot Details">
+<!ENTITY ec2ui.dialog.title.volume_details "Volume Details">
+<!ENTITY ec2ui.dialog.title.register_instances "Register Instances">
+<!ENTITY ec2ui.dialog.title.deregister_instances "Deregister Instances">
+<!ENTITY ec2ui.dialog.title.disable_avalibility_zone "Disable Availability Zones">
+<!ENTITY ec2ui.dialog.title.enable_avalibility_zone "Enable Availability Zones">
+<!ENTITY ec2ui.dialog.title.loadbalancer_details "Loadbalancer Details">
+<!ENTITY ec2ui.dialog.title.Configure_Healthckeck "Configure Healthckeck">
+<!ENTITY ec2ui.dialog.title.Create_Loadbalancer "Create Loadbalancer">
+
+<!ENTITY ec2ui.dialog.description.step1 "Step:1 Loadbalancer Protocols">
+<!ENTITY ec2ui.dialog.description.step2 "Step:2 Configure Healthcheck">
+<!ENTITY ec2ui.dialog.description.step3 "Step:3 Register Instance">
+
+<!ENTITY ec2ui.dialog.button.accept.attach_ebs_volume.label "Attach">
+<!ENTITY ec2ui.dialog.button.accept.create_security_group.label "Create Group">
+<!ENTITY ec2ui.dialog.button.accept.delete_ami.label "Done">
+<!ENTITY ec2ui.dialog.button.cancel.migrate_ami.label "Cancel">
+<!ENTITY ec2ui.dialog.button.accept.migrate_ami.label "Migrate">
+<!ENTITY ec2ui.dialog.button.accept.new_attachment.label "Attach">
+<!ENTITY ec2ui.dialog.button.accept.new_instances.label "Launch">
+<!ENTITY ec2ui.dialog.button.accept.new_permission.label "Add">
+<!ENTITY ec2ui.dialog.button.accept.new_volume.label "Create">
+<!ENTITY ec2ui.dialog.button.accept.purchase_offering.label "Continue">
+<!ENTITY ec2ui.dialog.button.accept.register_image.label "Register AMI">
+<!ENTITY ec2ui.dialog.button.accept.retry_cancel.label "Retry">
+<!ENTITY ec2ui.dialog.button.accept.select_eip.label "Associate">
+<!ENTITY ec2ui.dialog.button.accept.Register.label "Register">
+<!ENTITY ec2ui.dialog.button.accept.deregister.label "Deregister">
+<!ENTITY ec2ui.dialog.button.accept.enable.label "Enable">
+<!ENTITY ec2ui.dialog.button.accept.disable.label "Disable">
+<!ENTITY ec2ui.dialog.button.accept.Configure.label "Configure">
+
+<!ENTITY ec2ui.dialog.button.cancel.manage.label "Close">
+<!ENTITY ec2ui.dialog.button.extra1.manage.label "Add">
+<!ENTITY ec2ui.dialog.button.extra2.manage.label "Remove">
+
+<!ENTITY ec2ui.captions.loadbalancer.label "Loadbalancer">
+<!ENTITY ec2ui.captions.InstanceHealth.label "Instance Health">
+
+<!ENTITY ec2ui.loadbalancer.name.label "Loadbalancer Name">
+<!ENTITY ec2ui.loadbalancer.creationtime.label "Created Time">
+<!ENTITY ec2ui.loadbalancer.dnsname.label "DNS Name">
+<!ENTITY ec2ui.loadbalancer.instances.label "Instances">
+<!ENTITY ec2ui.loadbalancer.zone.label "Availability Zones">
+<!ENTITY ec2ui.loadbalancer.Interval.label "Interval">
+<!ENTITY ec2ui.loadbalancer.Timeout.label "Timeout">
+<!ENTITY ec2ui.loadbalancer.HealthyThreshold.label "Healthy">
+<!ENTITY ec2ui.loadbalancer.UnhealthyThreshold.label "Unhealthy">
+<!ENTITY ec2ui.loadbalancer.Target.label "Target">
+<!ENTITY ec2ui.loadbalancer.Protocol.label "Protocol">
+<!ENTITY ec2ui.loadbalancer.LoadBalancerPort.label "Loadbalancer Port">
+<!ENTITY ec2ui.loadbalancer.InstancePort.label "Instance Port">
+<!ENTITY ec2ui.loadbalancer.apppolicy.label "Application Policy">
+<!ENTITY ec2ui.loadbalancer.lbpolicy.label "Loadbalancer Policy">
+
+<!ENTITY ec2ui.loadbalancerview.Name.label "Name:">
+<!ENTITY ec2ui.loadbalancerview.creationtime.label "Creation Time:">
+<!ENTITY ec2ui.loadbalancerview.dnsname.label "DNS Name:">
+<!ENTITY ec2ui.loadbalancerview.protocol.label "Protocol:">
+<!ENTITY ec2ui.loadbalancerview.lbport.label "Loadbalancer Port:">
+<!ENTITY ec2ui.loadbalancerview.iport.label "Instance Port:">
+<!ENTITY ec2ui.loadbalancerview.interval.label "Interval:">
+<!ENTITY ec2ui.loadbalancerview.target.label "Target:">
+<!ENTITY ec2ui.loadbalancerview.HealthyThreshold.label "Healthy Threshold:">
+<!ENTITY ec2ui.loadbalancerview.UnhealthyThreshold.label "Unhealthy Threshold:">
+<!ENTITY ec2ui.loadbalancerview.Timeout.label "Timeout:">
+<!ENTITY ec2ui.loadbalancerview.Instances.label "Instance:">
+<!ENTITY ec2ui.loadbalancerview.AvailabilityZones.label "Availability Zones:">
+<!ENTITY ec2ui.loadbalancerview.PingProtocol.label "Ping Protocol:">
+<!ENTITY ec2ui.loadbalancerview.Port.label "Ping Port:">
+<!ENTITY ec2ui.loadbalancerview.Path.label "Ping Path:">
+
+<!ENTITY ec2ui.loadbalancer.contextmenu.viewdetails.label "View Details">
+<!ENTITY ec2ui.loadbalancer.contextmenu.copydns.label "Copy DNS Name">
+<!ENTITY ec2ui.loadbalancer.contextmenu.registerinstance.label "Register Instances">
+<!ENTITY ec2ui.loadbalancer.contextmenu.deregisterinstance.label "Deregister Instances">
+<!ENTITY ec2ui.loadbalancer.contextmenu.enableavailability.label "Enable Availability Zones">
+<!ENTITY ec2ui.loadbalancer.contextmenu.disableavailability.label "Disable Availability Zones">
+<!ENTITY ec2ui.loadbalancer.contextmenu.disablestickness.label "Disable Stickiness">
+<!ENTITY ec2ui.loadbalancer.contextmenu.appstickness.label "Application Stickiness">
+<!ENTITY ec2ui.loadbalancer.contextmenu.loadbalancerstickness.label "Loadbalancer Stickiness">
+<!ENTITY ec2ui.loadbalancer.contextmenu.configurehealthcheck.label "Configure Healthcheck">
+<!ENTITY ec2ui.loadbalancer.contextmenu.delete.label "Delete Loadbalancer">
+
+
+<!ENTITY ec2ui.registerlb.register.label "Register">
+<!ENTITY ec2ui.registerlb.instanceid.label "Instance Id">
+<!ENTITY ec2ui.registerlb.state.label "State">
+<!ENTITY ec2ui.registerlb.zone.label "Zone">
+
+<!ENTITY ec2ui.endisazone.Select.label "Select">
+<!ENTITY ec2ui.endisazone.AvailabilityZone.label "Availability Zone">
+
+<!ENTITY ec2ui.InstanceHealth.Description.label "Description">
+<!ENTITY ec2ui.InstanceHealth.State.label "State">
+<!ENTITY ec2ui.InstanceHealth.InstanceId.label "InstanceId">
+<!ENTITY ec2ui.InstanceHealth.ReasonCode.label "ReasonCode">
+
+<!ENTITY ec2ui.create.loadbalancer.tip "Create Loadbalancer">

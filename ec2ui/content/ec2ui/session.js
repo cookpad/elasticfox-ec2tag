@@ -187,7 +187,7 @@ var ec2ui_session =
             eval("ec2ui_CustomerGatewayTreeView." + toCall);
             eval("ec2ui_VpnAttachmentTreeView." + toCall);
             break;
-	case "ec2ui.tabs.loadbalancer":
+        case "ELB":
             eval("ec2ui_LoadbalancerTreeView." + toCall);
             break;
         default:
