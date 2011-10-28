@@ -443,12 +443,10 @@ var ec2ui_LoadbalancerTreeView = {
         this.treeBox.rowCountChanged(0, this.loadbalancerList.length);
         this.sort();
         this.selection.clearSelection();
-      /*
         ec2ui_InstanceHealthTreeView.displayInstanceHealth([]);
         if (loadbalancerList.length > 0) {
             this.selection.select(0);
         }
-       */
     }
 };
 
