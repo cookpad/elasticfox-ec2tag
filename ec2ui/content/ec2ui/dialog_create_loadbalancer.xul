@@ -22,7 +22,6 @@
         <label control="ec2ui.createlb.Protocol" value="&ec2ui.loadbalancerview.protocol.label;" />
         <menulist id="ec2ui.createlb.Protocol" oncommand="createTopic('ec2ui.createlb.Protocol')"  style="min-width: 8em">
            <menupopup id="ec2ui.createlb.Protocol">
-              <menuitem label="Select a Protocol" value="0"/>
               <menuitem label="HTTP" value="HTTP"/>
               <menuitem label="TCP" value="TCP"/>
            </menupopup>
@@ -30,11 +29,11 @@
       </row>
         <row>
           <label control="ec2ui.createlb.elbport" value="&ec2ui.loadbalancerview.lbport.label;" />
-          <textbox id="ec2ui.createlb.elbport"  size="25" style="min-width: 8em"/>
+          <textbox id="ec2ui.createlb.elbport"  size="25" style="min-width: 8em" value="80" />
         </row>
         <row>
           <label control="ec2ui.createlb.instanceport" value="&ec2ui.loadbalancerview.iport.label;" />
-          <textbox id="ec2ui.createlb.instanceport"  size="25" style="min-width: 8em"/>
+          <textbox id="ec2ui.createlb.instanceport"  size="25" style="min-width: 8em" value="80" />
         </row>
         <row>
           <label control="ec2ui.createlb.availabilityzonelist" value="&ec2ui.loadbalancerview.AvailabilityZones.label;" />
@@ -54,7 +53,6 @@
           <label control="ec2ui.createlb.pingprotocol" value="&ec2ui.loadbalancerview.PingProtocol.label;" />
          <menulist id="ec2ui.createlb.pingprotocol" style="min-width: 8em">
            <menupopup id="ec2ui.createlb.pingprotocol">
-              <menuitem label="Select a Protocol" value="0"/>
               <menuitem label="HTTP" value="HTTP"/>
               <menuitem label="TCP" value="TCP"/>
            </menupopup>
@@ -62,30 +60,30 @@
         </row>
          <row>
           <label control="ec2ui.createlb.pingport" value="&ec2ui.loadbalancerview.Port.label;" />
-          <textbox id="ec2ui.createlb.pingport" size="25" style="min-width: 8em" onkeypress="return numOnly(event);"/>
+          <textbox id="ec2ui.createlb.pingport" size="25" style="min-width: 8em" onkeypress="return numOnly(event);" value="80" />
         </row>
          <row>
           <label control="ec2ui.createlb.pingpath" value="&ec2ui.loadbalancerview.Path.label;" />
-          <textbox id="ec2ui.createlb.pingpath" size="25" style="min-width: 8em"/>
+          <textbox id="ec2ui.createlb.pingpath" size="25" style="min-width: 8em" value="index.html" />
         </row>
          <row height="20px">
             <h1 style="font-weight:bold;">Advanced Options:</h1>
          </row>
         <row>
           <label control="ec2ui.createlb.timeout" value="&ec2ui.loadbalancerview.Timeout.label;" />
-          <textbox id="ec2ui.createlb.timeout" size="25" style="min-width: 8em" onkeypress="return numOnly(event);"/>
+          <textbox id="ec2ui.createlb.timeout" size="25" style="min-width: 8em" onkeypress="return numOnly(event);" value="5" />
         </row>
         <row>
           <label control="ec2ui.createlb.Interval" value="&ec2ui.loadbalancerview.interval.label;" />
-          <textbox id="ec2ui.createlb.Interval" size="25" style="min-width: 8em" onkeypress="return numOnly(event);"/>
+          <textbox id="ec2ui.createlb.Interval" size="25" style="min-width: 8em" onkeypress="return numOnly(event);" value="0.5" />
         </row>
         <row>
           <label control="ec2ui.createlb.uThreshold" value="&ec2ui.loadbalancerview.UnhealthyThreshold.label;" />
-          <textbox id="ec2ui.createlb.uThreshold" size="25" style="min-width: 8em" onkeypress="return numOnly(event);"/>
+          <textbox id="ec2ui.createlb.uThreshold" size="25" style="min-width: 8em" onkeypress="return numOnly(event);" value="2" />
         </row>
         <row>
           <label control="ec2ui.createlb.HThreshold" value="&ec2ui.loadbalancerview.HealthyThreshold.label;" />
-          <textbox id="ec2ui.createlb.HThreshold" size="25" style="min-width: 8em" onkeypress="return numOnly(event);"/>
+          <textbox id="ec2ui.createlb.HThreshold" size="25" style="min-width: 8em" onkeypress="return numOnly(event);" value="10" />
         </row>
        </rows>
     </grid>
