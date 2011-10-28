@@ -11,16 +11,16 @@
   <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
   <script type="application/x-javascript" src="chrome://ec2ui/content/base64.js" />
   <!-- Page 1 create ;oad balancer -->
-  <wizardpage description="&ec2ui.dialog.description.step1;">
+  <wizardpage description="&ec2ui.dialog.description.step1;" onpageadvanced="return Create_Loadbalancer_validate1();">
      <grid flex="100%">
       <rows>
         <row>
           <label control="ec2ui.createlb.Name" value="&ec2ui.loadbalancerview.Name.label;" />
-          <textbox id="ec2ui.createlb.Name" size="25"  onkeypress="return noWhiteSpace(event);" style="min-width:8em"/>
+          <textbox id="ec2ui.createlb.Name" size="25" style="min-width:8em"/>
         </row>
         <row>
         <label control="ec2ui.createlb.Protocol" value="&ec2ui.loadbalancerview.protocol.label;" />
-        <menulist id="ec2ui.createlb.Protocol" oncommand="createTopic('ec2ui.createlb.Protocol')"  style="min-width: 8em">
+        <menulist id="ec2ui.createlb.Protocol" style="min-width: 8em">
            <menupopup id="ec2ui.createlb.Protocol">
               <menuitem label="HTTP" value="HTTP"/>
               <menuitem label="TCP" value="TCP"/>
@@ -43,7 +43,7 @@
     </grid>
   </wizardpage >
  <!-- Page 2 Configure Health Check  -->  
-  <wizardpage description="&ec2ui.dialog.description.step2;">
+  <wizardpage description="&ec2ui.dialog.description.step2;" onpageadvanced="return Create_Loadbalancer_validate2();">
      <grid flex="100%">
       <rows>
          <row  height="20px">
@@ -51,7 +51,7 @@
          </row>
          <row>
           <label control="ec2ui.createlb.pingprotocol" value="&ec2ui.loadbalancerview.PingProtocol.label;" />
-         <menulist id="ec2ui.createlb.pingprotocol" style="min-width: 8em">
+         <menulist id="ec2ui.createlb.pingprotocol" style="min-width: 8em" oncommand="document.getElementById('ec2ui.createlb.pingpath').disabled = (this.selectedItem.value != 'HTTP');">
            <menupopup id="ec2ui.createlb.pingprotocol">
               <menuitem label="HTTP" value="HTTP"/>
               <menuitem label="TCP" value="TCP"/>
@@ -60,30 +60,30 @@
         </row>
          <row>
           <label control="ec2ui.createlb.pingport" value="&ec2ui.loadbalancerview.Port.label;" />
-          <textbox id="ec2ui.createlb.pingport" size="25" style="min-width: 8em" onkeypress="return numOnly(event);" value="80" />
+          <textbox id="ec2ui.createlb.pingport" size="25" style="min-width: 8em" value="80" />
         </row>
          <row>
           <label control="ec2ui.createlb.pingpath" value="&ec2ui.loadbalancerview.Path.label;" />
-          <textbox id="ec2ui.createlb.pingpath" size="25" style="min-width: 8em" value="index.html" />
+          <textbox id="ec2ui.createlb.pingpath" size="25" style="min-width: 8em" value="/index.html" />
         </row>
          <row height="20px">
             <h1 style="font-weight:bold;">Advanced Options:</h1>
          </row>
         <row>
           <label control="ec2ui.createlb.timeout" value="&ec2ui.loadbalancerview.Timeout.label;" />
-          <textbox id="ec2ui.createlb.timeout" size="25" style="min-width: 8em" onkeypress="return numOnly(event);" value="5" />
+          <textbox id="ec2ui.createlb.timeout" size="25" style="min-width: 8em" value="5" />
         </row>
         <row>
           <label control="ec2ui.createlb.Interval" value="&ec2ui.loadbalancerview.interval.label;" />
-          <textbox id="ec2ui.createlb.Interval" size="25" style="min-width: 8em" onkeypress="return numOnly(event);" value="0.5" />
+          <textbox id="ec2ui.createlb.Interval" size="25" style="min-width: 8em" value="30" />
         </row>
         <row>
           <label control="ec2ui.createlb.uThreshold" value="&ec2ui.loadbalancerview.UnhealthyThreshold.label;" />
-          <textbox id="ec2ui.createlb.uThreshold" size="25" style="min-width: 8em" onkeypress="return numOnly(event);" value="2" />
+          <textbox id="ec2ui.createlb.uThreshold" size="25" style="min-width: 8em" value="2" />
         </row>
         <row>
           <label control="ec2ui.createlb.HThreshold" value="&ec2ui.loadbalancerview.HealthyThreshold.label;" />
-          <textbox id="ec2ui.createlb.HThreshold" size="25" style="min-width: 8em" onkeypress="return numOnly(event);" value="10" />
+          <textbox id="ec2ui.createlb.HThreshold" size="25" style="min-width: 8em" value="10" />
         </row>
        </rows>
     </grid>
@@ -104,37 +104,4 @@
   </listcols>
 </listbox>
 </wizardpage>
-<script type="text/javascript">
-function noWhiteSpace(evt)
-{	
-	var charCode = (evt.which) ? evt.which : window.event.keyCode;
-
-	if (charCode == 13)
-	{
-		return true;
-	}
-	else
-	{
-		var keyChar = String.fromCharCode(charCode);
-		var re = /\s/ ;
-		return !re.test(keyChar);
-	}	
-}
-function numOnly(evt)
-{	
-	var charCode = (evt.which) ? evt.which : window.event.keyCode;
-
-	if (charCode == 13)
-	{
-		return true;
-	}
-	else
-	{
-		var keyChar = String.fromCharCode(charCode);
-		var re = /[0-9]/
-		return re.test(keyChar);
-	}	
-}
-
-</script>
 </wizard>

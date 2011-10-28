@@ -2223,7 +2223,13 @@ var ec2ui_controller = {
     
     ConfigureHealthCheck : function(LoadBalancerName,pingprotocol,pingport,pingpath,Interval,Timeout,HealthyThreshold,UnhealthyThreshold,callback){
        var params = []
-       if (pingprotocol != null) params.push(["HealthCheck.Target" , pingprotocol+":"+pingport+"/"+pingpath]);
+       if (pingprotocol != null) {
+           if (pingprotocol == 'HTTP') {
+               params.push(["HealthCheck.Target" , pingprotocol+":"+pingport+"/"+pingpath]);
+           } else {
+               params.push(["HealthCheck.Target" , pingprotocol+":"+pingport]);
+           }
+       }
        if (LoadBalancerName != null) params.push(["LoadBalancerName", LoadBalancerName]);
        if (Interval != null) params.push(["HealthCheck.Interval", Interval]);
        if (Timeout != null) params.push(["HealthCheck.Timeout", Timeout]);
