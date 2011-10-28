@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.loadbalancer.detail" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	onload="ec2_LoadbalancerDetails.init();" ondialogaccept="return true;" title="&ec2ui.dialog.title.loadbalancer_details;">
+
+	<script type="application/x-javascript" src="chrome://ec2ui/content/loadbalancerdetailsdialog.js" />
+	<script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+
+	<vbox flex="1">
+		<grid flex="1">
+			<columns>
+				<column />
+				<column />
+				<column />
+                                <column />
+			</columns>
+			<rows>
+				<row>
+					<label control="ec2ui.loadbalancer.LoadBalancerName" value="&ec2ui.loadbalancerview.Name.label;" />
+					<textbox id="ec2ui.loadbalancer.LoadBalancerName" size="40" readonly="true" />
+				</row>
+				<row>
+					<label control="ec2ui.loadbalancer.CreatedTime" value="&ec2ui.loadbalancerview.creationtime.label;" />
+					<textbox id="ec2ui.loadbalancer.CreatedTime" size="40" readonly="true" />
+				</row>
+                                <row>
+					<label control="ec2ui.loadbalancer.DNSName" value="&ec2ui.loadbalancerview.dnsname.label;" />
+					<textbox id="ec2ui.loadbalancer.DNSName" size="40" readonly="true" />
+				</row>
+				<row>
+					<label control="ec2ui.loadbalancer.Protocol" value="&ec2ui.loadbalancerview.protocol.label;" />
+					<textbox id="ec2ui.loadbalancer.Protocol" size="40" readonly="true" />
+				</row>
+				<row>
+					<label control="ec2ui.loadbalancer.LoadBalancerPort" value="&ec2ui.loadbalancerview.lbport.label;" />
+					<textbox id="ec2ui.loadbalancer.LoadBalancerPort" size="40" readonly="true" />
+				</row>
+				<row>
+					<label control="ec2ui.loadbalancer.InstancePort" value="&ec2ui.loadbalancerview.iport.label;" />
+					<textbox id="ec2ui.loadbalancer.InstancePort" size="40" readonly="true" />
+				</row>
+				<row>
+					<label control="ec2ui.loadbalancer.Interval" value="&ec2ui.loadbalancerview.interval.label;" />
+					<textbox id="ec2ui.loadbalancer.Interval" size="40" readonly="true" />
+				</row>
+				<row>
+					<label control="ec2ui.loadbalancer.Target" value="&ec2ui.loadbalancerview.target.label;" />
+					<textbox id="ec2ui.loadbalancer.Target" size="40" readonly="true" />
+				</row>
+				<row>
+					<label control="ec2ui.loadbalancer.HealthyThreshold" value="&ec2ui.loadbalancerview.HealthyThreshold.label;" />
+					<textbox id="ec2ui.loadbalancer.HealthyThreshold" size="40" readonly="true" />
+				</row>
+				<row>
+					<label control="ec2ui.loadbalancer.UnhealthyThreshold" value="&ec2ui.loadbalancerview.UnhealthyThreshold.label;" />
+					<textbox id="ec2ui.loadbalancer.UnhealthyThreshold" size="40" readonly="true" />
+				</row>
+				<row>
+					<label control="ec2ui.loadbalancer.Timeout" value="&ec2ui.loadbalancerview.Timeout.label;" />
+					<textbox id="ec2ui.loadbalancer.Timeout" size="40" readonly="true" />
+				</row>
+                                <row>
+					<label control="ec2ui.loadbalancer.Instances" value="&ec2ui.loadbalancerview.Instances.label;" />
+					<textbox id="ec2ui.loadbalancer.Instances" size="40" readonly="true" />
+				</row>
+                                 <row>
+					<label control="ec2ui.loadbalancer.zone" value="&ec2ui.loadbalancerview.AvailabilityZones.label;" />
+					<textbox id="ec2ui.loadbalancer.zone" size="40" readonly="true" />
+				</row>
+			
+			</rows>
+		</grid>
+	</vbox>
+</dialog>

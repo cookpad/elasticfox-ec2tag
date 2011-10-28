@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://ec2ui/skin/ec2ui.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <tabpanel id="loadbalancer_tab" flex="1">
+    <vbox flex="1">
+    <groupbox orient="vertical" flex="1" id="loadbalancer.tree.holder">
+      <caption label="&ec2ui.captions.loadbalancer.label;" />
+       <popupset >
+          <menupopup id="loadbalancer.tree.contextmenu"  onpopupshowing="ec2ui_LoadbalancerTreeView.enableOrDisableItems(event);">
+              <menuitem oncommand="ec2ui_LoadbalancerTreeView.viewDetails(event);"
+              label="&ec2ui.loadbalancer.contextmenu.viewdetails.label;" />
+              <menuitem oncommand="ec2ui_LoadbalancerTreeView.copyToClipBoard('DNSName');"
+              label="&ec2ui.loadbalancer.contextmenu.copydns.label;" />
+              <menuseparator/>
+              <menuitem oncommand="ec2ui_LoadbalancerTreeView.registerinstances(event);"
+              label="&ec2ui.loadbalancer.contextmenu.registerinstance.label;" />
+              <menuitem id="loadbalancer.context.instances" oncommand="ec2ui_LoadbalancerTreeView.deregisterinstances(event);"
+              label="&ec2ui.loadbalancer.contextmenu.deregisterinstance.label;" />
+              <menuseparator/>
+              <menuitem oncommand="ec2ui_LoadbalancerTreeView.enableazone(event);"
+              label="&ec2ui.loadbalancer.contextmenu.enableavailability.label;" />
+              <menuitem id="loadbalancer.context.zones" oncommand="ec2ui_LoadbalancerTreeView.disableazone(event);"
+              label="&ec2ui.loadbalancer.contextmenu.disableavailability.label;" />
+              <menuseparator/>
+              <menuitem id="loadbalancer.context.disablestickness" oncommand="ec2ui_LoadbalancerTreeView.disablestickness(event);"
+              label="&ec2ui.loadbalancer.contextmenu.disablestickness.label;" />
+              <menuitem id="loadbalancer.context.appstickness" oncommand="ec2ui_LoadbalancerTreeView.applicationsticknesss(event);"
+              label="&ec2ui.loadbalancer.contextmenu.appstickness.label;" />
+              <menuitem id="loadbalancer.context.lbstickness" oncommand="ec2ui_LoadbalancerTreeView.loadbalancerstickness(event);"
+              label="&ec2ui.loadbalancer.contextmenu.loadbalancerstickness.label;" />
+              <menuseparator/>
+              <menuitem oncommand="ec2ui_LoadbalancerTreeView.ConfigureHealthCheck(event);"
+              label="&ec2ui.loadbalancer.contextmenu.configurehealthcheck.label;" />
+              <menuseparator/>
+              <menuitem oncommand="ec2ui_LoadbalancerTreeView.deleteLoadBalancer(event);"
+              label="&ec2ui.loadbalancer.contextmenu.delete.label;" />
+          </menupopup>
+        </popupset>
+      <toolbar style="padding: 0px 3px; -moz-box-align: center">
+        <toolbarbutton image="images/refresh.png" oncommand="ec2ui_LoadbalancerTreeView.refresh()"
+          tooltiptext="&ec2ui.refresh.tip;" />
+        <toolbarbutton image="images/alloc.png" tooltiptext="&ec2ui.create.loadbalancer.tip;"
+          oncommand="ec2ui_LoadbalancerTreeView.create();" />
+      </toolbar>
+      <tree enableColumnDrag="true" id="ec2ui.loadbalancer.view" flex="1" ondblclick="ec2ui_LoadbalancerTreeView.viewDetails(event)"
+            onselect="ec2ui_LoadbalancerTreeView.selectionChanged(event);">
+        <treecols>
+          <treecol id="loadbalancer.LoadBalancerName" label="&ec2ui.loadbalancer.name.label;" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="loadbalancer.CreatedTime" label="&ec2ui.loadbalancer.creationtime.label;" flex="5"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="loadbalancer.DNSName" label="&ec2ui.loadbalancer.dnsname.label;" flex="5"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+           <treecol id="loadbalancer.InstanceId" label="&ec2ui.loadbalancer.instances.label;" flex="5"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+           <treecol id="loadbalancer.Protocol" label="&ec2ui.loadbalancer.Protocol.label;" flex="5"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+           <treecol id="loadbalancer.LoadBalancerPort" label="&ec2ui.loadbalancer.LoadBalancerPort.label;" flex="5"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+           <treecol id="loadbalancer.InstancePort" label="&ec2ui.loadbalancer.InstancePort.label;" flex="5"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+           <treecol id="loadbalancer.zone" label="&ec2ui.loadbalancer.zone.label;" flex="5"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+           <treecol id="loadbalancer.Interval" label="&ec2ui.loadbalancer.Interval.label;" flex="5"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+           <treecol id="loadbalancer.Timeout" label="&ec2ui.loadbalancer.Timeout.label;" flex="5"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+           <treecol id="loadbalancer.HealthyThreshold" label="&ec2ui.loadbalancer.HealthyThreshold.label;" flex="5"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+           <treecol id="loadbalancer.UnhealthyThreshold" label="&ec2ui.loadbalancer.UnhealthyThreshold.label;" flex="5"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+           <treecol id="loadbalancer.Target" label="&ec2ui.loadbalancer.Target.label;" flex="5"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+           <treecol id="loadbalancer.CookieName" label="&ec2ui.loadbalancer.apppolicy.label;" flex="5"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+           <treecol id="loadbalancer.APolicyName" label="&ec2ui.loadbalancer.Target.label;" flex="5"
+            persist="width ordinal hidden sortDirection" hidden="true" />
+         <treecol id="loadbalancer.CookieExpirationPeriod" label="&ec2ui.loadbalancer.lbpolicy.label;" flex="5"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+           <treecol id="loadbalancer.CPolicyName" label="&ec2ui.loadbalancer.Target.label;" flex="5"
+            persist="width ordinal hidden sortDirection" hidden="true" />
+
+          
+         </treecols>
+        <treechildren id="loadbalancer.tree.children" context="loadbalancer.tree.contextmenu" />
+      </tree>
+    </groupbox>
+      <splitter style="width: 4px; max-height: 4px;" persist="state"
+        collapse="after" resizebefore="closest">
+        <grippy />
+      </splitter>
+      <groupbox orient="vertical" flex="1">
+        <caption label="&ec2ui.captions.InstanceHealth.label;" />
+        <tree id="ec2ui.instancehealth.view" seltype="single" enableColumnDrag="true" flex="1">
+          <treecols>
+            <treecol id="InstanceHealth.Description" label="&ec2ui.InstanceHealth.Description.label;" flex="1"
+              sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="InstanceHealth.State" label="&ec2ui.InstanceHealth.State.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="InstanceHealth.InstanceId" label="&ec2ui.InstanceHealth.InstanceId.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="InstanceHealth.ReasonCode" label="&ec2ui.InstanceHealth.ReasonCode.label;" flex="1"
+              persist="width ordinal hidden sortDirection" />
+       
+          </treecols>
+          <treechildren context="ec2ui.InstanceHealth.contextmenu"/>
+        </tree>
+      </groupbox>
+    </vbox>
+  </tabpanel>
+</overlay>

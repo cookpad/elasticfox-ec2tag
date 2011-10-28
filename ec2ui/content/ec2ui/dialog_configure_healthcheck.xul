@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.newinstances" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="accept,cancel" ondialogaccept="return ec2ui_ConfigureHealthCheck.launch();" ondialogcancel="return true;"
+  onload="ec2ui_ConfigureHealthCheck.init();" title="&ec2ui.dialog.title.Configure_Healthckeck;" buttonlabelaccept="&ec2ui.dialog.button.accept.Configure.label;">
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/utils.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/configurehealthcheck.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/base64.js" />
+
+  <vbox flex="1">
+    <grid flex="1">
+      <rows>
+        <rows>
+          <row>
+          <label control="ec2ui.loadbalancer.LoadBalancerName" hidden="true" value="Loadbalancer Name:" />
+          <textbox id="ec2ui.loadbalancer.LoadBalancerName" hidden="true" size="40" />
+        </row>
+          <row>
+          <label control="ec2ui.loadbalancer.target" value="&ec2ui.loadbalancerview.target.label;" />
+          <textbox id="ec2ui.loadbalancer.target" size="40" />
+        </row>
+        <row>
+          <label control="ec2ui.loadbalancer.timeout" value="&ec2ui.loadbalancerview.Timeout.label;" />
+          <textbox id="ec2ui.loadbalancer.timeout" size="40" />
+        </row>
+        <row>
+          <label control="ec2ui.loadbalancer.Interval" value="&ec2ui.loadbalancerview.interval.label;" />
+          <textbox id="ec2ui.loadbalancer.Interval" size="40" />
+        </row>
+        <row>
+          <label control="ec2ui.loadbalancer.uThreshold" value="&ec2ui.loadbalancerview.UnhealthyThreshold.label;" />
+          <textbox id="ec2ui.loadbalancer.uThreshold" size="40" />
+        </row>
+        <row>
+          <label control="ec2ui.loadbalancer.HThreshold" value="&ec2ui.loadbalancerview.HealthyThreshold.label;" />
+          <textbox id="ec2ui.loadbalancer.HThreshold" size="40" />
+        </row>
+       </rows>
+       </rows>
+    </grid>
+ 
+  </vbox>  
+</dialog>

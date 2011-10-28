@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<wizard  id="ec2ui.dialog.createlb" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  onwizardfinish="return ec2_Createlb.launch();"
+  onload="ec2_Createlb.init();" title="&ec2ui.dialog.title.Create_Loadbalancer;"  width="550" height="400">
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/utils.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/createlbdialog.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/base64.js" />
+  <!-- Page 1 create ;oad balancer -->
+  <wizardpage description="&ec2ui.dialog.description.step1;">
+     <grid flex="100%">
+      <rows>
+        <row>
+          <label control="ec2ui.createlb.Name" value="&ec2ui.loadbalancerview.Name.label;" />
+          <textbox id="ec2ui.createlb.Name" size="25"  onkeypress="return noWhiteSpace(event);" style="min-width:8em"/>
+        </row>
+        <row>
+        <label control="ec2ui.createlb.Protocol" value="&ec2ui.loadbalancerview.protocol.label;" />
+        <menulist id="ec2ui.createlb.Protocol" oncommand="createTopic('ec2ui.createlb.Protocol')"  style="min-width: 8em">
+           <menupopup id="ec2ui.createlb.Protocol">
+              <menuitem label="Select a Protocol" value="0"/>
+              <menuitem label="HTTP" value="HTTP"/>
+              <menuitem label="TCP" value="TCP"/>
+           </menupopup>
+        </menulist>
+      </row>
+        <row>
+          <label control="ec2ui.createlb.elbport" value="&ec2ui.loadbalancerview.lbport.label;" />
+          <textbox id="ec2ui.createlb.elbport"  size="25" style="min-width: 8em"/>
+        </row>
+        <row>
+          <label control="ec2ui.createlb.instanceport" value="&ec2ui.loadbalancerview.iport.label;" />
+          <textbox id="ec2ui.createlb.instanceport"  size="25" style="min-width: 8em"/>
+        </row>
+        <row>
+          <label control="ec2ui.createlb.availabilityzonelist" value="&ec2ui.loadbalancerview.AvailabilityZones.label;" />
+          <menulist id="ec2ui.createlb.availabilityzonelist" />
+        </row>
+     </rows>
+    </grid>
+  </wizardpage >
+ <!-- Page 2 Configure Health Check  -->  
+  <wizardpage description="&ec2ui.dialog.description.step2;">
+     <grid flex="100%">
+      <rows>
+         <row  height="20px">
+            <h1 style="font-weight:bold;">Configuration Options:</h1>
+         </row>
+         <row>
+          <label control="ec2ui.createlb.pingprotocol" value="&ec2ui.loadbalancerview.PingProtocol.label;" />
+         <menulist id="ec2ui.createlb.pingprotocol" style="min-width: 8em">
+           <menupopup id="ec2ui.createlb.pingprotocol">
+              <menuitem label="Select a Protocol" value="0"/>
+              <menuitem label="HTTP" value="HTTP"/>
+              <menuitem label="TCP" value="TCP"/>
+           </menupopup>
+        </menulist>
+        </row>
+         <row>
+          <label control="ec2ui.createlb.pingport" value="&ec2ui.loadbalancerview.Port.label;" />
+          <textbox id="ec2ui.createlb.pingport" size="25" style="min-width: 8em" onkeypress="return numOnly(event);"/>
+        </row>
+         <row>
+          <label control="ec2ui.createlb.pingpath" value="&ec2ui.loadbalancerview.Path.label;" />
+          <textbox id="ec2ui.createlb.pingpath" size="25" style="min-width: 8em"/>
+        </row>
+         <row height="20px">
+            <h1 style="font-weight:bold;">Advanced Options:</h1>
+         </row>
+        <row>
+          <label control="ec2ui.createlb.timeout" value="&ec2ui.loadbalancerview.Timeout.label;" />
+          <textbox id="ec2ui.createlb.timeout" size="25" style="min-width: 8em" onkeypress="return numOnly(event);"/>
+        </row>
+        <row>
+          <label control="ec2ui.createlb.Interval" value="&ec2ui.loadbalancerview.interval.label;" />
+          <textbox id="ec2ui.createlb.Interval" size="25" style="min-width: 8em" onkeypress="return numOnly(event);"/>
+        </row>
+        <row>
+          <label control="ec2ui.createlb.uThreshold" value="&ec2ui.loadbalancerview.UnhealthyThreshold.label;" />
+          <textbox id="ec2ui.createlb.uThreshold" size="25" style="min-width: 8em" onkeypress="return numOnly(event);"/>
+        </row>
+        <row>
+          <label control="ec2ui.createlb.HThreshold" value="&ec2ui.loadbalancerview.HealthyThreshold.label;" />
+          <textbox id="ec2ui.createlb.HThreshold" size="25" style="min-width: 8em" onkeypress="return numOnly(event);"/>
+        </row>
+       </rows>
+    </grid>
+  </wizardpage>
+  <!-- Page 3 Register Instance With Load balancer  --> 
+   <wizardpage onload="ec2_Createlb.test();" description="&ec2ui.dialog.description.step3;">
+ <listbox id="theList" rows="10" width="550" seltype="multiple" onclick="ec2_Createlb.reg_unreg_instances(event)">
+   <listhead>
+     <listheader label="&ec2ui.registerlb.register.label;" width="50"/>
+     <listheader label="&ec2ui.registerlb.instanceid.label;" width="200"/>
+     <listheader label="&ec2ui.registerlb.state.label;" width="100"/>
+     <listheader label="&ec2ui.registerlb.zone.label;" width="150"/>
+  </listhead>
+  <listcols>
+   <listcol/>
+   <listcol flex="1"/>
+  </listcols>
+</listbox>
+</wizardpage>
+<script type="text/javascript">
+function noWhiteSpace(evt)
+{	
+	var charCode = (evt.which) ? evt.which : window.event.keyCode;
+
+	if (charCode == 13)
+	{
+		return true;
+	}
+	else
+	{
+		var keyChar = String.fromCharCode(charCode);
+		var re = /\s/ ;
+		return !re.test(keyChar);
+	}	
+}
+function numOnly(evt)
+{	
+	var charCode = (evt.which) ? evt.which : window.event.keyCode;
+
+	if (charCode == 13)
+	{
+		return true;
+	}
+	else
+	{
+		var keyChar = String.fromCharCode(charCode);
+		var re = /[0-9]/
+		return re.test(keyChar);
+	}	
+}
+
+</script>
+</wizard>
