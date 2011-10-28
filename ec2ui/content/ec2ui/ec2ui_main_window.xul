@@ -12,6 +12,7 @@
 <?xul-overlay href="chrome://ec2ui/content/leases_tab_overlay.xul"?>
 <?xul-overlay href="chrome://ec2ui/content/vpcs_tab_overlay.xul"?>
 <?xul-overlay href="chrome://ec2ui/content/vpns_tab_overlay.xul"?>
+<?xul-overlay href="chrome://ec2ui/content/loadbalancer_tab_overlay.xul"?>
 
 <!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
 <window id="ec2ui-window" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
@@ -61,6 +62,10 @@
   <script type="application/x-javascript" src="chrome://ec2ui/content/customergatewaysview.js" />
   <script type="application/x-javascript" src="chrome://ec2ui/content/vpnconnectionsview.js" />
   <script type="application/x-javascript" src="chrome://ec2ui/content/vpnattachmentsview.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/loadbalancerview.js" />
+  <!--
+  <script type="application/x-javascript" src="chrome://ec2ui/content/instancehealthview.js" />
+    -->
 
   <stringbundleset id="stringbundleset">
     <stringbundle id="ec2ui.properties.bundle" src="chrome://ec2ui/locale/ec2ui.properties" />
@@ -110,6 +115,7 @@
         <tab label="&ec2ui.tabs.secgroups.label;" />
         <tab label="&ec2ui.tabs.eips.label;" />
         <tab label="&ec2ui.tabs.volumes.label;" />
+        <tab label="&ec2ui.tabs.loadbalancer.label;" id="ec2ui.tabs.loadbalancer" />
         <tab label="&ec2ui.tabs.bundleTasks.label;" />
         <tab label="&ec2ui.tabs.leases.label;" />
         <tab label="&ec2ui.tabs.vpcs.label;" />
@@ -123,6 +129,7 @@
         <tabpanel id="security_groups_tab"/>
         <tabpanel id="eip_tab"/>
         <tabpanel id="volumes_tab"/>
+        <tabpanel id="loadbalancer_tab"/>
         <tabpanel id="bundle_tasks_tab"/>
         <tabpanel id="leases_tab"/>
         <tabpanel id="vpcs_tab"/>
