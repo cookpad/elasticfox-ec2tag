@@ -43,6 +43,8 @@ var ec2ui_session =
             document.getElementById("ec2ui.bundleTasks.view").view = ec2ui_BundleTasksTreeView;
             document.getElementById("ec2ui.offerings.view").view = ec2ui_LeaseOfferingsTreeView;
             document.getElementById("ec2ui.rsvdInst.view").view = ec2ui_ReservedInstancesTreeView;
+	    document.getElementById("ec2ui.loadbalancer.view").view = ec2ui_LoadbalancerTreeView;
+	    //document.getElementById("ec2ui.instancehealth.view").view = ec2ui_InstanceHealthTreeView;
             document.getElementById("ec2ui.vpcs.view").view = ec2ui_VpcTreeView;
             document.getElementById("ec2ui.subnets.view").view = ec2ui_SubnetTreeView;
             document.getElementById("ec2ui.dhcpoptions.view").view = ec2ui_DhcpoptsTreeView;
@@ -184,6 +186,9 @@ var ec2ui_session =
             eval("ec2ui_VpnGatewayTreeView." + toCall);
             eval("ec2ui_CustomerGatewayTreeView." + toCall);
             eval("ec2ui_VpnAttachmentTreeView." + toCall);
+            break;
+	case "ec2ui.tabs.loadbalancer":
+            eval("ec2ui_LoadbalancerTreeView." + toCall);
             break;
         default:
             log ("This is an invalid tab: " + tabs.selectedItem.label);
