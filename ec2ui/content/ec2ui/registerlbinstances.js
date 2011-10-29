@@ -45,6 +45,10 @@ var ec2ui_RegisterInstances = {
         var registerid = new Array();
 	
         for (var i in InstanceIds){
+            if (InstanceIds[i].LoadBalancerName != loadbalancername) {
+                continue;
+            }
+
             var Instancechk = InstanceIds[i].InstanceId;
 	    var instanceid = new String(Instancechk);
 	    var tempArray = new Array();

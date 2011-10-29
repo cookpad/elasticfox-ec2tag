@@ -49,10 +49,11 @@ var ec2_Createlb = {
 	var theList = document.getElementById('theList');
         var Idx = 0;
 	var Instanceid = this.ec2ui_session.model.getInstances();
-        var lbinstance = this.ec2ui_session.model.getLoadbalancer();
+        //var lbinstance = this.ec2ui_session.model.getLoadbalancer();
 		
         var registerid = new Array();
 	
+      /*
         for (var i in lbinstance){
             var Instancechk = lbinstance[i].InstanceId;
 	    var instanceid = new String(Instancechk);
@@ -63,6 +64,7 @@ var ec2_Createlb = {
 		registerid.push(tempArray[a]);
 	    }	    
 	}
+       */
 	
 	for (var i in Instanceid) {
 	    if(Instanceid[i].state == "running"){
