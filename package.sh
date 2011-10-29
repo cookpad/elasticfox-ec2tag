@@ -2,7 +2,7 @@
 VERSION=0.3.1
 rm -f *.xpi
 cd ec2ui/
-zip -r ../elasticfox/chrome/ec2ui.jar .
+zip -qr ../elasticfox/chrome/ec2ui.jar .
 cd ../elasticfox/
-zip -r ../elasticfox-ec2tag-${VERSION}.xpi .
+zip -qr ../elasticfox-ec2tag-${VERSION}.xpi .
 rm -f chrome/ec2ui.jar
