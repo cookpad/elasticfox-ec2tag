@@ -900,5 +900,19 @@ var ec2ui_utils = {
         }
 
         return region;
-    }
+    },
+    getMessageProperty : function(key, replacements) {
+        if ( !this._stringBundle ) {
+            const BUNDLE_SVC = Components.classes['@mozilla.org/intl/stringbundle;1'].getService(Components.interfaces.nsIStringBundleService);
+            this._stringBundle = BUNDLE_SVC.createBundle("chrome://ec2ui/locale/ec2ui.properties");
+        }
+        try {
+            if ( !replacements )
+                return this._stringBundle.GetStringFromName(key);
+            else
+                return this._stringBundle.formatStringFromName(key, replacements, replacements.length);
+        } catch(e) {
+            return "";
+        }
+    },
 };
