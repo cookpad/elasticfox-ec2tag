@@ -11,7 +11,7 @@
   <script type="application/x-javascript" src="chrome://ec2ui/content/model.js" />
   <script type="application/x-javascript" src="chrome://ec2ui/content/base64.js" />
   <textbox id="ec2ui.registerlb.LoadBalancerName" size="40" hidden="true" readonly="true" />
-  <listbox id="Register_Instances" rows="10" width="400" seltype="multiple" onclick="ec2ui_RegisterInstances.enable_disableInstances();">
+  <listbox id="Register_Instances" rows="10" width="500" seltype="multiple" onclick="ec2ui_RegisterInstances.enable_disableInstances();">
   <listhead>
      <listheader label="&ec2ui.registerlb.register.label;" width="50"/>
      <listheader label="&ec2ui.registerlb.instanceid.label;" width="100"/>

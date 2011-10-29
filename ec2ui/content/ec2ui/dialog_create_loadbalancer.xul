@@ -96,7 +96,7 @@
      <listheader label="&ec2ui.registerlb.instanceid.label;" width="100"/>
      <listheader label="&ec2ui.registerlb.state.label;" width="100"/>
      <listheader label="&ec2ui.registerlb.zone.label;" width="100"/>
-     <listheader label="Name" width="100"/>
+     <listheader label="Name" width="150"/>
   </listhead>
   <listcols>
    <listcol/>
