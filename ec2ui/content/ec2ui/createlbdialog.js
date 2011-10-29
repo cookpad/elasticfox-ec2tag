@@ -180,6 +180,15 @@ function Create_Loadbalancer_validate1() {
     return false;
   }
 
+  var lbs = ec2_Createlb.ec2ui_session.model.getLoadbalancer();
+
+  for (var i = 0; i < lbs.length; i++) {
+    if (lbs[i].LoadBalancerName == name) {
+      alert('Duplicate Load Balancer name.');
+      return false;
+    }
+  }
+
   return true;
 }
 
@@ -201,7 +210,6 @@ function Create_Loadbalancer_validate2() {
     alert('Ping port must be 1-65535 inclusive.');
     return false;
   }
-
 
   if (pingprotocol == 'HTTP' && !/^[\x21-\x7E]+$/.test(pingpath)) {
     alert('Ping path may only contain printable ASCII characters, without spaces.');
