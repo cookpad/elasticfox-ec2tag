@@ -701,7 +701,26 @@ var ec2ui_model = {
     },
     
     updateInstanceHealth : function(list) {
+        if (!this.instances) {
+            ec2ui_session.controller.describeInstances();
+        }
+
         this.InstanceHealth = list;
+
+        if (this.instances && list) {
+            var instanceNames = new Object();
+
+            for (var i = 0; i < this.instances.length; i++) {
+                var instance = this.instances[i];
+                instanceNames[instance.id] = instance.name;
+            }
+
+            for (var i = 0; i < list.length; i++) {
+                var instanceHealth = list[i];
+                instanceHealth.InstanceName = instanceNames[instanceHealth.InstanceId];
+            }
+        }
+
         this.notifyComponents("InstanceHealth");
     },
 

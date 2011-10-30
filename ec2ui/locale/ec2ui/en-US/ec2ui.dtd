@@ -588,7 +588,7 @@
 
 <!ENTITY ec2ui.InstanceHealth.Description.label "Description">
 <!ENTITY ec2ui.InstanceHealth.State.label "State">
-<!ENTITY ec2ui.InstanceHealth.InstanceId.label "InstanceId">
+<!ENTITY ec2ui.InstanceHealth.InstanceId.label "Instance ID">
 <!ENTITY ec2ui.InstanceHealth.ReasonCode.label "ReasonCode">
 
 <!ENTITY ec2ui.create.loadbalancer.tip "Create Loadbalancer">

@@ -111,6 +111,10 @@
         <caption label="&ec2ui.captions.InstanceHealth.label;" />
         <tree id="ec2ui.instancehealth.view" seltype="single" enableColumnDrag="true" flex="1">
           <treecols>
+            <treecol id="InstanceHealth.InstanceName" label="Instance Name" flex="1"
+              sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
             <treecol id="InstanceHealth.Description" label="&ec2ui.InstanceHealth.Description.label;" flex="1"
               sortDirection="ascending"
               persist="width ordinal hidden sortDirection" />
