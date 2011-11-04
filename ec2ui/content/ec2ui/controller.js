@@ -968,7 +968,7 @@ var ec2ui_controller = {
         return list;
     },
 
-    runInstances : function (imageId, kernelId, ramdiskId, minCount, maxCount, keyName, securityGroups, userData, properties, instanceType, placement, subnetId, ipAddress, callback) {
+    runInstances : function (imageId, kernelId, ramdiskId, minCount, maxCount, keyName, securityGroups, userData, properties, ephemeral0, ephemeral1, ephemeral2, ephemeral3, instanceType, placement, subnetId, ipAddress, callback) {
         var params = []
         params.push(["ImageId", imageId]);
         if (kernelId != null && kernelId != "") {
@@ -999,6 +999,22 @@ var ec2ui_controller = {
         }
         if (properties != null) {
             params.push(["AdditionalInfo", properties]);
+        }
+        if (ephemeral0 != null) {
+          params.push(["BlockDeviceMapping.0.DeviceName", ephemeral0]);
+          params.push(["BlockDeviceMapping.0.VirtualName", "ephemeral0"]);
+        }
+        if (ephemeral1 != null) {
+          params.push(["BlockDeviceMapping.1.DeviceName", ephemeral1]);
+          params.push(["BlockDeviceMapping.1.VirtualName", "ephemeral1"]);
+        }
+        if (ephemeral2 != null) {
+          params.push(["BlockDeviceMapping.2.DeviceName", ephemeral2]);
+          params.push(["BlockDeviceMapping.2.VirtualName", "ephemeral2"]);
+        }
+        if (ephemeral3 != null) {
+          params.push(["BlockDeviceMapping.3.DeviceName", ephemeral3]);
+          params.push(["BlockDeviceMapping.3.VirtualName", "ephemeral3"]);
         }
         if (placement.availabilityZone != null && placement.availabilityZone != "") {
             params.push(["Placement.AvailabilityZone", placement.availabilityZone]);

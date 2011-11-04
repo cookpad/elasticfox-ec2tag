@@ -54,6 +54,10 @@ var ec2_InstanceLauncher = {
         if (this.retVal.properties == "") {
             this.retVal.properties = null;
         }
+        this.retVal.ephemeral0 = document.getElementById("ec2ui.newinstances.ephemeral0").value;
+        this.retVal.ephemeral1 = document.getElementById("ec2ui.newinstances.ephemeral1").value;
+        this.retVal.ephemeral2 = document.getElementById("ec2ui.newinstances.ephemeral2").value;
+        this.retVal.ephemeral3 = document.getElementById("ec2ui.newinstances.ephemeral3").value;
         this.retVal.ok = true;
 
         return true;

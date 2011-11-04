@@ -69,6 +69,34 @@
           <label control="ec2ui.newinstances.properties" value="Additional Info:" />
           <textbox id="ec2ui.newinstances.properties" size="40" />
         </row>
+        <row>
+          <label control="ec2ui.newinstances.ephemeraldisk0" value="Ephemeral Disk0:" />
+          <hbox>
+            <label value="Device:" />
+            <textbox id="ec2ui.newinstances.ephemeral0" size="33" />
+          </hbox>
+        </row>
+        <row>
+          <label control="ec2ui.newinstances.ephemeraldisk1" value="Ephemeral Disk1:" />
+          <hbox>
+            <label value="Device:" />
+            <textbox id="ec2ui.newinstances.ephemeral1" size="33" />
+          </hbox>
+        </row>
+        <row>
+          <label control="ec2ui.newinstances.ephemeraldisk2" value="Ephemeral Disk2:" />
+          <hbox>
+            <label value="Device:" />
+            <textbox id="ec2ui.newinstances.ephemeral2" size="33" />
+          </hbox>
+        </row>
+        <row>
+          <label control="ec2ui.newinstances.ephemeraldisk3" value="Ephemeral Disk3:" />
+          <hbox>
+            <label value="Device:" />
+            <textbox id="ec2ui.newinstances.ephemeral3" size="33" />
+          </hbox>
+        </row>
         <groupbox flex="1" id="ec2ui.newinstances.vpc.box">
           <caption label="&ec2ui.captions.newinstances.vpc.label;" />
           <grid flex="1">
