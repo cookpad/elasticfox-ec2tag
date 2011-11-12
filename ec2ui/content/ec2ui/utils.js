@@ -429,6 +429,17 @@ function __calcLinuxMonthlyAmount__(types, endpoint) {
        'm2.4xlarge': 1641.6,
         'c1.xlarge': 547.2
     },
+    'us-west-2' : {
+         't1.micro': 14.4,
+         'm1.small': 61.2,
+        'c1.medium': 122.4,
+         'm1.large': 244.8,
+        'm1.xlarge': 489.6,
+        'm2.xlarge': 360.0,
+       'm2.2xlarge': 720,
+       'm2.4xlarge': 1440,
+        'c1.xlarge': 489.6,
+    },
     'ap-southeast-1' : {
          't1.micro': 18.0,
          'm1.small': 68.4,
@@ -478,7 +489,9 @@ function __calcWindowsMonthlyAmount__(types, endpoint) {
         'm2.xlarge': 446.4,
        'm2.2xlarge': 892.8,
        'm2.4xlarge': 1785.6,
-        'c1.xlarge': 835.2
+        'c1.xlarge': 835.2,
+      'cc1.4xlarge': 1425.6,
+      'cg1.4xlarge': 1872.0
     },
     'us-west-1' : {
          't1.micro': 25.2,
@@ -490,6 +503,17 @@ function __calcWindowsMonthlyAmount__(types, endpoint) {
        'm2.2xlarge': 993.6,
        'm2.4xlarge': 1987.2,
         'c1.xlarge': 892.8
+    },
+    'us-west-2' : {
+         't1.micro': 21.6,
+         'm1.small': 86.4,
+        'c1.medium': 208.8,
+         'm1.large': 345.6,
+        'm1.xlarge': 691.2,
+        'm2.xlarge': 446.4,
+       'm2.2xlarge': 892.8,
+       'm2.4xlarge': 1785.6,
+        'c1.xlarge': 835.2
     },
     'eu-west-1' : {
          't1.micro': 25.2,
@@ -895,8 +919,14 @@ var ec2ui_utils = {
         // eu-west-1: region is EU-WEST-1
         if (str.indexOf("us-west-1") >= 0) {
             region = "US-WEST-1";
+        } else if (str.indexOf("us-west-2") >= 0) {
+            region = "US-WEST-2";
         } else if (str.indexOf("eu-west-1") >= 0 || str == "eu") {
             region = "EU-WEST-1";
+        } else if (str.indexOf("ap-southeast-1")) {
+            region = "AP-SOUTHEAST-1";
+        } else if (str.indexOf("ap-northeast-1")) {
+            region = "AP-NORTHEAST-1";
         }
 
         return region;
