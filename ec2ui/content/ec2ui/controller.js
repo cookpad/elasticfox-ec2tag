@@ -1000,19 +1000,25 @@ var ec2ui_controller = {
         if (properties != null) {
             params.push(["AdditionalInfo", properties]);
         }
-        if (ephemeral0 != null) {
+
+        ephemeral0 = (ephemeral0 || '').trim();
+        ephemeral1 = (ephemeral1 || '').trim();
+        ephemeral2 = (ephemeral2 || '').trim();
+        ephemeral3 = (ephemeral3 || '').trim();
+
+        if (ephemeral0) {
           params.push(["BlockDeviceMapping.0.DeviceName", ephemeral0]);
           params.push(["BlockDeviceMapping.0.VirtualName", "ephemeral0"]);
         }
-        if (ephemeral1 != null) {
+        if (ephemeral1) {
           params.push(["BlockDeviceMapping.1.DeviceName", ephemeral1]);
           params.push(["BlockDeviceMapping.1.VirtualName", "ephemeral1"]);
         }
-        if (ephemeral2 != null) {
+        if (ephemeral2) {
           params.push(["BlockDeviceMapping.2.DeviceName", ephemeral2]);
           params.push(["BlockDeviceMapping.2.VirtualName", "ephemeral2"]);
         }
-        if (ephemeral3 != null) {
+        if (ephemeral3) {
           params.push(["BlockDeviceMapping.3.DeviceName", ephemeral3]);
           params.push(["BlockDeviceMapping.3.VirtualName", "ephemeral3"]);
         }
