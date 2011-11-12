@@ -1,5 +1,5 @@
 #!/bin/sh
-VERSION=0.3.1
+VERSION=0.3.2
 rm -f *.xpi
 cd ec2ui/
 zip -qr ../elasticfox/chrome/ec2ui.jar .
