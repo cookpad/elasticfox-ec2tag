@@ -1050,6 +1050,7 @@ var ec2ui_controller = {
             var ownerId = getNodeValueByName(items.snapshotItem(i), "ownerId");
             var groups = new Array();
             var groups_h = new Object();
+            var groupNames = items.snapshotItem(i).getElementsByTagName("groupName");
             var gname = null
             for (var j = 0; j < groupNames.length; j++) {
               if (groupNames[j].firstChild) {
