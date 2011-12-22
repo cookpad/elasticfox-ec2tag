@@ -1049,10 +1049,14 @@ var ec2ui_controller = {
             var resId = getNodeValueByName(items.snapshotItem(i), "reservationId");
             var ownerId = getNodeValueByName(items.snapshotItem(i), "ownerId");
             var groups = new Array();
-            var groupIds = items.snapshotItem(i).getElementsByTagName("groupId");
-            for (var j = 0; j < groupIds.length; j++) {
-                groups.push(groupIds[j].firstChild.nodeValue);
+            var groups_h = new Object();
+            var groupNames = items.snapshotItem(i).getElementsByTagName("groupName");
+            for (var j = 0; j < groupNames.length; j++) {
+              if (groupNames[j].firstChild) {
+                groups_h[groupNames[j].firstChild.nodeValue] = 1;
+              }
             }
+            for (i in groups_h) { groups.push(i); }
 
             var instancesSet = items.snapshotItem(i).getElementsByTagName("instancesSet")[0];
             var instanceItems = instancesSet.childNodes;
@@ -1181,10 +1185,14 @@ var ec2ui_controller = {
             var resId = getNodeValueByName(items.snapshotItem(i), "reservationId");
             var ownerId = getNodeValueByName(items.snapshotItem(i), "ownerId");
             var groups = new Array();
-            var groupIds = items.snapshotItem(i).getElementsByTagName("groupId");
-            for (var j = 0; j < groupIds.length; j++) {
-                groups.push(groupIds[j].firstChild.nodeValue);
+            var groups_h = new Object();
+            var groupNames = items.snapshotItem(i).getElementsByTagName("groupName");
+            for (var j = 0; j < groupNames.length; j++) {
+              if (groupNames[j].firstChild) {
+                groups_h[groupNames[j].firstChild.nodeValue] = 1;
+              }
             }
+            for (i in groups_h) { groups.push(i); }
             var instancesSet = items.snapshotItem(i).getElementsByTagName("instancesSet")[0];
             var instanceItems = instancesSet.childNodes;
 
