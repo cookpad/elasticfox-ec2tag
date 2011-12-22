@@ -1050,13 +1050,14 @@ var ec2ui_controller = {
             var ownerId = getNodeValueByName(items.snapshotItem(i), "ownerId");
             var groups = new Array();
             var groups_h = new Object();
-            var groupNames = items.snapshotItem(i).getElementsByTagName("groupName");
+            var gname = null
             for (var j = 0; j < groupNames.length; j++) {
               if (groupNames[j].firstChild) {
-                groups_h[groupNames[j].firstChild.nodeValue] = 1;
+                gname = groupNames[j].firstChild.nodeValue.toString().trim()
+                if (gname) { groups_h[gname] = 1; }
               }
             }
-            for (i in groups_h) { groups.push(i); }
+            for (gname in groups_h) { groups.push(gname); }
 
             var instancesSet = items.snapshotItem(i).getElementsByTagName("instancesSet")[0];
             var instanceItems = instancesSet.childNodes;
@@ -1187,12 +1188,14 @@ var ec2ui_controller = {
             var groups = new Array();
             var groups_h = new Object();
             var groupNames = items.snapshotItem(i).getElementsByTagName("groupName");
+            var gname = null
             for (var j = 0; j < groupNames.length; j++) {
               if (groupNames[j].firstChild) {
-                groups_h[groupNames[j].firstChild.nodeValue] = 1;
+                gname = groupNames[j].firstChild.nodeValue.toString().trim()
+                if (gname) { groups_h[gname] = 1; }
               }
             }
-            for (i in groups_h) { groups.push(i); }
+            for (gname in groups_h) { groups.push(gname); }
             var instancesSet = items.snapshotItem(i).getElementsByTagName("instancesSet")[0];
             var instanceItems = instancesSet.childNodes;
 

@@ -10,4 +10,4 @@ cd ..
 rm -rf ec2ui/
 cd ../..
 mkdir Frameworks
-rsync -rl /Library/Frameworks/XUL.framework Frameworks/
+#rsync -rl /Library/Frameworks/XUL.framework Frameworks/
