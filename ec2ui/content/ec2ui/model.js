@@ -126,6 +126,15 @@ function KeyPair(name, fingerprint) {
     this.fingerprint = fingerprint;
 }
 
+function InstanceStatusEvent(instanceId, availabilityZone, code, description, startTime, endTime) {
+    this.instanceId = instanceId;
+    this.availabilityZone = availabilityZone;
+    this.code = code;
+    this.description = description;
+    this.startTime = startTime;
+    this.endTime = endTime;
+}
+
 function SecurityGroup(ownerId, name, description, permissions) {
     this.ownerId = ownerId;
     this.name = name;
