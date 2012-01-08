@@ -2553,5 +2553,44 @@ var ec2ui_controller = {
         if (objResponse.callback) {
             objResponse.callback();
         }
+    },
+
+    describeInstanceStatus : function (callback) {
+        ec2_httpclient.queryEC2("DescribeInstanceStatus", [], this, true, "onCompletedescribeInstanceStatus", callback);
+    },
+
+    onCompletedescribeInstanceStatus : function (objResponse) {
+        var xmlDoc = objResponse.xmlDoc;
+
+        var items = xmlDoc.evaluate("/ec2:DescribeInstanceStatusResponse/ec2:instanceStatusSet/ec2:item",
+                                    xmlDoc,
+                                    this.getNsResolver(),
+                                    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                                    null);
+
+        var list = new Array();
+
+        for(var i = 0 ; i < items.snapshotLength; i++) {
+            var item = items.snapshotItem(i);
+            var event = item.getElementsByTagName("event")[0];
+
+            if (event) { continue; }
+
+            var instanceId = getNodeValueByName(item, "instanceId");
+            var availabilityZone = getNodeValueByName(item, "availabilityZone");
+
+            var code = getNodeValueByName(event, "code");
+            var description = getNodeValueByName(event, "description");
+            var startTime = getNodeValueByName(event, "not-before");
+            var endTime = getNodeValueByName(event, "not-after");
+
+            list.push(new InstanceStatusEvent(instanceId, availabilityZone, code, description, startTime, endTime));
+        }
+
+        ec2ui_model.updateInstanceStatuses(list);
+
+        if (objResponse.callback) {
+            objResponse.callback(list);
+        }
     }
 };
