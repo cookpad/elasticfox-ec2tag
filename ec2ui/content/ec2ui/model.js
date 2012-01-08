@@ -708,7 +708,7 @@ var ec2ui_model = {
         }
         return this.loadbalancer;
     },
-    
+
     updateInstanceHealth : function(list) {
         if (!this.instances) {
             ec2ui_session.controller.describeInstances();
@@ -738,5 +738,38 @@ var ec2ui_model = {
             ec2ui_session.controller.describeInstanceHealth();
         }
         return this.InstanceHealth;
+    },
+
+    updateInstanceStatuses : function(list) {
+        if (!this.instances) {
+            ec2ui_session.controller.describeInstances();
+        }
+
+        this.instanceStatuses = list;
+
+        if (this.instances && list) {
+            var instanceNames = new Object();
+
+            for (var i = 0; i < this.instances.length; i++) {
+                var instance = this.instances[i];
+                instanceNames[instance.id] = instance.name;
+            }
+
+            for (var i = 0; i < list.length; i++) {
+                var instanceStatus = list[i];
+                instanceStatus.instanceName = instanceNames[instanceStatus.instanceId];
+            }
+        }
+
+        // XXX:
+        //this.notifyComponents("scheduledEvents");
+    },
+
+    getInstanceStatuses : function() {
+        if (this.instanceStatuses == null) {
+            ec2ui_session.controller.describeInstanceStatus();
+        }
+
+        return this.instanceStatuses;
     }
 }
