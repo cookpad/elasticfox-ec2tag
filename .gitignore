@@ -1,4 +1,3 @@
-syntax: glob
 *.xpi
 **/*.jar
 Elasticfox_app/Contents/Resources/chrome/*.jar
