@@ -761,8 +761,7 @@ var ec2ui_model = {
             }
         }
 
-        // XXX:
-        //this.notifyComponents("scheduledEvents");
+        this.notifyComponents("scheduledEvents");
     },
 
     getInstanceStatuses : function() {
