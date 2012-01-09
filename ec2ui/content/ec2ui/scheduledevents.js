@@ -97,4 +97,4 @@ var ec2ui_ScheduledEventsTreeView = {
     }
 };
 
-ec2ui_ScheduledEvents.register();
+ec2ui_ScheduledEventsTreeView.register();
