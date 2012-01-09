@@ -69,7 +69,8 @@ var ec2ui_ScheduledEventsTreeView = {
     },
 
     invalidate: function() {
-        this.displayScheduledEvent(ec2ui_session.model.instanceStatuses);
+      var treeView = ec2ui_ScheduledEventsTreeView;
+      treeView.displayScheduledEvents(treeView.filterScheduledEvents(ec2ui_session.model.instanceStatuses));
     },
 
     refresh: function() {
@@ -80,13 +81,61 @@ var ec2ui_ScheduledEventsTreeView = {
         this.invalidate();
     },
 
+    searchChanged: function(event) {
+        if (this.searchTimer) {
+            clearTimeout(this.searchTimer);
+        }
+
+        this.searchTimer = setTimeout(this.invalidate, 500);
+    },
+
+    filterScheduledEvents: function(scheduledEvents) {
+        var searchText = this.getSearchText();
+
+        if (!searchText) {
+            return scheduledEvents;
+        }
+
+        var newList = new Array();
+        var patt = new RegExp(searchText, "i");
+
+        for(var i = 0; i < scheduledEvents.length; i++) {
+            var event = scheduledEvents[i]
+
+            if (this.scheduledeventMatchesSearch(event, patt)) {
+                newList.push(event);
+            }
+        }
+
+        return newList;
+    },
+
+    getSearchText: function() {
+        return document.getElementById('ec2ui.scheduledevents.search').value;
+    },
+
+    scheduledeventMatchesSearch: function(event, patt) {
+        if (!event || !patt) { return false; }
+
+        for (var i = 0; i < this.COLNAMES.length; i++) {
+            var member = this.COLNAMES[i].split(".").pop();
+            var text = event[member];
+
+            if (text.match(patt)) {
+                return true;
+            }
+        }
+
+        return false;
+    },
+
     copyToClipBoard: function(fieldName) {
         var scheduledEvent = this.getSelectedScheduledEvent();
         if (scheduledEvent == null) { return; }
         copyToClipboard(scheduledEvent[fieldName]);
     },
 
-    displayScheduledEvent : function (scheduledEventList) {
+    displayScheduledEvents: function (scheduledEventList) {
         if (!scheduledEventList) { scheduledEventList = []; }
 
         this.treeBox.rowCountChanged(0, -this.scheduledEventList.length);

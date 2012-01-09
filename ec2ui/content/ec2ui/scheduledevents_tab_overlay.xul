@@ -26,8 +26,13 @@
         </menupopup>
       </popupset>
       <toolbar style="padding: 0px 3px; -moz-box-align: center">
-        <toolbarbutton image="images/refresh.png" oncommand="ec2ui_ScheduledEvents.refresh()"
-          tooltiptext="&ec2ui.refresh.tip;" />
+        <hbox flex="10">
+          <textbox id="ec2ui.scheduledevents.search" size="15" value=""
+            type="autocomplete" autocompletesearch="form-history"
+            onkeypress="ec2ui_ScheduledEventsTreeView.searchChanged(event);" />
+          <toolbarbutton image="images/refresh.png" oncommand="ec2ui_ScheduledEvents.refresh()"
+            tooltiptext="&ec2ui.refresh.tip;" />
+        </hbox>
       </toolbar>
       <tree enableColumnDrag="true" id="ec2ui.scheduledevents.view" flex="1">
         <treecols>
