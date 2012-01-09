@@ -2572,20 +2572,26 @@ var ec2ui_controller = {
 
         for(var i = 0 ; i < items.snapshotLength; i++) {
             var item = items.snapshotItem(i);
-            var event = item.getElementsByTagName("event")[0];
+            var eventsSet = item.getElementsByTagName("eventsSet")[0];
 
-            if (!event) { continue; }
+            if (!eventsSet) { continue; }
 
             var instanceId = getNodeValueByName(item, "instanceId");
             var availabilityZone = getNodeValueByName(item, "availabilityZone");
+            var eventsSetItems = eventsSet.childNodes;
 
-            var code = getNodeValueByName(event, "code");
-            var description = getNodeValueByName(event, "description");
-            var startTime = getNodeValueByName(event, "not-before");
-            var endTime = getNodeValueByName(event, "not-after");
+            for (var j = 0; j < eventsSetItems.length; j++) {
+                var event = eventsSetItems[j];
+                if (event.nodeName == '#text') continue;
 
-            list.push(new InstanceStatusEvent(instanceId, availabilityZone, code, description, startTime, endTime));
-        }
+                var code = getNodeValueByName(event, "code");
+                var description = getNodeValueByName(event, "description");
+                var startTime = getNodeValueByName(event, "notBefore");
+                var endTime = getNodeValueByName(event, "notAfter");
+
+                list.push(new InstanceStatusEvent(instanceId, availabilityZone, code, description, startTime, endTime));
+            }
+          }
 
         ec2ui_model.updateInstanceStatuses(list);
 
