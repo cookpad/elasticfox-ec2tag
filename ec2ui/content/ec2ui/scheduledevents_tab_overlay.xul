@@ -9,8 +9,20 @@
       <caption label="Scheduled Events" />
       <popupset>
         <menupopup id="ec2ui.scheduledevents.contextmenu">
-          <menuitem oncommand="alert('XXX');"
-            label="Copy XXX to Clipboard" />
+          <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('instanceId');"
+            label="Copy Instance ID to clipboard" />
+          <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('instanceName');"
+            label="Copy Instance Name to clipboard" />
+          <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('availabilityZone');"
+            label="Copy Availability Zone to clipboard" />
+          <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('code');"
+            label="Copy Code to clipboard" />
+          <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('description');"
+            label="Copy Description to clipboard" />
+          <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('startTime');"
+            label="Copy Start Time to clipboard" />
+          <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('endTime');"
+            label="Copy End Time to clipboard" />
         </menupopup>
       </popupset>
       <toolbar style="padding: 0px 3px; -moz-box-align: center">
