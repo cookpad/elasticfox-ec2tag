@@ -1,4 +1,6 @@
 #!/bin/sh
+rm -f Elasticfox_app/Contents/Resources/application.ini
+git checkout Elasticfox_app/Contents/Resources/application.ini
 rm -rf Elasticfox.app/
 cp -pr Elasticfox_app Elasticfox.app
 cp -pr ec2ui/ Elasticfox.app/Contents/Resources/chrome/ec2ui

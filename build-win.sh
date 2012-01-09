@@ -1,4 +1,6 @@
 #!/bin/sh
+rm -f Elasticfox_app/Contents/Resources/application.ini
+git checkout Elasticfox_app/Contents/Resources/application.ini
 rm -rf elasticfox-win *setup.exe
 cp -pr Elasticfox_app/Contents/Resources elasticfox-win
 cp -pr ec2ui/ elasticfox-win/chrome/ec2ui
