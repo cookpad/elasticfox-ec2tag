@@ -1,4 +1,4 @@
-var ec2ui_ScheduledEvents = {
+var ec2ui_ScheduledEventsTreeView = {
     COLNAMES : [
         'scheduledevents.instanceId',
         'scheduledevents.instanceName',

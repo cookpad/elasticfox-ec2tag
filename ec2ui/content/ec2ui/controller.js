@@ -2574,7 +2574,7 @@ var ec2ui_controller = {
             var item = items.snapshotItem(i);
             var event = item.getElementsByTagName("event")[0];
 
-            if (event) { continue; }
+            if (!event) { continue; }
 
             var instanceId = getNodeValueByName(item, "instanceId");
             var availabilityZone = getNodeValueByName(item, "availabilityZone");
