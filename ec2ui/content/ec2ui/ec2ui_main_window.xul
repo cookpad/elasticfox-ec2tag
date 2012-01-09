@@ -13,6 +13,7 @@
 <?xul-overlay href="chrome://ec2ui/content/vpcs_tab_overlay.xul"?>
 <?xul-overlay href="chrome://ec2ui/content/vpns_tab_overlay.xul"?>
 <?xul-overlay href="chrome://ec2ui/content/loadbalancer_tab_overlay.xul"?>
+<?xul-overlay href="chrome://ec2ui/content/scheduledevents_tab_overlay.xul"?>
 
 <!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
 <window id="ec2ui-window" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
