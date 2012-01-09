@@ -14,7 +14,7 @@ var ec2ui_ScheduledEvents = {
     scheduledEventList : new Array(),
     registered : false,
 
-    get rowCount() { return this.loadbalancerList.length; },
+    get rowCount() { return this.scheduledEventList.length; },
 
     setTree: function(treeBox) { this.treeBox = treeBox; },
 
@@ -82,7 +82,7 @@ var ec2ui_ScheduledEvents = {
 
     copyToClipBoard: function(fieldName) {
         var scheduledEvent = this.getSelectedScheduledEvent();
-        if (loadbalancer == null) { return; }
+        if (scheduledEvent == null) { return; }
         copyToClipboard(scheduledEvent[fieldName]);
     },
 
