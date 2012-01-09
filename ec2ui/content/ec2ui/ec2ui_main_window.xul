@@ -110,6 +110,7 @@
     <tabbox id="ec2ui.primary.tabs" flex="1">
       <tabs id="ec2ui.tabs" onselect="ec2ui_session.tabSelectionChanged(event);" style="font-size:x-small;">
         <tab label="&ec2ui.tabs.instances.label;" />
+        <tab label="Scheduled Events" />
         <tab label="&ec2ui.tabs.images.label;" />
         <tab label="&ec2ui.tabs.keypairs.label;" />
         <tab label="&ec2ui.tabs.secgroups.label;" />
@@ -124,6 +125,7 @@
       </tabs>
       <tabpanels flex="1">
         <tabpanel id="instances_tab"/>
+        <tabpanel id="scheduledevents_tab"/>
         <tabpanel id="images_tab"/>
         <tabpanel id="keypairs_tab"/>
         <tabpanel id="security_groups_tab"/>

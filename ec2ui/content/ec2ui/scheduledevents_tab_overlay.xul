@@ -19,16 +19,6 @@
       </toolbar>
       <tree enableColumnDrag="true" id="ec2ui.scheduledevents.view" flex="1">
         <treecols>
-    COLNAMES : [
-        'scheduledevents.instanceId',
-        'scheduledevents.instanceName',
-        'scheduledevents.availabilityZone',
-        'scheduledevents.code',
-        'scheduledevents.description',
-        'scheduledevents.startTime',
-        'scheduledevents.endTime'
-    ],
-
           <treecol id="scheduledevents.instanceId" label="Instance ID" flex="1" sortDirection="ascending"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
