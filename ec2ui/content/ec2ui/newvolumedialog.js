@@ -54,13 +54,13 @@ var ec2_VolumeCreator = {
         var snap = null;
         for(var i in snapshots) {
             snap = snapshots[i];
-            if (snap.status == "completed") {
+            //if (snap.status == "completed") {
                 snapshotIdMenu.appendItem(snap.id);
                 if (srcSnap &&
                     snap.id == srcSnap.id) {
                     snapshotIdMenu.selectedIndex = i;
                 }
-            }
+            //}
         }
         // To accommodate the <NONE> element added at the head of the list
         snapshotIdMenu.selectedIndex += 1;
