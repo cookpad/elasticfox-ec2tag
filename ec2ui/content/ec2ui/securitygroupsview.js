@@ -1,5 +1,5 @@
 var ec2ui_SecurityGroupsTreeView = {
-    COLNAMES : ['securitygroup.ownerId','securitygroup.name','securitygroup.description'],
+    COLNAMES : ['securitygroup.groupId','securitygroup.ownerId','securitygroup.name','securitygroup.description','securitygroup.vpcId'],
     treeBox : null,
     selection : null,
     groupList : new Array(),
@@ -80,7 +80,31 @@ var ec2ui_SecurityGroupsTreeView = {
     },
 
     invalidate: function() {
-        this.displayGroups(ec2ui_session.model.securityGroups);
+        var target = ec2ui_SecurityGroupsTreeView;
+        target.displayGroups(target.filterGroups(ec2ui_session.model.securityGroups));
+    },
+
+    filterGroups : function(groups) {
+        var searchText = (document.getElementById('ec2ui.securitygroups.search').value || '').trim();
+
+        if (searchText.length == 0) {
+            return groups;
+        }
+
+        var newList = new Array();
+        var grp = null;
+        var patt = new RegExp(searchText, "i");
+
+        for(var i in groups) {
+            grp = groups[i];
+
+            if (patt.test(grp.groupId) || patt.test(grp.ownerId) || patt.test(grp.name)
+                || patt.test(grp.description) || patt.test(grp.vpcId)) {
+                newList.push(grp);
+            }
+        }
+
+        return newList;
     },
 
     refresh: function() {
@@ -208,6 +232,14 @@ var ec2ui_SecurityGroupsTreeView = {
         if (groupList.length > 0) {
             this.selection.select(0);
         }
+    },
+
+    searchChanged : function(event) {
+        if (this.searchTimer) {
+            clearTimeout(this.searchTimer);
+        }
+
+        this.searchTimer = setTimeout(this.invalidate, 500);
     }
 };
 

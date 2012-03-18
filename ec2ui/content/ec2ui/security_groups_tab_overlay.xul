@@ -23,6 +23,9 @@
       </popupset>
       <toolbar style="padding: 0px 3px; -moz-box-align: center">
         <hbox flex="10">
+          <textbox id="ec2ui.securitygroups.search" size="15" value=""
+            type="autocomplete" autocompletesearch="form-history"
+            onkeypress="ec2ui_SecurityGroupsTreeView.searchChanged(event);" />
           <toolbarbutton image="images/refresh.png"
             style="-moz-box-orient:horizontal;-moz-box-pack:center;"
             oncommand="ec2ui_SecurityGroupsTreeView.refresh()"
