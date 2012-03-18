@@ -892,6 +892,7 @@ var ec2ui_InstancesTreeView = {
            instance.placement,
            instance.subnetId,
            null,
+           null,
            wrap);
     },
 

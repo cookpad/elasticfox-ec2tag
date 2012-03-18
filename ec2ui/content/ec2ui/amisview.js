@@ -198,6 +198,7 @@ var ec2ui_AMIsTreeView = {
                retVal.placement,
                retVal.subnetId,
                retVal.ipAddress,
+               retVal.securityGroupIds,
                this.newInstanceCallback);
         }
     },

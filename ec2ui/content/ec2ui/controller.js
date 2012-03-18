@@ -968,7 +968,7 @@ var ec2ui_controller = {
         return list;
     },
 
-    runInstances : function (imageId, kernelId, ramdiskId, minCount, maxCount, keyName, securityGroups, userData, properties, ephemeral0, ephemeral1, ephemeral2, ephemeral3, instanceType, placement, subnetId, ipAddress, callback) {
+    runInstances : function (imageId, kernelId, ramdiskId, minCount, maxCount, keyName, securityGroups, userData, properties, ephemeral0, ephemeral1, ephemeral2, ephemeral3, instanceType, placement, subnetId, ipAddress, securityGroupIds, callback) {
         var params = []
         params.push(["ImageId", imageId]);
         if (kernelId != null && kernelId != "") {
@@ -985,6 +985,9 @@ var ec2ui_controller = {
         }
         for(var i in securityGroups) {
             params.push(["SecurityGroup."+(i+1), securityGroups[i]]);
+        }
+        for(var i in securityGroupIds) {
+            params.push(["SecurityGroupId."+(i+1), securityGroupIds[i]]);
         }
         if (userData != null) {
             var b64str = "Base64:";
@@ -1830,6 +1833,7 @@ var ec2ui_controller = {
             var groupName = getNodeValueByName(items.snapshotItem(i), "groupName");
             var groupDescription = getNodeValueByName(items.snapshotItem(i), "groupDescription");
             var vpcId = getNodeValueByName(items.snapshotItem(i), "vpcId");
+            var groupId = getNodeValueByName(items.snapshotItem(i), "groupId");
             log("Group name ["+groupName+"]");
 
             var ipPermissionsList = new Array();
@@ -1871,7 +1875,7 @@ var ec2ui_controller = {
                 }
             }
 
-            list.push(new SecurityGroup(ownerId, groupName, groupDescription, ipPermissionsList, vpcId));
+            list.push(new SecurityGroup(ownerId, groupName, groupDescription, ipPermissionsList, vpcId, groupId));
         }
 
         ec2ui_model.updateSecurityGroups(list);

@@ -24,17 +24,38 @@ var ec2_InstanceLauncher = {
 
         var useVpc = document.getElementById("ec2ui.newinstances.usevpc").checked;
         if (useVpc) {
-           var subnet = document.getElementById("ec2ui.newinstances.subnetId").selectedItem;
-           if (!subnet) {
-              alert("No subnet selected. Please select a subnet to continue.");
-              return false;
-           }
-           this.retVal.subnetId = subnet.value;
-           this.retVal.securityGroups = null;
-           this.retVal.ipAddress = document.getElementById("ec2ui.newinstances.ipAddress").value.trim();
+            var vpcId = document.getElementById("ec2ui.newinstances.vpcId").selectedItem;
+            if (!vpcId) {
+                alert("No vpc selected. Please select a vpc to continue.");
+                return false;
+            }
+            var subnet = document.getElementById("ec2ui.newinstances.subnetId").selectedItem;
+            if (!subnet) {
+                alert("No subnet selected. Please select a subnet to continue.");
+                return false;
+            }
+            this.retVal.subnetId = subnet.value;
+
+            var securityGroups = this.ec2ui_session.model.getSecurityGroups();
+            var securityGroupsMap = {};
+
+            for (var i in securityGroups) {
+                if (securityGroups[i].vpcId != vpcId.value) { continue; }
+                securityGroupsMap[securityGroups[i].name] = securityGroups[i].groupId;
+            }
+
+            this.retVal.securityGroupIds = [];
+
+            for (var i in this.retVal.securityGroups) {
+                var sgId = securityGroupsMap[this.retVal.securityGroups[i]];
+                if (sgId) { this.retVal.securityGroupIds.push(sgId); }
+            }
+
+            this.retVal.securityGroups = null;
+            this.retVal.ipAddress = document.getElementById("ec2ui.newinstances.ipAddress").value.trim();
         } else {
-           this.retVal.subnetId = null;
-           this.retVal.ipAddress = null;
+            this.retVal.subnetId = null;
+            this.retVal.ipAddress = null;
         }
 
         // This will be an empty string if <none> is selected
@@ -157,13 +178,6 @@ var ec2_InstanceLauncher = {
             this.subnetMenu.disabled = false;
             this.vpcMenu.disabled = false;
             document.getElementById("ec2ui.newinstances.ipAddress").disabled = false;
-            document.getElementById("ec2ui.newinstances.secgroups.unused").disabled = true;
-            document.getElementById("ec2ui.newinstances.secgroups.used").disabled = true;
-            this.used = []
-            for (var i = 0; i < this.usedSecGroupsList.getRowCount(); i++) {
-                var item = this.usedSecGroupsList.getItemAtIndex(i);
-                this.unused.push(item.label);
-            }
 
             var vpcs = this.ec2ui_session.model.getVpcs();
             for (var i in vpcs) {
@@ -175,20 +189,23 @@ var ec2_InstanceLauncher = {
             this.subnetMenu.disabled = true;
             this.vpcMenu.disabled = true;
             document.getElementById("ec2ui.newinstances.ipAddress").disabled = true;
-            document.getElementById("ec2ui.newinstances.secgroups.unused").disabled = false;
-            document.getElementById("ec2ui.newinstances.secgroups.used").disabled = false;
 
-            this.unused = []
-            for (var i = 0; i < this.unusedSecGroupsList.getRowCount(); i++) {
-                var item = this.unusedSecGroupsList.getItemAtIndex(i);
-                if (item.label == "default")
-                    this.used.push(item.label);
-                else
-                    this.unused.push(item.label);
+            var securityGroups = this.ec2ui_session.model.getSecurityGroups();
+
+            this.used.length = 0;
+            this.unused.length = 0;
+
+            for (var i in securityGroups) {
+                if (securityGroups[i].vpcId) { continue; }
+                if (securityGroups[i].name == "default") {
+                    this.used.push(securityGroups[i].name);
+                } else {
+                    this.unused.push(securityGroups[i].name);
+                }
             }
-        }
 
-        this.refreshDisplay();
+            this.refreshDisplay();
+        }
     },
 
     vpcIdSelected : function() {
@@ -208,6 +225,21 @@ var ec2_InstanceLauncher = {
                 }
             }
             this.subnetMenu.selectedIndex = 0;
+        }
+
+        var securityGroups = this.ec2ui_session.model.getSecurityGroups();
+        var vpcId = sel ? sel.value : null;
+
+        this.used.length = 0;
+        this.unused.length = 0;
+
+        for (var i in securityGroups) {
+            if (securityGroups[i].vpcId != vpcId) { continue; }
+            if (securityGroups[i].name == "default") {
+                this.used.push(securityGroups[i].name);
+            } else {
+                this.unused.push(securityGroups[i].name);
+            }
         }
 
         this.refreshDisplay();
@@ -334,6 +366,7 @@ var ec2_InstanceLauncher = {
         // but this way it's obvious to the user what's happening.
         i = 0;
         for (i in securityGroups) {
+            if (securityGroups[i].vpcId) { continue; }
             if (securityGroups[i].name == "default") {
                 this.used.push(securityGroups[i].name);
             } else {
