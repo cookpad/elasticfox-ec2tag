@@ -281,6 +281,7 @@ var ec2_InstanceLauncher = {
             typeMenu.appendItem("m2.2xlarge", "m2.2xlarge");
             typeMenu.appendItem("m2.4xlarge", "m2.4xlarge");
             typeMenu.appendItem("cc1.4xlarge", "cc1.4xlarge");
+            typeMenu.appendItem("cc2.8xlarge", "cc2.8xlarge");
             typeMenu.appendItem("cg1.4xlarge", "cg1.4xlarge");
         } else {
             typeMenu.appendItem("t1.micro", "t1.micro");
