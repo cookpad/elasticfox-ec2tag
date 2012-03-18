@@ -94,7 +94,12 @@ var ec2ui_AMIsTreeView = {
         var images = ec2ui_model.images;
         images = this.filterRootDevice(images);
         images = this.filterOwnerDisplay(images);
-        images = this.filterImages(images, currentUser);
+
+        if (currentUser) {
+            images = this.filterImages(images, currentUser, this.getSearchText());
+        } else {
+            images = this.filterImages(images, currentUser);
+        }
 
         this.displayImages(images);
     },
@@ -133,7 +138,7 @@ var ec2ui_AMIsTreeView = {
     },
 
     searchChanged : function(event) {
-        document.getElementById("ec2ui_AMIsTreeView.image.type").selectedIndex = 1;
+        //document.getElementById("ec2ui_AMIsTreeView.image.type").selectedIndex = 1;
         if (this.searchTimer) {
             clearTimeout(this.searchTimer);
         }
@@ -506,7 +511,7 @@ var ec2ui_AMIsTreeView = {
     },
 
     getSearchText: function() {
-        return document.getElementById('ec2ui.images.search').value;
+        return (document.getElementById('ec2ui.images.search').value || '').trim();
     },
 
     invalidate : function() {

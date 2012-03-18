@@ -123,7 +123,7 @@ var BaseImagesView = {
         ec2ui_session.showBusyCursor(false);
     },
 
-    filterImages : function(imageList, searchText) {
+    filterImages : function(imageList, searchText, searchText2) {
         if (this.searchTimer) {
             clearTimeout(this.searchTimer);
         }
@@ -146,6 +146,23 @@ var BaseImagesView = {
                 newList.push(img);
             }
         }
+
+        if (searchText2) {
+            var newList2 = new Array();
+            img = null;
+            var patt2 = new RegExp(searchText2, "i");
+
+            for (var i = 0; i < newList.length; i++) {
+                img = newList[i];
+
+                if (this.imageMatchesSearch(img, patt2)) {
+                    newList2.push(img);
+                }
+            }
+
+            newList = newList2;
+        }
+
         return newList;
     },
 
