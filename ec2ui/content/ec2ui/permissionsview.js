@@ -105,6 +105,7 @@ var ec2ui_PermissionsTreeView = {
                     newPerm.toPort,
                     newPerm.sourceSecurityGroupName,
                     newPerm.sourceSecurityGroupOwnerId,
+                    group.vpcId,
                     wrap
                     );
             }

@@ -617,6 +617,27 @@ var ec2ui_model = {
         return this.securityGroups;
     },
 
+    getSecurityGroupNameIds : function(vpcId) {
+        if (!vpcId) {
+            vpcId = null;
+        }
+
+        var groups = this.getSecurityGroups();
+        var groupNameIds = {};
+
+        for (var i in groups) {
+            if (groups[i].vpcId != vpcId) { continue; }
+            groupNameIds[groups[i].name] = groups[i].groupId;
+        }
+
+        return groupNameIds;
+    },
+
+    getSecurityGroupIdFromName : function(name, vpcId) {
+        var groupNameIds = this.getSecurityGroupNameIds(vpcId);
+        return groupNameIds[name];
+    },
+
     getAddresses : function() {
         if (this.addresses == null) {
             ec2ui_session.controller.describeAddresses();

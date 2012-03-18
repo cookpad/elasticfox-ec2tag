@@ -1938,13 +1938,34 @@ var ec2ui_controller = {
         ec2_httpclient.queryEC2("AuthorizeSecurityGroupIngress", params, this, true, "onCompleteAuthorizeSecurityGroupIngress", callback);
     },
 
-    authorizeSourceGroup : function (groupName, ipProtocol, fromPort, toPort, sourceSecurityGroupName, sourceSecurityGroupOwnerId, callback) {
-        var params = []
-        params.push(["GroupName", groupName]);
+    authorizeSourceGroup : function (groupName, ipProtocol, fromPort, toPort, sourceSecurityGroupName, sourceSecurityGroupOwnerId, vpcId, callback) {
+        var params = [];
+
+        if (vpcId) {
+            var groupId = ec2ui_model.getSecurityGroupIdFromName(groupName, vpcId);
+
+            if (!groupId) {
+                alert("Could not find group in VPC");
+                return;
+            }
+
+            var srcGroupId = ec2ui_model.getSecurityGroupIdFromName(sourceSecurityGroupName, vpcId);
+
+          if (!srcGroupId) {
+                alert("Could not find source group in VPC");
+                return;
+            }
+
+            params.push(["GroupId", groupId]);
+            params.push(["IpPermissions.1.Groups.1.GroupId", srcGroupId]);
+        } else {
+            params.push(["GroupName", groupName]);
+            params.push(["IpPermissions.1.Groups.1.GroupName", sourceSecurityGroupName]);
+        }
+
         params.push(["IpPermissions.1.IpProtocol", ipProtocol]);
         params.push(["IpPermissions.1.FromPort", fromPort]);
         params.push(["IpPermissions.1.ToPort", toPort]);
-        params.push(["IpPermissions.1.Groups.1.GroupName", sourceSecurityGroupName]);
         params.push(["IpPermissions.1.Groups.1.UserId", sourceSecurityGroupOwnerId]);
         ec2_httpclient.queryEC2("AuthorizeSecurityGroupIngress", params, this, true, "onCompleteAuthorizeSecurityGroupIngress", callback);
     },
