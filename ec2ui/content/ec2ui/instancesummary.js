@@ -52,10 +52,21 @@ var ec2_InstanceSummary = {
       document.getElementById("ec2ui.summary.total").value = data.total;
       document.getElementById("ec2ui.summary.linux_monthly_amount").value = '$ ' + __calcLinuxMonthlyAmount__(data.instanceType, endpoint);
       document.getElementById("ec2ui.summary.windows_monthly_amount").value = '$ ' + __calcWindowsMonthlyAmount__(data.instanceType, endpoint);
-      var amounts = __calcRILinuxMonthlyAmount__(data.instanceType, endpoint);
-      document.getElementById("ec2ui.summary.ri_linux_monthly_amount").value = '$ ' + amounts[2] + ' (1yr: $ ' + amounts[0] + ' / 3yr: $ ' + amounts[1] + ')';
-      amounts = __calcRIWindowsMonthlyAmount__(data.instanceType, endpoint);
-      document.getElementById("ec2ui.summary.ri_windows_monthly_amount").value = '$ ' + amounts[2] + ' (1yr: $ ' + amounts[0] + ' / 3yr: $ ' + amounts[1] + ')';
+
+      var amounts = __calcLightRILinuxMonthlyAmount__(data.instanceType, endpoint);
+      document.getElementById("ec2ui.summary.light_ri_linux_monthly_amount").value = '1yr: $ ' + amounts[1] + ' (uf: $ ' + amounts[0] + ') / 3yr: $ ' + amounts[3] + ' (uf: $ ' + amounts[2] + ')';
+      amounts = __calcMediumRILinuxMonthlyAmount__(data.instanceType, endpoint);
+      document.getElementById("ec2ui.summary.medium_ri_linux_monthly_amount").value = '1yr: $ ' + amounts[1] + ' (uf: $ ' + amounts[0] + ') / 3yr: $ ' + amounts[3] + ' (uf: $ ' + amounts[2] + ')';
+      amounts = __calcHeavyRILinuxMonthlyAmount__(data.instanceType, endpoint);
+      document.getElementById("ec2ui.summary.heavy_ri_linux_monthly_amount").value = '1yr: $ ' + amounts[1] + ' (uf: $ ' + amounts[0] + ') / 3yr: $ ' + amounts[3] + ' (uf: $ ' + amounts[2] + ')';
+
+      amounts = __calcLightRIWindowsMonthlyAmount__(data.instanceType, endpoint);
+      document.getElementById("ec2ui.summary.light_ri_windows_monthly_amount").value =  '1yr: $ ' + amounts[1] + ' (uf: $ ' + amounts[0] + ') / 3yr: $ ' + amounts[3] + ' (uf: $ ' + amounts[2] + ')';
+      amounts = __calcMediumRIWindowsMonthlyAmount__(data.instanceType, endpoint);
+      document.getElementById("ec2ui.summary.medium_ri_windows_monthly_amount").value =  '1yr: $ ' + amounts[1] + ' (uf: $ ' + amounts[0] + ') / 3yr: $ ' + amounts[3] + ' (uf: $ ' + amounts[2] + ')';
+      amounts = __calcHeavyRIWindowsMonthlyAmount__(data.instanceType, endpoint);
+      document.getElementById("ec2ui.summary.heavy_ri_windows_monthly_amount").value =  '1yr: $ ' + amounts[1] + ' (uf: $ ' + amounts[0] + ') / 3yr: $ ' + amounts[3] + ' (uf: $ ' + amounts[2] + ')';
+
       document.getElementById("ec2ui.summary.state").value = JSON.stringify(data.state, null, "  ");
       document.getElementById("ec2ui.summary.instanceType").value = JSON.stringify(data.instanceType, null, "  ");
       document.getElementById("ec2ui.summary.group").value = JSON.stringify(data.group, null, "  ");

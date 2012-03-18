@@ -29,35 +29,51 @@
           <textbox id="ec2ui.summary.linux_monthly_amount" size="40" readonly="true" />
         </row>
         <row>
-          <label control="ec2ui.summary.ri_linux_monthly_amount" value="RI Monthly Amount (Linux):" />
-          <textbox id="ec2ui.summary.ri_linux_monthly_amount" size="40" readonly="true" />
+          <label control="ec2ui.summary.light_ri_linux_monthly_amount" value="Light RI Monthly Amount (Linux):" />
+          <textbox id="ec2ui.summary.light_ri_linux_monthly_amount" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.summary.medium_ri_linux_monthly_amount" value="Medium RI Monthly Amount (Linux):" />
+          <textbox id="ec2ui.summary.medium_ri_linux_monthly_amount" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.summary.heavy_ri_linux_monthly_amount" value="Heavy RI Monthly Amount (Linux):" />
+          <textbox id="ec2ui.summary.heavy_ri_linux_monthly_amount" size="40" readonly="true" />
         </row>
         <row>
           <label control="ec2ui.summary.windows_monthly_amount" value="Monthly Amount (Windows):" />
           <textbox id="ec2ui.summary.windows_monthly_amount" size="40" readonly="true" />
         </row>
         <row>
-          <label control="ec2ui.summary.ri_windows_monthly_amount" value="RI Monthly Amount (Windows):" />
-          <textbox id="ec2ui.summary.ri_windows_monthly_amount" size="40" readonly="true" />
+          <label control="ec2ui.summary.light_ri_windows_monthly_amount" value="Light RI Monthly Amount (Windows):" />
+          <textbox id="ec2ui.summary.light_ri_windows_monthly_amount" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.summary.medium_ri_windows_monthly_amount" value="Medium RI Monthly Amount (Windows):" />
+          <textbox id="ec2ui.summary.medium_ri_windows_monthly_amount" size="40" readonly="true" />
+        </row>
+        <row>
+          <label control="ec2ui.summary.heavy_ri_windows_monthly_amount" value="Heavy RI Monthly Amount (Windows):" />
+          <textbox id="ec2ui.summary.heavy_ri_windows_monthly_amount" size="40" readonly="true" />
         </row>
         <row>
           <label control="ec2ui.summary.state" value="State:" />
-          <textbox id="ec2ui.summary.state" multiline="true" cols="70" rows="5"
+          <textbox id="ec2ui.summary.state" multiline="true" cols="70" rows="4"
             wrap="false" style="font-family: monospace;" readonly="true"/>
         </row>
         <row>
           <label control="ec2ui.summary.instanceType" value="instanceType:" />
-          <textbox id="ec2ui.summary.instanceType" multiline="true" cols="70" rows="5"
+          <textbox id="ec2ui.summary.instanceType" multiline="true" cols="70" rows="4"
             wrap="false" style="font-family: monospace;" readonly="true"/>
         </row>
         <row>
           <label control="ec2ui.summary.group" value="Group:" />
-          <textbox id="ec2ui.summary.group" multiline="true" cols="70" rows="5"
+          <textbox id="ec2ui.summary.group" multiline="true" cols="70" rows="4"
             wrap="false" style="font-family: monospace;" readonly="true"/>
         </row>
         <row>
           <label control="ec2ui.summary.availabilityZone" value="AvailabilityZone:" />
-          <textbox id="ec2ui.summary.availabilityZone" multiline="true" cols="70" rows="10"
+          <textbox id="ec2ui.summary.availabilityZone" multiline="true" cols="70" rows="8"
             wrap="false" style="font-family: monospace;" readonly="true"/>
         </row>
       </rows>

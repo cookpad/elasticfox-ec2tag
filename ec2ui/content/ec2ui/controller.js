@@ -1394,6 +1394,8 @@ var ec2ui_controller = {
             suffix = ".s3-ap-southeast-1.amazonaws.com";
         } else if (region == "AP-NORTHEAST-1") {
             suffix = ".s3-ap-northeast-1.amazonaws.com";
+        } else if (region == "SA-EAST-1") {
+            suffix = ".s3-sa-east-1.amazonaws.com";
         } else {
             suffix = ".s3.amazonaws.com";
         }
