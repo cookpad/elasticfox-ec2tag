@@ -135,11 +135,12 @@ function InstanceStatusEvent(instanceId, availabilityZone, code, description, st
     this.endTime = endTime;
 }
 
-function SecurityGroup(ownerId, name, description, permissions) {
+function SecurityGroup(ownerId, name, description, permissions, vpcId) {
     this.ownerId = ownerId;
     this.name = name;
     this.description = description;
     this.permissions = permissions;
+    this.vpcId = vpcId;
 }
 
 function Permission(protocol, fromPort, toPort, groupTuples, ipRanges) {

@@ -58,6 +58,10 @@
             label="&ec2ui.description.label;" flex="3"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
+          <treecol id="securitygroup.vpcId"
+            label="VPC ID" flex="3"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
         </treecols>
         <treechildren context="ec2ui.secgroups.contextmenu" />
       </tree>

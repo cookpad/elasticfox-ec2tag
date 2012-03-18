@@ -1829,6 +1829,7 @@ var ec2ui_controller = {
             var ownerId = getNodeValueByName(items.snapshotItem(i), "ownerId");
             var groupName = getNodeValueByName(items.snapshotItem(i), "groupName");
             var groupDescription = getNodeValueByName(items.snapshotItem(i), "groupDescription");
+            var vpcId = getNodeValueByName(items.snapshotItem(i), "vpcId");
             log("Group name ["+groupName+"]");
 
             var ipPermissionsList = new Array();
@@ -1870,7 +1871,7 @@ var ec2ui_controller = {
                 }
             }
 
-            list.push(new SecurityGroup(ownerId, groupName, groupDescription, ipPermissionsList));
+            list.push(new SecurityGroup(ownerId, groupName, groupDescription, ipPermissionsList, vpcId));
         }
 
         ec2ui_model.updateSecurityGroups(list);
