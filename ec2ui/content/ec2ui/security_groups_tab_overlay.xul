@@ -45,6 +45,10 @@
         enableColumnDrag="true"
         onselect="ec2ui_SecurityGroupsTreeView.selectionChanged(event);" flex="1">
         <treecols>
+          <treecol id="securitygroup.groupId"
+            label="Group ID" flex="1"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
           <treecol id="securitygroup.ownerId"
             label="&ec2ui.secgroups.ownerId.label;" flex="1"
             persist="width ordinal hidden sortDirection" />
