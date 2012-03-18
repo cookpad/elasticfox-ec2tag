@@ -228,12 +228,15 @@ var ec2_Authorizer = {
     }
     var permCaption = document.getElementById("ec2ui.newpermission.add.caption");
     permCaption.label = "Add New Permission for Security Group: " + this.group.name;
+    var vpcId = this.group.vpcId;
+    if (!vpcId) { vpcId = null; }
 
     var user = document.getElementById("ec2ui.newpermission.source.user");
     user.value = this.group.ownerId;
     var groupMenu = document.getElementById("ec2ui.newpermission.source.group");
     var securityGroups = this.ec2ui_session.model.getSecurityGroups();
     for(var i in securityGroups) {
+        if (securityGroups[i].vpcId != vpcId) { continue; }
         groupMenu.appendItem(securityGroups[i].name);
     }
 

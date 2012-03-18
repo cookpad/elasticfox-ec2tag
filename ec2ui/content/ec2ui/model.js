@@ -140,7 +140,7 @@ function SecurityGroup(ownerId, name, description, permissions, vpcId, groupId) 
     this.name = name;
     this.description = description;
     this.permissions = permissions;
-    this.vpcId = vpcId;
+    this.vpcId = vpcId ? vpcId : null;
     this.groupId = groupId;
 }
 
