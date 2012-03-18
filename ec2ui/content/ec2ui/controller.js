@@ -1828,6 +1828,14 @@ var ec2ui_controller = {
                                     this.getNsResolver(),
                                     XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
                                     null);
+        var groupIdNames = {};
+
+        for(var i = 0 ; i < items.snapshotLength; i++) {
+            var groupName = getNodeValueByName(items.snapshotItem(i), "groupName");
+            var groupId = getNodeValueByName(items.snapshotItem(i), "groupId");
+            groupIdNames[groupId] = groupName;
+        }
+
         for(var i = 0 ; i < items.snapshotLength; i++) {
             var ownerId = getNodeValueByName(items.snapshotItem(i), "ownerId");
             var groupName = getNodeValueByName(items.snapshotItem(i), "groupName");
@@ -1855,6 +1863,11 @@ var ec2ui_controller = {
                             if (groupsItems.item(k).nodeName == '#text') continue;
                             var userId = getNodeValueByName(groupsItems[k], "userId");
                             var srcGroupName = getNodeValueByName(groupsItems[k], "groupName");
+
+                            if (!srcGroupName) {
+                                srcGroupName = groupIdNames[getNodeValueByName(groupsItems[k], "groupId")];
+                            }
+
                             groupTuples.push([userId, srcGroupName]);
                             ipPermissionsList.push(new Permission(ipProtocol, fromPort, toPort, [[userId, srcGroupName]], []));
                         }
@@ -1985,13 +1998,34 @@ var ec2ui_controller = {
         ec2_httpclient.queryEC2("RevokeSecurityGroupIngress", params, this, true, "onCompleteRevokeSecurityGroupIngress", callback);
     },
 
-    revokeSourceGroup : function (groupName, ipProtocol, fromPort, toPort, sourceSecurityGroupName, sourceSecurityGroupOwnerId, callback) {
-        var params = []
-        params.push(["GroupName", groupName]);
+    revokeSourceGroup : function (groupName, ipProtocol, fromPort, toPort, sourceSecurityGroupName, sourceSecurityGroupOwnerId, vpcId, callback) {
+        var params = [];
+
+        if (vpcId) {
+            var groupId = ec2ui_model.getSecurityGroupIdFromName(groupName, vpcId);
+
+            if (!groupId) {
+                alert("Could not find group in VPC");
+                return;
+            }
+
+            var srcGroupId = ec2ui_model.getSecurityGroupIdFromName(sourceSecurityGroupName, vpcId);
+
+          if (!srcGroupId) {
+                alert("Could not find source group in VPC");
+                return;
+            }
+
+            params.push(["GroupId", groupId]);
+            params.push(["IpPermissions.1.Groups.1.GroupId", srcGroupId]);
+        } else {
+            params.push(["GroupName", groupName]);
+            params.push(["IpPermissions.1.Groups.1.GroupName", sourceSecurityGroupName]);
+        }
+
         params.push(["IpPermissions.1.IpProtocol", ipProtocol]);
         params.push(["IpPermissions.1.FromPort", fromPort]);
         params.push(["IpPermissions.1.ToPort", toPort]);
-        params.push(["IpPermissions.1.Groups.1.GroupName", sourceSecurityGroupName]);
         params.push(["IpPermissions.1.Groups.1.UserId", sourceSecurityGroupOwnerId]);
         ec2_httpclient.queryEC2("RevokeSecurityGroupIngress", params, this, true, "onCompleteRevokeSecurityGroupIngress", callback);
     },

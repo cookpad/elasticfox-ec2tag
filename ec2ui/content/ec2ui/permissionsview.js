@@ -163,6 +163,7 @@ var ec2ui_PermissionsTreeView = {
                 permission.toPort,
                 permission.groupTuples[0][1],
                 permission.groupTuples[0][0],
+                group.vpcId,
                 wrap
                 );
             }
