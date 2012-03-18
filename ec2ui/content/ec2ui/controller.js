@@ -2617,6 +2617,26 @@ var ec2ui_controller = {
         }
     },
 
+    modifyInstanceAttributes : function (instanceId, attributes, callback) {
+        var params = new Array();
+            params.push(["InstanceId", instanceId]);
+
+        for (var i = 0; i < attributes.length; i++) {
+            var attr = attributes[i];
+            var name = attr[0];
+            var value = attr[1];
+            params.push([name, value]);
+        }
+
+        ec2_httpclient.queryEC2("ModifyInstanceAttribute", params, this, true, "onCompleteModifyInstanceAttributes", callback);
+    },
+
+    onCompleteModifyInstanceAttributes : function (objResponse) {
+        if (objResponse.callback) {
+            objResponse.callback();
+        }
+    },
+
     describeInstanceStatus : function (callback) {
         ec2_httpclient.queryEC2("DescribeInstanceStatus", [], this, true, "onCompletedescribeInstanceStatus", callback);
     },

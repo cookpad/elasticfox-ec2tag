@@ -110,7 +110,7 @@ function Instance(resId, ownerId, groupList, instanceId, imageId, kernelId,
 
     this.placement = placement;
     this.platform = platform;
-    this.vpcId = vpcId;
+    this.vpcId = vpcId ? vpcId : null;
     this.subnetId = subnetId;
 
     if (tag) {

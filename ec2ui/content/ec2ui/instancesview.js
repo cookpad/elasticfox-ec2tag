@@ -1013,7 +1013,7 @@ var ec2ui_InstancesTreeView = {
 
         if (instanceIds.length == 0) {
             alert('Please select one instance.');
-            return
+            return;
         } else if (instanceIds.length > 1) {
             alert('Cannot select multi instances.');
             return;
@@ -1040,6 +1040,69 @@ var ec2ui_InstancesTreeView = {
                 ec2ui_InstancesTreeView.refresh();
                 ec2ui_InstancesTreeView.selectByInstanceIds();
             });
+        });
+    },
+  
+    changeSecurityGroup: function() {
+        var instances = this.getSelectedInstances();
+
+        if (instances.length == 0) {
+            alert('Please select one instance.');
+            return;a
+        } else if (instances.length > 1) {
+            alert('Cannot select multi instances.');
+            return;
+        }
+
+        var instance = instances[0];
+
+        if (!instance.vpcId) {
+            alert('Change of a security group is only VPC.');
+            return;
+        }
+
+        var returnValue = {accepted:false , result:null};
+        var groups = ec2ui_model.getSecurityGroupNameIds(instance.vpcId);
+
+        openDialog('chrome://ec2ui/content/dialog_security_group.xul',
+                   null,
+                   'chrome,centerscreen,modal',
+                   instance,
+                   groups,
+                   returnValue);
+
+        if (!returnValue.accepted) {
+            return;
+        }
+
+        var oldGroups = [];
+
+        for (var i = 0; i < instance.groupList.length; i++) {
+          oldGroups.push(instance.groupList[i]);
+        }
+
+        oldGroups.sort();
+
+        var newGroups = returnValue.newGroups;
+        newGroups.sort();
+
+        if (oldGroups.join() == newGroups.join()) {
+            return;
+        }
+
+        var attributes = [];
+
+        for (var i = 0; i < newGroups.length; i++) {
+            var groupId = groups[newGroups[i]];
+
+            if (groupId) {
+                attributes.push(['GroupId.' + (i + 1), groupId]);
+            }
+        }
+
+        ec2ui_session.controller.modifyInstanceAttributes(instance.id, attributes, function() {
+            ec2ui_InstancesTreeView.refresh();
+            ec2ui_InstancesTreeView.selectByInstanceIds();
         });
     },
 
