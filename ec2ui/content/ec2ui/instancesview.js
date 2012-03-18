@@ -1042,7 +1042,7 @@ var ec2ui_InstancesTreeView = {
             });
         });
     },
-  
+
     changeSecurityGroup: function() {
         var instances = this.getSelectedInstances();
 
