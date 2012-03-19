@@ -2161,7 +2161,9 @@ var ec2ui_controller = {
             var publicIp = getNodeValueByName(items[i], "publicIp");
             var instanceid = getNodeValueByName(items[i], "instanceId");
             var domain = getNodeValueByName(items[i], "domain");
-            list.push(new AddressMapping(publicIp, instanceid, domain));
+            var allocationId = getNodeValueByName(items[i], "allocationId");
+            var associationId = getNodeValueByName(items[i], "associationId");
+            list.push(new AddressMapping(publicIp, instanceid, domain, allocationId, associationId));
         }
 
         this.addResourceTags(list, ec2ui_session.model.resourceMap.eips, "address");
@@ -2189,8 +2191,16 @@ var ec2ui_controller = {
             objResponse.callback(address);
     },
 
-    releaseAddress : function (address, callback) {
-        ec2_httpclient.queryEC2("ReleaseAddress", [['PublicIp', address]], this, true, "onCompleteReleaseAddress", callback);
+    releaseAddress : function (address, allocationId, callback) {
+        var params = [];
+
+        if (allocationId) {
+            params.push(['AllocationId', allocationId]);
+        } else {
+            params.push(['PublicIp', address]);
+        }
+
+        ec2_httpclient.queryEC2("ReleaseAddress", params, this, true, "onCompleteReleaseAddress", callback);
     },
 
     onCompleteReleaseAddress : function (objResponse) {

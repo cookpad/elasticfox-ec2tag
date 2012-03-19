@@ -1,5 +1,5 @@
 var ec2ui_ElasticIPTreeView = {
-    COLNAMES : ['eip.address','eip.instanceid','eip.instanceName','eip.domain'],
+    COLNAMES : ['eip.address','eip.allocationId','eip.instanceid','eip.instanceName','eip.domain','eip.associationId'],
     treeBox : null,
     selection : null,
     arrLocalFiles : new Array(),
@@ -153,7 +153,7 @@ var ec2ui_ElasticIPTreeView = {
                 me.refresh();
             }
         }
-        ec2ui_session.controller.releaseAddress(eip.address, wrap);
+        ec2ui_session.controller.releaseAddress(eip.address, eip.allocationId, wrap);
     },
 
     getUnassociatedInstanceIds : function() {

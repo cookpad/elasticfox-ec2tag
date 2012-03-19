@@ -52,6 +52,9 @@
           <treecol id="eip.address" label="&ec2ui.eip.address.label;" flex="1" sortDirection="ascending"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
+          <treecol id="eip.allocationId" label="Allocation ID" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
           <treecol id="eip.instanceid" label="&ec2ui.instances.id.label;" flex="3"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
@@ -62,6 +65,9 @@
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
           <treecol id="eip.domain" label="Domain" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="eip.associationId" label="Association ID" flex="1" sortDirection="ascending"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
         </treecols>
