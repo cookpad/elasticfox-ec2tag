@@ -1923,8 +1923,14 @@ var ec2ui_controller = {
             objResponse.callback();
     },
 
-    createSecurityGroup : function (name, desc, callback) {
-        ec2_httpclient.queryEC2("CreateSecurityGroup", [["GroupName", name], ["GroupDescription", desc]], this, true, "onCompleteCreateSecurityGroup", callback);
+    createSecurityGroup : function (name, desc, vpcId, callback) {
+        var params = [["GroupName", name], ["GroupDescription", desc]];
+
+        if (vpcId) {
+            params.push(["VpcId", vpcId]);
+        }
+
+        ec2_httpclient.queryEC2("CreateSecurityGroup", params, this, true, "onCompleteCreateSecurityGroup", callback);
     },
 
     onCompleteCreateSecurityGroup : function (objResponse) {

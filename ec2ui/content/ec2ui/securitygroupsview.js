@@ -143,6 +143,7 @@ var ec2ui_SecurityGroupsTreeView = {
             ec2ui_session.controller.createSecurityGroup(
                 retVal.name,
                 retVal.description,
+                retVal.vpcId,
                 wrap
             );
 

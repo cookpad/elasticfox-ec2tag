@@ -8,6 +8,7 @@ var ec2_SecGroupCreator = {
         this.retVal.name = document.getElementById("ec2ui.newsecgroup.name").value.trim();
         this.retVal.description = document.getElementById("ec2ui.newsecgroup.description").value.trim();
         this.retVal.enableProtocolsFor = document.getElementById("ec2ui.newsecgroup.enableprot").selectedItem.value;
+        this.retVal.vpcId = document.getElementById("ec2ui.newsecgroup.vpcId").selectedItem.value;
         this.retVal.ok = true;
         return true;
     },
@@ -35,5 +36,12 @@ var ec2_SecGroupCreator = {
     init : function() {
         this.ec2ui_session = window.arguments[0];
         this.retVal = window.arguments[1];
+
+        var vpcs = this.ec2ui_session.model.getVpcs();
+        var menulist = document.getElementById('ec2ui.newsecgroup.vpcId');
+
+        for (var i in vpcs) {
+            menulist.appendItem(vpcs[i].cidr + (vpcs[i].tag == null ? '' : " [" + vpcs[i].tag + "]"), vpcs[i].id);
+        }
     }
 }

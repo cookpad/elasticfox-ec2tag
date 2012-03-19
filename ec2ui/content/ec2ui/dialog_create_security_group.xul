@@ -33,6 +33,14 @@
                     <textbox id="ec2ui.newsecgroup.description" size="40"
                         value="" />
                 </row>
+                <row>
+                    <label control="ec2ui.newsecgroup.vpcId" value="VPC: "/>
+                    <menulist id="ec2ui.newsecgroup.vpcId">
+                        <menupopup>
+                            <menuitem label="No VPC" value="" />
+                        </menupopup>
+                    </menulist>
+                </row>
             </rows>
         </grid>
         <hbox>
