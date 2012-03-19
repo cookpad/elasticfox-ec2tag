@@ -52,7 +52,7 @@ var ec2ui_AMIsTreeView = {
     },
 
     imageTypeChanged : function() {
-        document.getElementById("ec2ui.images.search").value = "";
+        //document.getElementById("ec2ui.images.search").value = "";
         this.displayImagesOfType();
     },
 
