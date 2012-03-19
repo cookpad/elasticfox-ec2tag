@@ -154,6 +154,7 @@ var ec2ui_PermissionsTreeView = {
                 permission.fromPort,
                 permission.toPort,
                 permission.ipRanges[0],
+                group.vpcId,
                 wrap
                 );
             } else {

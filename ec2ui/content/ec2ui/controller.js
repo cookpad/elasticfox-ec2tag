@@ -2026,13 +2026,31 @@ var ec2ui_controller = {
             objResponse.callback();
     },
 
-    revokeSourceCIDR : function (groupName, ipProtocol, fromPort, toPort, cidrIp, callback) {
-        var params = []
-        params.push(["GroupName", groupName]);
-        params.push(["IpProtocol", ipProtocol]);
-        params.push(["FromPort", fromPort]);
-        params.push(["ToPort", toPort]);
-        params.push(["CidrIp", cidrIp]);
+    revokeSourceCIDR : function (groupName, ipProtocol, fromPort, toPort, cidrIp, vpcId, callback) {
+        var params = [];
+
+
+        if (vpcId) {
+            var groupId = ec2ui_model.getSecurityGroupIdFromName(groupName, vpcId);
+
+            if (!groupId) {
+                alert("Could not find group in VPC");
+                return;
+            }
+
+            params.push(["GroupId", groupId]);
+            params.push(["IpPermissions.1.IpProtocol", ipProtocol]);
+            params.push(["IpPermissions.1.FromPort", fromPort]);
+            params.push(["IpPermissions.1.ToPort", toPort]);
+            params.push(["IpPermissions.1.IpRanges.1.CidrIp", cidrIp]);
+        } else {
+            params.push(["GroupName", groupName]);
+            params.push(["IpProtocol", ipProtocol]);
+            params.push(["FromPort", fromPort]);
+            params.push(["ToPort", toPort]);
+            params.push(["CidrIp", cidrIp]);
+        }
+
         ec2_httpclient.queryEC2("RevokeSecurityGroupIngress", params, this, true, "onCompleteRevokeSecurityGroupIngress", callback);
     },
 
