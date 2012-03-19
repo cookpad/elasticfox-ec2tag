@@ -51,9 +51,16 @@
           <menuitem id="instances.context.changeInstanceType"
             oncommand="ec2ui_InstancesTreeView.changeInstanceType();"
             label="Change Instance Type" />
-          <menuitem id="instances.context.changeSecurityGroup"
-            oncommand="ec2ui_InstancesTreeView.changeSecurityGroup();"
-            label="Change Security Group (VPC)" />
+          <menu label="VPC">
+            <menupopup>
+              <menuitem id="instances.context.changeSecurityGroup"
+                oncommand="ec2ui_InstancesTreeView.changeSecurityGroup();"
+                label="Change Security Group" />
+              <menuitem id="instances.context.changeSourceDestCheck"
+                oncommand="ec2ui_InstancesTreeView.changeSourceDestCheck();"
+                label="Change Source / Dest Check" />
+            </menupopup>
+          </menu>
           <menu label="Termination Protection">
             <menupopup>
               <menuitem id="instances.context.showTerminationProtection"

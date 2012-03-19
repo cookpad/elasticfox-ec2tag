@@ -1048,7 +1048,7 @@ var ec2ui_InstancesTreeView = {
 
         if (instances.length == 0) {
             alert('Please select one instance.');
-            return;a
+            return;
         } else if (instances.length > 1) {
             alert('Cannot select multi instances.');
             return;
@@ -1158,6 +1158,41 @@ var ec2ui_InstancesTreeView = {
 
     doChangeTerminationProtection : function(instanceId, enable) {
         ec2ui_session.controller.modifyInstanceAttribute(instanceId, ["DisableApiTermination", enable]);
+    },
+
+    changeSourceDestCheck : function() {
+        var instances = this.getSelectedInstances();
+
+      if (instances.length == 0) {
+          alert('Please select one instance.');
+          return;
+      } else if (instances.length > 1) {
+          alert('Cannot select multi instances.');
+          return;
+      }
+
+        var instance = instances[0];
+        var me = this;
+
+        ec2ui_session.controller.describeInstanceAttribute(instance.id, "sourceDestCheck", function(value) {
+            value = (value == "true")
+
+            var msg = null;
+
+            if (value) {
+                msg = "Change Source / Dest Check: enable -> disable ?";
+            } else {
+                msg = "Change Source / Dest Check: disable -> enable ?";
+            }
+
+            if (confirm(msg)) {
+                me.doChangeSourceDestCheck(instance.id, !value);
+            }
+        });
+    },
+
+    doChangeSourceDestCheck : function(instanceId, enable) {
+        ec2ui_session.controller.modifyInstanceAttribute(instanceId, ["SourceDestCheck", enable]);
     },
 
     startInstance : function() {
