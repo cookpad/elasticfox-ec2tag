@@ -28,6 +28,9 @@
         </menupopup>
       </popupset>
       <toolbar style="padding: 0px 3px; -moz-box-align: center">
+        <textbox id="ec2ui.eip.search" size="15" value=""
+          type="autocomplete" autocompletesearch="form-history"
+          onkeypress="ec2ui_ElasticIPTreeView.searchChanged(event);" />
         <toolbarbutton image="images/refresh.png" oncommand="ec2ui_ElasticIPTreeView.refresh();"
           tooltiptext="&ec2ui.refresh.tip;" />
         <toolbarbutton image="images/alloc.png" tooltiptext="&ec2ui.eips.allocate.tip;"

@@ -62,7 +62,31 @@ var ec2ui_ElasticIPTreeView = {
     },
 
     invalidate: function() {
-        this.displayEIPs(ec2ui_session.model.addresses);
+        var target = ec2ui_ElasticIPTreeView;
+        target.displayEIPs(target.filterAddresses(ec2ui_session.model.addresses));
+    },
+
+    filterAddresses : function(addresses) {
+        var searchText = (document.getElementById('ec2ui.eip.search').value || '').trim();
+
+        if (searchText.length == 0) {
+            return addresses;
+        }
+
+        var newList = new Array();
+        var adrs = null;
+        var patt = new RegExp(searchText, "i");
+
+        for(var i in addresses) {
+            adrs = addresses[i];
+
+            if (patt.test(adrs.address) || patt.test(adrs.allocationId) || patt.test(adrs.instanceid)
+                || patt.test(adrs.instanceName) || patt.test(adrs.domain) || patt.test(adrs.associationId)) {
+                newList.push(adrs);
+            }
+        }
+
+        return newList;
     },
 
     refresh: function() {
@@ -312,6 +336,14 @@ var ec2ui_ElasticIPTreeView = {
         if (eipList.length > 0) {
            this.selection.select(0);
         }
+    },
+
+    searchChanged : function(event) {
+        if (this.searchTimer) {
+            clearTimeout(this.searchTimer);
+        }
+
+        this.searchTimer = setTimeout(this.invalidate, 500);
     }
 };
 
