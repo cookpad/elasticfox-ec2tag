@@ -122,14 +122,22 @@ var ec2ui_ElasticIPTreeView = {
     },
 
     allocateAddress : function() {
-        var me = this;
-        var wrap = function(address) {
-            if (ec2ui_prefs.isRefreshOnChangeEnabled()) {
-                me.refresh();
-                me.selectByAddress(address);
+        var returnValue = {accepted:false};
+
+        window.openDialog("chrome://ec2ui/content/dialog_allocate_address.xul", null, "chrome,centerscreen,modal", returnValue);
+
+        if (returnValue.accepted) {
+            var me = this;
+
+            var wrap = function(address) {
+                if (ec2ui_prefs.isRefreshOnChangeEnabled()) {
+                    me.refresh();
+                    me.selectByAddress(address);
+                }
             }
+
+            ec2ui_session.controller.allocateAddress(returnValue.vpc, wrap);
         }
-        ec2ui_session.controller.allocateAddress(wrap);
     },
 
     releaseAddress : function() {

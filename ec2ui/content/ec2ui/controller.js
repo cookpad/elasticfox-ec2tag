@@ -2169,8 +2169,14 @@ var ec2ui_controller = {
             objResponse.callback(list);
     },
 
-    allocateAddress : function (callback) {
-        ec2_httpclient.queryEC2("AllocateAddress", [], this, true, "onCompleteAllocateAddress", callback);
+    allocateAddress : function (vpc, callback) {
+        var params = [];
+
+        if (vpc) {
+            params.push(['Domain', 'vpc']);
+        }
+
+        ec2_httpclient.queryEC2("AllocateAddress", params, this, true, "onCompleteAllocateAddress", callback);
     },
 
     onCompleteAllocateAddress : function (objResponse) {
