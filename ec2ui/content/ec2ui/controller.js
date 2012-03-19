@@ -1938,8 +1938,23 @@ var ec2ui_controller = {
             objResponse.callback();
     },
 
-    deleteSecurityGroup : function (name, callback) {
-        ec2_httpclient.queryEC2("DeleteSecurityGroup", [["GroupName", name]], this, true, "onCompleteDeleteSecurityGroup", callback);
+    deleteSecurityGroup : function (name, vpcId, callback) {
+        var params = [];
+
+        if (vpcId) {
+            var groupId = ec2ui_model.getSecurityGroupIdFromName(name, vpcId);
+
+            if (!groupId) {
+                alert("Could not find group in VPC");
+                return;
+            }
+
+            params.push(["GroupId", groupId]);
+        } else {
+            params.push(["GroupName", name]);
+        }
+
+        ec2_httpclient.queryEC2("DeleteSecurityGroup", params, this, true, "onCompleteDeleteSecurityGroup", callback);
     },
 
     onCompleteDeleteSecurityGroup : function (objResponse) {

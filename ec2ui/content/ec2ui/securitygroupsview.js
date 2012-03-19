@@ -217,7 +217,7 @@ var ec2ui_SecurityGroupsTreeView = {
             me.refresh();
             me.selectByName(group.name);
         }
-        ec2ui_session.controller.deleteSecurityGroup(group.name, wrap);
+        ec2ui_session.controller.deleteSecurityGroup(group.name, group.vpcId, wrap);
     },
 
     displayGroups : function (groupList) {
