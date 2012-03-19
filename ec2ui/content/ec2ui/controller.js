@@ -2160,7 +2160,8 @@ var ec2ui_controller = {
         {
             var publicIp = getNodeValueByName(items[i], "publicIp");
             var instanceid = getNodeValueByName(items[i], "instanceId");
-            list.push(new AddressMapping(publicIp, instanceid));
+            var domain = getNodeValueByName(items[i], "domain");
+            list.push(new AddressMapping(publicIp, instanceid, domain));
         }
 
         this.addResourceTags(list, ec2ui_session.model.resourceMap.eips, "address");

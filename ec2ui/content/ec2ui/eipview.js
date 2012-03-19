@@ -1,5 +1,5 @@
 var ec2ui_ElasticIPTreeView = {
-    COLNAMES : ['eip.address','eip.instanceid','eip.instanceName'],
+    COLNAMES : ['eip.address','eip.instanceid','eip.instanceName','eip.domain'],
     treeBox : null,
     selection : null,
     arrLocalFiles : new Array(),

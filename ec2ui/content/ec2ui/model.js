@@ -164,9 +164,10 @@ function AvailabilityZone(name, state) {
     this.state = state;
 }
 
-function AddressMapping(address, instanceid, tag) {
+function AddressMapping(address, instanceid, domain, tag) {
     this.address = address;
     this.instanceid = instanceid;
+    this.domain = domain;
     if (tag) this.tag = tag;
 }
 

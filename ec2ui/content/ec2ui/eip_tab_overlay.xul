@@ -61,6 +61,9 @@
           <treecol id="eip.tag" label="Tag" flex="5"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
+          <treecol id="eip.domain" label="Domain" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
         </treecols>
         <treechildren id="ec2ui.addresses.children"
           context="ec2ui.addresses.contextmenu" />
