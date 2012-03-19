@@ -186,6 +186,7 @@ var ec2ui_SecurityGroupsTreeView = {
                 protPortMap["ssh"],
                 protPortMap["ssh"],
                 cidr,
+                retVal.vpcId,
                 null
                 );
 
@@ -196,6 +197,7 @@ var ec2ui_SecurityGroupsTreeView = {
                 protPortMap["rdp"],
                 protPortMap["rdp"],
                 cidr,
+                retVal.vpcId,
                 wrap
                 );
         } else {

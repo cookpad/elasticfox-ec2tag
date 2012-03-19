@@ -1230,15 +1230,16 @@ var ec2ui_InstancesTreeView = {
         copyToClipboard(instance[fieldName]);
     },
 
-    authorizeProtocolForGroup : function(name, transport, protocol, instGroups) {
+    authorizeProtocolForGroup : function(name, transport, protocol, instGroups, vpcId) {
         this.authorizeProtocolPortForGroup(name,
                                            transport,
                                            protocol,
                                            protPortMap[protocol],
-                                           instGroups);
+                                           instGroups,
+                                           vpcId);
     },
 
-    authorizeProtocolPortForGroup : function (name, transport, protocol, port, instGroups) {
+    authorizeProtocolPortForGroup : function (name, transport, protocol, port, instGroups, vpcId) {
         if (!ec2ui_prefs.getOpenConnectionPort()) {
             return;
         }
@@ -1333,6 +1334,7 @@ var ec2ui_InstancesTreeView = {
                     port,
                     port,
                     hostCIDR,
+                    vpcId,
                     wrap
                     );
             }
@@ -1370,10 +1372,10 @@ outer:
         // If this is a Windows instance, we need to RDP instead
         if (isWindows(instance.platform)) {
             // Ensure that the RDP port is open in one of the instance's groups
-            this.authorizeProtocolForGroup(instGrpName, "tcp", "rdp", instGroups);
+            this.authorizeProtocolForGroup(instGrpName, "tcp", "rdp", instGroups, instance.vpcId);
         } else {
             // Ensure that the SSH port is open in one of the instance's groups
-            this.authorizeProtocolForGroup(instGrpName, "tcp", "ssh", instGroups);
+            this.authorizeProtocolForGroup(instGrpName, "tcp", "ssh", instGroups, instance.vpcId);
         }
     },
 

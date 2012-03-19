@@ -95,6 +95,7 @@ var ec2ui_PermissionsTreeView = {
                     newPerm.fromPort,
                     newPerm.toPort,
                     newPerm.cidrIp,
+                    group.vpcId,
                     wrap
                     );
             } else {
