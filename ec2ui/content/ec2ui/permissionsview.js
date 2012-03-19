@@ -180,5 +180,15 @@ var ec2ui_PermissionsTreeView = {
         if (permissionList.length > 0) {
             this.selection.select(0);
         }
+    },
+
+    copyToClipBoard : function(fieldName) {
+        var permission = this.getSelectedPermission();
+
+        if (permission == null) {
+            return;
+        }
+
+        copyToClipboard(permission[fieldName]);
     }
 };

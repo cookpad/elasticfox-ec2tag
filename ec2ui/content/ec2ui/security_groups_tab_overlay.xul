@@ -83,6 +83,9 @@
       <caption label="&ec2ui.captions.secgroups.permissions.label;" />
       <popupset>
         <menupopup id="ec2ui.permissions.contextmenu">
+          <menuitem oncommand="ec2ui_PermissionsTreeView.copyToClipBoard('cidrs');"
+            label="Copy CIDR to clipboard" />
+          <menuseparator />
           <menuitem
             oncommand="ec2ui_PermissionsTreeView.revokePermission();"
             label="Revoke this permission" />
