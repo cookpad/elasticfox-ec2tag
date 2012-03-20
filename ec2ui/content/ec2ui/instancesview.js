@@ -1161,20 +1161,11 @@ var ec2ui_InstancesTreeView = {
     },
 
     changeSourceDestCheck : function() {
-        var instances = this.getSelectedInstances();
-
-      if (instances.length == 0) {
-          alert('Please select one instance.');
-          return;
-      } else if (instances.length > 1) {
-          alert('Cannot select multi instances.');
-          return;
-      }
-
-        var instance = instances[0];
+        var instanceIds = this.getSelectedInstanceIds();
+        var instanceId = instanceIds[0];
         var me = this;
 
-        ec2ui_session.controller.describeInstanceAttribute(instance.id, "sourceDestCheck", function(value) {
+        ec2ui_session.controller.describeInstanceAttribute(instanceId, "sourceDestCheck", function(value) {
             value = (value == "true")
 
             var msg = null;
@@ -1186,7 +1177,9 @@ var ec2ui_InstancesTreeView = {
             }
 
             if (confirm(msg)) {
-                me.doChangeSourceDestCheck(instance.id, !value);
+                for (var i = 0; i < instanceIds.length; i++) {
+                    me.doChangeSourceDestCheck(instanceIds[i], !value);
+                }
             }
         });
     },
