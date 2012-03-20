@@ -51,6 +51,9 @@
           <menuitem id="instances.context.changeInstanceType"
             oncommand="ec2ui_InstancesTreeView.changeInstanceType();"
             label="Change Instance Type" />
+          <menuitem id="instances.context.changeShutdownBehavior"
+            oncommand="ec2ui_InstancesTreeView.changeShutdownBehavior();"
+            label="Change Shutdown Behavior" />
           <menu label="VPC">
             <menupopup>
               <menuitem id="instances.context.changeSecurityGroup"

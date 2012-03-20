@@ -1150,7 +1150,7 @@ var ec2ui_InstancesTreeView = {
 
             if (confirm(msg)) {
                 for (var i = 0; i < instanceIds.length; i++) {
-                  me.doChangeTerminationProtection(instanceIds[i], !value);
+                    me.doChangeTerminationProtection(instanceIds[i], !value);
                 }
             }
         });
@@ -1158,6 +1158,32 @@ var ec2ui_InstancesTreeView = {
 
     doChangeTerminationProtection : function(instanceId, enable) {
         ec2ui_session.controller.modifyInstanceAttribute(instanceId, ["DisableApiTermination", enable]);
+    },
+
+    changeShutdownBehavior : function() {
+        var instanceIds = this.getSelectedInstanceIds();
+        var instanceId = instanceIds[0];
+        var me = this;
+
+        ec2ui_session.controller.describeInstanceAttribute(instanceId, "instanceInitiatedShutdownBehavior", function(value) {
+            var msg = null;
+
+            if (value == 'stop') {
+                msg = "Shutdown Behavior: stop -> terminate ?";
+            } else {
+                msg = "Shutdown Behavior: terminate -> stop ?";
+            }
+
+            if (confirm(msg)) {
+                for (var i = 0; i < instanceIds.length; i++) {
+                    me.doChangeShutdownBehavior(instanceIds[i], (value == 'stop' ? 'terminate' : 'stop'));
+                }
+            }
+        });
+    },
+
+    doChangeShutdownBehavior : function(instanceId, value) {
+        ec2ui_session.controller.modifyInstanceAttribute(instanceId, ["InstanceInitiatedShutdownBehavior", value]);
     },
 
     changeSourceDestCheck : function() {
