@@ -53,6 +53,7 @@ var ec2ui_session =
             document.getElementById("ec2ui.vpnconnections.view").view = ec2ui_VpnConnectionTreeView;
             document.getElementById("ec2ui.customergateways.view").view = ec2ui_CustomerGatewayTreeView;
             document.getElementById("ec2ui.vpnattachments.view").view = ec2ui_VpnAttachmentTreeView;
+            document.getElementById("ec2ui.eni.view").view = ec2ui_ENITreeView;
 
             // Enable about:blank to work if noscript is installed
             if("@maone.net/noscript-service;1" in Components.classes) {
@@ -148,8 +149,11 @@ var ec2ui_session =
         case 'Instances':
             eval("ec2ui_InstancesTreeView." + toCall);
             break;
-        case 'Scheduled Events':
+        case 'Events':
             eval("ec2ui_ScheduledEventsTreeView." + toCall);
+            break;
+        case 'ENI':
+            eval("ec2ui_ENITreeView." + toCall);
             break;
         case 'Images':
             this.showBusyCursor(true);

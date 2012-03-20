@@ -2727,10 +2727,10 @@ var ec2ui_controller = {
     },
 
     describeInstanceStatus : function (callback) {
-        ec2_httpclient.queryEC2("DescribeInstanceStatus", [], this, true, "onCompletedescribeInstanceStatus", callback);
+        ec2_httpclient.queryEC2("DescribeInstanceStatus", [], this, true, "onCompleteDescribeInstanceStatus", callback);
     },
 
-    onCompletedescribeInstanceStatus : function (objResponse) {
+    onCompleteDescribeInstanceStatus : function (objResponse) {
         var xmlDoc = objResponse.xmlDoc;
 
         var items = xmlDoc.evaluate("/ec2:DescribeInstanceStatusResponse/ec2:instanceStatusSet/ec2:item",
@@ -2765,6 +2765,48 @@ var ec2ui_controller = {
           }
 
         ec2ui_model.updateInstanceStatuses(list);
+
+        if (objResponse.callback) {
+            objResponse.callback(list);
+        }
+    },
+
+    describeNetworkInterfaces : function (callback) {
+        ec2_httpclient.queryEC2("DescribeNetworkInterfaces", [], this, true, "onCompleteDescribeNetworkInterfaces", callback);
+    },
+
+    onCompleteDescribeNetworkInterfaces : function (objResponse) {
+        var xmlDoc = objResponse.xmlDoc;
+
+        var items = xmlDoc.evaluate("/ec2:DescribeNetworkInterfacesResponse/ec2:networkInterfaceSet/ec2:item",
+                                    xmlDoc,
+                                    this.getNsResolver(),
+                                    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                                    null);
+
+        var list = new Array();
+
+        for(var i = 0 ; i < items.snapshotLength; i++) {
+            var item = items.snapshotItem(i);
+
+            var networkInterfaceId = getNodeValueByName(item, "networkInterfaceId");
+            var subnetId = getNodeValueByName(item, "subnetId");
+            var vpcId = getNodeValueByName(item, "vpcId");
+            var availabilityZone = getNodeValueByName(item, "availabilityZone");
+            var description = getNodeValueByName(item, "description");
+            var ownerId = getNodeValueByName(item, "ownerId");
+            var requesterManaged = getNodeValueByName(item, "requesterManaged");
+            var status = getNodeValueByName(item, "status");
+            var macAddress = getNodeValueByName(item, "macAddress");
+            var privateIpAddress = getNodeValueByName(item, "privateIpAddress");
+            var sourceDestCheck = getNodeValueByName(item, "sourceDestCheck");
+
+            list.push(new NetworkInterface(networkInterfaceId, subnetId, vpcId, availabilityZone, description,
+                                           ownerId, requesterManaged, status, macAddress, privateIpAddress, sourceDestCheck));
+
+        }
+
+        ec2ui_model.updateNetworkInterfaces(list);
 
         if (objResponse.callback) {
             objResponse.callback(list);

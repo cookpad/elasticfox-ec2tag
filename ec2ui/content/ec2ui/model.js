@@ -135,6 +135,21 @@ function InstanceStatusEvent(instanceId, availabilityZone, code, description, st
     this.endTime = endTime;
 }
 
+function NetworkInterface(networkInterfaceId, subnetId, vpcId, availabilityZone, description,
+                          ownerId, requesterManaged, status, macAddress, privateIpAddress, sourceDestCheck) {
+    this.networkInterfaceId = networkInterfaceId;
+    this.subnetId           = subnetId;
+    this.vpcId              = vpcId;
+    this.availabilityZone   = availabilityZone;
+    this.description        = description;
+    this.ownerId            = ownerId;
+    this.requesterManaged   = requesterManaged;
+    this.status             = status;
+    this.macAddress         = macAddress;
+    this.privateIpAddress   = privateIpAddress;
+    this.sourceDestCheck    = sourceDestCheck;
+}
+
 function SecurityGroup(ownerId, name, description, permissions, vpcId, groupId) {
     this.ownerId = ownerId;
     this.name = name;
@@ -796,5 +811,18 @@ var ec2ui_model = {
         }
 
         return this.instanceStatuses;
+    },
+
+    updateNetworkInterfaces : function(list) {
+        this.networkInterfaces = list;
+        this.notifyComponents("networkInterfaces");
+    },
+
+    getNetworkInterfaces : function() {
+        if (this.networkInterfaces == null) {
+            ec2ui_session.controller.describeNetworkInterfaces();
+        }
+
+        return this.networkInterfaces;
     }
 }

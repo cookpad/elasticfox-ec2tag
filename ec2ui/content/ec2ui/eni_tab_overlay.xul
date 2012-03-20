@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://ec2ui/skin/ec2ui.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <tabpanel id="eni_tab" flex="1">
+    <groupbox orient="vertical" flex="1">
+      <caption label="Network Interfaces" />
+      <popupset>
+        <menupopup id="ec2ui.eni.contextmenu">
+          <menuitem oncommand="ec2ui_ENITreeView
+            .copyToClipBoard('instanceId');"
+            label="Copy Instance ID to clipboard" />
+          <menuitem oncommand="ec2ui_ENITreeView.copyToClipBoard('instanceName');"
+            label="Copy Instance Name to clipboard" />
+          <menuitem oncommand="ec2ui_ENITreeView.copyToClipBoard('availabilityZone');"
+            label="Copy Availability Zone to clipboard" />
+          <menuitem oncommand="ec2ui_ENITreeView.copyToClipBoard('code');"
+            label="Copy Code to clipboard" />
+          <menuitem oncommand="ec2ui_ENITreeView.copyToClipBoard('description');"
+            label="Copy Description to clipboard" />
+          <menuitem oncommand="ec2ui_ENITreeView.copyToClipBoard('startTime');"
+            label="Copy Start Time to clipboard" />
+          <menuitem oncommand="ec2ui_ENITreeView.copyToClipBoard('endTime');"
+            label="Copy End Time to clipboard" />
+        </menupopup>
+      </popupset>
+      <toolbar style="padding: 0px 3px; -moz-box-align: center">
+        <hbox flex="10">
+          <textbox id="ec2ui.eni.search" size="15" value=""
+            type="autocomplete" autocompletesearch="form-history"
+            onkeypress="ec2ui_ENITreeView.searchChanged(event);" />
+          <toolbarbutton image="images/refresh.png" oncommand="ec2ui_ENITreeView.refresh()"
+            tooltiptext="&ec2ui.refresh.tip;" />
+        </hbox>
+      </toolbar>
+      <tree enableColumnDrag="true" id="ec2ui.eni.view" flex="1">
+        <treecols>
+          <treecol id="eni.networkInterfaceId" label="Network Interface ID" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="eni.subnetId" label="Subnet ID" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="eni.vpcId" label="VPC ID " flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="eni.availabilityZone" label="Availability Zone" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="eni.description" label="Description" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="eni.ownerId" label="Owner ID" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="eni.requesterManaged" label="Requester Managed" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="eni.status" label="Status" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="eni.macAddress" label="MAC Address" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="eni.privateIpAddress" label="Private IP Address" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="eni.sourceDestCheck" label="Source/Dest Check" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+        </treecols>
+        <treechildren context="ec2ui.eni.contextmenu" />
+      </tree>
+    </groupbox>
+  </tabpanel>
+</overlay>
