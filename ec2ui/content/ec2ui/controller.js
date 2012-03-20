@@ -2208,8 +2208,16 @@ var ec2ui_controller = {
             objResponse.callback();
     },
 
-    associateAddress : function (address, instanceid, callback) {
-        ec2_httpclient.queryEC2("AssociateAddress", [['PublicIp', address], ['InstanceId', instanceid]], this, true, "onCompleteAssociateAddress", callback);
+    associateAddress : function (address, instanceid, allocationId, callback) {
+        var params = [['InstanceId', instanceid]];
+
+        if (allocationId) {
+            params.push(['AllocationId', allocationId]);
+        } else {
+            params.push(['PublicIp', address]);
+        }
+
+        ec2_httpclient.queryEC2("AssociateAddress", params, this, true, "onCompleteAssociateAddress", callback);
     },
 
     onCompleteAssociateAddress : function (objResponse) {
@@ -2217,8 +2225,16 @@ var ec2ui_controller = {
             objResponse.callback();
     },
 
-    disassociateAddress : function (address, callback) {
-        ec2_httpclient.queryEC2("DisassociateAddress", [['PublicIp', address]], this, true, "onCompleteDisassociateAddress", callback);
+    disassociateAddress : function (address, associationId, callback) {
+        var params = [];
+
+        if (associationId) {
+            params.push(['AssociationId', associationId]);
+        } else {
+            params.push(['PublicIp', address]);
+        }
+
+        ec2_httpclient.queryEC2("DisassociateAddress", params, this, true, "onCompleteDisassociateAddress", callback);
     },
 
     onCompleteDisassociateAddress : function (objResponse) {

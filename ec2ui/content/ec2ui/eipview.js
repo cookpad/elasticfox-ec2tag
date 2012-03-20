@@ -180,7 +180,7 @@ var ec2ui_ElasticIPTreeView = {
         ec2ui_session.controller.releaseAddress(eip.address, eip.allocationId, wrap);
     },
 
-    getUnassociatedInstanceIds : function() {
+    getUnassociatedInstanceIds : function(domain) {
         var instanceIds = new Array();
         var instList = ec2ui_model.getInstances();
         var i = 0;
@@ -190,6 +190,13 @@ var ec2ui_ElasticIPTreeView = {
         var id = null;
         for (i in instList) {
             inst = instList[i];
+
+            if (domain == 'vpc') {
+                if (!inst.vpcId) { continue; }
+            } else {
+                if (inst.vpcId) { continue; }
+            }
+
             if (inst.state == "running") {
                 id = inst.id;
                 tag = __tagToName__(inst.tag);
@@ -244,7 +251,7 @@ var ec2ui_ElasticIPTreeView = {
                     return;
             }
 
-            var instanceIds = this.getUnassociatedInstanceIds();
+            var instanceIds = this.getUnassociatedInstanceIds(eip.domain);
 
             var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"]
                 .getService(Components.interfaces.nsIPromptService);
@@ -273,7 +280,7 @@ var ec2ui_ElasticIPTreeView = {
                 me.selectByAddress(eip.address);
             }
         }
-        ec2ui_session.controller.associateAddress(eip.address, eip.instanceid, wrap);
+        ec2ui_session.controller.associateAddress(eip.address, eip.instanceid, eip.allocationId, wrap);
         return true;
     },
 
@@ -292,7 +299,7 @@ var ec2ui_ElasticIPTreeView = {
                 me.refresh();
             }
         }
-        ec2ui_session.controller.disassociateAddress(eip.address, wrap);
+        ec2ui_session.controller.disassociateAddress(eip.address, eip.associationId, wrap);
     },
 
     tag : function() {
