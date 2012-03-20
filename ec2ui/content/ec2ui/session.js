@@ -163,7 +163,7 @@ var ec2ui_session =
         case "Security Groups":
             eval("ec2ui_SecurityGroupsTreeView." + toCall);
             break;
-        case "Elastic IPs":
+        case "EIP":
             eval("ec2ui_ElasticIPTreeView." + toCall);
             break;
         case "Vols and Snaps":

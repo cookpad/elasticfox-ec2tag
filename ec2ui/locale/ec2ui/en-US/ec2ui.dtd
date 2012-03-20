@@ -13,7 +13,7 @@
 <!ENTITY ec2ui.tabs.keypairs.label "KeyPairs">
 <!ENTITY ec2ui.tabs.secgroups.label "Security Groups">
 <!ENTITY ec2ui.tabs.availzones.label "AZ">
-<!ENTITY ec2ui.tabs.eips.label "Elastic IPs">
+<!ENTITY ec2ui.tabs.eips.label "EIP">
 <!ENTITY ec2ui.tabs.volumes.label "Vols and Snaps">
 <!ENTITY ec2ui.tabs.bundleTasks.label "BT">
 <!ENTITY ec2ui.tabs.leases.label "RI">
