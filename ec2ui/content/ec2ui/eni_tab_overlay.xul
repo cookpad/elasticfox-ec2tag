@@ -9,21 +9,8 @@
       <caption label="Network Interfaces" />
       <popupset>
         <menupopup id="ec2ui.eni.contextmenu">
-          <menuitem oncommand="ec2ui_ENITreeView
-            .copyToClipBoard('instanceId');"
-            label="Copy Instance ID to clipboard" />
-          <menuitem oncommand="ec2ui_ENITreeView.copyToClipBoard('instanceName');"
-            label="Copy Instance Name to clipboard" />
-          <menuitem oncommand="ec2ui_ENITreeView.copyToClipBoard('availabilityZone');"
-            label="Copy Availability Zone to clipboard" />
-          <menuitem oncommand="ec2ui_ENITreeView.copyToClipBoard('code');"
-            label="Copy Code to clipboard" />
-          <menuitem oncommand="ec2ui_ENITreeView.copyToClipBoard('description');"
-            label="Copy Description to clipboard" />
-          <menuitem oncommand="ec2ui_ENITreeView.copyToClipBoard('startTime');"
-            label="Copy Start Time to clipboard" />
-          <menuitem oncommand="ec2ui_ENITreeView.copyToClipBoard('endTime');"
-            label="Copy End Time to clipboard" />
+          <menuitem oncommand=""
+            label="Do nothing" />
         </menupopup>
       </popupset>
       <toolbar style="padding: 0px 3px; -moz-box-align: center">
