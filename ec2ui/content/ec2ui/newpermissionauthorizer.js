@@ -235,9 +235,17 @@ var ec2_Authorizer = {
     user.value = this.group.ownerId;
     var groupMenu = document.getElementById("ec2ui.newpermission.source.group");
     var securityGroups = this.ec2ui_session.model.getSecurityGroups();
+    var securityGroupList = [];
+
     for(var i in securityGroups) {
         if (securityGroups[i].vpcId != vpcId) { continue; }
-        groupMenu.appendItem(securityGroups[i].name);
+        securityGroupList.push(securityGroups[i].name);
+    }
+
+    securityGroupList.sort();
+
+    for(var i = 0; i < securityGroupList.length; i++) {
+        groupMenu.appendItem(securityGroupList[i]);
     }
 
     groupMenu.selectedIndex = 0;
