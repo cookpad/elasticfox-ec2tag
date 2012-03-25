@@ -73,6 +73,8 @@
           <splitter class="tree-splitter" />
           <treecol id="eni.instanceId" label="Instances ID" flex="1" sortDirection="ascending"
             persist="width ordinal hidden sortDirection" />
+          <treecol id="eni.instanceName" label="Instances Name" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
         </treecols>
         <treechildren context="ec2ui.eni.contextmenu" />

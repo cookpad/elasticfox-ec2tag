@@ -13,6 +13,7 @@ var ec2ui_ENITreeView = {
         'eni.sourceDestCheck',
         'eni.groups',
         'eni.instanceId',
+        'eni.instanceName',
     ],
 
     treeBox : null,
