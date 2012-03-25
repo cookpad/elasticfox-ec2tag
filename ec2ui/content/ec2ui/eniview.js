@@ -313,7 +313,7 @@ var ec2ui_ENITreeView = {
             var member = this.COLNAMES[i].split(".").pop();
             var text = event[member];
 
-            if (text.match(patt)) {
+            if (text && text.match(patt)) {
                 return true;
             }
         }
