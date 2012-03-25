@@ -121,11 +121,39 @@ var ec2ui_ENITreeView = {
         }
     },
 
+    detachNetworkInterface : function(force) {
+        var eni = this.getSelectedNetworkInterface();
+        if (!eni) { return; }
+
+        if (!eni.attachmentId) {
+            alert("Could not find Attachment ID");
+            return;
+        }
+
+        var msg = null;
+
+        if (force) {
+            msg = "Force detach interface " + eni.networkInterfaceId + " (" + eni.description + ") from " + (eni.instanceName || "(no name)") + "@" + eni.instanceId +  "?";
+        } else {
+            msg = "Detach interface " + eni.networkInterfaceId + " (" + eni.description + ") from " + (eni.instanceName || "(no name)") + "@" + eni.instanceId +  "?";
+        }
+
+        var is_detach = confirm(msg);
+        if (!is_detach) { return; }
+
+        var me = this;
+
+        ec2ui_session.controller.detachNetworkInterface(eni.attachmentId, force, function() {
+            me.refresh();
+            me.selectByNetworkInterfaceId(eni.networkInterfaceId);
+        });
+    },
+
     deleteNetworkInterface : function () {
         var eni = this.getSelectedNetworkInterface();
         if (!eni) { return; }
 
-        var is_delete = confirm("Delete interface " + eni.id + " (" + eni.description + ")?");
+        var is_delete = confirm("Delete interface " + eni.networkInterfaceId + " (" + eni.description + ")?");
         if (!is_delete) { return; }
 
         var me = this;

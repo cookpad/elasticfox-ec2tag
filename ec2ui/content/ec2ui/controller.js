@@ -2932,4 +2932,22 @@ var ec2ui_controller = {
         }
     },
 
+    detachNetworkInterface : function (attachmentId, force, callback) {
+        var params = [
+            ['AttachmentId', attachmentId],
+        ];
+
+        if (force) {
+            params.push(['Force', force]);
+        }
+
+        ec2_httpclient.queryEC2("DetachNetworkInterface", params, this, true, "onCompleteDetachNetworkInterface", callback);
+    },
+
+    onCompleteDetachNetworkInterface : function (objResponse) {
+        if (objResponse.callback) {
+            objResponse.callback();
+        }
+    },
+
 };

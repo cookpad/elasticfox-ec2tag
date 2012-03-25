@@ -11,6 +11,8 @@
         <menupopup id="ec2ui.eni.contextmenu">
           <menuitem oncommand="ec2ui_ENITreeView.attachNetworkInterface();"
             label="Attach this interface" />
+          <menuitem oncommand="ec2ui_ENITreeView.detachNetworkInterface();"
+            label="Detach this interface" />
           <menuitem oncommand="ec2ui_ENITreeView.changeSecurityGroup();"
             label="Change Security Group" />
           <menuitem oncommand="ec2ui_ENITreeView.changeSourceDestCheck();"
@@ -18,6 +20,8 @@
           <menuitem oncommand="ec2ui_ENITreeView.changeDescription();"
             label="Change Description" />
           <menuseparator />
+          <menuitem oncommand="ec2ui_ENITreeView.detachNetworkInterface(true);"
+            label="Force detach this interface" />
           <menuitem oncommand="ec2ui_ENITreeView.deleteNetworkInterface();"
             label="Delete this interface" />
         </menupopup>
