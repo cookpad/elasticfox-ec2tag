@@ -66,6 +66,9 @@
           <treecol id="eni.sourceDestCheck" label="Source/Dest Check" flex="1" sortDirection="ascending"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
+          <treecol id="eni.groups" label="Security Groups" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
         </treecols>
         <treechildren context="ec2ui.eni.contextmenu" />
       </tree>

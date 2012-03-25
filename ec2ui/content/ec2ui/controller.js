@@ -2801,8 +2801,25 @@ var ec2ui_controller = {
             var privateIpAddress = getNodeValueByName(item, "privateIpAddress");
             var sourceDestCheck = getNodeValueByName(item, "sourceDestCheck");
 
+            var groupList = [];
+            var groupSet = item.getElementsByTagName('groupSet')[0];
+
+            if (groupSet) {
+                var groupSetItems = groupSet.getElementsByTagName('item');
+
+                for (var j = 0; j < groupSetItems.length; j++) {
+                    var groupName = getNodeValueByName(groupSetItems[j], 'groupName');
+
+                    if (groupName) {
+                        groupList.push(groupName);
+                    }
+                }
+            }
+
+            groupList.sort();
+
             list.push(new NetworkInterface(networkInterfaceId, subnetId, vpcId, availabilityZone, description,
-                                           ownerId, requesterManaged, status, macAddress, privateIpAddress, sourceDestCheck));
+                                           ownerId, requesterManaged, status, macAddress, privateIpAddress, sourceDestCheck, groupList));
 
         }
 
