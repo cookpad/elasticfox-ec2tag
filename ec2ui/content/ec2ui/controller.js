@@ -2840,5 +2840,16 @@ var ec2ui_controller = {
         if (objResponse.callback) {
             objResponse.callback();
         }
+    },
+
+    deleteNetworkInterface : function (networkInterfaceId, callback) {
+        var params = [['NetworkInterfaceId', networkInterfaceId]];
+        ec2_httpclient.queryEC2("DeleteNetworkInterface", params, this, true, "onCompleteDeleteNetworkInterface", callback);
+    },
+
+    onCompleteDeleteNetworkInterface : function (objResponse) {
+        if (objResponse.callback) {
+            objResponse.callback();
+        }
     }
 };

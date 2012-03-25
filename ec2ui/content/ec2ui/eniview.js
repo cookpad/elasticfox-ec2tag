@@ -94,6 +94,20 @@ var ec2ui_ENITreeView = {
         }
     },
 
+    deleteNetworkInterface : function () {
+        var eni = this.getSelectedNetworkInterface();
+        if (!eni) { return; }
+
+        var is_delete = confirm("Delete interface " + eni.id + " (" + eni.description + ")?");
+        if (!is_delete) { return; }
+
+        var me = this;
+
+        ec2ui_session.controller.deleteNetworkInterface(eni.networkInterfaceId, function() {
+            me.refresh();
+        });
+    },
+
     register: function() {
         if (!this.registered) {
             this.registered = true;

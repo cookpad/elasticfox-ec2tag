@@ -9,8 +9,8 @@
       <caption label="Network Interfaces" />
       <popupset>
         <menupopup id="ec2ui.eni.contextmenu">
-          <menuitem oncommand=""
-            label="Do nothing" />
+          <menuitem oncommand="ec2ui_ENITreeView.deleteNetworkInterface();"
+            label="Delete this interface" />
         </menupopup>
       </popupset>
       <toolbar style="padding: 0px 3px; -moz-box-align: center">
