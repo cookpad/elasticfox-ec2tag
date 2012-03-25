@@ -8,7 +8,6 @@
   ondialogaccept="return ec2_ENIDialogSecurityGroup.securityGroupDialogDoOK();"
   ondialogcancel="return true;"
   onload="ec2_ENIDialogSecurityGroup.securityGroupDialogOnLoad();">
-  width="300" height="200">
 
   <script type="application/x-javascript" src="chrome://ec2ui/content/dialog_eni_security_group.js" />
 
