@@ -242,7 +242,7 @@ var ec2ui_ENITreeView = {
         var eni = this.getSelectedNetworkInterface();
         if (!eni) { return; }
 
-        var newDesc = (prompt("New description") || '').trim();
+        var newDesc = (prompt("New description", eni.description) || '').trim();
         if (!newDesc) { return; }
 
         var me = this;
