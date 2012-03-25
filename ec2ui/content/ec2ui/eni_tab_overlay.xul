@@ -20,6 +20,10 @@
             onkeypress="ec2ui_ENITreeView.searchChanged(event);" />
           <toolbarbutton image="images/refresh.png" oncommand="ec2ui_ENITreeView.refresh()"
             tooltiptext="&ec2ui.refresh.tip;" />
+          <toolbarbutton image="images/createinterface.png"
+            style="-moz-box-orient:horizontal;-moz-box-pack:center;"
+            oncommand="ec2ui_ENITreeView.createNetworkInterface()"
+            tooltiptext="Create network interface" />
         </hbox>
       </toolbar>
       <tree enableColumnDrag="true" id="ec2ui.eni.view" flex="1">

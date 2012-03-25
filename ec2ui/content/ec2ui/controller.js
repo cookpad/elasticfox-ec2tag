@@ -2811,5 +2811,34 @@ var ec2ui_controller = {
         if (objResponse.callback) {
             objResponse.callback(list);
         }
+    },
+
+    createNetworkInterface : function (vpcId, subnetId, privateIpAddress, description, groupNames, callback) {
+        var params = [['SubnetId', subnetId]];
+
+        if (privateIpAddress) {
+            params.push(['PrivateIpAddress', privateIpAddress]);
+        }
+
+        if (description) {
+            params.push(['Description', description]);
+        }
+
+        var groupNameIds =  ec2ui_model.getSecurityGroupNameIds(vpcId);
+
+        for(var i = 0; i < groupNames.length; i++) {
+            var name = groupNames[i];
+            var groupId = groupNameIds[name];
+            if (!groupId) { continue; }
+            params.push(["SecurityGroupId."+(i+1), groupId]);
+        }
+
+        ec2_httpclient.queryEC2("CreateNetworkInterface", params, this, true, "onCompleteCreateNetworkInterface", callback);
+    },
+
+    onCompleteCreateNetworkInterface : function (objResponse) {
+        if (objResponse.callback) {
+            objResponse.callback();
+        }
     }
 };

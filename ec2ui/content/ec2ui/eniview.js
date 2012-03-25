@@ -65,6 +65,35 @@ var ec2ui_ENITreeView = {
         return this.networkInterfaceList[index];
     },
 
+    createNetworkInterface : function() {
+        var subnets = ec2ui_session.model.getSubnets();
+
+        if (!subnets) {
+            return;
+        }
+
+        if (subnets.length == 0) {
+            alert('Please create one or more subnets.');
+            return;
+        }
+
+        var returnValue = {accepted:false, result:null};
+
+        openDialog('chrome://ec2ui/content/dialog_new_interface.xul',
+                   null,
+                   'chrome,centerscreen,modal,width=400,height=250',
+                   ec2ui_session,
+                   returnValue);
+
+        if (returnValue.accepted) {
+          var me = this;
+
+          ec2ui_session.controller.createNetworkInterface(returnValue.subnet.vpcId, returnValue.subnet.id, returnValue.privateipaddress, returnValue.description, returnValue.groups, function() {
+            me.refresh();
+          });
+        }
+    },
+
     register: function() {
         if (!this.registered) {
             this.registered = true;

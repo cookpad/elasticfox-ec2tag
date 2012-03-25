@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://ec2ui/locale/ec2ui.dtd">
+
+<dialog id="ec2ui.dialog.newinterface" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  buttons="accept,cancel" ondialogaccept="return ec2_DialogNewInterface.doOK();" ondialogcancel="return true;"
+  onload="ec2_DialogNewInterface.onLoad();" title="Create new interface">
+
+  <script type="application/x-javascript" src="chrome://ec2ui/content/dialog_new_interface.js" />
+
+  <vbox flex="1">
+    <grid flex="1">
+      <columns>
+        <column />
+        <column />
+      </columns>
+      <rows>
+        <row>
+          <label control="ec2ui.newinterface.subnetids" value="Subnet:" />
+          <menulist id="ec2ui.newinterface.subnetids" onselect="ec2_DialogNewInterface.refreshSecurityGroup()" />
+        </row>
+        <row>
+          <label control="ec2ui.newinterface.privateipaddress" value="PrivateIpAddress:" />
+          <textbox id="ec2ui.newinterface.privateipaddress" size="40" value="" />
+        </row>
+        <row>
+          <label control="ec2ui.newinterface.description" value="Description:" />
+          <textbox id="ec2ui.newinterface.description" size="40" value="" />
+        </row>
+      </rows>
+    </grid>
+    <groupbox flex="1" id="ec2ui.newinterface.securitygroup.box">
+      <caption label="Security Group" />
+      <label id="ec2ui.newinterface.securitygroup.label" control="ec2ui.newinterface.securitygroup.list" />
+      <listbox id="ec2ui.newinterface.securitygroup.list" seltype="multiple" flex="1" />
+    </groupbox>
+  </vbox>
+</dialog>
