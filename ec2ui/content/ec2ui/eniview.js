@@ -97,6 +97,29 @@ var ec2ui_ENITreeView = {
         }
     },
 
+    attachNetworkInterface : function() {
+        var eni = this.getSelectedNetworkInterface();
+        if (!eni) { return; }
+
+        var returnValue = {accepted:false, result:null};
+
+        openDialog('chrome://ec2ui/content/dialog_attach_eni.xul',
+                   null,
+                   'chrome,centerscreen,modal',
+                   ec2ui_session,
+                   eni,
+                   returnValue);
+
+        if (returnValue.accepted) {
+            var me = this;
+
+            ec2ui_session.controller.attachNetworkInterface(eni.networkInterfaceId, returnValue.instanceId, returnValue.deviceIndex, function() {
+                me.refresh();
+                me.selectByNetworkInterfaceId(eni.networkInterfaceId);
+            });
+        }
+    },
+
     deleteNetworkInterface : function () {
         var eni = this.getSelectedNetworkInterface();
         if (!eni) { return; }

@@ -9,6 +9,8 @@
       <caption label="Network Interfaces" />
       <popupset>
         <menupopup id="ec2ui.eni.contextmenu">
+          <menuitem oncommand="ec2ui_ENITreeView.attachNetworkInterface();"
+            label="Attach this interface" />
           <menuitem oncommand="ec2ui_ENITreeView.changeSecurityGroup();"
             label="Change Security Group" />
           <menuitem oncommand="ec2ui_ENITreeView.changeSourceDestCheck();"
