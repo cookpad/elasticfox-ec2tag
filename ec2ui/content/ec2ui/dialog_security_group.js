@@ -20,8 +20,16 @@ var ec2_DialogSecurityGroup = {
     label.value = instanceName + '@' + instance.id + ' Security Group';
 
     var list = document.getElementById('security-group-dialog-security-group-list');
+    var groupArray = [];
 
     for (var name in groups) {
+      groupArray.push(name);
+    }
+
+    groupArray.sort();
+
+    for (var i = 0; i < groupArray.length; i++) {
+      var name = groupArray[i];
       var label = name;
 
       if (isIncludedInGroupList(name)) {
