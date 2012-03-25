@@ -350,7 +350,7 @@ var ec2ui_AMIsTreeView = {
             return;
         }
 
-        var ami = image.id;
+        var ami = image.id + " / " + image.name;
         var snapshot = image.snapshotId;
 
         var msg = "Are you sure you want to delete this AMI ("+ami+") "+
