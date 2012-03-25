@@ -108,6 +108,28 @@ var ec2ui_ENITreeView = {
         });
     },
 
+    changeSourceDestCheck : function() {
+        var eni = this.getSelectedNetworkInterface();
+        if (!eni) { return; }
+
+        var msg = null;
+        var value = (eni.sourceDestCheck == "true");
+
+        if (value) {
+            msg = "Change Source / Dest Check: enable -> disable ?";
+        } else {
+            msg = "Change Source / Dest Check: disable -> enable ?";
+        }
+
+        if (confirm(msg)) {
+            var me = this;
+
+            ec2ui_session.controller.modifyNetworkInterfaceAttribute(eni.networkInterfaceId, ["SourceDestCheck", !value], function() {
+                me.refresh();
+            });
+        }
+    },
+
     register: function() {
         if (!this.registered) {
             this.registered = true;

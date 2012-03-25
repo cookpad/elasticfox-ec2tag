@@ -2851,5 +2851,22 @@ var ec2ui_controller = {
         if (objResponse.callback) {
             objResponse.callback();
         }
+    },
+
+    modifyNetworkInterfaceAttribute : function (networkInterfaceId, attribute, callback) {
+        var params = [];
+        params.push(["NetworkInterfaceId", networkInterfaceId]);
+
+        var name = attribute[0];
+        var value = attribute[1];
+        params.push([name + ".Value", value]);
+
+        ec2_httpclient.queryEC2("ModifyNetworkInterfaceAttribute", params, this, true, "onModifyNetworkInterfaceAttribute", callback);
+    },
+
+    onModifyNetworkInterfaceAttribute : function (objResponse) {
+        if (objResponse.callback) {
+            objResponse.callback();
+        }
     }
 };

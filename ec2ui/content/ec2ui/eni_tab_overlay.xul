@@ -9,6 +9,9 @@
       <caption label="Network Interfaces" />
       <popupset>
         <menupopup id="ec2ui.eni.contextmenu">
+          <menuitem oncommand="ec2ui_ENITreeView.changeSourceDestCheck();"
+            label="Change Source/Dest Check" />
+          <menuseparator />
           <menuitem oncommand="ec2ui_ENITreeView.deleteNetworkInterface();"
             label="Delete this interface" />
         </menupopup>
