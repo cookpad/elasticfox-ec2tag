@@ -14,6 +14,7 @@ var ec2ui_ENITreeView = {
         'eni.groups',
         'eni.instanceId',
         'eni.instanceName',
+        'eni.attachmentId',
     ],
 
     treeBox : null,
