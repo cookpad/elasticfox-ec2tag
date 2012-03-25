@@ -109,6 +109,57 @@ var ec2ui_ENITreeView = {
         });
     },
 
+    changeSecurityGroup: function() {
+        var eni = this.getSelectedNetworkInterface();
+        if (!eni) { return; }
+
+        var returnValue = {accepted:false , result:null};
+        var groups = ec2ui_model.getSecurityGroupNameIds(eni.vpcId);
+
+        openDialog('chrome://ec2ui/content/dialog_eni_security_group.xul',
+                   null,
+                   'chrome,centerscreen,modal',
+                   eni,
+                   groups,
+                   returnValue);
+
+        if (!returnValue.accepted) {
+            return;
+        }
+
+        var oldGroups = [];
+
+        for (var i = 0; i < eni.groupList.length; i++) {
+          oldGroups.push(eni.groupList[i]);
+        }
+
+        oldGroups.sort();
+
+        var newGroups = returnValue.newGroups;
+        newGroups.sort();
+
+        if (oldGroups.join() == newGroups.join()) {
+            return;
+        }
+
+        var attributes = [];
+
+        for (var i = 0; i < newGroups.length; i++) {
+            var groupId = groups[newGroups[i]];
+
+            if (groupId) {
+                attributes.push(['SecurityGroupId.' + (i + 1), groupId]);
+            }
+        }
+
+        var me = this;
+
+        ec2ui_session.controller.modifyNetworkInterfaceAttributes(eni.networkInterfaceId, attributes, function() {
+            me.refresh();
+            me.selectByNetworkInterfaceId(eni.networkInterfaceId);
+        });
+    },
+
     changeSourceDestCheck : function() {
         var eni = this.getSelectedNetworkInterface();
         if (!eni) { return; }
