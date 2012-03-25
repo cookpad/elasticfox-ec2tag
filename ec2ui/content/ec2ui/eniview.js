@@ -126,8 +126,24 @@ var ec2ui_ENITreeView = {
 
             ec2ui_session.controller.modifyNetworkInterfaceAttribute(eni.networkInterfaceId, ["SourceDestCheck", !value], function() {
                 me.refresh();
+                me.selectByNetworkInterfaceId(eni.networkInterfaceId);
             });
         }
+    },
+
+    changeDescription : function() {
+        var eni = this.getSelectedNetworkInterface();
+        if (!eni) { return; }
+
+        var newDesc = (prompt("New description") || '').trim();
+        if (!newDesc) { return; }
+
+        var me = this;
+
+        ec2ui_session.controller.modifyNetworkInterfaceAttribute(eni.networkInterfaceId, ["Description", newDesc], function() {
+            me.refresh();
+            me.selectByNetworkInterfaceId(eni.networkInterfaceId);
+        });
     },
 
     register: function() {
@@ -212,6 +228,19 @@ var ec2ui_ENITreeView = {
         this.treeBox.rowCountChanged(0, this.networkInterfaceList.length);
         this.sort();
         this.selection.clearSelection();
+    },
+
+    selectByNetworkInterfaceId : function(id) {
+        var len = this.networkInterfaceList.length;
+
+        for(var i = 0; i < len; ++i) {
+            var eni = this.networkInterfaceList[i];
+
+            if (eni.networkInterfaceId == id) {
+                this.selection.toggleSelect(i);
+                return;
+            }
+        }
     }
 };
 

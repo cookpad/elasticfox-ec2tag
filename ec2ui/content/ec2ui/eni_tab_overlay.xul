@@ -11,6 +11,8 @@
         <menupopup id="ec2ui.eni.contextmenu">
           <menuitem oncommand="ec2ui_ENITreeView.changeSourceDestCheck();"
             label="Change Source/Dest Check" />
+          <menuitem oncommand="ec2ui_ENITreeView.changeDescription();"
+            label="Change Description" />
           <menuseparator />
           <menuitem oncommand="ec2ui_ENITreeView.deleteNetworkInterface();"
             label="Delete this interface" />
