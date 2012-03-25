@@ -2885,10 +2885,10 @@ var ec2ui_controller = {
         var value = attribute[1];
         params.push([name + ".Value", value]);
 
-        ec2_httpclient.queryEC2("ModifyNetworkInterfaceAttribute", params, this, true, "onModifyNetworkInterfaceAttribute", callback);
+        ec2_httpclient.queryEC2("ModifyNetworkInterfaceAttribute", params, this, true, "onCompleteModifyNetworkInterfaceAttribute", callback);
     },
 
-    onModifyNetworkInterfaceAttribute : function (objResponse) {
+    onCompleteModifyNetworkInterfaceAttribute : function (objResponse) {
         if (objResponse.callback) {
             objResponse.callback();
         }
@@ -2904,12 +2904,29 @@ var ec2ui_controller = {
             params.push([name, value]);
         }
 
-        ec2_httpclient.queryEC2("ModifyNetworkInterfaceAttribute", params, this, true, "onModifyNetworkInterfaceAttributes", callback);
+        ec2_httpclient.queryEC2("ModifyNetworkInterfaceAttribute", params, this, true, "onCompleteModifyNetworkInterfaceAttributes", callback);
     },
 
-    onModifyNetworkInterfaceAttributes : function (objResponse) {
+    onCompleteModifyNetworkInterfaceAttributes : function (objResponse) {
         if (objResponse.callback) {
             objResponse.callback();
         }
-    }
+    },
+
+    attachNetworkInterface : function (networkInterfaceId, instanceId, deviceIndex, callback) {
+        var params = [
+            ['NetworkInterfaceId', networkInterfaceId],
+            ['InstanceId', instanceId],
+            ['DeviceIndex', deviceIndex],
+        ];
+
+        ec2_httpclient.queryEC2("AttachNetworkInterface", params, this, true, "onCompleteAttachNetworkInterface", callback);
+    },
+
+    onCompleteAttachNetworkInterface : function (objResponse) {
+        if (objResponse.callback) {
+            objResponse.callback();
+        }
+    },
+
 };
