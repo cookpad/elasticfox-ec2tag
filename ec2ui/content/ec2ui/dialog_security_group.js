@@ -30,6 +30,8 @@ var ec2_DialogSecurityGroup = {
 
       list.appendItem(label, name);
     }
+
+    return true;
   },
 
   securityGroupDialogDoOK: function() {
