@@ -2820,16 +2820,18 @@ var ec2ui_controller = {
 
             var attachmentId = null;
             var instanceId = null;
+            var deviceIndex = null;
             var attachment = item.getElementsByTagName('attachment')[0];
 
             if (attachment) {
-              var attachmentId = getNodeValueByName(attachment, 'attachmentId');
-              var instanceId = getNodeValueByName(attachment, 'instanceId');
+                attachmentId = getNodeValueByName(attachment, 'attachmentId');
+                instanceId = getNodeValueByName(attachment, 'instanceId');
+                deviceIndex = getNodeValueByName(attachment, 'deviceIndex');
             }
 
             list.push(new NetworkInterface(networkInterfaceId, subnetId, vpcId, availabilityZone, description,
                                            ownerId, requesterManaged, status, macAddress, privateIpAddress, sourceDestCheck,
-                                           groupList, attachmentId, instanceId));
+                                           groupList, attachmentId, instanceId, deviceIndex));
 
         }
 

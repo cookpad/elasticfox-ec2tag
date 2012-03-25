@@ -137,7 +137,7 @@ function InstanceStatusEvent(instanceId, availabilityZone, code, description, st
 
 function NetworkInterface(networkInterfaceId, subnetId, vpcId, availabilityZone, description,
                           ownerId, requesterManaged, status, macAddress, privateIpAddress, sourceDestCheck,
-                          groupList, attachmentId, instanceId) {
+                          groupList, attachmentId, instanceId, deviceIndex) {
     this.networkInterfaceId = networkInterfaceId;
     this.subnetId           = subnetId;
     this.vpcId              = vpcId;
@@ -153,6 +153,7 @@ function NetworkInterface(networkInterfaceId, subnetId, vpcId, availabilityZone,
     this.groups = this.groupList.sort().join(', ');
     this.attachmentId       = attachmentId;
     this.instanceId         = instanceId;
+    this.deviceIndex        = deviceIndex;
 }
 
 function SecurityGroup(ownerId, name, description, permissions, vpcId, groupId) {
