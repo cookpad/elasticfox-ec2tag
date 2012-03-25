@@ -2818,8 +2818,15 @@ var ec2ui_controller = {
 
             groupList.sort();
 
+            var instanceId = null;
+            var attachment = item.getElementsByTagName('attachment')[0];
+
+            if (attachment) {
+              var instanceId = getNodeValueByName(attachment, 'instanceId');
+            }
+
             list.push(new NetworkInterface(networkInterfaceId, subnetId, vpcId, availabilityZone, description,
-                                           ownerId, requesterManaged, status, macAddress, privateIpAddress, sourceDestCheck, groupList));
+                                           ownerId, requesterManaged, status, macAddress, privateIpAddress, sourceDestCheck, groupList, instanceId));
 
         }
 

@@ -12,6 +12,7 @@ var ec2ui_ENITreeView = {
         'eni.privateIpAddress',
         'eni.sourceDestCheck',
         'eni.groups',
+        'eni.instanceId',
     ],
 
     treeBox : null,
