@@ -360,6 +360,13 @@ var ec2ui_VolumeTreeView = {
             value = (value == 'true');
             alert(image.id + ' | Auto-Enable Volume I/O is ' + (value ? 'enabled' : 'disabled'));
         });
+    },
+
+    enableVolumeIO : function() {
+        var image = this.getSelectedImage();
+        if (image == null) { return; }
+
+        ec2ui_session.controller.enableVolumeIO(image.id);
     }
 };
 
