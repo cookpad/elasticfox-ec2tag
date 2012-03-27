@@ -55,7 +55,7 @@ var ec2ui_VolumesEventsTreeView = {
     getColumnProperties: function(column, element, prop) {},
     getLevel: function(idx) { return 0; },
 
-    getSelectedScheduledEvent : function() {
+    getVolumesEvent : function() {
         var index =  this.selection.currentIndex;
         if (index == -1) { return null; }
         return this.volumesEventList[index];
@@ -130,9 +130,9 @@ var ec2ui_VolumesEventsTreeView = {
     },
 
     copyToClipBoard: function(fieldName) {
-        var scheduledEvent = this.getSelectedScheduledEvent();
-        if (scheduledEvent == null) { return; }
-        copyToClipboard(scheduledEvent[fieldName]);
+        var volumesEvent = this.getVolumesEvent();
+        if (volumesEvent == null) { return; }
+        copyToClipboard(volumesEvent[fieldName]);
     },
 
     displayVolumesEvents: function (volumesEventList) {
