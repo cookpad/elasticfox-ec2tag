@@ -35,6 +35,7 @@ var ec2ui_session =
             document.getElementById("ec2ui.keypairs.view").view = ec2ui_KeypairTreeView;
             document.getElementById("ec2ui.instances.view").view = ec2ui_InstancesTreeView;
             document.getElementById("ec2ui.scheduledevents.view").view = ec2ui_ScheduledEventsTreeView;
+            document.getElementById("ec2ui.volumesevents.view").view = ec2ui_VolumesEventsTreeView;
             document.getElementById("ec2ui.securitygroups.view").view = ec2ui_SecurityGroupsTreeView;
             document.getElementById("ec2ui.permissions.view").view = ec2ui_PermissionsTreeView;
             document.getElementById("ec2ui.eip.view").view = ec2ui_ElasticIPTreeView;
@@ -151,6 +152,7 @@ var ec2ui_session =
             break;
         case 'Events':
             eval("ec2ui_ScheduledEventsTreeView." + toCall);
+            eval("ec2ui_VolumesEventsTreeView." + toCall);
             break;
         case 'ENI':
             eval("ec2ui_ENITreeView." + toCall);

@@ -88,7 +88,7 @@
             <textbox id="ec2ui.volumesevents.search" size="15" value=""
               type="autocomplete" autocompletesearch="form-history"
               onkeypress="ec2ui_VolumesEventsTreeView.searchChanged(event);" />
-            <toolbarbutton image="images/refresh.png" oncommand="ec2ui_volumesevents.refresh()"
+            <toolbarbutton image="images/refresh.png" oncommand="ec2ui_VolumesEventsTreeView.refresh()"
               tooltiptext="&ec2ui.refresh.tip;" />
           </hbox>
         </toolbar>

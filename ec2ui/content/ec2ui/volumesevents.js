@@ -93,7 +93,7 @@ var ec2ui_VolumesEventsTreeView = {
         var searchText = this.getSearchText();
 
         if (!searchText) {
-            return volumEsevents;
+            return volumesEvents;
         }
 
         var newList = new Array();

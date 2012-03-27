@@ -2810,7 +2810,7 @@ var ec2ui_controller = {
             }
           }
 
-        ec2ui_model.updateInstanceStatuses(list);
+        ec2ui_model.updateVolumeStatuses(list);
 
         if (objResponse.callback) {
             objResponse.callback(list);
