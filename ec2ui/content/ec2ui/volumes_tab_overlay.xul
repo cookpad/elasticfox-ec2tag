@@ -34,6 +34,9 @@
             <menuitem oncommand="ec2ui_VolumeTreeView.deleteVolume();"
               label="&ec2ui.volume.contextmenu.delete.label;" />
             <menuseparator />
+            <menuitem oncommand="ec2ui_VolumeTreeView.changeAutoEnableIO();"
+              label="Change Auto-Enable Volume I/O" />
+            <menuseparator />
             <menuitem oncommand="ec2ui_VolumeTreeView.copyToClipBoard('id');"
               label="&ec2ui.volume.contextmenu.copyvolid.label;" />
           </menupopup>
