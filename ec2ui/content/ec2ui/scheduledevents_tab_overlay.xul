@@ -67,14 +67,14 @@
         <caption label="Volumes Events" />
         <popupset>
           <menupopup id="ec2ui.volumesevents.contextmenu">
-            <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('instanceId');"
-              label="Copy Instance ID to clipboard" />
-            <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('instanceName');"
-              label="Copy Instance Name to clipboard" />
+            <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('volumeId');"
+              label="Copy Volumes ID to clipboard" />
             <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('availabilityZone');"
               label="Copy Availability Zone to clipboard" />
-            <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('code');"
-              label="Copy Code to clipboard" />
+            <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('eventId');"
+              label="Copy Event ID to clipboard" />
+            <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('eventType');"
+              label="Copy Event Type to clipboard" />
             <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('description');"
               label="Copy Description to clipboard" />
             <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('startTime');"
