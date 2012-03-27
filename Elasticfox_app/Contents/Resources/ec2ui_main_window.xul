@@ -67,6 +67,7 @@
   <script type="application/x-javascript" src="chrome://ec2ui/content/loadbalancerview.js" />
   <script type="application/x-javascript" src="chrome://ec2ui/content/instancehealthview.js" />
   <script type="application/x-javascript" src="chrome://ec2ui/content/scheduledevents.js" />
+  <script type="application/x-javascript" src="chrome://ec2ui/content/volumesevents.js" />
   <script type="application/x-javascript" src="chrome://ec2ui/content/eniview.js" />
 
   <stringbundleset id="stringbundleset">
