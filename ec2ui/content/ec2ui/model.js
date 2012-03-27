@@ -135,6 +135,16 @@ function InstanceStatusEvent(instanceId, availabilityZone, code, description, st
     this.endTime = endTime;
 }
 
+function VolumeStatusEvent(volumeId, availabilityZone, eventId, eventType, description, startTime, endTime) {
+    this.volumeId = volumeId;
+    this.availabilityZone = availabilityZone;
+    this.eventId = eventId;
+    this.eventType = eventType;
+    this.description = description;
+    this.startTime = startTime;
+    this.endTime = endTime;
+}
+
 function NetworkInterface(networkInterfaceId, subnetId, vpcId, availabilityZone, description,
                           ownerId, requesterManaged, status, macAddress, privateIpAddress, sourceDestCheck,
                           groupList, attachmentId, instanceId, deviceIndex) {
