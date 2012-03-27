@@ -3036,4 +3036,18 @@ var ec2ui_controller = {
         }
     },
 
+    enableVolumeIO : function (volumeId, callback) {
+        var params = [
+            ['VolumeId', volumeId],
+        ];
+
+        ec2_httpclient.queryEC2("EnableVolumeIO", params, this, true, "onCompleteEnableVolumeIO", callback);
+    },
+
+    onCompleteEnableVolumeIO : function (objResponse) {
+        if (objResponse.callback) {
+            objResponse.callback();
+        }
+    },
+
 };
