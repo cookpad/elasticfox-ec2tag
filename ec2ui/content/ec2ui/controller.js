@@ -2666,7 +2666,6 @@ var ec2ui_controller = {
         }
     },
 
-
     describeInstanceAttribute : function (instanceId, attribute, callback) {
         var params = new Array();
         params.push(["InstanceId", instanceId]);
@@ -2677,6 +2676,28 @@ var ec2ui_controller = {
     onCompleteDescribeInstanceAttribute : function (objResponse) {
         var xmlDoc = objResponse.xmlDoc;
         var items = xmlDoc.evaluate("/ec2:DescribeInstanceAttributeResponse/*",
+                                       xmlDoc,
+                                       this.getNsResolver(),
+                                       XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                                       null);
+
+        var value = getNodeValueByName(items.snapshotItem(2), "value");
+
+        if (objResponse.callback) {
+            objResponse.callback(value);
+        }
+    },
+
+    describeVolumeAttribute : function (volumeId, attribute, callback) {
+        var params = new Array();
+        params.push(["VolumeId", volumeId]);
+        params.push(["Attribute", attribute]);
+        ec2_httpclient.queryEC2("DescribeInstanceAttribute", params, this, true, "onCompleteDescribeVolumeAttribute", callback);
+    },
+
+    onCompleteDescribeVolumeAttribute : function (objResponse) {
+        var xmlDoc = objResponse.xmlDoc;
+        var items = xmlDoc.evaluate("/ec2:DescribeVolumeAttributeResponse/*",
                                        xmlDoc,
                                        this.getNsResolver(),
                                        XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
