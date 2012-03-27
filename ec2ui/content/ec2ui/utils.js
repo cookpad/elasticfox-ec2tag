@@ -955,14 +955,15 @@ function tagResource(res, session, attr) {
     session.setResourceTag(res[attr], res.tag);
 }
 
-function __tagPrompt__(tag) {
+function __tagPrompt__(tag, allowEmpty) {
     var returnValue = {accepted:false , result:null};
 
     openDialog('chrome://ec2ui/content/dialog_tag.xul',
         null,
         'chrome,centerscreen,modal,width=400,height=250',
         tag,
-        returnValue);
+        returnValue,
+        allowEmpty);
 
     return returnValue.accepted ? (returnValue.result || '').trim() : null;
 }
@@ -989,6 +990,7 @@ function __tagging2ec2__(resIds, session, tagString, disableDeleteTags) {
 
   try {
         var tags = new Array();
+        var emptyTags = new Array();
         tagString += ',';
         var keyValues = (tagString.match(/\s*[^,":]+\s*:\s*("(?:[^"]|"")*"|[^,]*)\s*,\s*/g) || []);
 
@@ -998,6 +1000,10 @@ function __tagging2ec2__(resIds, session, tagString, disableDeleteTags) {
             var value = (kv[1] || "").trim();
             value = value.replace(/,\s*$/, '').trim();
             value = value.replace(/^"/, '').replace(/"$/, '').replace(/""/, '"');
+
+            if (key.length != 0 && value.length == 0) {
+                emptyTags.push(key);
+            }
 
             if (key.length == 0 || value.length == 0) {
                 continue;
@@ -1033,6 +1039,8 @@ function __tagging2ec2__(resIds, session, tagString, disableDeleteTags) {
                 if (delResIds.length > 0 && delKyes.length > 0) {
                     session.controller.deleteTags(delResIds, delKyes);
                 }
+            } else if (emptyTags.length > 0 && multiIds.length > 0) {
+                session.controller.deleteTags(multiIds, emptyTags);
             }
 
             if (multiTags.length > 0) {
@@ -1274,6 +1282,8 @@ function __concatTags__(a, b) {
                 }
 
                 hash[key] = value;
+            } else if (key && !value) {
+                hash[key] = null;
             }
         }
     }
@@ -1285,7 +1295,9 @@ function __concatTags__(a, b) {
     putTagsToHash(b, tags);
 
     for (var i in tags) {
-        tagArray.push(i + ":" + tags[i]);
+        if (tags[i]) {
+            tagArray.push(i + ":" + tags[i]);
+        }
     }
 
     return tagArray.join(", ");
@@ -1351,7 +1363,7 @@ var ec2ui_utils = {
             attr = "id";
         }
 
-        var tag = __tagPrompt__(list[0].tag);
+        var tag = __tagPrompt__(list[0].tag, true);
 
         if (!tag) return;
 
