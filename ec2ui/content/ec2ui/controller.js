@@ -2710,6 +2710,23 @@ var ec2ui_controller = {
         }
     },
 
+    modifyVolumeAttribute : function (volumeId, attribute, callback) {
+        var params = new Array();
+        var name = attribute[0];
+        var value = attribute[1];
+
+        params.push(["VolumeId", volumeId]);
+        params.push([name + ".Value", value]);
+
+        ec2_httpclient.queryEC2("ModifyVolumeAttribute", params, this, true, "onCompleteModifyVolumeAttribute", callback);
+    },
+
+    onCompleteModifyVolumeAttribute : function (objResponse) {
+        if (objResponse.callback) {
+            objResponse.callback();
+        }
+    },
+
     modifyInstanceAttribute : function (instanceId, attribute, callback) {
         var params = new Array();
         var name = attribute[0];
