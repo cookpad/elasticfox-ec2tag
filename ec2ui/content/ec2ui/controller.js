@@ -3050,4 +3050,29 @@ var ec2ui_controller = {
         }
     },
 
+    describeVolumeStatus2 : function (volumeId, callback) {
+        var params = [
+            ['VolumeId.1', volumeId],
+        ];
+
+        ec2_httpclient.queryEC2("DescribeVolumeStatus", params, this, true, "onCompleteDescribeVolumeStatus2", callback);
+    },
+
+    onCompleteDescribeVolumeStatus2 : function (objResponse) {
+        var xmlDoc = objResponse.xmlDoc;
+
+        var volumeStatus = xmlDoc.evaluate("/ec2:DescribeVolumeStatus/ec2:volumeStatusSet/ec2:item/ec2:volumeStatus",
+                                    xmlDoc,
+                                    this.getNsResolver(),
+                                    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                                    null);
+
+        volumeStatus = volumeStatus.snapshotItem(0);
+        var status = getNodeValueByName(item, status);
+
+        if (objResponse.callback) {
+            objResponse.callback(status);
+        }
+    },
+
 };
