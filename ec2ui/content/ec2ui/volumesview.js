@@ -350,6 +350,16 @@ var ec2ui_VolumeTreeView = {
 
     doChangeAutoEnableIO : function(volumeId, enable) {
         ec2ui_session.controller.modifyVolumeAttribute(volumeId, ["AutoEnableIO", enable]);
+    },
+
+    showAutoEnableIO : function() {
+        var image = this.getSelectedImage();
+        if (image == null) { return; }
+
+        ec2ui_session.controller.describeVolumeAttribute(image.id, "autoEnableIO", function(value) {
+            value = (value == 'true');
+            alert(image.id + ': ' + value ? 'enable' : 'disable');
+        }
     }
 };
 
