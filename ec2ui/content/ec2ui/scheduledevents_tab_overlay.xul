@@ -31,7 +31,7 @@
             <textbox id="ec2ui.scheduledevents.search" size="15" value=""
               type="autocomplete" autocompletesearch="form-history"
               onkeypress="ec2ui_ScheduledEventsTreeView.searchChanged(event);" />
-            <toolbarbutton image="images/refresh.png" oncommand="ec2ui_ScheduledEvents.refresh()"
+            <toolbarbutton image="images/refresh.png" oncommand="ec2ui_ScheduledEventsTreeView.refresh()"
               tooltiptext="&ec2ui.refresh.tip;" />
           </hbox>
         </toolbar>
