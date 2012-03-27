@@ -11,19 +11,19 @@
         <popupset>
           <menupopup id="ec2ui.scheduledevents.contextmenu">
             <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('instanceId');"
-              label="Copy Instance ID to clipboard" />
+              label="Copy Instance ID" />
             <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('instanceName');"
-              label="Copy Instance Name to clipboard" />
+              label="Copy Instance Name" />
             <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('availabilityZone');"
-              label="Copy Availability Zone to clipboard" />
+              label="Copy Availability Zone" />
             <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('code');"
-              label="Copy Code to clipboard" />
+              label="Copy Code" />
             <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('description');"
-              label="Copy Description to clipboard" />
+              label="Copy Description" />
             <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('startTime');"
-              label="Copy Start Time to clipboard" />
+              label="Copy Start Time" />
             <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('endTime');"
-              label="Copy End Time to clipboard" />
+              label="Copy End Time" />
           </menupopup>
         </popupset>
         <toolbar style="padding: 0px 3px; -moz-box-align: center">
@@ -68,19 +68,19 @@
         <popupset>
           <menupopup id="ec2ui.volumesevents.contextmenu">
             <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('volumeId');"
-              label="Copy Volumes ID to clipboard" />
+              label="Copy Volumes ID" />
             <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('availabilityZone');"
-              label="Copy Availability Zone to clipboard" />
+              label="Copy Availability Zone" />
             <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('eventId');"
-              label="Copy Event ID to clipboard" />
+              label="Copy Event ID" />
             <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('eventType');"
-              label="Copy Event Type to clipboard" />
+              label="Copy Event Type" />
             <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('description');"
-              label="Copy Description to clipboard" />
+              label="Copy Description" />
             <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('startTime');"
-              label="Copy Start Time to clipboard" />
+              label="Copy Start Time" />
             <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('endTime');"
-              label="Copy End Time to clipboard" />
+              label="Copy End Time" />
           </menupopup>
         </popupset>
         <toolbar style="padding: 0px 3px; -moz-box-align: center">
