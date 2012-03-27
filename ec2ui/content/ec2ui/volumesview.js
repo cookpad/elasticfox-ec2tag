@@ -358,8 +358,8 @@ var ec2ui_VolumeTreeView = {
 
         ec2ui_session.controller.describeVolumeAttribute(image.id, "autoEnableIO", function(value) {
             value = (value == 'true');
-            alert(image.id + ': ' + value ? 'enable' : 'disable');
-        }
+            alert(image.id + ' | Auto-Enable Volume I/O is ' + (value ? 'enabled' : 'disabled'));
+        });
     }
 };
 
