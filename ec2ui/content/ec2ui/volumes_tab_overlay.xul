@@ -34,6 +34,8 @@
             <menuitem oncommand="ec2ui_VolumeTreeView.deleteVolume();"
               label="&ec2ui.volume.contextmenu.delete.label;" />
             <menuseparator />
+            <menuitem oncommand="ec2ui_VolumeTreeView.enableVolumeIO();"
+              label="Enable Volume I/O" />
             <menuitem oncommand="ec2ui_VolumeTreeView.showAutoEnableIO();"
               label="Show Auto-Enable Volume I/O" />
             <menuitem oncommand="ec2ui_VolumeTreeView.changeAutoEnableIO();"
