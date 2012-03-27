@@ -821,6 +821,11 @@ var ec2ui_model = {
         this.notifyComponents("scheduledEvents");
     },
 
+    updateVolumeStatuses : function(list) {
+        this.volumeStatuses = list;
+        //this.notifyComponents("volumeEvents");
+    },
+
     getInstanceStatuses : function() {
         if (this.instanceStatuses == null) {
             ec2ui_session.controller.describeInstanceStatus();

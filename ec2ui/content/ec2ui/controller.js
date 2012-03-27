@@ -2771,6 +2771,52 @@ var ec2ui_controller = {
         }
     },
 
+    describeVolumeStatus : function (callback) {
+        ec2_httpclient.queryEC2("DescribeVolumeStatus", [], this, true, "onCompleteDescribeVolumeStatus", callback);
+    },
+
+    onCompleteDescribeVolumeStatus : function (objResponse) {
+        var xmlDoc = objResponse.xmlDoc;
+
+        var items = xmlDoc.evaluate("/ec2:DescribeVolumeStatus/ec2:volumeStatusSet/ec2:item",
+                                    xmlDoc,
+                                    this.getNsResolver(),
+                                    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                                    null);
+
+        var list = new Array();
+
+        for(var i = 0 ; i < items.snapshotLength; i++) {
+            var item = items.snapshotItem(i);
+            var eventsSet = item.getElementsByTagName("eventsSet")[0];
+
+            if (!eventsSet) { continue; }
+
+            var volumeId = getNodeValueByName(item, "volumeId");
+            var availabilityZone = getNodeValueByName(item, "availabilityZone");
+            var eventsSetItems = eventsSet.childNodes;
+
+            for (var j = 0; j < eventsSetItems.length; j++) {
+                var event = eventsSetItems[j];
+                if (event.nodeName == '#text') continue;
+
+                var eventId = getNodeValueByName(event, "eventId");
+                var eventType = getNodeValueByName(event, "eventType");
+                var description = getNodeValueByName(event, "description");
+                var startTime = getNodeValueByName(event, "notBefore");
+                var endTime = getNodeValueByName(event, "notAfter");
+
+                list.push(new VolumeStatusEvent(volumeId, availabilityZone, code, description, startTime, endTime));
+            }
+          }
+
+        ec2ui_model.updateInstanceStatuses(list);
+
+        if (objResponse.callback) {
+            objResponse.callback(list);
+        }
+    },
+
     describeNetworkInterfaces : function (callback) {
         ec2_httpclient.queryEC2("DescribeNetworkInterfaces", [], this, true, "onCompleteDescribeNetworkInterfaces", callback);
     },
