@@ -66,57 +66,57 @@
       <groupbox orient="vertical" flex="1">
         <caption label="Volumes Events" />
         <popupset>
-          <menupopup id="ec2ui.valumesevents.contextmenu">
-            <menuitem oncommand="ec2ui_valumeseventsTreeView.copyToClipBoard('instanceId');"
+          <menupopup id="ec2ui.volumesevents.contextmenu">
+            <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('instanceId');"
               label="Copy Instance ID to clipboard" />
-            <menuitem oncommand="ec2ui_valumeseventsTreeView.copyToClipBoard('instanceName');"
+            <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('instanceName');"
               label="Copy Instance Name to clipboard" />
-            <menuitem oncommand="ec2ui_valumeseventsTreeView.copyToClipBoard('availabilityZone');"
+            <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('availabilityZone');"
               label="Copy Availability Zone to clipboard" />
-            <menuitem oncommand="ec2ui_valumeseventsTreeView.copyToClipBoard('code');"
+            <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('code');"
               label="Copy Code to clipboard" />
-            <menuitem oncommand="ec2ui_valumeseventsTreeView.copyToClipBoard('description');"
+            <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('description');"
               label="Copy Description to clipboard" />
-            <menuitem oncommand="ec2ui_valumeseventsTreeView.copyToClipBoard('startTime');"
+            <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('startTime');"
               label="Copy Start Time to clipboard" />
-            <menuitem oncommand="ec2ui_valumeseventsTreeView.copyToClipBoard('endTime');"
+            <menuitem oncommand="ec2ui_VolumesEventsTreeView.copyToClipBoard('endTime');"
               label="Copy End Time to clipboard" />
           </menupopup>
         </popupset>
         <toolbar style="padding: 0px 3px; -moz-box-align: center">
           <hbox flex="10">
-            <textbox id="ec2ui.valumesevents.search" size="15" value=""
+            <textbox id="ec2ui.volumesevents.search" size="15" value=""
               type="autocomplete" autocompletesearch="form-history"
-              onkeypress="ec2ui_valumeseventsTreeView.searchChanged(event);" />
-            <toolbarbutton image="images/refresh.png" oncommand="ec2ui_valumesevents.refresh()"
+              onkeypress="ec2ui_VolumesEventsTreeView.searchChanged(event);" />
+            <toolbarbutton image="images/refresh.png" oncommand="ec2ui_volumesevents.refresh()"
               tooltiptext="&ec2ui.refresh.tip;" />
           </hbox>
         </toolbar>
-        <tree enableColumnDrag="true" id="ec2ui.valumesevents.view" flex="1">
+        <tree enableColumnDrag="true" id="ec2ui.volumesevents.view" flex="1">
           <treecols>
-            <treecol id="valumesevents.volumeId" label="Volume ID" flex="1" sortDirection="ascending"
+            <treecol id="volumesevents.volumeId" label="Volume ID" flex="1" sortDirection="ascending"
               persist="width ordinal hidden sortDirection" />
             <splitter class="tree-splitter" />
-            <treecol id="valumesevents.availabilityZone" label="Availability Zone" flex="1" sortDirection="ascending"
+            <treecol id="volumesevents.availabilityZone" label="Availability Zone" flex="1" sortDirection="ascending"
               persist="width ordinal hidden sortDirection" />
             <splitter class="tree-splitter" />
-            <treecol id="valumesevents.eventId" label="Event ID" flex="1" sortDirection="ascending"
+            <treecol id="volumesevents.eventId" label="Event ID" flex="1" sortDirection="ascending"
               persist="width ordinal hidden sortDirection" />
             <splitter class="tree-splitter" />
-            <treecol id="valumesevents.eventType" label="Event Type" flex="1" sortDirection="ascending"
+            <treecol id="volumesevents.eventType" label="Event Type" flex="1" sortDirection="ascending"
               persist="width ordinal hidden sortDirection" />
             <splitter class="tree-splitter" />
-            <treecol id="valumesevents.description" label="Description" flex="1" sortDirection="ascending"
+            <treecol id="volumesevents.description" label="Description" flex="1" sortDirection="ascending"
               persist="width ordinal hidden sortDirection" />
             <splitter class="tree-splitter" />
-            <treecol id="valumesevents.startTime" label="Start Time" flex="1" sortDirection="ascending"
+            <treecol id="volumesevents.startTime" label="Start Time" flex="1" sortDirection="ascending"
               persist="width ordinal hidden sortDirection" />
             <splitter class="tree-splitter" />
-            <treecol id="valumesevents.endTime" label="End Time" flex="1" sortDirection="ascending"
+            <treecol id="volumesevents.endTime" label="End Time" flex="1" sortDirection="ascending"
               persist="width ordinal hidden sortDirection" />
             <splitter class="tree-splitter" />
           </treecols>
-          <treechildren context="ec2ui.valumesevents.contextmenu" />
+          <treechildren context="ec2ui.volumesevents.contextmenu" />
         </tree>
       </groupbox>
     </vbox>

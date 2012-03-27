@@ -823,7 +823,7 @@ var ec2ui_model = {
 
     updateVolumeStatuses : function(list) {
         this.volumeStatuses = list;
-        //this.notifyComponents("volumeEvents");
+        this.notifyComponents("volumesEvents");
     },
 
     getInstanceStatuses : function() {
