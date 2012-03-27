@@ -325,6 +325,32 @@ var ec2ui_VolumeTreeView = {
 
         return false;
     },
+
+    changeAutoEnableIO : function() {
+        var image = this.getSelectedImage();
+        if (image == null) { return; }
+
+        var me = this;
+
+        ec2ui_session.controller.describeVolumeAttribute(image.id, "autoEnableIO", function(value) {
+            value = (value == 'true');
+            var msg = null;
+
+            if (value) {
+                msg = "Auto-Enable Volume I/O:  enable -> disable ?";
+            } else {
+                msg = "Auto-Enable Volume I/O:  disable -> enable ?";
+            }
+
+            if (confirm(msg)) {
+                me.doChangeAutoEnableIO(image.id, !value);
+            }
+        });
+    },
+
+    doChangeAutoEnableIO : function(volumeId, enable) {
+        ec2ui_session.controller.modifyVolumeAttribute(instanceId, ["AutoEnableIO", enable]);
+    }
 };
 
 // poor-man's inheritance
