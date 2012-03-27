@@ -1,5 +1,5 @@
 var ec2ui_SnapshotTreeView = {
-    COLNAMES: ['snap.id', 'snap.volumeId', 'snap.status', 'snap.startTime',
+    COLNAMES: ['snap.name', 'snap.id', 'snap.volumeId', 'snap.status', 'snap.startTime',
               'snap.progress', 'snap.volumeSize', 'snap.description', 'snap.amiId', 'snap.amiName', 'snap.owner', 'snap.ownerAlias', 'snap.tag'],
     imageIdRegex : new RegExp("^snap-"),
 
