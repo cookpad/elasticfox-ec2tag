@@ -367,7 +367,17 @@ var ec2ui_VolumeTreeView = {
         if (image == null) { return; }
 
         ec2ui_session.controller.enableVolumeIO(image.id);
+    },
+
+    showVolumeStatus : function() {
+        var image = this.getSelectedImage();
+        if (image == null) { return; }
+
+        ec2ui_session.controller.describeVolumeStatus2(image.id, function(value) {
+            alert(image.id + ' |  ' + value);
+        });
     }
+
 };
 
 // poor-man's inheritance
