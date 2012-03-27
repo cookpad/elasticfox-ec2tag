@@ -5,60 +5,120 @@
 
 <overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <tabpanel id="scheduledevents_tab" flex="1">
-    <groupbox orient="vertical" flex="1">
-      <caption label="Scheduled Events" />
-      <popupset>
-        <menupopup id="ec2ui.scheduledevents.contextmenu">
-          <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('instanceId');"
-            label="Copy Instance ID to clipboard" />
-          <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('instanceName');"
-            label="Copy Instance Name to clipboard" />
-          <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('availabilityZone');"
-            label="Copy Availability Zone to clipboard" />
-          <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('code');"
-            label="Copy Code to clipboard" />
-          <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('description');"
-            label="Copy Description to clipboard" />
-          <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('startTime');"
-            label="Copy Start Time to clipboard" />
-          <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('endTime');"
-            label="Copy End Time to clipboard" />
-        </menupopup>
-      </popupset>
-      <toolbar style="padding: 0px 3px; -moz-box-align: center">
-        <hbox flex="10">
-          <textbox id="ec2ui.scheduledevents.search" size="15" value=""
-            type="autocomplete" autocompletesearch="form-history"
-            onkeypress="ec2ui_ScheduledEventsTreeView.searchChanged(event);" />
-          <toolbarbutton image="images/refresh.png" oncommand="ec2ui_ScheduledEvents.refresh()"
-            tooltiptext="&ec2ui.refresh.tip;" />
-        </hbox>
-      </toolbar>
-      <tree enableColumnDrag="true" id="ec2ui.scheduledevents.view" flex="1">
-        <treecols>
-          <treecol id="scheduledevents.instanceId" label="Instance ID" flex="1" sortDirection="ascending"
-            persist="width ordinal hidden sortDirection" />
-          <splitter class="tree-splitter" />
-          <treecol id="scheduledevents.instanceName" label="Instance Name" flex="1" sortDirection="ascending"
-            persist="width ordinal hidden sortDirection" />
-          <splitter class="tree-splitter" />
-          <treecol id="scheduledevents.availabilityZone" label="Availability Zone" flex="1" sortDirection="ascending"
-            persist="width ordinal hidden sortDirection" />
-          <splitter class="tree-splitter" />
-          <treecol id="scheduledevents.code" label="Code" flex="1" sortDirection="ascending"
-            persist="width ordinal hidden sortDirection" />
-          <splitter class="tree-splitter" />
-          <treecol id="scheduledevents.description" label="Description" flex="1" sortDirection="ascending"
-            persist="width ordinal hidden sortDirection" />
-          <splitter class="tree-splitter" />
-          <treecol id="scheduledevents.startTime" label="Start Time" flex="1" sortDirection="ascending"
-            persist="width ordinal hidden sortDirection" />
-          <splitter class="tree-splitter" />
-          <treecol id="scheduledevents.endTime" label="End Time" flex="1" sortDirection="ascending"
-            persist="width ordinal hidden sortDirection" />
-        </treecols>
-        <treechildren context="ec2ui.scheduledevents.contextmenu" />
-      </tree>
-    </groupbox>
+    <vbox flex="1">
+      <groupbox orient="vertical" flex="1">
+        <caption label="Instance Events" />
+        <popupset>
+          <menupopup id="ec2ui.scheduledevents.contextmenu">
+            <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('instanceId');"
+              label="Copy Instance ID to clipboard" />
+            <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('instanceName');"
+              label="Copy Instance Name to clipboard" />
+            <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('availabilityZone');"
+              label="Copy Availability Zone to clipboard" />
+            <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('code');"
+              label="Copy Code to clipboard" />
+            <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('description');"
+              label="Copy Description to clipboard" />
+            <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('startTime');"
+              label="Copy Start Time to clipboard" />
+            <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('endTime');"
+              label="Copy End Time to clipboard" />
+          </menupopup>
+        </popupset>
+        <toolbar style="padding: 0px 3px; -moz-box-align: center">
+          <hbox flex="10">
+            <textbox id="ec2ui.scheduledevents.search" size="15" value=""
+              type="autocomplete" autocompletesearch="form-history"
+              onkeypress="ec2ui_ScheduledEventsTreeView.searchChanged(event);" />
+            <toolbarbutton image="images/refresh.png" oncommand="ec2ui_ScheduledEvents.refresh()"
+              tooltiptext="&ec2ui.refresh.tip;" />
+          </hbox>
+        </toolbar>
+        <tree enableColumnDrag="true" id="ec2ui.scheduledevents.view" flex="1">
+          <treecols>
+            <treecol id="scheduledevents.instanceId" label="Instance ID" flex="1" sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="scheduledevents.instanceName" label="Instance Name" flex="1" sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="scheduledevents.availabilityZone" label="Availability Zone" flex="1" sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="scheduledevents.code" label="Code" flex="1" sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="scheduledevents.description" label="Description" flex="1" sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="scheduledevents.startTime" label="Start Time" flex="1" sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="scheduledevents.endTime" label="End Time" flex="1" sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+          </treecols>
+          <treechildren context="ec2ui.scheduledevents.contextmenu" />
+        </tree>
+      </groupbox>
+
+      <groupbox orient="vertical" flex="1">
+        <caption label="Volumes Events" />
+        <popupset>
+          <menupopup id="ec2ui.valumesevents.contextmenu">
+            <menuitem oncommand="ec2ui_valumeseventsTreeView.copyToClipBoard('instanceId');"
+              label="Copy Instance ID to clipboard" />
+            <menuitem oncommand="ec2ui_valumeseventsTreeView.copyToClipBoard('instanceName');"
+              label="Copy Instance Name to clipboard" />
+            <menuitem oncommand="ec2ui_valumeseventsTreeView.copyToClipBoard('availabilityZone');"
+              label="Copy Availability Zone to clipboard" />
+            <menuitem oncommand="ec2ui_valumeseventsTreeView.copyToClipBoard('code');"
+              label="Copy Code to clipboard" />
+            <menuitem oncommand="ec2ui_valumeseventsTreeView.copyToClipBoard('description');"
+              label="Copy Description to clipboard" />
+            <menuitem oncommand="ec2ui_valumeseventsTreeView.copyToClipBoard('startTime');"
+              label="Copy Start Time to clipboard" />
+            <menuitem oncommand="ec2ui_valumeseventsTreeView.copyToClipBoard('endTime');"
+              label="Copy End Time to clipboard" />
+          </menupopup>
+        </popupset>
+        <toolbar style="padding: 0px 3px; -moz-box-align: center">
+          <hbox flex="10">
+            <textbox id="ec2ui.valumesevents.search" size="15" value=""
+              type="autocomplete" autocompletesearch="form-history"
+              onkeypress="ec2ui_valumeseventsTreeView.searchChanged(event);" />
+            <toolbarbutton image="images/refresh.png" oncommand="ec2ui_valumesevents.refresh()"
+              tooltiptext="&ec2ui.refresh.tip;" />
+          </hbox>
+        </toolbar>
+        <tree enableColumnDrag="true" id="ec2ui.valumesevents.view" flex="1">
+          <treecols>
+            <treecol id="valumesevents.volumeId" label="Volume ID" flex="1" sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="valumesevents.availabilityZone" label="Availability Zone" flex="1" sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="valumesevents.eventId" label="Event ID" flex="1" sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="valumesevents.eventType" label="Event Type" flex="1" sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="valumesevents.description" label="Description" flex="1" sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="valumesevents.startTime" label="Start Time" flex="1" sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="valumesevents.endTime" label="End Time" flex="1" sortDirection="ascending"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+          </treecols>
+          <treechildren context="ec2ui.valumesevents.contextmenu" />
+        </tree>
+      </groupbox>
+    </vbox>
   </tabpanel>
 </overlay>
