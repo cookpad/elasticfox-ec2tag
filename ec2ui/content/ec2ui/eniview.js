@@ -283,19 +283,26 @@ var ec2ui_ENITreeView = {
 
     filterNetworkInterfaces: function(networkInterfaces) {
         var searchText = this.getSearchText();
+        var filterEth0 = document.getElementById("ec2ui.eni.noeth0").checked;
 
-        if (!searchText) {
+        if (!searchText && !filterEth0) {
             return networkInterfaces;
         }
 
         var newList = new Array();
-        var patt = new RegExp(searchText, "i");
+        var patt = searchText ? new RegExp(searchText, "i") : null;
 
         for(var i = 0; i < networkInterfaces.length; i++) {
-            var event = networkInterfaces[i]
+            var eni = networkInterfaces[i]
 
-            if (this.networkInterfaceMatchesSearch(event, patt)) {
-                newList.push(event);
+            if (filterEth0 && eni.deviceIndex == 0) {
+                continue;
+            }
+
+            if (!patt) {
+                newList.push(eni);
+            } else if (this.networkInterfaceMatchesSearch(eni, patt)) {
+                newList.push(eni);
             }
         }
 
@@ -306,12 +313,12 @@ var ec2ui_ENITreeView = {
         return document.getElementById('ec2ui.eni.search').value;
     },
 
-    networkInterfaceMatchesSearch: function(event, patt) {
-        if (!event || !patt) { return false; }
+    networkInterfaceMatchesSearch: function(eni, patt) {
+        if (!eni || !patt) { return false; }
 
         for (var i = 0; i < this.COLNAMES.length; i++) {
             var member = this.COLNAMES[i].split(".").pop();
-            var text = event[member];
+            var text = eni[member];
 
             if (text && text.match(patt)) {
                 return true;
