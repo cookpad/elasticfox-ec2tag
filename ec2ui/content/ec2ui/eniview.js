@@ -86,7 +86,7 @@ var ec2ui_ENITreeView = {
 
         openDialog('chrome://ec2ui/content/dialog_new_interface.xul',
                    null,
-                   'chrome,centerscreen,modal,width=400,height=250',
+                   'chrome,centerscreen,modal',
                    ec2ui_session,
                    returnValue);
 
