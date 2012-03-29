@@ -37,6 +37,9 @@
             style="-moz-box-orient:horizontal;-moz-box-pack:center;"
             oncommand="ec2ui_ENITreeView.createNetworkInterface()"
             tooltiptext="Create network interface" />
+          <toolbarseparator />
+          <checkbox id="ec2ui.eni.noeth0" label="Hide eth0"
+            checked="false" oncommand="ec2ui_ENITreeView.invalidate();"/>
         </hbox>
       </toolbar>
       <tree enableColumnDrag="true" id="ec2ui.eni.view" flex="1" seltype="single">
