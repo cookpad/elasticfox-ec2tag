@@ -670,6 +670,22 @@ var ec2ui_model = {
         return groupNameIds;
     },
 
+    getSecurityGroupIdNames : function(vpcId) {
+        if (!vpcId) {
+            vpcId = null;
+        }
+
+        var groups = this.getSecurityGroups();
+        var groupIdNames = {};
+
+        for (var i in groups) {
+            if (groups[i].vpcId != vpcId) { continue; }
+            groupNameIds[groups[i].groupId] = groups[i].name;
+        }
+
+        return groupIdNames;
+    },
+
     getSecurityGroupIdFromName : function(name, vpcId) {
         var groupNameIds = this.getSecurityGroupNameIds(vpcId);
         return groupNameIds[name];
