@@ -304,7 +304,7 @@ function CustomerGateway(id, ipAddress, bgpAsn, state, type, tag) {
 function LoadBalancer(LoadBalancerName,CreatedTime,DNSName,Instances,
                       Protocol,LoadBalancerPort,InstancePort,
                       Interval,Timeout,HealthyThreshold,UnhealthyThreshold,Target,
-                      azone,CookieName,APolicyName,CookieExpirationPeriod,CPolicyName,vpcId,groupList){
+                      azone,CookieName,APolicyName,CookieExpirationPeriod,CPolicyName,vpcId,subnetList,groupList){
     this.LoadBalancerName = LoadBalancerName;
     this.CreatedTime = CreatedTime;
     this.DNSName = DNSName;
@@ -323,6 +323,8 @@ function LoadBalancer(LoadBalancerName,CreatedTime,DNSName,Instances,
     this.CookieExpirationPeriod = CookieExpirationPeriod;
     this.CPolicyName = CPolicyName;
     this.vpcId = vpcId;
+    this.subnetList = subnetList;
+    this.subnets = this.subnetList.sort().join(', ');
     this.groupList = groupList;
     this.groups = this.groupList.sort().join(', ');
 }

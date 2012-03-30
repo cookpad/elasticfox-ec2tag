@@ -2361,10 +2361,18 @@ var ec2ui_controller = {
 
             for(var k = 0; k < groupList.length; k++) {
                 var groupName = groupIdNames[groupList[k]];
+                groupNames.push(groupName || groupList[k]);
+            }
+        }
 
-                if (groupName) {
-                    groupNames.push(groupName);
-                }
+        var subnets = items[i].getElementsByTagName("Subnets");
+        var subnetList = [];
+
+        if (subnets[0] && subnets[0].childNodes.length > 0) {
+            var subnetMembers = subnets[0].getElementsByTagName("member");
+
+            for (var k = 0; k < subnetMembers.length; k++) {
+                subnetList.push(subnetMembers[k].firstChild.nodeValue);
             }
         }
 
@@ -2379,6 +2387,7 @@ var ec2ui_controller = {
 				       CookieName,APolicyName,
 				       CookieExpirationPeriod,CPolicyName,
                        vpcId,
+                       subnetList,
                        (groupNames || groupList)));
             }
         }

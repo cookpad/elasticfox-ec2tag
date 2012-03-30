@@ -102,6 +102,9 @@
           <treecol id="loadbalancer.vpcId" label="VPC ID" flex="5"
             persist="width ordinal hidden sortDirection" hidden="true" />
           <splitter class="tree-splitter" />
+          <treecol id="loadbalancer.subnets" label="Subnets" flex="5"
+            persist="width ordinal hidden sortDirection" hidden="true" />
+          <splitter class="tree-splitter" />
           <treecol id="loadbalancer.groups" label="Groups" flex="5"
             persist="width ordinal hidden sortDirection" hidden="true" />
           <splitter class="tree-splitter" />
