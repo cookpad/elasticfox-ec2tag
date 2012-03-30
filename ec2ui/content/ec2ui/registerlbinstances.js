@@ -40,16 +40,16 @@ var ec2ui_RegisterInstances = {
         
         var Idx = 0;
 	var Instancedetails = this.ec2ui_session.model.getInstances();
-        var InstanceIds = this.ec2ui_session.model.getLoadbalancer();
+        var lbs = this.ec2ui_session.model.getLoadbalancer();
         
         var registerid = new Array();
 	
-        for (var i in InstanceIds){
-            if (InstanceIds[i].LoadBalancerName != loadbalancername) {
+        for (var i in lbs){
+            if (lbs[i].LoadBalancerName != loadbalancername) {
                 continue;
             }
 
-            var Instancechk = InstanceIds[i].InstanceId;
+            var Instancechk = lbs[i].InstanceId;
 	    var instanceid = new String(Instancechk);
 	    var tempArray = new Array();
 	    tempArray = instanceid.split(",");
@@ -60,6 +60,11 @@ var ec2ui_RegisterInstances = {
 	}
         
 	for (var i in Instancedetails) {
+      if((loadbalancer.vpcId && (Instancedetails[i].vpcId != loadbalancer.vpcId)) ||
+         (!loadbalancer.vpcId && Instancedetails[i].vpcId)) {
+        continue;
+      }
+
 	    if(Instancedetails[i].state == "running"){ 
 	    var row = document.createElement('listitem');
 	    var cell1 = document.createElement('listcell');
