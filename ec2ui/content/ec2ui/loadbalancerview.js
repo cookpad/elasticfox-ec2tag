@@ -94,7 +94,14 @@ var ec2ui_LoadbalancerTreeView = {
     },
 
     refresh: function() {
-        ec2ui_session.controller.describeLoadBalancers();
+        var lb = this.getSelectedLoadbalancer();
+        var me = this;
+
+        ec2ui_session.controller.describeLoadBalancers(function() {
+            if (lb) {
+                me.selectByName(lb.LoadBalancerName);
+            }
+        });
     },
 
     notifyModelChanged: function(interest) {
@@ -459,7 +466,25 @@ var ec2ui_LoadbalancerTreeView = {
         if (loadbalancerList.length > 0) {
             this.selection.select(0);
         }
-    }
+    },
+
+    selectByName : function(name) {
+        if (!name) return;
+
+        var len = this.loadbalancerList.length;
+
+        this.selection.clearSelection();
+
+        for(var i = 0; i < len; ++i) {
+            lb = this.loadbalancerList[i];
+
+            if (lb.LoadBalancerName == name) {
+                this.selection.toggleSelect(i);
+                this.treeBox.ensureRowIsVisible(i);
+                return;
+            }
+        }
+    },
 };
 
 ec2ui_LoadbalancerTreeView.register();
