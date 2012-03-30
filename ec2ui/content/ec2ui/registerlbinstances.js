@@ -80,7 +80,10 @@ var ec2ui_RegisterInstances = {
 	    cell1.setAttribute('type', 'checkbox');
 	    cell1.setAttribute('id',cellID);
 	    row.appendChild(cell1);
-	
+
+      cell5.setAttribute('label', Instancedetails[i].name);
+      row.appendChild(cell5);
+
 	    cell2.setAttribute('label', Instancedetails[i].id);
 	    cell2.setAttribute('id',cellInstanceId);
 	    row.appendChild(cell2);
@@ -91,9 +94,6 @@ var ec2ui_RegisterInstances = {
 	    cell4.setAttribute('label', Instancedetails[i].placement.availabilityZone);
 	    row.appendChild(cell4);
         
-	    cell5.setAttribute('label', Instancedetails[i].name);
-	    row.appendChild(cell5);
-
 	    for(var a=0;a<registerid.length;a++)
 	    {
 		var id = registerid[a];
