@@ -3,7 +3,7 @@ var ec2ui_LoadbalancerTreeView = {
                 'loadbalancer.Protocol','loadbalancer.LoadBalancerPort','loadbalancer.InstancePort',
                 'loadbalancer.Interval','loadbalancer.Timeout','loadbalancer.HealthyThreshold','loadbalancer.UnhealthyThreshold',
                 'loadbalancer.Target','loadbalancer.zone','loadbalancer.CookieName','loadbalancer.APolicyName',
-                'loadbalancer.CookieExpirationPeriod','loadbalancer.CPolicyName'],
+                'loadbalancer.CookieExpirationPeriod','loadbalancer.CPolicyName','loadbalancer.groups'],
     treeBox : null,
     selection : null,
     loadbalancerList : new Array(),
