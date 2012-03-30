@@ -143,6 +143,8 @@
             checked="false" oncommand="ec2ui_InstancesTreeView.invalidate();"/>
           <checkbox id="ec2ui.instances.nostopped" label="Hide Stopped"
             checked="false" oncommand="ec2ui_InstancesTreeView.invalidate();"/>
+          <checkbox id="ec2ui.instances.onlyvpc" label="Only VPC"
+            checked="false" oncommand="ec2ui_InstancesTreeView.invalidate();"/>
         </hbox>
       </toolbar>
 

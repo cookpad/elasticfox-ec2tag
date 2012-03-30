@@ -188,8 +188,9 @@ var ec2ui_InstancesTreeView = {
         var searchText = this.getSearchText();
         var filterTerm = document.getElementById("ec2ui.instances.noterminated").checked;
         var filterStop = document.getElementById("ec2ui.instances.nostopped").checked;
+        var filterVpc = document.getElementById("ec2ui.instances.onlyvpc").checked;
         if (searchText.length == 0 &&
-            !(filterTerm || filterStop)) {
+            !(filterTerm || filterStop || filterVpc)) {
             return instances;
         }
 
@@ -204,6 +205,9 @@ var ec2ui_InstancesTreeView = {
             }
             if (filterStop &&
                 inst.state == "stopped") {
+                continue;
+            }
+            if (filterVpc && !inst.vpcId) {
                 continue;
             }
             if (inst.id.match(this.instanceIdRegex) &&
