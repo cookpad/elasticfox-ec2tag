@@ -463,9 +463,6 @@ var ec2ui_LoadbalancerTreeView = {
         this.sort();
         this.selection.clearSelection();
         ec2ui_InstanceHealthTreeView.displayInstanceHealth([]);
-        if (loadbalancerList.length > 0) {
-            this.selection.select(0);
-        }
     },
 
     selectByName : function(name) {
