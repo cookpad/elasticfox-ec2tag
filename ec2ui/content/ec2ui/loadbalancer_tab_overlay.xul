@@ -99,6 +99,9 @@
           <treecol id="loadbalancer.CPolicyName" label="&ec2ui.loadbalancer.cpolicy.label;" flex="5"
             persist="width ordinal hidden sortDirection" hidden="true" />
           <splitter class="tree-splitter" />
+          <treecol id="loadbalancer.vpcId" label="VPC ID" flex="5"
+            persist="width ordinal hidden sortDirection" hidden="true" />
+          <splitter class="tree-splitter" />
           <treecol id="loadbalancer.groups" label="Groups" flex="5"
             persist="width ordinal hidden sortDirection" hidden="true" />
           <splitter class="tree-splitter" />
