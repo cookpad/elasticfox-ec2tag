@@ -2351,7 +2351,8 @@ var ec2ui_controller = {
             }
         }
 
-	    
+        var vpcId = getNodeValueByName(items[i], "VPCId");
+
 	    if (LoadBalancerName != '' && CreatedTime != '')
             {
             list.push(new LoadBalancer(LoadBalancerName,CreatedTime, DNSName,
@@ -2362,6 +2363,7 @@ var ec2ui_controller = {
 				       Target,azone,
 				       CookieName,APolicyName,
 				       CookieExpirationPeriod,CPolicyName,
+                       vpcId,
                        groupList));
             }
         }
