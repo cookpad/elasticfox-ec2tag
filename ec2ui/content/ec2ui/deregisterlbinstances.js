@@ -83,6 +83,9 @@ var ec2ui_DeregisterInstances = {
 	    cell1.setAttribute('id',cellID);
 	    row.appendChild(cell1);
 	
+      cell5.setAttribute('label', Instancedetails[i].name);
+      row.appendChild(cell5);
+
 	    cell2.setAttribute('label', Instancedetails[i].id);
 	    cell2.setAttribute('id',cellInstanceId);
 	    row.appendChild(cell2);
@@ -93,9 +96,6 @@ var ec2ui_DeregisterInstances = {
 	    cell4.setAttribute('label', Instancedetails[i].placement.availabilityZone);
 	    row.appendChild(cell4);
 
-	    cell5.setAttribute('label', Instancedetails[i].name);
-	    row.appendChild(cell5);
-        
 	    var rowID = "row"+Idx;
 	    row.setAttribute('id',rowID);
 	    configureInstances.appendChild(row);
