@@ -2339,6 +2339,18 @@ var ec2ui_controller = {
 		var CookieExpirationPeriod = getNodeValueByName(LBCookieStickinessPolicies[k], "CookieExpirationPeriod");
 		var CPolicyName = getNodeValueByName(LBCookieStickinessPolicies[k], "PolicyName");
 	    }
+
+        var securityGroups = items[i].getElementsByTagName("SecurityGroups");
+        var groupList = [];
+
+        if (securityGroups[0] && securityGroups[0].childNodes.length > 0) {
+            var securityGroupMembers = securityGroups[0].getElementsByTagName("member");
+
+            for (var k = 0; k < securityGroupMembers.length; k++) {
+                groupList.push(securityGroupMembers[k].firstChild.nodeValue);
+            }
+        }
+
 	    
 	    if (LoadBalancerName != '' && CreatedTime != '')
             {
@@ -2349,7 +2361,8 @@ var ec2ui_controller = {
 				       UnhealthyThreshold,
 				       Target,azone,
 				       CookieName,APolicyName,
-				       CookieExpirationPeriod,CPolicyName));
+				       CookieExpirationPeriod,CPolicyName,
+                       groupList));
             }
         }
         ec2ui_model.updateLoadbalancer(list);
