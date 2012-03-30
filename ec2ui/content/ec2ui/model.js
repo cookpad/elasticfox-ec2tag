@@ -680,7 +680,7 @@ var ec2ui_model = {
 
         for (var i in groups) {
             if (groups[i].vpcId != vpcId) { continue; }
-            groupNameIds[groups[i].groupId] = groups[i].name;
+            groupIdNames[groups[i].groupId] = groups[i].name;
         }
 
         return groupIdNames;

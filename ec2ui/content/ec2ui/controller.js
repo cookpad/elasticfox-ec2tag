@@ -2353,6 +2353,21 @@ var ec2ui_controller = {
 
         var vpcId = getNodeValueByName(items[i], "VPCId");
 
+        var groupNames = null;
+
+        if (vpcId) {
+            groupNames = [];
+            var groupIdNames = ec2ui_model.getSecurityGroupIdNames(vpcId);
+
+            for(var k = 0; k < groupList.length; k++) {
+                var groupName = groupIdNames[groupList[k]];
+
+                if (groupName) {
+                    groupNames.push(groupName);
+                }
+            }
+        }
+
 	    if (LoadBalancerName != '' && CreatedTime != '')
             {
             list.push(new LoadBalancer(LoadBalancerName,CreatedTime, DNSName,
@@ -2364,7 +2379,7 @@ var ec2ui_controller = {
 				       CookieName,APolicyName,
 				       CookieExpirationPeriod,CPolicyName,
                        vpcId,
-                       groupList));
+                       (groupNames || groupList)));
             }
         }
         ec2ui_model.updateLoadbalancer(list);
