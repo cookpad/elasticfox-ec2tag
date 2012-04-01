@@ -90,7 +90,8 @@ var ec2ui_LoadbalancerTreeView = {
     },
 
     invalidate: function() {
-        this.displayLoadbalancer(ec2ui_session.model.loadbalancer);
+        var target = ec2ui_LoadbalancerTreeView;
+        target.displayLoadbalancer(target.filterLoadbalancers(ec2ui_session.model.loadbalancer));
     },
 
     refresh: function() {
@@ -483,6 +484,54 @@ var ec2ui_LoadbalancerTreeView = {
                 return;
             }
         }
+    },
+
+    searchChanged : function(event) {
+        if (this.searchTimer) {
+            clearTimeout(this.searchTimer);
+        }
+
+        this.searchTimer = setTimeout(this.invalidate, 500);
+    },
+
+    filterLoadbalancers : function(loadbalancers) {
+        var searchText = (document.getElementById('ec2ui.loadbalancer.search').value || '').trim();
+
+        if (searchText.length == 0) {
+            return loadbalancers;
+        }
+
+        var newList = [];
+        var patt = new RegExp(searchText, "i");
+
+        for(var i in loadbalancers) {
+            var lb = loadbalancers[i];
+
+            if (this.loadbalancerMatchesSearch(lb, patt)) {
+                newList.push(lb);
+            }
+        }
+
+        return newList;
+    },
+
+    loadbalancerMatchesSearch : function(loadbalancer, patt) {
+        if (!loadbalancer || !patt) { return false; }
+
+        for (var i = 0; i < this.COLNAMES.length; i++) {
+            var text = this.getLoadbalancerDetail(loadbalancer, this.COLNAMES[i]);
+
+            if (patt.test(text)) {
+                return true;
+            }
+        }
+
+        return false;
+    },
+
+    getLoadbalancerDetail : function(loadbalancer, column) {
+        var detail = eval(column);
+        return detail || "";
     },
 };
 
