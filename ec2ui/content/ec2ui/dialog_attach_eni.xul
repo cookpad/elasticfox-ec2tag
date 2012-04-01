@@ -24,7 +24,7 @@
         </row>
         <row>
           <label control="ec2ui.attacheni.instanceIds" value="Instances:" />
-          <menulist id="ec2ui.attacheni.instanceIds" size="40" />
+          <listbox id="ec2ui.attacheni.instanceIds" size="40" rows="10" />
         </row>
         <row>
           <label control="ec2ui.attacheni.deviceIndex" value="Device Index:" />

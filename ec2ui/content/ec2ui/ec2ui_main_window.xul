@@ -117,8 +117,8 @@
         <tab label="&ec2ui.tabs.keypairs.label;" />
         <tab label="&ec2ui.tabs.secgroups.label;" />
         <tab label="&ec2ui.tabs.eips.label;" />
-        <tab label="&ec2ui.tabs.eni.label;" />
         <tab label="&ec2ui.tabs.volumes.label;" />
+        <tab label="&ec2ui.tabs.eni.label;" />
         <tab label="&ec2ui.tabs.scheduledevents.label;" />
         <tab label="&ec2ui.tabs.loadbalancer.label;" id="ec2ui.tabs.loadbalancer" />
         <tab label="&ec2ui.tabs.bundleTasks.label;" />

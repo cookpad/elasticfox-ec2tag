@@ -86,8 +86,9 @@ var ec2ui_SecurityGroupsTreeView = {
 
     filterGroups : function(groups) {
         var searchText = (document.getElementById('ec2ui.securitygroups.search').value || '').trim();
+        var filterVpc = document.getElementById("ec2ui.securitygroups.onlyvpc").checked;
 
-        if (searchText.length == 0) {
+        if (searchText.length == 0 && !filterVpc) {
             return groups;
         }
 
@@ -97,6 +98,10 @@ var ec2ui_SecurityGroupsTreeView = {
 
         for(var i in groups) {
             grp = groups[i];
+
+            if (filterVpc && !grp.vpcId) {
+                continue;
+            }
 
             if (patt.test(grp.groupId) || patt.test(grp.ownerId) || patt.test(grp.name)
                 || patt.test(grp.description) || patt.test(grp.vpcId)) {

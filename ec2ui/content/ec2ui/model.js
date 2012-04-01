@@ -304,7 +304,7 @@ function CustomerGateway(id, ipAddress, bgpAsn, state, type, tag) {
 function LoadBalancer(LoadBalancerName,CreatedTime,DNSName,Instances,
                       Protocol,LoadBalancerPort,InstancePort,
                       Interval,Timeout,HealthyThreshold,UnhealthyThreshold,Target,
-                      azone,CookieName,APolicyName,CookieExpirationPeriod,CPolicyName){
+                      azone,CookieName,APolicyName,CookieExpirationPeriod,CPolicyName,vpcId,subnetList,groupList){
     this.LoadBalancerName = LoadBalancerName;
     this.CreatedTime = CreatedTime;
     this.DNSName = DNSName;
@@ -322,6 +322,11 @@ function LoadBalancer(LoadBalancerName,CreatedTime,DNSName,Instances,
     this.APolicyName = APolicyName;
     this.CookieExpirationPeriod = CookieExpirationPeriod;
     this.CPolicyName = CPolicyName;
+    this.vpcId = vpcId;
+    this.subnetList = subnetList;
+    this.subnets = this.subnetList.sort().join(', ');
+    this.groupList = groupList;
+    this.groups = this.groupList.sort().join(', ');
 }
 
 function InstanceHealth(Description,State,InstanceId,ReasonCode){
@@ -665,6 +670,22 @@ var ec2ui_model = {
         }
 
         return groupNameIds;
+    },
+
+    getSecurityGroupIdNames : function(vpcId) {
+        if (!vpcId) {
+            vpcId = null;
+        }
+
+        var groups = this.getSecurityGroups();
+        var groupIdNames = {};
+
+        for (var i in groups) {
+            if (groups[i].vpcId != vpcId) { continue; }
+            groupIdNames[groups[i].groupId] = groups[i].name;
+        }
+
+        return groupIdNames;
     },
 
     getSecurityGroupIdFromName : function(name, vpcId) {

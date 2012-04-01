@@ -36,6 +36,9 @@
           <toolbarbutton image="images/delete_security_group.png"
             tooltiptext="&ec2ui.secgroups.delete.tip;"
             oncommand="ec2ui_SecurityGroupsTreeView.deleteSelected();" />
+          <toolbarseparator />
+          <checkbox id="ec2ui.securitygroups.onlyvpc" label="Only VPC"
+            checked="false" oncommand="ec2ui_SecurityGroupsTreeView.invalidate();"/>
         </hbox>
       </toolbar>
       <!--

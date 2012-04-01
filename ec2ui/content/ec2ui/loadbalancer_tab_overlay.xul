@@ -57,48 +57,57 @@
           <treecol id="loadbalancer.DNSName" label="&ec2ui.loadbalancer.dnsname.label;" flex="5"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
-           <treecol id="loadbalancer.InstanceId" label="&ec2ui.loadbalancer.instances.label;" flex="5"
+          <treecol id="loadbalancer.InstanceId" label="&ec2ui.loadbalancer.instances.label;" flex="5"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
-           <treecol id="loadbalancer.Protocol" label="&ec2ui.loadbalancer.Protocol.label;" flex="5"
+          <treecol id="loadbalancer.Protocol" label="&ec2ui.loadbalancer.Protocol.label;" flex="5"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
-           <treecol id="loadbalancer.LoadBalancerPort" label="&ec2ui.loadbalancer.LoadBalancerPort.label;" flex="5"
+          <treecol id="loadbalancer.LoadBalancerPort" label="&ec2ui.loadbalancer.LoadBalancerPort.label;" flex="5"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
-           <treecol id="loadbalancer.InstancePort" label="&ec2ui.loadbalancer.InstancePort.label;" flex="5"
+          <treecol id="loadbalancer.InstancePort" label="&ec2ui.loadbalancer.InstancePort.label;" flex="5"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
-           <treecol id="loadbalancer.zone" label="&ec2ui.loadbalancer.zone.label;" flex="5"
+          <treecol id="loadbalancer.zone" label="&ec2ui.loadbalancer.zone.label;" flex="5"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
-           <treecol id="loadbalancer.Interval" label="&ec2ui.loadbalancer.Interval.label;" flex="5"
+          <treecol id="loadbalancer.Interval" label="&ec2ui.loadbalancer.Interval.label;" flex="5"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
-           <treecol id="loadbalancer.Timeout" label="&ec2ui.loadbalancer.Timeout.label;" flex="5"
+          <treecol id="loadbalancer.Timeout" label="&ec2ui.loadbalancer.Timeout.label;" flex="5"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
-           <treecol id="loadbalancer.HealthyThreshold" label="&ec2ui.loadbalancer.HealthyThreshold.label;" flex="5"
+          <treecol id="loadbalancer.HealthyThreshold" label="&ec2ui.loadbalancer.HealthyThreshold.label;" flex="5"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
-           <treecol id="loadbalancer.UnhealthyThreshold" label="&ec2ui.loadbalancer.UnhealthyThreshold.label;" flex="5"
+          <treecol id="loadbalancer.UnhealthyThreshold" label="&ec2ui.loadbalancer.UnhealthyThreshold.label;" flex="5"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
-           <treecol id="loadbalancer.Target" label="&ec2ui.loadbalancer.Target.label;" flex="5"
+          <treecol id="loadbalancer.Target" label="&ec2ui.loadbalancer.Target.label;" flex="5"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
-           <treecol id="loadbalancer.CookieName" label="&ec2ui.loadbalancer.apppolicy.label;" flex="5"
+          <treecol id="loadbalancer.CookieName" label="&ec2ui.loadbalancer.cookiename.label;" flex="5"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
-           <treecol id="loadbalancer.APolicyName" label="&ec2ui.loadbalancer.Target.label;" flex="5"
+          <treecol id="loadbalancer.APolicyName" label="&ec2ui.loadbalancer.apppolicy.label;" flex="5"
             persist="width ordinal hidden sortDirection" hidden="true" />
-         <treecol id="loadbalancer.CookieExpirationPeriod" label="&ec2ui.loadbalancer.lbpolicy.label;" flex="5"
+          <splitter class="tree-splitter" />
+          <treecol id="loadbalancer.CookieExpirationPeriod" label="&ec2ui.loadbalancer.lbpolicy.label;" flex="5"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
-           <treecol id="loadbalancer.CPolicyName" label="&ec2ui.loadbalancer.Target.label;" flex="5"
+          <treecol id="loadbalancer.CPolicyName" label="&ec2ui.loadbalancer.cpolicy.label;" flex="5"
             persist="width ordinal hidden sortDirection" hidden="true" />
-
-          
+          <splitter class="tree-splitter" />
+          <treecol id="loadbalancer.vpcId" label="VPC ID" flex="5"
+            persist="width ordinal hidden sortDirection" hidden="true" />
+          <splitter class="tree-splitter" />
+          <treecol id="loadbalancer.subnets" label="Subnets" flex="5"
+            persist="width ordinal hidden sortDirection" hidden="true" />
+          <splitter class="tree-splitter" />
+          <treecol id="loadbalancer.groups" label="Groups" flex="5"
+            persist="width ordinal hidden sortDirection" hidden="true" />
+          <splitter class="tree-splitter" />
          </treecols>
         <treechildren id="loadbalancer.tree.children" context="loadbalancer.tree.contextmenu" />
       </tree>

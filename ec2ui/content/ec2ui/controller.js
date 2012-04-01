@@ -2339,7 +2339,43 @@ var ec2ui_controller = {
 		var CookieExpirationPeriod = getNodeValueByName(LBCookieStickinessPolicies[k], "CookieExpirationPeriod");
 		var CPolicyName = getNodeValueByName(LBCookieStickinessPolicies[k], "PolicyName");
 	    }
-	    
+
+        var securityGroups = items[i].getElementsByTagName("SecurityGroups");
+        var groupList = [];
+
+        if (securityGroups[0] && securityGroups[0].childNodes.length > 0) {
+            var securityGroupMembers = securityGroups[0].getElementsByTagName("member");
+
+            for (var k = 0; k < securityGroupMembers.length; k++) {
+                groupList.push(securityGroupMembers[k].firstChild.nodeValue);
+            }
+        }
+
+        var vpcId = getNodeValueByName(items[i], "VPCId");
+
+        var groupNames = null;
+
+        if (vpcId) {
+            groupNames = [];
+            var groupIdNames = ec2ui_model.getSecurityGroupIdNames(vpcId);
+
+            for(var k = 0; k < groupList.length; k++) {
+                var groupName = groupIdNames[groupList[k]];
+                groupNames.push(groupName || groupList[k]);
+            }
+        }
+
+        var subnets = items[i].getElementsByTagName("Subnets");
+        var subnetList = [];
+
+        if (subnets[0] && subnets[0].childNodes.length > 0) {
+            var subnetMembers = subnets[0].getElementsByTagName("member");
+
+            for (var k = 0; k < subnetMembers.length; k++) {
+                subnetList.push(subnetMembers[k].firstChild.nodeValue);
+            }
+        }
+
 	    if (LoadBalancerName != '' && CreatedTime != '')
             {
             list.push(new LoadBalancer(LoadBalancerName,CreatedTime, DNSName,
@@ -2349,7 +2385,10 @@ var ec2ui_controller = {
 				       UnhealthyThreshold,
 				       Target,azone,
 				       CookieName,APolicyName,
-				       CookieExpirationPeriod,CPolicyName));
+				       CookieExpirationPeriod,CPolicyName,
+                       vpcId,
+                       subnetList,
+                       (groupNames || groupList)));
             }
         }
         ec2ui_model.updateLoadbalancer(list);

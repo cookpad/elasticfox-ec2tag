@@ -547,8 +547,10 @@
 <!ENTITY ec2ui.loadbalancer.Protocol.label "Protocol">
 <!ENTITY ec2ui.loadbalancer.LoadBalancerPort.label "Loadbalancer Port">
 <!ENTITY ec2ui.loadbalancer.InstancePort.label "Instance Port">
+<!ENTITY ec2ui.loadbalancer.cookiename.label "Cookie Name">
 <!ENTITY ec2ui.loadbalancer.apppolicy.label "Application Policy">
 <!ENTITY ec2ui.loadbalancer.lbpolicy.label "Loadbalancer Policy">
+<!ENTITY ec2ui.loadbalancer.cpolicy.label "Cookie Policy">
 
 <!ENTITY ec2ui.loadbalancerview.Name.label "Name:">
 <!ENTITY ec2ui.loadbalancerview.creationtime.label "Creation Time:">

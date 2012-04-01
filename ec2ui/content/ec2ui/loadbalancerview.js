@@ -3,7 +3,7 @@ var ec2ui_LoadbalancerTreeView = {
                 'loadbalancer.Protocol','loadbalancer.LoadBalancerPort','loadbalancer.InstancePort',
                 'loadbalancer.Interval','loadbalancer.Timeout','loadbalancer.HealthyThreshold','loadbalancer.UnhealthyThreshold',
                 'loadbalancer.Target','loadbalancer.zone','loadbalancer.CookieName','loadbalancer.APolicyName',
-                'loadbalancer.CookieExpirationPeriod','loadbalancer.CPolicyName'],
+                'loadbalancer.CookieExpirationPeriod','loadbalancer.CPolicyName','loadbalancer.vpcId','loadbalancer.subnets','loadbalancer.groups'],
     treeBox : null,
     selection : null,
     loadbalancerList : new Array(),
@@ -94,7 +94,14 @@ var ec2ui_LoadbalancerTreeView = {
     },
 
     refresh: function() {
-        ec2ui_session.controller.describeLoadBalancers();
+        var lb = this.getSelectedLoadbalancer();
+        var me = this;
+
+        ec2ui_session.controller.describeLoadBalancers(function() {
+            if (lb) {
+                me.selectByName(lb.LoadBalancerName);
+            }
+        });
     },
 
     notifyModelChanged: function(interest) {
@@ -456,10 +463,25 @@ var ec2ui_LoadbalancerTreeView = {
         this.sort();
         this.selection.clearSelection();
         ec2ui_InstanceHealthTreeView.displayInstanceHealth([]);
-        if (loadbalancerList.length > 0) {
-            this.selection.select(0);
+    },
+
+    selectByName : function(name) {
+        if (!name) return;
+
+        var len = this.loadbalancerList.length;
+
+        this.selection.clearSelection();
+
+        for(var i = 0; i < len; ++i) {
+            lb = this.loadbalancerList[i];
+
+            if (lb.LoadBalancerName == name) {
+                this.selection.toggleSelect(i);
+                this.treeBox.ensureRowIsVisible(i);
+                return;
+            }
         }
-    }
+    },
 };
 
 ec2ui_LoadbalancerTreeView.register();

@@ -4,7 +4,8 @@
 
 <dialog id="ec2ui.dialog.newinterface" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   buttons="accept,cancel" ondialogaccept="return ec2_DialogNewInterface.doOK();" ondialogcancel="return true;"
-  onload="ec2_DialogNewInterface.onLoad();" title="Create new interface">
+  onload="ec2_DialogNewInterface.onLoad();" title="Create new interface"
+  width="500" height="300">
 
   <script type="application/x-javascript" src="chrome://ec2ui/content/dialog_new_interface.js" />
 
