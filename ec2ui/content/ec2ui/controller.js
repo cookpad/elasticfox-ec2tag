@@ -3106,8 +3106,12 @@ var ec2ui_controller = {
                                     XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
                                     null);
 
-        volumeStatus = volumeStatus.snapshotItem(0);
-        var status = getNodeValueByName(volumeStatus, 'status');
+        var status = 'normal';
+
+        if (volumeStatus.snapshotLength > 0) {
+            volumeStatus = volumeStatus.snapshotItem(0);
+            status = getNodeValueByName(volumeStatus, 'status');
+        }
 
         if (objResponse.callback) {
             objResponse.callback(status);
