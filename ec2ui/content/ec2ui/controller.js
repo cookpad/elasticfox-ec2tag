@@ -3127,4 +3127,22 @@ var ec2ui_controller = {
         }
     },
 
+    applySecurityGroupsToLoadBalancer : function (loadBalancerName, groups, callback) {
+        var params = [];
+        params.push(["LoadBalancerName", loadBalancerName]);
+
+        for (var i = 0; i < groups.length; i++) {
+            var group = groups[i];
+            params.push(["SecurityGroups.member." + (i + 1), group]);
+        }
+
+        ec2_httpclient.queryELB("ApplySecurityGroupsToLoadBalancer", params, this, true, "onCompleteApplySecurityGroupsToLoadBalancer", callback);
+    },
+
+    onCompleteApplySecurityGroupsToLoadBalancer : function (objResponse) {
+        if (objResponse.callback) {
+            objResponse.callback();
+        }
+    },
+
 };

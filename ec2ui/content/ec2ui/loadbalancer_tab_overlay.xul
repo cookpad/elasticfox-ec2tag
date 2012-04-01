@@ -35,6 +35,9 @@
               <menuitem oncommand="ec2ui_LoadbalancerTreeView.ConfigureHealthCheck(event);"
               label="&ec2ui.loadbalancer.contextmenu.configurehealthcheck.label;" />
               <menuseparator/>
+              <menuitem oncommand="ec2ui_LoadbalancerTreeView.changeSecurityGroup(event);"
+                label="Change Security Group" />
+              <menuseparator/>
               <menuitem oncommand="ec2ui_LoadbalancerTreeView.deleteLoadBalancer(event);"
               label="&ec2ui.loadbalancer.contextmenu.delete.label;" />
           </menupopup>

@@ -533,6 +533,61 @@ var ec2ui_LoadbalancerTreeView = {
         var detail = eval(column);
         return detail || "";
     },
+
+    changeSecurityGroup: function() {
+        var elb = this.getSelectedLoadbalancer();
+        if (!elb) { return; }
+
+        if (!elb.vpcId) {
+            alert('Change of a security group is only VPC.');
+            return;
+        }
+
+        var returnValue = {accepted:false , result:null};
+        var groups = ec2ui_model.getSecurityGroupNameIds(elb.vpcId);
+
+        openDialog('chrome://ec2ui/content/dialog_elb_security_group.xul',
+                   null,
+                   'chrome,centerscreen,modal',
+                   elb,
+                   groups,
+                   returnValue);
+
+        if (!returnValue.accepted) {
+            return;
+        }
+
+        var oldGroups = [];
+
+        for (var i = 0; i < elb.groupList.length; i++) {
+          oldGroups.push(elb.groupList[i]);
+        }
+
+        oldGroups.sort();
+
+        var newGroups = returnValue.newGroups;
+        newGroups.sort();
+
+        if (oldGroups.join() == newGroups.join()) {
+            return;
+        }
+
+        var groupIds = [];
+
+        for (var i = 0; i < newGroups.length; i++) {
+            var groupId = groups[newGroups[i]];
+
+            if (groupId) {
+                groupIds.push(groupId);
+            }
+        }
+
+        var me = this;
+
+        ec2ui_session.controller.applySecurityGroupsToLoadBalancer(elb.LoadBalancerName, groupIds, function() {
+            me.refresh();
+        });
+    },
 };
 
 ec2ui_LoadbalancerTreeView.register();
