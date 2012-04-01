@@ -4,7 +4,7 @@
 
 <wizard  id="ec2ui.dialog.createlb" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   onwizardfinish="return ec2_Createlb.launch();"
-  onload="ec2_Createlb.init();" title="&ec2ui.dialog.title.Create_Loadbalancer;"  width="550" height="400">
+  onload="ec2_Createlb.init();" title="&ec2ui.dialog.title.Create_Loadbalancer;"  width="550" height="450">
 
   <script type="application/x-javascript" src="chrome://ec2ui/content/utils.js" />
   <script type="application/x-javascript" src="chrome://ec2ui/content/createlbdialog.js" />
