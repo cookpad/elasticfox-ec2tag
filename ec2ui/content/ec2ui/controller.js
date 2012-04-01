@@ -3107,7 +3107,7 @@ var ec2ui_controller = {
                                     null);
 
         volumeStatus = volumeStatus.snapshotItem(0);
-        var status = getNodeValueByName(item, status);
+        var status = getNodeValueByName(volumeStatus, 'status');
 
         if (objResponse.callback) {
             objResponse.callback(status);
