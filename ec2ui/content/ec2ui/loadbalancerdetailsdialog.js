@@ -14,7 +14,8 @@ var ec2_LoadbalancerDetails = {
         document.getElementById("ec2ui.loadbalancer.Timeout").value = loadbalancer.Timeout;
         document.getElementById("ec2ui.loadbalancer.Instances").value = loadbalancer.InstanceId;
         document.getElementById("ec2ui.loadbalancer.zone").value = loadbalancer.zone;
-   
-        
+        document.getElementById("ec2ui.loadbalancer.vpcId").value = loadbalancer.vpcId;
+        document.getElementById("ec2ui.loadbalancer.subnets").value = loadbalancer.subnets;
+        document.getElementById("ec2ui.loadbalancer.groups").value = loadbalancer.groups;
     }
 }
