@@ -18,7 +18,25 @@ var ec2_Createlb = {
 	this.retVal.Timeout = document.getElementById("ec2ui.createlb.timeout").value.trim();
 	this.retVal.HealthyThreshold = document.getElementById("ec2ui.createlb.HThreshold").value.trim();
 	this.retVal.UnhealthyThreshold = document.getElementById("ec2ui.createlb.uThreshold").value.trim();
-	this.retVal.placement = document.getElementById("ec2ui.createlb.availabilityzonelist").selectedItem.value;
+
+      var azsn = document.getElementById("ec2ui.createlb.azsn").selectedItem.value;
+
+      if (azsn == 'az') {
+        this.retVal.placement = document.getElementById("ec2ui.createlb.availabilityzonelist").selectedItem.value;
+      } else {
+        this.retVal.subnet = document.getElementById("ec2ui.createlb.subnetlist").selectedItem.value;
+
+        var groupList = document.getElementById('ec2ui.createlb.grouplist');
+        var groups = [];
+
+        for (var i = 0; i < groupList.selectedItems.length; i++) {
+          var selected = groupList.selectedItems[i];
+          groups.push(selected.value);
+        }
+
+        this.retVal.groups = groups;
+      }
+
 	var listBox = document.getElementById('theList');
 	var idx = 0;
 	var nRowCount = listBox.getRowCount();
@@ -125,9 +143,50 @@ var ec2_Createlb = {
         }
         // If the user created at least one EC2 Keypair, select it.
         availZoneMenu.selectedIndex =  0;
- 	
+
+        var subnets = this.ec2ui_session.model.getSubnets();
+        this.subnets = subnets;
+        var subnetMenu = document.getElementById("ec2ui.createlb.subnetlist");
+        for(var i = 0; i < subnets.length; i++) {
+            subnetMenu.appendItem(subnets[i].vpcId + ' / ' + subnets[i].cidr, subnets[i].id);
+        }
+
+        if (subnetMenu.itemCount > 0) {
+            subnetMenu.selectedIndex = 0;
+        }
     },
-  
+
+  refresh_group : function() {
+    var subnetMenu = document.getElementById("ec2ui.createlb.subnetlist");
+    var groupList = document.getElementById("ec2ui.createlb.grouplist");
+
+    for (var i = groupList.itemCount - 1; i >= 0; i--) {
+      groupList.removeItemAt(i);
+    }
+
+    var subnet = this.subnets[subnetMenu.selectedIndex];
+    if (!subnet) { return; }
+
+    var groupNameIds = this.ec2ui_session.model.getSecurityGroupNameIds(subnet.vpcId);
+    var groupNames = [];
+
+    for (var name in groupNameIds) {
+      groupNames.push(name);
+    }
+
+    groupNames.sort();
+    var defidx = 0;
+
+    for (var i = 0; i < groupNames.length; i++) {
+      var name = groupNames[i];
+      var groupId = groupNameIds[name];
+      groupList.appendItem(name, groupId);
+      if (name == 'default') { defidx = i; }
+    }
+
+    groupList.selectItem(groupList.getItemAtIndex(defidx));
+  },
+
 reg_unreg_instances : function(){
       var listBox = document.getElementById('theList');
       var selectedItem = listBox.currentIndex;
@@ -185,6 +244,24 @@ function Create_Loadbalancer_validate1() {
   for (var i = 0; i < lbs.length; i++) {
     if (lbs[i].LoadBalancerName == name) {
       alert('Duplicate Load Balancer name.');
+      return false;
+    }
+  }
+
+  var azsn = document.getElementById("ec2ui.createlb.azsn").selectedItem.value;
+
+  if (azsn == 'sn') {
+    var subnetMenu = document.getElementById("ec2ui.createlb.subnetlist");
+
+    if (!subnetMenu.selectedItem) {
+      alert('Please choose a subnet.');
+      return false;
+    }
+
+    var groupList = document.getElementById('ec2ui.createlb.grouplist');
+
+    if (groupList.selectedItems.length == 0) {
+      alert('Please choose one or more security groups.');
       return false;
     }
   }

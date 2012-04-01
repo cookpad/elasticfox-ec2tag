@@ -2436,11 +2436,20 @@ var ec2ui_controller = {
             objResponse.callback(items);        
     },
     
-    CreateLoadBalancer : function (LoadBalancerName,Protocol,elbport,instanceport,Zone,callback) {
+    CreateLoadBalancer : function (LoadBalancerName,Protocol,elbport,instanceport,Zone,subnet,groups,callback) {
 	var params = []
 	params.push(["LoadBalancerName", LoadBalancerName]);
-	
-	params.push(["AvailabilityZones.member.1", Zone]);
+
+      if (Zone) {
+        params.push(["AvailabilityZones.member.1", Zone]);
+      } else {
+        params.push(["Subnets.member.1", subnet]);
+
+        for (var i = 0; i < groups.length; i++) {
+          params.push(["SecurityGroups.member." + (i + 1), groups[i]]);
+        }
+      }
+
 	params.push(["Listeners.member.Protocol", Protocol]);
 	if (Protocol == "HTTPS")
 	{
