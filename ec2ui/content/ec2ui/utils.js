@@ -1210,7 +1210,7 @@ function isEbsRootDeviceType(rootDeviceType) {
 }
 
 function isVpc(instance) {
-    return (instance.vpcId != '');
+    return !!instance.vpcId;
 }
 
 function secondsToDays(secs) {
