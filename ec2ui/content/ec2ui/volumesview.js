@@ -21,7 +21,7 @@ var ec2ui_VolumeTreeView = {
     COLNAMES:
     ['vol.name', 'vol.id','vol.size','vol.snapshotId','vol.availabilityZone','vol.status',
     'vol.createTime', 'vol.instanceId', 'vol.instanceName', 'vol.device', 'vol.attachStatus',
-    'vol.attachTime', 'vol.tag'],
+    'vol.attachTime', 'vol.tag', 'vol.comment'],
     imageIdRegex : new RegExp("^vol-"),
 
     getSearchText : function() {

@@ -132,6 +132,9 @@
             <treecol id="vol.tag" label="Tag" flex="1"
               persist="width ordinal hidden sortDirection" />
             <splitter class="tree-splitter" />
+            <treecol id="vol.comment" label="Comment" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
           </treecols>
           <treechildren context="ec2ui.volumes.contextmenu"/>
         </tree>
@@ -240,6 +243,10 @@
             <splitter class="tree-splitter" />
             <treecol id="snap.tag" label="Tag" flex="1"
               persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
+            <treecol id="snap.comment" label="Comment" flex="1"
+              persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
           </treecols>
           <treechildren context="ec2ui.snapshots.contextmenu"/>
         </tree>

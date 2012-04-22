@@ -123,6 +123,9 @@
               <treecol id="ami.tag" label="Tag" flex="2"
                 persist="width ordinal hidden sortDirection" />
               <splitter class="tree-splitter" />
+              <treecol id="ami.comment" label="Comment" flex="2"
+                persist="width ordinal hidden sortDirection" />
+              <splitter class="tree-splitter" />
             </treecols>
             <treechildren context="ec2ui.images.contextmenu"/>
           </tree>
