@@ -1235,8 +1235,12 @@ function __addNameTagToModel__(tag, model) {
         var key = kv[0].trim();
         var value = (kv[1] || "").trim();
 
-        if (!model.name && key == "Name") {
-            model.name = value;
+        if (key == "Name") {
+            value = (value || '').trim();
+
+            if (value) {
+                model.name = value;
+            }
         }
 
         if (key == "Comment") {
