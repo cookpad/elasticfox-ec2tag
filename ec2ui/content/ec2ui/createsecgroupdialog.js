@@ -41,7 +41,7 @@ var ec2_SecGroupCreator = {
         var menulist = document.getElementById('ec2ui.newsecgroup.vpcId');
 
         for (var i in vpcs) {
-            menulist.appendItem(vpcs[i].cidr + (vpcs[i].tag == null ? '' : " [" + vpcs[i].tag + "]"), vpcs[i].id);
+            menulist.appendItem(vpcs[i].cidr + (vpcs[i].tag == null ? (" [" + vpcs[i].id + "]") : (" [" + vpcs[i].tag + "]")), vpcs[i].id);
         }
     }
 }
