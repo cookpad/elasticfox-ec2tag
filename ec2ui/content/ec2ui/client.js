@@ -207,6 +207,29 @@ var ec2_httpclient = {
         return retry.value;
     },
 
+    x_url_encode: function(str) {
+      str = encodeURIComponent(str);
+
+      var func = function(m) {
+        switch(m) {
+        case '!':
+          return '%21';
+        case "'":
+          return '%27';
+        case '(':
+          return '%28';
+        case ')':
+          return '%29';
+        case '*':
+          return '%2A';
+        default:
+          return m;
+        }
+      };
+
+      return str.replace(/[!'()*~]/g, func); // '
+    },
+
     queryEC2Impl : function (action, params, objActions, isSync, reqType, callback) {
         var curTime = new Date();
         var formattedTime = this.formatDate(curTime, "yyyy-MM-ddThh:mm:ssZ");
@@ -214,7 +237,8 @@ var ec2_httpclient = {
         var sigValues = new Array();
         sigValues.push(new Array("Action", action));
         sigValues.push(new Array("AWSAccessKeyId", this.accessCode));
-        sigValues.push(new Array("SignatureVersion","1"));
+        sigValues.push(new Array("SignatureVersion","2"));
+        sigValues.push(new Array("SignatureMethod","HmacSHA1"));
         sigValues.push(new Array("Version",this.API_VERSION));
         sigValues.push(new Array("Timestamp",formattedTime));
 
@@ -224,17 +248,20 @@ var ec2_httpclient = {
         }
 
         // Sort the parameters by their lowercase name
-        sigValues.sort(this.sigParamCmp);
+        sigValues.sort(function(a, b) {
+            a = a[0]; b = b[0];
+            return (a < b) ? -1 : (a > b) ? 1 : 0;
+        });
 
         // Construct the string to sign and query string
-        var strSig = "";
         var queryParams = "";
         for (var i = 0; i < sigValues.length; i++) {
-            strSig += sigValues[i][0] + sigValues[i][1];
-            queryParams += sigValues[i][0] + "=" + encodeURIComponent(sigValues[i][1]);
+            queryParams += sigValues[i][0] + "=" + this.x_url_encode(sigValues[i][1]);
             if (i < sigValues.length-1)
                 queryParams += "&";
         }
+
+        var strSig = "POST\n" + this.serviceURL.replace(/^https?:\/\//, '') + "\n/\n" + queryParams;
 
         log("StrSig ["+strSig+"]");
         log("Params ["+queryParams+"]");
@@ -242,7 +269,7 @@ var ec2_httpclient = {
         var sig = b64_hmac_sha1(this.secretKey, strSig);
         log("Sig ["+sig+"]");
 
-        queryParams += "&Signature="+encodeURIComponent(sig);
+        queryParams += ("&Signature=" + this.x_url_encode(sig));
         var url = this.serviceURL + "/";
 
         log("URL ["+url+"]");
@@ -258,7 +285,7 @@ var ec2_httpclient = {
             }
             xmlhttp.open("POST", url, !isSync);
             xmlhttp.setRequestHeader("User-Agent", this.USER_AGENT);
-            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
             xmlhttp.setRequestHeader("Content-Length", queryParams.length);
             xmlhttp.setRequestHeader("Connection", "close");
             this.startTimer(timerKey, 30000, xmlhttp.abort);
