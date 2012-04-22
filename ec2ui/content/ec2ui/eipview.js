@@ -234,6 +234,14 @@ var ec2ui_ElasticIPTreeView = {
             unassociated.push(instanceIds[i]);
         }
 
+        unassociated.sort(function(a, b) {
+            a = a.split(":");
+            b = b.split(":");
+            var tag_a = (a[1] || a[0]);
+            var tag_b = (b[1] || b[0]);
+            return (tag_a < tag_b) ? -1 : (tag_a > tag_b) ? 1 : 0;
+        });
+
         return unassociated;
     },
 
