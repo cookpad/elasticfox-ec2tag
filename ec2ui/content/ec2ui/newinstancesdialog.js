@@ -181,7 +181,7 @@ var ec2_InstanceLauncher = {
 
             var vpcs = this.ec2ui_session.model.getVpcs();
             for (var i in vpcs) {
-                this.vpcMenu.appendItem(vpcs[i].cidr + (vpcs[i].tag == null ? '' : " [" + vpcs[i].tag + "]"), vpcs[i].id);
+                this.vpcMenu.appendItem(vpcs[i].cidr + (vpcs[i].tag == null ? (" [" + vpcs[i].id + "]") : (" [" + vpcs[i].tag + "]")), vpcs[i].id);
             }
             this.vpcMenu.selectedIndex = 0;
             this.vpcIdSelected();
