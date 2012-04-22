@@ -1479,7 +1479,21 @@ outer:
         var hostname = this.getIPFromHostname(instance);
 
         if (isVpc(instance)) {
-           hostname = instance.privateIpAddress;
+            hostname = null;
+            var eips = ec2ui_model.getAddresses();
+
+            for (var i in eips) {
+                var eip = eips[i];
+
+                if (eip.instanceid == instance.id) {
+                    hostname = eip.address;
+                    break;
+                }
+            }
+
+            if (!hostname) {
+                hostname = instance.privateIpAddress;
+            }
         } else {
            this.openConnectionPort(instance);
         }
