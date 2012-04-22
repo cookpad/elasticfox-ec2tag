@@ -39,7 +39,10 @@ function AMI(id, location, state, owner, isPublic, arch, platform, aki, ari, roo
     this.isPublic = isPublic;
     this.arch = arch;
     this.platform = platform;
-    if (tag) this.tag = tag;
+    if (tag) {
+        this.tag = tag;
+        __addCommentTagToModel__(tag, this);
+    }
     this.aki = aki;
     this.ari = ari;
     this.rootDeviceType = rootDeviceType;
@@ -61,8 +64,8 @@ function Snapshot(id, volumeId, status, startTime, progress, volumeSize, descrip
     this.ownerAlias = ownerAlias;
 
     if (tag) {
-        this.tag = tag;
-        __addNameTagToModel__(tag, this);
+      this.tag = tag;
+      __addNameTagToModel__(tag, this);
     }
 }
 
@@ -114,8 +117,8 @@ function Instance(resId, ownerId, groupList, instanceId, imageId, kernelId,
     this.subnetId = subnetId;
 
     if (tag) {
-        this.tag = tag;
-        __addNameTagToModel__(tag, this);
+      this.tag = tag;
+      __addNameTagToModel__(tag, this);
     }
 
     this.rootDeviceType = rootDeviceType;

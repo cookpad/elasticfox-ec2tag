@@ -228,6 +228,9 @@
           <treecol id="instance.platform" label="&ec2ui.platform.label;"
             flex="2" persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
+          <treecol id="instance.comment" label="Comment"
+            flex="2" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
         </treecols>
         <treechildren context="ec2ui.instances.contextmenu" />
       </tree>

@@ -22,7 +22,8 @@ var ec2ui_InstancesTreeView = {
        'instance.tag',
        'instance.vpcId',
        'instance.subnetId',
-       'instance.rootDeviceType'
+       'instance.rootDeviceType',
+       'instance.comment'
     ],
     treeBox: null,
     selection: null,

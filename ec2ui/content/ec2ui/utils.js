@@ -1229,6 +1229,8 @@ function secondsToYears(secs) {
 
 function __addNameTagToModel__(tag, model) {
     var kvs = tag.split(/\s*,\s*/);
+    model.name = null;
+    model.comment = null;
 
     for (var i = 0; i < kvs.length; i++) {
         var kv = kvs[i].split(/\s*:\s*/, 2);
@@ -1237,11 +1239,33 @@ function __addNameTagToModel__(tag, model) {
 
         if (key == "Name") {
             model.name = value;
+        }
+
+        if (key == "Comment") {
+            model.comment = value;
+        }
+
+        if (model.name && model.comment) {
+            return;
+        }
+    }
+}
+
+function __addCommentTagToModel__(tag, model) {
+    var kvs = tag.split(/\s*,\s*/);
+
+    for (var i = 0; i < kvs.length; i++) {
+        var kv = kvs[i].split(/\s*:\s*/, 2);
+        var key = kv[0].trim();
+        var value = (kv[1] || "").trim();
+
+        if (key == "Comment") {
+            model.comment = value;
             return;
         }
     }
 
-    model.name = null;
+    model.comment = null;
 }
 
 function __tagToName__(tag) {
