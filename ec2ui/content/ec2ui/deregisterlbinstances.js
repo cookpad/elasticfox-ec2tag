@@ -53,7 +53,13 @@ var ec2ui_DeregisterInstances = {
 	{
 	    registerid.push(tempArray[a]);
 	}	    
-     
+
+      Instancedetails.sort(function(a, b) {
+        var name_a = (a.name || '').trim();
+        var name_b = (b.name || '').trim();
+        return (name_a < name_b) ? -1 : (name_a > name_b) ? 1 : 0;
+      });
+
 	for (var i in Instancedetails) {
 	    regfound = false;
 	    for(var a=0;a<registerid.length;a++)
@@ -78,14 +84,11 @@ var ec2ui_DeregisterInstances = {
 	    var cellID = "cellcheck"+Idx;
 	
 	    var cellInstanceId = "Instanceid"+Idx;
-	            
+	
 	    cell1.setAttribute('type', 'checkbox');
 	    cell1.setAttribute('id',cellID);
 	    row.appendChild(cell1);
 	
-      cell5.setAttribute('label', Instancedetails[i].name);
-      row.appendChild(cell5);
-
 	    cell2.setAttribute('label', Instancedetails[i].id);
 	    cell2.setAttribute('id',cellInstanceId);
 	    row.appendChild(cell2);
@@ -95,7 +98,10 @@ var ec2ui_DeregisterInstances = {
 	
 	    cell4.setAttribute('label', Instancedetails[i].placement.availabilityZone);
 	    row.appendChild(cell4);
-
+	
+	    cell5.setAttribute('label', Instancedetails[i].name);
+	    row.appendChild(cell5);
+	
 	    var rowID = "row"+Idx;
 	    row.setAttribute('id',rowID);
 	    configureInstances.appendChild(row);
