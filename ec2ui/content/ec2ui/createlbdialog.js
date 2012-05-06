@@ -83,7 +83,13 @@ var ec2_Createlb = {
 	    }	    
 	}
        */
-	
+
+      Instanceid.sort(function(a, b) {
+        var name_a = (a.name || '').trim();
+        var name_b = (b.name || '').trim();
+        return (name_a < name_b) ? -1 : (name_a > name_b) ? 1 : 0;
+      });
+
 	for (var i in Instanceid) {
 	    if(Instanceid[i].state == "running"){
 		var row = document.createElement('listitem');
