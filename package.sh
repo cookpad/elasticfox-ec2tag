@@ -1,5 +1,5 @@
 #!/bin/sh
-VERSION=0.3.9
+VERSION=0.3.9-1
 rm -f Elasticfox_app/Contents/Resources/application.ini
 git checkout Elasticfox_app/Contents/Resources/application.ini
 rm -f *.xpi
