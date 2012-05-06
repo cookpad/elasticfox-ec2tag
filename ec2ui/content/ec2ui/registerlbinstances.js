@@ -58,7 +58,13 @@ var ec2ui_RegisterInstances = {
 		registerid.push(tempArray[a]);
 	    }	    
 	}
-        
+
+      Instancedetails.sort(function(a, b) {
+        var name_a = (a.name || '').trim();
+        var name_b = (b.name || '').trim();
+        return (name_a < name_b) ? -1 : (name_a > name_b) ? 1 : 0;
+      });
+
 	for (var i in Instancedetails) {
       if((loadbalancer.vpcId && (Instancedetails[i].vpcId != loadbalancer.vpcId)) ||
          (!loadbalancer.vpcId && Instancedetails[i].vpcId)) {
@@ -80,7 +86,7 @@ var ec2ui_RegisterInstances = {
 	    cell1.setAttribute('type', 'checkbox');
 	    cell1.setAttribute('id',cellID);
 	    row.appendChild(cell1);
-
+	
 	    cell2.setAttribute('label', Instancedetails[i].id);
 	    cell2.setAttribute('id',cellInstanceId);
 	    row.appendChild(cell2);
