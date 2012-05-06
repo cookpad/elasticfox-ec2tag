@@ -836,7 +836,7 @@ var ec2ui_InstancesTreeView = {
       }
 
       for (var i in vpcs) {
-        vpcMenu.appendItem(vpcs[i].id + " (" + vpcs[i].cidr + ")" + (vpcs[i].tag == null ? '' : " [" + vpcs[i].tag + "]"), vpcs[i].id);
+        vpcMenu.appendItem(vpcs[i].id + (vpcs[i].tag == null ? '' : " [" + vpcs[i].tag + "]"), vpcs[i].id);
       }
     },
 
