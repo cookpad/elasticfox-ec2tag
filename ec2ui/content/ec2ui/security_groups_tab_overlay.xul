@@ -37,8 +37,12 @@
             tooltiptext="&ec2ui.secgroups.delete.tip;"
             oncommand="ec2ui_SecurityGroupsTreeView.deleteSelected();" />
           <toolbarseparator />
-          <checkbox id="ec2ui.securitygroups.onlyvpc" label="Only VPC"
-            checked="false" oncommand="ec2ui_SecurityGroupsTreeView.invalidate();"/>
+          <menulist id="ec2ui.securitygroups.vpcmenu" selectedIndex="0" oncommand="ec2ui_SecurityGroupsTreeView.invalidate();">
+            <menupopup>
+              <menuitem label="All Instances" value="all"/>
+              <menuitem label="No VPC" value="no-vpc" />
+            </menupopup>
+          </menulist>
         </hbox>
       </toolbar>
       <!--

@@ -86,7 +86,8 @@ var ec2ui_SecurityGroupsTreeView = {
 
     filterGroups : function(groups) {
         var searchText = (document.getElementById('ec2ui.securitygroups.search').value || '').trim();
-        var filterVpc = document.getElementById("ec2ui.securitygroups.onlyvpc").checked;
+        var vpcMenu = document.getElementById("ec2ui.securitygroups.vpcmenu");
+        var filterVpc = (vpcMenu.selectedItem.value == 'all') ? false : vpcMenu.selectedItem.value;
 
         if (searchText.length == 0 && !filterVpc) {
             return groups;
@@ -99,7 +100,7 @@ var ec2ui_SecurityGroupsTreeView = {
         for(var i in groups) {
             grp = groups[i];
 
-            if (filterVpc && !grp.vpcId) {
+            if (filterVpc && !((filterVpc == 'no-vpc' && !grp.vpcId) || (filterVpc == grp.vpcId))) {
                 continue;
             }
 
@@ -118,6 +119,23 @@ var ec2ui_SecurityGroupsTreeView = {
 
     notifyModelChanged: function(interest) {
         this.invalidate();
+        this.refreshVpcMenu();
+    },
+
+    refreshVpcMenu: function() {
+      var vpcs = ec2ui_session.model.getVpcs();
+      var vpcMenu = document.getElementById("ec2ui.securitygroups.vpcmenu");
+      if (!vpcs || !vpcMenu) { return; }
+
+      var count = vpcMenu.itemCount;
+
+      for(var i = count - 1; i >= 2; i--) {
+        vpcMenu.removeItemAt(i);
+      }
+
+      for (var i in vpcs) {
+        vpcMenu.appendItem(vpcs[i].id + (vpcs[i].tag == null ? '' : " [" + vpcs[i].tag + "]"), vpcs[i].id);
+      }
     },
 
     getSelectedGroup : function() {
