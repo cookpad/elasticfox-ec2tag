@@ -189,7 +189,9 @@ var ec2ui_InstancesTreeView = {
         var searchText = this.getSearchText();
         var filterTerm = document.getElementById("ec2ui.instances.noterminated").checked;
         var filterStop = document.getElementById("ec2ui.instances.nostopped").checked;
-        var filterVpc = document.getElementById("ec2ui.instances.onlyvpc").checked;
+        var vpcMenu = document.getElementById("ec2ui.instances.vpcmenu");
+        var filterVpc = (vpcMenu.selectedItem.value == 'all') ? false : vpcMenu.selectedItem.value;
+
         if (searchText.length == 0 &&
             !(filterTerm || filterStop || filterVpc)) {
             return instances;
@@ -208,7 +210,7 @@ var ec2ui_InstancesTreeView = {
                 inst.state == "stopped") {
                 continue;
             }
-            if (filterVpc && !inst.vpcId) {
+            if (filterVpc && !((filterVpc == 'no-vpc' && !inst.vpcId) || (filterVpc == inst.vpcId))) {
                 continue;
             }
             if (inst.id.match(this.instanceIdRegex) &&
@@ -819,6 +821,23 @@ var ec2ui_InstancesTreeView = {
 
     notifyModelChanged: function(interest) {
         this.invalidate();
+        this.refreshVpcMenu();
+    },
+
+    refreshVpcMenu: function() {
+      var vpcs = ec2ui_session.model.getVpcs();
+      var vpcMenu = document.getElementById("ec2ui.instances.vpcmenu");
+      if (!vpcs || !vpcMenu) { return; }
+
+      var count = vpcMenu.itemCount;
+
+      for(var i = count - 1; i >= 2; i--) {
+        vpcMenu.removeItemAt(i);
+      }
+
+      for (var i in vpcs) {
+        vpcMenu.appendItem(vpcs[i].id + " (" + vpcs[i].cidr + ")" + (vpcs[i].tag == null ? '' : " [" + vpcs[i].tag + "]"), vpcs[i].id);
+      }
     },
 
     enableOrDisableItems  : function(event) {
