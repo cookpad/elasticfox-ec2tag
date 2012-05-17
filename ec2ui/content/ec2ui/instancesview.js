@@ -171,6 +171,11 @@ var ec2ui_InstancesTreeView = {
         return document.getElementById('ec2ui.instances.search').value;
     },
 
+    setSearchText: function(text) {
+        document.getElementById('ec2ui.instances.search').value = (text || '');
+        this.invalidate();
+    },
+
     invalidate : function() {
         var target = ec2ui_InstancesTreeView;
         target.displayInstances(target.filterInstances(ec2ui_model.instances));

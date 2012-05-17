@@ -10,6 +10,9 @@
         <caption label="Instance Events" />
         <popupset>
           <menupopup id="ec2ui.scheduledevents.contextmenu">
+            <menuitem oncommand="ec2ui_ScheduledEventsTreeView.selectInstance();"
+              label="Select Instance" />
+            <menuseparator />
             <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('instanceId');"
               label="Copy Instance ID" />
             <menuitem oncommand="ec2ui_ScheduledEventsTreeView.copyToClipBoard('instanceName');"

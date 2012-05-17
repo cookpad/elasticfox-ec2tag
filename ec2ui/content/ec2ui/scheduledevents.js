@@ -135,6 +135,16 @@ var ec2ui_ScheduledEventsTreeView = {
         copyToClipboard(scheduledEvent[fieldName]);
     },
 
+    selectInstance: function() {
+        var scheduledEvent = this.getSelectedScheduledEvent();
+        if (scheduledEvent == null) { return; }
+
+        ec2ui_InstancesTreeView.selectByInstanceId(scheduledEvent.instanceId);
+        ec2ui_InstancesTreeView.setSearchText(scheduledEvent.instanceId);
+        var tabPanel = document.getElementById("ec2ui.primary.tabs");
+        tabPanel.selectedIndex = 0;
+    },
+
     displayScheduledEvents: function (scheduledEventList) {
         if (!scheduledEventList) { scheduledEventList = []; }
 
