@@ -78,7 +78,7 @@
     <menubar id="menubar">
       <menu id="help-menu" label="Help">
         <menupopup id="version-popup">
-          <menuitem label="About" oncommand="alert('Elasticfox-EC2Tag (version 1.7.000116-ec2tag-0.3.9-1)');"/>
+          <menuitem label="About" oncommand="alert('Elasticfox-EC2Tag (version 1.7.000116-ec2tag-0.3.9-2)');"/>
         </menupopup>
       </menu>
     </menubar>
