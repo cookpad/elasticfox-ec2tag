@@ -127,7 +127,10 @@ var ec2ui_SecurityGroupsTreeView = {
       var vpcMenu = document.getElementById("ec2ui.securitygroups.vpcmenu");
       if (!vpcs || !vpcMenu) { return; }
 
+      var selectedItem = vpcMenu.selectedItem;
+      var selectedValue = selectedItem ? selectedItem.value : null;
       var count = vpcMenu.itemCount;
+      var idx = 0;
 
       for(var i = count - 1; i >= 2; i--) {
         vpcMenu.removeItemAt(i);
@@ -136,6 +139,16 @@ var ec2ui_SecurityGroupsTreeView = {
       for (var i in vpcs) {
         vpcMenu.appendItem(vpcs[i].id + (vpcs[i].tag == null ? '' : " [" + vpcs[i].tag + "]"), vpcs[i].id);
       }
+
+      for (var i = 0; i < vpcMenu.itemCount; i++) {
+        var item = vpcMenu.getItemAtIndex(i);
+
+        if (item.value == selectedValue) {
+            idx = i;
+        }
+      }
+
+      vpcMenu.selectedIndex = idx;
     },
 
     getSelectedGroup : function() {
