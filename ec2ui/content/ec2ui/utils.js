@@ -1246,10 +1246,6 @@ function __addNameTagToModel__(tag, model) {
         if (key == "Comment") {
             model.comment = value;
         }
-
-        if (model.name && model.comment) {
-            return;
-        }
     }
 }
 
