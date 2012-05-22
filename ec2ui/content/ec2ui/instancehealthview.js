@@ -1,5 +1,5 @@
 var ec2ui_InstanceHealthTreeView = {
-    COLNAMES : ['InstanceHealth.Description','InstanceHealth.State','InstanceHealth.InstanceId','InstanceHealth.ReasonCode'],
+    COLNAMES : ['InstanceHealth.InstanceName', 'InstanceHealth.Description','InstanceHealth.State','InstanceHealth.InstanceId','InstanceHealth.ReasonCode'],
     treeBox : null,
     selection : null,
     arrLocalFiles : new Array(),
