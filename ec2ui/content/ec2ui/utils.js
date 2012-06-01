@@ -1229,7 +1229,11 @@ function secondsToYears(secs) {
 
 function __addNameTagToModel__(tag, model) {
     var kvs = tag.split(/\s*,\s*/);
-    model.name = '';
+
+    if (!model instanceof AMI) {
+        model.name = '';
+    }
+
     model.comment = '';
 
     for (var i = 0; i < kvs.length; i++) {
