@@ -101,6 +101,8 @@
 <!ENTITY ec2ui.volumes.size.label "Size (GB)">
 <!ENTITY ec2ui.volumes.status.label "Status">
 <!ENTITY ec2ui.volumes.createTime.label "Local Creation Date">
+<!ENTITY ec2ui.volumes.volumeType.label "Volume Type">
+<!ENTITY ec2ui.volumes.iops.label "IOPS">
 <!ENTITY ec2ui.volumes.attachment.device.label "Device">
 <!ENTITY ec2ui.volumes.attachment.status.label "Attachment Status">
 <!ENTITY ec2ui.volumes.attachment.attachTime.label "Attach Time">

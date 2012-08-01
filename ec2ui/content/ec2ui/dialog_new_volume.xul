@@ -30,6 +30,14 @@
           <menulist id="ec2ui.newvolume.availabilityzonelist" />
         </row>
         <row>
+          <label control="ec2ui.newvolume.volumetypelist" value="&ec2ui.volumes.volumeType.label;" />
+          <menulist id="ec2ui.newvolume.volumetypelist" />
+        </row>
+        <row>
+          <label control="ec2ui.newvolume.iops" value="&ec2ui.volumes.iops.label;" />
+          <textbox id="ec2ui.newvolume.iops" size="40" />
+        </row>
+        <row>
           <label control="ec2ui.newvolume.tag" value="Tag" />
           <textbox id="ec2ui.newvolume.tag" size="40" />
         </row>

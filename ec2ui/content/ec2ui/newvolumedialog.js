@@ -14,7 +14,13 @@ var ec2_VolumeCreator = {
 
         this.retVal.zone = document.getElementById("ec2ui.newvolume.availabilityzonelist").value;
 
+        this.retVal.volumeType = document.getElementById("ec2ui.newvolume.volumetypelist").value;
+
+        this.retVal.iops = document.getElementById("ec2ui.newvolume.iops").value.trim();
+        if (this.retVal.iops.length == 0) this.retVal.iops = null;
+
         if (!this.validateSize()) return false;
+        if (!this.validateIops()) return false;
 
         this.retVal.tag = document.getElementById("ec2ui.newvolume.tag").value.trim();
         this.retVal.ok = true;
@@ -27,6 +33,19 @@ var ec2_VolumeCreator = {
         var textbox = document.getElementById("ec2ui.newvolume.size");
         if ((!isNaN(val) && val < 1) || (isNaN(val) && this.retVal.snapshotId == null)) {
             alert("Size must be >= 1 if a snapshot is not selected");
+            textbox.select();
+            return false;
+        }
+
+        return true;
+    },
+
+    validateIops : function() {
+        var val = (this.retVal.size != null) ? this.retVal.size : "";
+        val = parseInt(val);
+        var textbox = document.getElementById("ec2ui.newvolume.iops");
+        if (!isNaN(val) && val < 1) {
+            alert("IOPS must be >= 1 if a snapshot is not selected");
             textbox.select();
             return false;
         }
@@ -62,6 +81,13 @@ var ec2_VolumeCreator = {
                 }
             //}
         }
+
+        // volume types
+        var volTypeMenu = document.getElementById("ec2ui.newvolume.volumetypelist");
+        volTypeMenu.appendItem("standard", "standard");
+        volTypeMenu.appendItem("io1", "io1");
+        volTypeMenu.selectedIndex = 0;
+
         // To accommodate the <NONE> element added at the head of the list
         snapshotIdMenu.selectedIndex += 1;
 

@@ -149,6 +149,8 @@ var ec2ui_VolumeTreeView = {
             ec2ui_session.controller.createVolume(retVal.size,
                                                   retVal.snapshotId,
                                                   retVal.zone,
+                                                  retVal.volumeType,
+                                                  retVal.iops,
                                                   wrap);
 
             // Let's tag this volume
