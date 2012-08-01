@@ -26,6 +26,7 @@
       <menuitem label="cc1.4xlarge (64-bit only)" value="cc1.4xlarge" />
       <menuitem label="cc2.8xlarge (64-bit only)" value="cc2.8xlarge" />
       <menuitem label="cg1.4xlarge (64-bit only)" value="cg1.4xlarge" />
+      <menuitem label="hi1.4xlarge (64-bit only)" value="hi1.4xlarge" />
     </menupopup>
   </menulist>
 
