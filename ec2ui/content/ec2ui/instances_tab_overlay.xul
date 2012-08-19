@@ -236,7 +236,7 @@
             flex="2" persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
         </treecols>
-        <treechildren id="ec2ui_instances_view_treechildren" context="ec2ui.instances.contextmenu" />
+        <treechildren context="ec2ui.instances.contextmenu" />
       </tree>
     </groupbox>
   </tabpanel>
