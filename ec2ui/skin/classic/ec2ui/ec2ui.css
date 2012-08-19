@@ -1,3 +1,15 @@
+#ec2ui_instances_view_treechildren {
+  background-image: url("chrome://ec2ui/skin/cloudia-san.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+#ec2ui_images_view_treechildren {
+  background-image: url("chrome://ec2ui/skin/cloudia-san2.png");
+  background-repeat: no-repeat;
+  background-position: left bottom;
+}
+
 #elasticfoxButton {
   list-style-image: url("chrome://ec2ui/skin/button.png");
 }

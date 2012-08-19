@@ -127,7 +127,7 @@
                 persist="width ordinal hidden sortDirection" />
               <splitter class="tree-splitter" />
             </treecols>
-            <treechildren context="ec2ui.images.contextmenu"/>
+            <treechildren id="ec2ui_images_view_treechildren" context="ec2ui.images.contextmenu"/>
           </tree>
         </groupbox>
         <splitter style="max-width: 4px; height: 4px;" persist="state" collapse="after"
