@@ -69,7 +69,7 @@ function Snapshot(id, volumeId, status, startTime, progress, volumeSize, descrip
     }
 }
 
-function Volume(id, size, snapshotId, zone, status, createTime, instanceId, device, attachStatus, attachTime, tag) {
+function Volume(id, size, snapshotId, zone, status, createTime, instanceId, device, attachStatus, attachTime, volumeType, iops, tag) {
     this.id = id;
     this.size = size;
     this.snapshotId = snapshotId;
@@ -82,6 +82,8 @@ function Volume(id, size, snapshotId, zone, status, createTime, instanceId, devi
     if (attachStatus != "") {
       this.attachTime = attachTime.strftime('%Y-%m-%d %H:%M:%S');
     }
+    this.volumeType = volumeType;
+    this.iops = iops;
     if (tag) {
       this.tag = tag;
       __addNameTagToModel__(tag, this);
