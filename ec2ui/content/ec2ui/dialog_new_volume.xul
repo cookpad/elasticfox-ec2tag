@@ -31,11 +31,11 @@
         </row>
         <row>
           <label control="ec2ui.newvolume.volumetypelist" value="&ec2ui.volumes.volumeType.label;" />
-          <menulist id="ec2ui.newvolume.volumetypelist" />
+          <menulist id="ec2ui.newvolume.volumetypelist" oncommand="document.getElementById('ec2ui.newvolume.iops').disabled = (this.value == 'standard');" />
         </row>
         <row>
           <label control="ec2ui.newvolume.iops" value="&ec2ui.volumes.iops.label;" />
-          <textbox id="ec2ui.newvolume.iops" size="40" />
+          <textbox id="ec2ui.newvolume.iops" size="40" value="100" disabled="true" />
         </row>
         <row>
           <label control="ec2ui.newvolume.tag" value="Tag" />
