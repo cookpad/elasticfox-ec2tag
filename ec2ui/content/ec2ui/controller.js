@@ -2165,7 +2165,8 @@ var ec2ui_controller = {
             var domain = getNodeValueByName(items[i], "domain");
             var allocationId = getNodeValueByName(items[i], "allocationId");
             var associationId = getNodeValueByName(items[i], "associationId");
-            list.push(new AddressMapping(publicIp, instanceid, domain, allocationId, associationId));
+            var networkInterfaceId = getNodeValueByName(items[i], "networkInterfaceId");
+            list.push(new AddressMapping(publicIp, instanceid, domain, allocationId, associationId, networkInterfaceId));
         }
 
         this.addResourceTags(list, ec2ui_session.model.resourceMap.eips, "address");
