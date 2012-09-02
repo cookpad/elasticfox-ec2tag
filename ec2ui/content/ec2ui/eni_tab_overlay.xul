@@ -79,6 +79,9 @@
           <treecol id="eni.privateIpAddress" label="Private IP Address" flex="1" sortDirection="ascending"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
+          <treecol id="eni.ipAddrs" label="Secondly Private IP Address" flex="1" sortDirection="ascending"
+            persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
           <treecol id="eni.sourceDestCheck" label="Source/Dest Check" flex="1" sortDirection="ascending"
             persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />

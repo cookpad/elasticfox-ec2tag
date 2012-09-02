@@ -2967,6 +2967,24 @@ var ec2ui_controller = {
 
             groupList.sort();
 
+            var ipAddrList = [];
+            var privateIpAddressesSet = item.getElementsByTagName('privateIpAddressesSet')[0];
+
+            if (privateIpAddressesSet) {
+                var privateIpAddressesSetItems = privateIpAddressesSet.getElementsByTagName('item');
+
+                for (var j = 0; j < privateIpAddressesSetItems.length; j++) {
+                    var ip_addr = getNodeValueByName(privateIpAddressesSetItems[j], "privateIpAddress");
+                    var primary = getNodeValueByName(privateIpAddressesSetItems[j], "primary");
+
+                    if (primary != "true") {
+                        ipAddrList.push(ip_addr);
+                    }
+                }
+            }
+
+            ipAddrList.sort();
+
             var attachmentId = null;
             var instanceId = null;
             var deviceIndex = null;
@@ -2980,7 +2998,7 @@ var ec2ui_controller = {
 
             list.push(new NetworkInterface(networkInterfaceId, subnetId, vpcId, availabilityZone, description,
                                            ownerId, requesterManaged, status, macAddress, privateIpAddress, sourceDestCheck,
-                                           groupList, attachmentId, instanceId, deviceIndex));
+                                           groupList, attachmentId, instanceId, deviceIndex, ipAddrList));
 
         }
 

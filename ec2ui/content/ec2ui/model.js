@@ -152,7 +152,7 @@ function VolumeStatusEvent(volumeId, availabilityZone, eventId, eventType, descr
 
 function NetworkInterface(networkInterfaceId, subnetId, vpcId, availabilityZone, description,
                           ownerId, requesterManaged, status, macAddress, privateIpAddress, sourceDestCheck,
-                          groupList, attachmentId, instanceId, deviceIndex) {
+                          groupList, attachmentId, instanceId, deviceIndex, ipAddrList) {
     this.networkInterfaceId = networkInterfaceId;
     this.subnetId           = subnetId;
     this.vpcId              = vpcId;
@@ -169,6 +169,8 @@ function NetworkInterface(networkInterfaceId, subnetId, vpcId, availabilityZone,
     this.attachmentId       = attachmentId;
     this.instanceId         = instanceId;
     this.deviceIndex        = deviceIndex;
+    this.ipAddrList         = ipAddrList;
+    this.ipAddrs = this.ipAddrList.sort().join(', ');
 }
 
 function SecurityGroup(ownerId, name, description, permissions, vpcId, groupId) {

@@ -16,6 +16,7 @@ var ec2ui_ENITreeView = {
         'eni.instanceId',
         'eni.instanceName',
         'eni.deviceIndex',
+        'eni.ipAddrs',
     ],
 
     treeBox : null,
