@@ -292,6 +292,39 @@ var ec2ui_ElasticIPTreeView = {
         return true;
     },
 
+    associateAddressWithENI : function(eip) {
+        var eni_id = null;
+
+        if (eip == null) {
+            eip = this.getSelectedEip();
+
+            if (eip == null) return;
+
+            if (eip.instanceid != null && eip.instanceid != '') {
+                var confirmed = confirm("Address "+eip.address+" is already mapped to an instance, are you sure?");
+                if (!confirmed)
+                    return;
+            }
+
+            var instanceIds = this.getUnassociatedInstanceIds(eip.domain);
+
+            var eni_id = (prompt("Network Interface ID") || '').trim();
+            if (!eni_id) { return; }
+        }
+
+        var me = this;
+        var wrap = function() {
+            if (ec2ui_prefs.isRefreshOnChangeEnabled()) {
+                me.refresh();
+                me.selectByAddress(eip.address);
+            }
+        }
+
+        ec2ui_session.controller.associateAddressWithENI(eip.address, eni_id, eip.allocationId, wrap);
+
+        return true;
+    },
+
     disassociateAddress : function() {
         var eip = this.getSelectedEip();
         if (eip == null) return;

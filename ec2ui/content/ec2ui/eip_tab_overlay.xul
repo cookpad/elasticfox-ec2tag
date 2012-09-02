@@ -13,6 +13,9 @@
           <menuitem id="addresses.context.associate"
             oncommand="ec2ui_ElasticIPTreeView.associateAddress();"
             label="&ec2ui.addresses.contextmenu.associate.label;" />
+          <menuitem id="addresses.context.associate.eni"
+            oncommand="ec2ui_ElasticIPTreeView.associateAddressWithENI();"
+            label="&ec2ui.addresses.contextmenu.associate.eni.label;" />
           <menuitem id="addresses.context.disassociate"
             oncommand="ec2ui_ElasticIPTreeView.disassociateAddress();"
             label="Disassociate this address" />

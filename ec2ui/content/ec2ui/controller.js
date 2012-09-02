@@ -2222,6 +2222,18 @@ var ec2ui_controller = {
         ec2_httpclient.queryEC2("AssociateAddress", params, this, true, "onCompleteAssociateAddress", callback);
     },
 
+    associateAddressWithENI : function (address, eni_id, allocationId, callback) {
+        var params = [['NetworkInterfaceId', eni_id]];
+
+        if (allocationId) {
+            params.push(['AllocationId', allocationId]);
+        } else {
+            params.push(['PublicIp', address]);
+        }
+
+        ec2_httpclient.queryEC2("AssociateAddress", params, this, true, "onCompleteAssociateAddress", callback);
+    },
+
     onCompleteAssociateAddress : function (objResponse) {
         if (objResponse.callback)
             objResponse.callback();

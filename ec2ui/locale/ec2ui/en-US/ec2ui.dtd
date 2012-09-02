@@ -259,6 +259,7 @@
 <!ENTITY ec2ui.instances.contextmenu.copyid.label "Instance ID">
 
 <!ENTITY ec2ui.addresses.contextmenu.associate.label "Associate Elastic IP with Instance">
+<!ENTITY ec2ui.addresses.contextmenu.associate.eni.label "Associate Elastic IP with ENI">
 <!ENTITY ec2ui.addresses.contextmenu.disassociate.label "Disassociate this address">
 <!ENTITY ec2ui.addresses.contextmenu.release.label "Release this address">
 <!ENTITY ec2ui.addresses.contextmenu.copy.label "Copy Elastic IP to Clipboard">
