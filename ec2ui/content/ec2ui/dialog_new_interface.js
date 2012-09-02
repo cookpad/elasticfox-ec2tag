@@ -16,15 +16,15 @@ var ec2_DialogNewInterface = {
     var i = 0, defidx = 0;
 
     for (var name in groupNameIds) {
-      if (name == 'default') {
-        defidx = i;
-      }
+      //if (name == 'default') {
+      //  defidx = i;
+      //}
 
       groupList.appendItem(name, name);
       i++;
     }
 
-    groupList.selectedIndex = defidx;
+    //groupList.selectedIndex = defidx;
 
     return true;
   },
