@@ -116,8 +116,7 @@ var ec2ui_ElasticIPTreeView = {
         if (eipSel == null) return;
 
         var fAssociated = true;
-        if (eipSel.instanceid == null ||
-            eipSel.instanceid == "") {
+        if (!eipSel.instanceid && !eipSel.associationId) {
             // There is no instance associated with this address
             fAssociated = false;
         }
@@ -328,7 +327,7 @@ var ec2ui_ElasticIPTreeView = {
     disassociateAddress : function() {
         var eip = this.getSelectedEip();
         if (eip == null) return;
-        if (eip.instanceid == null || eip.instanceid == '') return;
+        if (!eip.instanceid && !eip.associationId) return;
 
         var confirmed = confirm("Disassociate "+eip.address+" and instance "+eip.instanceid+"?");
         if (!confirmed)
