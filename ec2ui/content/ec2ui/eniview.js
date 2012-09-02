@@ -315,12 +315,21 @@ var ec2ui_ENITreeView = {
             }
         }
 
-        if (unassigns.length > 0) {
-            ec2ui_session.controller.unassignPrivateIpAddresses(eni_id, unassigns);
+        var me = this;
+
+        var assignFunc = function() {
+            if (assigns.length > 0) {
+                ec2ui_session.controller.assignPrivateIpAddresses(eni_id, assigns, reassign);
+            }
+
+            me.refresh();
+            me.selectByNetworkInterfaceId(eni_id);
         }
 
-        if (assigns.length > 0) {
-            ec2ui_session.controller.assignPrivateIpAddresses(eni_id, assigns, reassign);
+        if (unassigns.length > 0) {
+            ec2ui_session.controller.unassignPrivateIpAddresses(eni_id, unassigns, assignFunc);
+        } else {
+            assignFunc();
         }
     },
 
