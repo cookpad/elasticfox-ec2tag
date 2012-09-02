@@ -253,6 +253,76 @@ var ec2ui_ENITreeView = {
         });
     },
 
+    changePrivateIpAddresses: function() {
+        var eni = this.getSelectedNetworkInterface();
+        if (!eni) { return; }
+
+        var me = this;
+
+        ec2ui_session.controller.describePrivateIpAddresses(eni.networkInterfaceId, function(list) {
+            var returnValue = {accepted:false , addrs:null, reassign:null};
+
+            var current_ip_addrs = new Array();
+
+            for (var i = 0; i < list.length; i++) {
+                if (list[i][1] != 'true') {
+                    current_ip_addrs.push(list[i][0]);
+                }
+            }
+
+            openDialog('chrome://ec2ui/content/dialog_private_ip_address.xul',
+                       null,
+                       'chrome,centerscreen,modal,width=400,height=250',
+                       current_ip_addrs,
+                       returnValue);
+
+            if (returnValue.accepted) {
+                var new_ip_addrs = (returnValue.addrs || '');
+                me.updatePrivateIpAddresses(eni.networkInterfaceId, current_ip_addrs.join(","), new_ip_addrs, returnValue.reassign);
+            }
+        });
+    },
+
+    updatePrivateIpAddresses: function(eni_id, current_ip_addrs, new_ip_addrs, reassign) {
+        function normalize(addrs) {
+            var hash = new Object();
+            addrs = (addrs || '').trim().split(',');
+
+            for (var i = 0; i < addrs.length; i++) {
+                var ip_addr = (addrs[i] || '').trim();
+                if (ip_addr) { hash[ip_addr] = 1; }
+            }
+
+            return hash;
+        }
+
+        current_ip_addrs = normalize(current_ip_addrs);
+        new_ip_addrs = normalize(new_ip_addrs);
+
+        var assigns = new Array();
+        var unassigns = new Array();
+
+        for (var ip_addr in new_ip_addrs) {
+            if (!current_ip_addrs[ip_addr]) {
+                assigns.push(ip_addr);
+            }
+        }
+
+        for (var ip_addr in current_ip_addrs) {
+            if (!new_ip_addrs[ip_addr]) {
+                unassigns.push(ip_addr);
+            }
+        }
+
+        if (unassigns.length > 0) {
+            ec2ui_session.controller.unassignPrivateIpAddresses(eni_id, unassigns);
+        }
+
+        if (assigns.length > 0) {
+            ec2ui_session.controller.assignPrivateIpAddresses(eni_id, assigns, reassign);
+        }
+    },
+
     register: function() {
         if (!this.registered) {
             this.registered = true;

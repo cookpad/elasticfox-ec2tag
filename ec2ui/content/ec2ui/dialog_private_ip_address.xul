@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://iamfox/locale/main.dtd">
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  title="Secondly Private IP Address"
+  buttons="accept,cancel"
+  ondialogaccept="return privateIpAddressDialogDoOK();"
+  ondialogcancel="return true;"
+  onload="privateIpAddressDialogOnLoad();">
+
+  <label id="private-ip-address-dialog-private-ip-address-label" control="private-ip-address-dialog-private-ip-address" value="Private IP Address (ex: IP Address, IP Address...) " />
+  <textbox id="private-ip-address-dialog-private-ip-address" multiline="true" flex="1" wrap="false" />
+  <checkbox id="private-ip-address-dialog-allow-reassignment" label="Allow Reassignment" checked="false" />
+
+  <script><![CDATA[
+    function privateIpAddressDialogOnLoad() {
+      var currentPrivateIpAddress = window.arguments[0];
+
+      if (currentPrivateIpAddress) {
+        var privateIpAddress = document.getElementById('private-ip-address-dialog-private-ip-address');
+        privateIpAddress.value = currentPrivateIpAddress.join(",\n");
+      }
+    }
+
+    function privateIpAddressDialogDoOK() {
+      var returnValue = window.arguments[1];
+      var privateIpAddress = document.getElementById('private-ip-address-dialog-private-ip-address');
+      var allowReassignment = document.getElementById('private-ip-address-dialog-allow-reassignment');
+      returnValue.accepted = true;
+      returnValue.addrs = (privateIpAddress.value || '');
+      returnValue.reassign = allowReassignment.checked;
+      return true;
+    }
+  ]]></script>
+</dialog>

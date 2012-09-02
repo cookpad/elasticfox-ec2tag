@@ -2991,6 +2991,39 @@ var ec2ui_controller = {
         }
     },
 
+    describePrivateIpAddresses : function (eni_id, callback) {
+        var params = [
+          ['Filter.1.Name', 'network-interface-id'],
+          ['Filter.1.Value', eni_id]
+        ];
+
+        ec2_httpclient.queryEC2("DescribeNetworkInterfaces", params, this, true, "onCompleteDescribePrivateIpAddresses", callback);
+    },
+
+    onCompleteDescribePrivateIpAddresses : function (objResponse) {
+        var xmlDoc = objResponse.xmlDoc;
+
+        var items = xmlDoc.evaluate("/ec2:DescribeNetworkInterfacesResponse/ec2:networkInterfaceSet/ec2:item/ec2:privateIpAddressesSet/ec2:item",
+                                    xmlDoc,
+                                    this.getNsResolver(),
+                                    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                                    null);
+
+        var list = new Array();
+
+        for(var i = 0 ; i < items.snapshotLength; i++) {
+            var item = items.snapshotItem(i);
+
+            var privateIpAddress = getNodeValueByName(item, "privateIpAddress");
+            var primary = getNodeValueByName(item, "primary");
+            list.push([privateIpAddress, primary]);
+        }
+
+        if (objResponse.callback) {
+            objResponse.callback(list);
+        }
+    },
+
     createNetworkInterface : function (vpcId, subnetId, privateIpAddress, description, groupNames, callback) {
         var params = [['SubnetId', subnetId]];
 
@@ -3157,6 +3190,44 @@ var ec2ui_controller = {
     },
 
     onCompleteApplySecurityGroupsToLoadBalancer : function (objResponse) {
+        if (objResponse.callback) {
+            objResponse.callback();
+        }
+    },
+
+    assignPrivateIpAddresses : function(eni_id, ip_addrs, reassign, callback) {
+        var params = [["NetworkInterfaceId", eni_id]];
+
+        for (var i = 0; i < ip_addrs.length; i++) {
+            var ip_addr = ip_addrs[i];
+            params.push(["PrivateIpAddress." + (i + 1), ip_addr]);
+        }
+
+        if (reassign) {
+            params.push(["AllowReassignment", "true"])
+        }
+
+        ec2_httpclient.queryEC2("AssignPrivateIpAddresses", params, this, true, "onCompleteAssignPrivateIpAddresses", callback);
+    },
+
+    onCompleteAssignPrivateIpAddresses : function (objResponse) {
+        if (objResponse.callback) {
+            objResponse.callback();
+        }
+    },
+
+    unassignPrivateIpAddresses : function(eni_id, ip_addrs, callback) {
+        var params = [["NetworkInterfaceId", eni_id]];
+
+        for (var i = 0; i < ip_addrs.length; i++) {
+            var ip_addr = ip_addrs[i];
+            params.push(["PrivateIpAddress." + (i + 1), ip_addr]);
+        }
+
+        ec2_httpclient.queryEC2("UnassignPrivateIpAddresses", params, this, true, "onCompleteUnassignPrivateIpAddresses", callback);
+    },
+
+    onCompleteUnassignPrivateIpAddresses : function (objResponse) {
         if (objResponse.callback) {
             objResponse.callback();
         }

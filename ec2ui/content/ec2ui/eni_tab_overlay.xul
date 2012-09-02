@@ -19,6 +19,8 @@
             label="Change Source/Dest Check" />
           <menuitem oncommand="ec2ui_ENITreeView.changeDescription();"
             label="Change Description" />
+          <menuitem oncommand="ec2ui_ENITreeView.changePrivateIpAddresses();"
+            label="Change Secondly Private IP Address" />
           <menuseparator />
           <menuitem oncommand="ec2ui_ENITreeView.copyToClipBoard('networkInterfaceId');"
             label="Copy Network Interface ID" />
