@@ -15,7 +15,7 @@
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
         <em:minVersion>2.0</em:minVersion>
-        <em:maxVersion>12.*</em:maxVersion>
+        <em:maxVersion>16.*</em:maxVersion>
       </Description>
     </em:targetApplication>
 
@@ -23,6 +23,7 @@
     <em:name>Elasticfox-ec2tag</em:name>
     <em:description>A improved Elasticfox</em:description>
     <em:creator>Genki Sugawara (originally James Greenfield / icons originally by Ken Saunders http://www.mouserunner.com / Amazon icns is made from http://www.iconshock.com/social-icons/)</em:creator>
+    <em:contributor>Eugene Kato</em:contributor>
     <em:homepageURL>https://bitbucket.org/winebarrel/elasticfox-ec2tag</em:homepageURL>
   </Description>
 
