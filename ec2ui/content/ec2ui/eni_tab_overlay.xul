@@ -20,6 +20,9 @@
           <menuitem oncommand="ec2ui_ENITreeView.changeDescription();"
             label="Change Description" />
           <menuseparator />
+          <menuitem oncommand="ec2ui_ENITreeView.copyToClipBoard('networkInterfaceId');"
+            label="Copy Network Interface ID" />
+          <menuseparator />
           <menuitem oncommand="ec2ui_ENITreeView.detachNetworkInterface(true);"
             label="Force detach this interface" />
           <menuitem oncommand="ec2ui_ENITreeView.deleteNetworkInterface();"
