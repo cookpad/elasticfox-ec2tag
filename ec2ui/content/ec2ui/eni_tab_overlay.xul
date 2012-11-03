@@ -24,6 +24,8 @@
           <menuseparator />
           <menuitem oncommand="ec2ui_ENITreeView.copyToClipBoard('networkInterfaceId');"
             label="Copy Network Interface ID" />
+          <menuitem oncommand="ec2ui_ENITreeView.copyToClipBoard('privateIpAddress');"
+            label="Copy Private IP Address" />
           <menuseparator />
           <menuitem oncommand="ec2ui_ENITreeView.detachNetworkInterface(true);"
             label="Force detach this interface" />
