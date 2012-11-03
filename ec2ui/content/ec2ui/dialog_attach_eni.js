@@ -7,13 +7,23 @@ var ec2_DialogAttachENI = {
 
     var instances = ec2ui_session.model.getInstances();
     var list = document.getElementById('ec2ui.attacheni.instanceIds');
+    var labels = [];
+    var h_name_id = {};
 
     for (var i = 0; i < instances.length; i++) {
       var instance = instances[i];
       if (instance.subnetId != eni.subnetId) { continue; }
 
       var label = (instance.name || '(no name)') + '@' + instance.id;
-      list.appendItem(label, instance.id);
+      labels.push(label);
+      h_name_id[label] = instance.id;
+    }
+
+    labels.sort();
+
+    for (var i = 0; i < labels.length; i++) {
+      var label = labels[i];
+      list.appendItem(label, h_name_id[label]);
     }
 
     return true;
