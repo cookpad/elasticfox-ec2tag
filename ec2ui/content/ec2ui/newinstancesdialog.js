@@ -309,6 +309,8 @@ var ec2_InstanceLauncher = {
             typeMenu.appendItem("m1.large (4 ECU/7.5GB RAM)", "m1.large");
             typeMenu.appendItem("m1.xlarge (8 ECU/15GB RAM)", "m1.xlarge");
             typeMenu.appendItem("c1.xlarge (20 ECU/7GB RAM)", "c1.xlarge");
+            typeMenu.appendItem("m3.xlarge (13 ECU/15 GB RAM)", "m3.xlarge");
+            typeMenu.appendItem("m3.2xlarge (26 ECU/30 GB RAM)", "m3.2xlarge");
             typeMenu.appendItem("m2.xlarge (6.5 ECU/17.1GB RAM)", "m2.xlarge");
             typeMenu.appendItem("m2.2xlarge (13 ECU/34.2 GB RAM)", "m2.2xlarge");
             typeMenu.appendItem("m2.4xlarge (26 ECU/68.4 GB RAM)", "m2.4xlarge");
