@@ -70,6 +70,18 @@ var __calcLinuxMonthlyAmount__rateSheets = {
     'c1.medium'  : 0.186,
     'c1.xlarge'  : 0.744,
   },
+  'ap-southeast-2' : {
+    'm1.small'   : 0.085,
+    'm1.medium'  : 0.170,
+    'm1.large'   : 0.340,
+    'm1.xlarge'  : 0.680,
+    't1.micro'   : 0.020,
+    'm2.xlarge'  : 0.506,
+    'm2.2xlarge' : 1.012,
+    'm2.4xlarge' : 2.024,
+    'c1.medium'  : 0.186,
+    'c1.xlarge'  : 0.744,
+  },
   'ap-northeast-1' : {
     'm1.small'   : 0.092,
     'm1.medium'  : 0.184,
@@ -156,6 +168,18 @@ var __calcWindowsMonthlyAmount__rateSheets = {
     'hi1.4xlarge': 3.580,
   },
   'ap-southeast-1' : {
+    'm1.small'   : 0.115,
+    'm1.medium'  : 0.230,
+    'm1.large'   : 0.460,
+    'm1.xlarge'  : 0.920,
+    't1.micro'   : 0.020,
+    'm2.xlarge'  : 0.570,
+    'm2.2xlarge' : 1.140,
+    'm2.4xlarge' : 2.280,
+    'c1.medium'  : 0.285,
+    'c1.xlarge'  : 1.140,
+  },
+  'ap-southeast-2' : {
     'm1.small'   : 0.115,
     'm1.medium'  : 0.230,
     'm1.large'   : 0.460,
@@ -265,6 +289,18 @@ var __calcLightRILinuxMonthlyAmount__rateSheets = {
     'c1.medium' : [ 178, 0.125,  273, 0.110],
     'c1.xlarge' : [ 712, 0.500, 1092, 0.440],
   },
+  'ap-southeast-2' : {
+    'm1.small'  : [  69, 0.049,  106.30, 0.039],
+    'm1.medium' : [ 138, 0.098,  212.50, 0.078],
+    'm1.large'  : [ 276, 0.196,  425.20, 0.156],
+    'm1.xlarge' : [ 552, 0.392,  850.40, 0.312],
+    't1.micro'  : [  23, 0.015,   35, 0.015],
+    'm2.xlarge' : [ 353, 0.288,  548, 0.230],
+    'm2.2xlarge': [ 706, 0.576, 1096, 0.460],
+    'm2.4xlarge': [1412, 1.152, 2192, 0.920],
+    'c1.medium' : [ 178, 0.125,  273, 0.110],
+    'c1.xlarge' : [ 712, 0.500, 1092, 0.440],
+  },
   'ap-northeast-1' : {
     'm1.small'  : [  72, 0.054,  111.60, 0.043],
     'm1.medium' : [ 144, 0.108,  223.20, 0.085],
@@ -351,6 +387,18 @@ var __calcLightRIWindowsMonthlyAmount__rateSheets = {
     'hi1.4xlarge': [4124, 2.520, 9884, 3.593],
   },
   'ap-southeast-1' : {
+    'm1.small'  : [  69, 0.069,  106.30, 0.059],
+    'm1.medium' : [ 138, 0.138,  212.50, 0.118],
+    'm1.large'  : [ 276, 0.275,  425.20, 0.236],
+    'm1.xlarge' : [ 552, 0.550,  850.40, 0.472],
+    't1.micro'  : [  23, 0.021,   35, 0.021],
+    'm2.xlarge' : [ 353, 0.368,  548, 0.310],
+    'm2.2xlarge': [ 706, 0.735, 1096, 0.620],
+    'm2.4xlarge': [1412, 1.470, 2192, 1.240],
+    'c1.medium' : [ 178, 0.190,  273, 0.175],
+    'c1.xlarge' : [ 712, 0.760, 1092, 0.700],
+  },
+  'ap-southeast-2' : {
     'm1.small'  : [  69, 0.069,  106.30, 0.059],
     'm1.medium' : [ 138, 0.138,  212.50, 0.118],
     'm1.large'  : [ 276, 0.275,  425.20, 0.236],
@@ -460,6 +508,18 @@ var __calcMediumRILinuxMonthlyAmount__rateSheets = {
     'c1.medium' : [ 415, 0.080,  638, 0.070],
     'c1.xlarge' : [1660, 0.320, 2552, 0.280],
   },
+  'ap-southeast-2' : {
+    'm1.small'  : [ 160, 0.031,  250, 0.025],
+    'm1.medium' : [ 320, 0.063,  500, 0.050],
+    'm1.large'  : [ 640, 0.124, 1000, 0.100],
+    'm1.xlarge' : [1280, 0.248, 2000, 0.200],
+    't1.micro'  : [  54, 0.010,   82, 0.010],
+    'm2.xlarge' : [ 850, 0.185, 1283, 0.148],
+    'm2.2xlarge': [1700, 0.370, 2566, 0.296],
+    'm2.4xlarge': [3400, 0.740, 5132, 0.592],
+    'c1.medium' : [ 415, 0.080,  638, 0.070],
+    'c1.xlarge' : [1660, 0.320, 2552, 0.280],
+  },
   'ap-northeast-1' : {
     'm1.small'  : [ 168, 0.036,  262.50, 0.029],
     'm1.medium' : [ 336, 0.073,  525, 0.058],
@@ -545,6 +605,18 @@ var __calcMediumRIWindowsMonthlyAmount__rateSheets = {
     'hi1.4xlarge': [5973, 3.715, 9133, 1.568],
   },
   'ap-southeast-1' : {
+    'm1.small'  : [ 160, 0.051,  250, 0.045],
+    'm1.medium' : [ 320, 0.103,  500, 0.090],
+    'm1.large'  : [ 640, 0.205, 1000, 0.180],
+    'm1.xlarge' : [1280, 0.410, 2000, 0.360],
+    't1.micro'  : [  54, 0.016,   82, 0.016],
+    'm2.xlarge' : [ 850, 0.265, 1283, 0.228],
+    'm2.2xlarge': [1700, 0.530, 2566, 0.456],
+    'm2.4xlarge': [3400, 1.060, 5132, 0.912],
+    'c1.medium' : [ 415, 0.145,  638, 0.135],
+    'c1.xlarge' : [1660, 0.580, 2552, 0.540],
+  },
+  'ap-southeast-2' : {
     'm1.small'  : [ 160, 0.051,  250, 0.045],
     'm1.medium' : [ 320, 0.103,  500, 0.090],
     'm1.large'  : [ 640, 0.205, 1000, 0.180],
@@ -654,6 +726,18 @@ var __calcHeavyRILinuxMonthlyAmount__rateSheets = {
     'c1.medium' : [ 500, 0.063,  775, 0.055],
     'c1.xlarge' : [2000, 0.250, 3100, 0.220],
   },
+  'ap-southeast-2' : {
+    'm1.small'  : [ 195, 0.025,  300, 0.020],
+    'm1.medium' : [ 390, 0.050,  600, 0.040],
+    'm1.large'  : [ 780, 0.100, 1200, 0.080],
+    'm1.xlarge' : [1560, 0.200, 2400, 0.160],
+    't1.micro'  : [  62, 0.008,  100, 0.008],
+    'm2.xlarge' : [1030, 0.148, 1550, 0.118],
+    'm2.2xlarge': [2060, 0.296, 3100, 0.236],
+    'm2.4xlarge': [4120, 0.592, 6200, 0.472],
+    'c1.medium' : [ 500, 0.063,  775, 0.055],
+    'c1.xlarge' : [2000, 0.250, 3100, 0.220],
+  },
   'ap-northeast-1' : {
     'm1.small'  : [ 205, 0.026,  315, 0.021],
     'm1.medium' : [ 410, 0.052,  630, 0.044],
@@ -740,6 +824,18 @@ var __calcHeavyRIWindowsMonthlyAmount__rateSheets = {
     'hi1.4xlarge': [ 7280, 2.231,11587, 1.307],
   },
   'ap-southeast-1' : {
+    'm1.small'  : [ 195, 0.045,  300, 0.040],
+    'm1.medium' : [ 390, 0.090,  600, 0.080],
+    'm1.large'  : [ 780, 0.180, 1200, 0.160],
+    'm1.xlarge' : [1560, 0.360, 2400, 0.320],
+    't1.micro'  : [  62, 0.009,  100, 0.009],
+    'm2.xlarge' : [1030, 0.228, 1550, 0.198],
+    'm2.2xlarge': [2060, 0.455, 3100, 0.396],
+    'm2.4xlarge': [4120, 0.910, 6200, 0.792],
+    'c1.medium' : [ 500, 0.128,  775, 0.120],
+    'c1.xlarge' : [2000, 0.510, 3100, 0.480],
+  },
+  'ap-southeast-2' : {
     'm1.small'  : [ 195, 0.045,  300, 0.040],
     'm1.medium' : [ 390, 0.090,  600, 0.080],
     'm1.large'  : [ 780, 0.180, 1200, 0.160],
@@ -1556,6 +1652,8 @@ var ec2ui_utils = {
             region = "EU-WEST-1";
         } else if (str.indexOf("ap-southeast-1")) {
             region = "AP-SOUTHEAST-1";
+        } else if (str.indexOf("ap-southeast-2")) {
+            region = "AP-SOUTHEAST-2";
         } else if (str.indexOf("ap-northeast-1")) {
             region = "AP-NORTHEAST-1";
         } else if (str.indexOf("sa-east-1")) {

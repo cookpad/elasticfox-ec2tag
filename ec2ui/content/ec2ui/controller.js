@@ -1399,6 +1399,8 @@ var ec2ui_controller = {
             suffix = ".s3-us-west-2.amazonaws.com";
         } else if (region == "AP-SOUTHEAST-1") {
             suffix = ".s3-ap-southeast-1.amazonaws.com";
+        } else if (region == "AP-SOUTHEAST-2") {
+            suffix = ".s3-ap-southeast-2.amazonaws.com";
         } else if (region == "AP-NORTHEAST-1") {
             suffix = ".s3-ap-northeast-1.amazonaws.com";
         } else if (region == "SA-EAST-1") {
@@ -1719,6 +1721,8 @@ var ec2ui_controller = {
                 content = "<CreateBucketConstraint><LocationConstraint>us-west-2</LocationConstraint></CreateBucketConstraint>";
             } else if (region == "AP-SOUTHEAST-1") {
                 content = "<CreateBucketConstraint><LocationConstraint>ap-southeast-1</LocationConstraint></CreateBucketConstraint>";
+            } else if (region == "AP-SOUTHEAST-2") {
+                content = "<CreateBucketConstraint><LocationConstraint>ap-southeast-2</LocationConstraint></CreateBucketConstraint>";
             } else if (region == "AP-NORTHEAST-1") {
                 content = "<CreateBucketConstraint><LocationConstraint>ap-northeast-1</LocationConstraint></CreateBucketConstraint>";
             }
