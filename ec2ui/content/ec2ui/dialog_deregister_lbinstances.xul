@@ -14,10 +14,10 @@
   <listbox id="Deregister_Instances" rows="10" width="500" seltype="multiple" onclick="ec2ui_DeregisterInstances.enable_disableInstances();">
   <listhead>
      <listheader label="&ec2ui.registerlb.register.label;" width="50"/>
+     <listheader label="Name" width="150"/>
      <listheader label="&ec2ui.registerlb.instanceid.label;" width="100"/>
      <listheader label="&ec2ui.registerlb.state.label;" width="100"/>
      <listheader label="&ec2ui.registerlb.zone.label;" width="100"/>
-     <listheader label="Name" width="150"/>
   </listhead>
   <listcols>
    <listcol/>

@@ -88,18 +88,18 @@ var ec2ui_DeregisterInstances = {
 	    cell1.setAttribute('type', 'checkbox');
 	    cell1.setAttribute('id',cellID);
 	    row.appendChild(cell1);
+
+      cell2.setAttribute('label', Instancedetails[i].name);
+      row.appendChild(cell2);
 	
-	    cell2.setAttribute('label', Instancedetails[i].id);
-	    cell2.setAttribute('id',cellInstanceId);
-	    row.appendChild(cell2);
-	
-	    cell3.setAttribute('label', Instancedetails[i].state);
+	    cell3.setAttribute('label', Instancedetails[i].id);
+	    cell3.setAttribute('id',cellInstanceId);
 	    row.appendChild(cell3);
 	
-	    cell4.setAttribute('label', Instancedetails[i].placement.availabilityZone);
+	    cell4.setAttribute('label', Instancedetails[i].state);
 	    row.appendChild(cell4);
 	
-	    cell5.setAttribute('label', Instancedetails[i].name);
+	    cell5.setAttribute('label', Instancedetails[i].placement.availabilityZone);
 	    row.appendChild(cell5);
 	
 	    var rowID = "row"+Idx;
