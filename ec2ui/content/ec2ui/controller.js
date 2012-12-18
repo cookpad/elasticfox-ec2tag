@@ -945,7 +945,10 @@ var ec2ui_controller = {
 
             var rdt = getNodeValueByName(instanceItems[j], "rootDeviceType");
 
-            list.push(new Instance(resId,
+            var iamInstanceProfile = instanceItems[j].getElementsByTagName("iamInstanceProfile")[0];
+            var iamInstanceProfileArn = iamInstanceProfile ? getNodeValueByName(iamInstanceProfile, "arn") : '';
+
+          list.push(new Instance(resId,
                                    ownerId,
                                    groups,
                                    instanceId,
@@ -966,13 +969,14 @@ var ec2ui_controller = {
                                    null,
                                    vpcId,
                                    subnetId,
-                                   rdt));
+                                   rdt,
+                                   iamInstanceProfileArn));
         }
 
         return list;
     },
 
-    runInstances : function (imageId, kernelId, ramdiskId, minCount, maxCount, keyName, securityGroups, userData, properties, ephemeral0, ephemeral1, ephemeral2, ephemeral3, instanceType, placement, subnetId, ipAddress, securityGroupIds, callback) {
+    runInstances : function (imageId, kernelId, ramdiskId, minCount, maxCount, keyName, securityGroups, userData, properties, ephemeral0, ephemeral1, ephemeral2, ephemeral3, instanceType, placement, subnetId, ipAddress, securityGroupIds, iamInstanceProfileArn, iamInstanceProfileName, callback) {
         var params = []
         params.push(["ImageId", imageId]);
         if (kernelId != null && kernelId != "") {
@@ -1038,6 +1042,14 @@ var ec2ui_controller = {
             if (ipAddress != null && ipAddress != "") {
                 params.push(["PrivateIpAddress", ipAddress]);
             }
+        }
+
+        if (iamInstanceProfileArn) {
+          params.push(["IamInstanceProfile.Arn", iamInstanceProfileArn]);
+        }
+
+        if (iamInstanceProfileName) {
+          params.push(["IamInstanceProfile.Name", iamInstanceProfileName]);
         }
 
         ec2_httpclient.queryEC2("RunInstances", params, this, true, "onCompleteRunInstances", callback);

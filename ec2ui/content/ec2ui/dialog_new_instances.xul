@@ -145,6 +145,25 @@
         </groupbox>
       </vbox>
     </hbox>
+    <groupbox flex="1" id="ec2ui.newinstances.iam.box">
+      <caption label="IAM Instance Profile" />
+      <grid flex="1">
+        <columns>
+          <column width="50" />
+          <column flex="1" />
+        </columns>
+        <rows>
+          <row>
+            <label control="ec2ui.newinstances.iam.arn" value="ARN:" />
+            <textbox id="ec2ui.newinstances.iam.arn" />
+          </row>
+          <row>
+            <label control="ec2ui.newinstances.iam.name" value="Name:" />
+            <textbox id="ec2ui.newinstances.iam.name" />
+          </row>
+        </rows>
+      </grid>
+    </groupbox>
     <groupbox flex="1" id="ec2ui.newinstances.secgroups.box">
       <caption label="&ec2ui.captions.images.launchsecgroups.label;" />
       <grid flex="1">

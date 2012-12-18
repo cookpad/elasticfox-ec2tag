@@ -79,6 +79,10 @@ var ec2_InstanceLauncher = {
         this.retVal.ephemeral1 = document.getElementById("ec2ui.newinstances.ephemeral1").value;
         this.retVal.ephemeral2 = document.getElementById("ec2ui.newinstances.ephemeral2").value;
         this.retVal.ephemeral3 = document.getElementById("ec2ui.newinstances.ephemeral3").value;
+
+        this.retVal.iamInstanceProfileArn  = document.getElementById("ec2ui.newinstances.iam.arn").value.trim();
+        this.retVal.iamInstanceProfileName = document.getElementById("ec2ui.newinstances.iam.name").value.trim();
+
         this.retVal.ok = true;
 
         return true;

@@ -23,7 +23,8 @@ var ec2ui_InstancesTreeView = {
        'instance.vpcId',
        'instance.subnetId',
        'instance.rootDeviceType',
-       'instance.comment'
+       'instance.comment',
+       'instance.iamInstanceProfileArn'
     ],
     treeBox: null,
     selection: null,
@@ -933,6 +934,8 @@ var ec2ui_InstancesTreeView = {
            instance.instanceType,
            instance.placement,
            instance.subnetId,
+           null,
+           null,
            null,
            null,
            wrap);

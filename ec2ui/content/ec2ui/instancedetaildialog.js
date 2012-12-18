@@ -30,6 +30,7 @@ var ec2_InstanceDetails = {
         document.getElementById("ec2ui.instance.vpcid").value = instance.vpcId;
         document.getElementById("ec2ui.instance.subnetid").value = instance.subnetId;
         document.getElementById("ec2ui.instance.tag").value = instance.tag || "";
+        document.getElementById("ec2ui.instance.iamInstanceProfileArn").value = instance.iamInstanceProfileArn;
 
         var secGroups = document.getElementById("ec2ui.instance.securitygrouplist");
         for(var i in instance.groupList) {

@@ -87,6 +87,10 @@
           <textbox id="ec2ui.instance.eip" size="30" readonly="true" />
         </row>
         <row>
+          <label control="ec2ui.instance.iamInstanceProfileArn" value="IAM ARN:" />
+          <textbox id="ec2ui.instance.iamInstanceProfileArn" size="30" readonly="true" />
+        </row>
+        <row>
           <label control="ec2ui.instance.volumelist" value="EBS Volumes:" />
           <listbox id="ec2ui.instance.volumelist" seltype="single" rows="4" flex="1" />
           <label control="ec2ui.instance.securitygrouplist" value="Security Groups:" />
