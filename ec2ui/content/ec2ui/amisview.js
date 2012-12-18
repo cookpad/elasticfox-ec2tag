@@ -207,6 +207,7 @@ var ec2ui_AMIsTreeView = {
                retVal.securityGroupIds,
                retVal.iamInstanceProfileArn,
                retVal.iamInstanceProfileName,
+               retVal.ebsOptimized,
                this.newInstanceCallback);
         }
     },

@@ -238,6 +238,9 @@
           <treecol id="instance.iamInstanceProfileArn" label="IAM Instance Profile ARN"
             flex="2" persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
+          <treecol id="instance.ebsOptimized" label="EBS Optimized"
+            flex="2" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
         </treecols>
         <treechildren context="ec2ui.instances.contextmenu" />
       </tree>

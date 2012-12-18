@@ -92,7 +92,7 @@ function Volume(id, size, snapshotId, zone, status, createTime, instanceId, devi
 
 function Instance(resId, ownerId, groupList, instanceId, imageId, kernelId,
         ramdiskId, state, publicDnsName, privateDnsName, privateIpAddress, keyName, reason,
-        amiLaunchIdx, instanceType, launchTime, placement, platform, tag, vpcId, subnetId, rootDeviceType, iamInstanceProfileArn) {
+        amiLaunchIdx, instanceType, launchTime, placement, platform, tag, vpcId, subnetId, rootDeviceType, iamInstanceProfileArn, ebsOptimized) {
     this.resId = resId;
     this.ownerId = ownerId;
     this.groupList = groupList;
@@ -125,6 +125,7 @@ function Instance(resId, ownerId, groupList, instanceId, imageId, kernelId,
 
     this.rootDeviceType = rootDeviceType;
     this.iamInstanceProfileArn = iamInstanceProfileArn;
+    this.ebsOptimized = ebsOptimized;
 }
 
 function KeyPair(name, fingerprint) {

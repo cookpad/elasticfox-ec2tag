@@ -89,6 +89,8 @@
         <row>
           <label control="ec2ui.instance.iamInstanceProfileArn" value="IAM ARN:" />
           <textbox id="ec2ui.instance.iamInstanceProfileArn" size="30" readonly="true" />
+          <label control="ec2ui.instance.ebsOptimized" value="EBS Optimized:" />
+          <textbox id="ec2ui.instance.ebsOptimized" size="30" readonly="true" />
         </row>
         <row>
           <label control="ec2ui.instance.volumelist" value="EBS Volumes:" />

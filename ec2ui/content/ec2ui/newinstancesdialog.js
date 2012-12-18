@@ -83,6 +83,8 @@ var ec2_InstanceLauncher = {
         this.retVal.iamInstanceProfileArn  = document.getElementById("ec2ui.newinstances.iam.arn").value.trim();
         this.retVal.iamInstanceProfileName = document.getElementById("ec2ui.newinstances.iam.name").value.trim();
 
+        this.retVal.ebsOptimized = document.getElementById("ec2ui.newinstances.ebsOptimized").checked;
+
         this.retVal.ok = true;
 
         return true;

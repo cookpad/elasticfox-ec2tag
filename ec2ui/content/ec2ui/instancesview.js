@@ -24,7 +24,8 @@ var ec2ui_InstancesTreeView = {
        'instance.subnetId',
        'instance.rootDeviceType',
        'instance.comment',
-       'instance.iamInstanceProfileArn'
+       'instance.iamInstanceProfileArn',
+       'instance.ebsOptimized'
     ],
     treeBox: null,
     selection: null,
@@ -922,23 +923,28 @@ var ec2ui_InstancesTreeView = {
         }
         count = count.trim();
         ec2ui_session.controller.runInstances(
-           instance.imageId,
-           instance.kernelId,
-           instance.ramdiskId,
-           count,
-           count,
-           instance.keyName,
-           instance.groupList,
-           null,
-           null,
-           instance.instanceType,
-           instance.placement,
-           instance.subnetId,
-           null,
-           null,
-           null,
-           null,
-           wrap);
+           instance.imageId,      // imageId
+           instance.kernelId,     // kernelId
+           instance.ramdiskId,    // ramdiskId
+           count,                 // minCount
+           count,                 // maxCount
+           instance.keyName,      // keyName
+           instance.groupList,    // securityGroups
+           null,                  // userData
+           null,                  // properties
+           null,                  // ephemeral0
+           null,                  // ephemeral1
+           null,                  // ephemeral2
+           null,                  // ephemeral3
+           instance.instanceType, // instanceType
+           instance.placement,    // placement
+           instance.subnetId,     // subnetId
+           null,                  // ipAddress
+           null,                  // securityGroupIds
+           null,                  // iamInstanceProfileArn
+           null,                  // iamInstanceProfileName
+           null,                  // ebsOptimized
+           wrap);                 // callback
     },
 
     terminateInstance : function() {

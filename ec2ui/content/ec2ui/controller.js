@@ -948,6 +948,8 @@ var ec2ui_controller = {
             var iamInstanceProfile = instanceItems[j].getElementsByTagName("iamInstanceProfile")[0];
             var iamInstanceProfileArn = iamInstanceProfile ? getNodeValueByName(iamInstanceProfile, "arn") : '';
 
+            var ebsOptimized = getNodeValueByName(instanceItems[j], "ebsOptimized");
+
           list.push(new Instance(resId,
                                    ownerId,
                                    groups,
@@ -970,13 +972,14 @@ var ec2ui_controller = {
                                    vpcId,
                                    subnetId,
                                    rdt,
-                                   iamInstanceProfileArn));
+                                   iamInstanceProfileArn,
+                                   ebsOptimized));
         }
 
         return list;
     },
 
-    runInstances : function (imageId, kernelId, ramdiskId, minCount, maxCount, keyName, securityGroups, userData, properties, ephemeral0, ephemeral1, ephemeral2, ephemeral3, instanceType, placement, subnetId, ipAddress, securityGroupIds, iamInstanceProfileArn, iamInstanceProfileName, callback) {
+    runInstances : function (imageId, kernelId, ramdiskId, minCount, maxCount, keyName, securityGroups, userData, properties, ephemeral0, ephemeral1, ephemeral2, ephemeral3, instanceType, placement, subnetId, ipAddress, securityGroupIds, iamInstanceProfileArn, iamInstanceProfileName, ebsOptimized, callback) {
         var params = []
         params.push(["ImageId", imageId]);
         if (kernelId != null && kernelId != "") {
@@ -1050,6 +1053,10 @@ var ec2ui_controller = {
 
         if (iamInstanceProfileName) {
           params.push(["IamInstanceProfile.Name", iamInstanceProfileName]);
+        }
+
+        if (ebsOptimized) {
+          params.push(["EbsOptimized", ebsOptimized]);
         }
 
         ec2_httpclient.queryEC2("RunInstances", params, this, true, "onCompleteRunInstances", callback);
