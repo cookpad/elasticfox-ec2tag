@@ -101,6 +101,40 @@ var ec2ui_SnapshotTreeView = {
         ec2ui_VolumeTreeView.createVolume(image);
     },
 
+    copySnapshot: function () {
+        var image = this.getSelectedImage();
+        if (image == null) return;
+
+        var prompts = Components.classes["@mozilla.org/embedcomp/prompt-service;1"].getService(Components.interfaces.nsIPromptService);
+
+        var region_list = [];
+
+        var endpointlist = ec2ui_session.getEndpoints();
+
+        for (var i = 0; i < endpointlist.length; i++) {
+            region_list.push(endpointlist[i].name);
+        }
+
+        var selected = {};
+
+        var ok = prompts.select(window, "Copy this volume", "Destination region:", 
+                                region_list.length, region_list, selected);
+
+        if (ok) {
+            var destRegion = region_list[selected.value];
+
+            var wrap = function(snapshotId) {
+                alert("The copy to " + destRegion + " has been started.\n\n" +
+                      "The SNAP ID is: " + snapshotId);
+            }
+
+            var description = "[Copied " + image.id + " from " + ec2ui_session.getActiveEndpoint().name + "]";
+
+            ec2ui_session.controller.copySnapshot(
+                image.id, destRegion, description, wrap);
+        }
+    },
+
     displayImages : function (imageList) {
         BaseImagesView.displayImages.call(this, imageList);
 

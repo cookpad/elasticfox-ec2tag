@@ -112,6 +112,28 @@ var ec2ui_controller = {
             objResponse.callback();
     },
 
+    copySnapshot : function (snapshotId, destRegion, description, callback) {
+        var params = [
+            ["SourceSnapshotId", snapshotId],
+            ["SourceRegion", ec2ui_session.getActiveEndpoint().name]
+        ];
+
+        if (description) {
+            params.push(["Description", description]);
+        }
+
+        ec2_httpclient.queryEC2InRegion(destRegion, "CopySnapshot", params, this, true, "onCompleteCopySnapshot", callback);
+    },
+
+    onCompleteCopySnapshot: function (objResponse) {
+        var xmlDoc = objResponse.xmlDoc;
+        var snapshotId = getNodeValueByName(xmlDoc, "snapshotId");
+
+        if (objResponse.callback) {
+            objResponse.callback(snapshotId);
+        }
+    },
+
     deleteVolume : function (volumeId, callback) {
         ec2_httpclient.queryEC2("DeleteVolume", [["VolumeId", volumeId]], this, true, "onCompleteDeleteVolume", callback);
     },

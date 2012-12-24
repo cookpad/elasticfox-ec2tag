@@ -166,6 +166,8 @@
               label="&ec2ui.snapshot.contextmenu.createvol.label;" />
             <menuitem oncommand="ec2ui_SnapshotTreeView.deleteSnapshot();"
               label="&ec2ui.snapshot.contextmenu.delete.label;" />
+            <menuitem oncommand="ec2ui_SnapshotTreeView.copySnapshot();"
+              label="Copy this snapshot" />
             <menuseparator />
             <menuitem oncommand="ec2ui_SnapshotTreeView.copyToClipBoard('id');"
               label="&ec2ui.snapshot.contextmenu.copysnapid.label;" />
