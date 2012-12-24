@@ -17,6 +17,7 @@ var __calcLinuxMonthlyAmount__rateSheets = {
     'cc2.8xlarge': 2.400,
     'cg1.4xlarge': 2.100,
     'hi1.4xlarge': 3.100,
+    'hs1.8xlarge': 4.600,
   },
   'us-west-2' : {
     'm1.small'   : 0.065,
@@ -126,6 +127,7 @@ var __calcWindowsMonthlyAmount__rateSheets = {
     'cc2.8xlarge': 2.970,
     'cg1.4xlarge': 2.600,
     'hi1.4xlarge': 3.580,
+    'hs1.8xlarge': 4.931,
   },
   'us-west-2' : {
     'm1.small'   : 0.115,
@@ -236,6 +238,7 @@ var __calcLightRILinuxMonthlyAmount__rateSheets = {
     'cc2.8xlarge': [1762, 0.904, 2710   , 0.904],
     'cg1.4xlarge': [2410, 1.234, 3700   , 1.234],
     'hi1.4xlarge': [2576, 1.477, 3884   , 1.150],
+    'hs1.8xlarge': [3968, 2.240, 5997   , 1.810],
   },
   'us-west-1' : {
     'm1.small'  : [  69, 0.049,  106.30, 0.039],
@@ -344,7 +347,8 @@ var __calcLightRIWindowsMonthlyAmount__rateSheets = {
     'cc1.4xlarge': [1450, 0.922, 2225   , 0.922],
     'cc2.8xlarge': [1762, 1.114, 2710   , 1.114],
     'cg1.4xlarge': [2410, 1.534, 3700   , 1.534],
-    'hi1.4xlarge': [4124, 1.957,17984   , 1.504],
+    'hi1.4xlarge': [2576, 1.957, 3884   , 1.630],
+    'hs1.8xlarge': [3968, 2.571, 5997   , 2.141],
   },
   'us-west-1' : {
     'm1.small'   : [  69, 0.069,  106.30, 0.059],
@@ -455,6 +459,7 @@ var __calcMediumRILinuxMonthlyAmount__rateSheets = {
     'cc2.8xlarge': [4146, 0.540, 6378, 0.540],
     'cg1.4xlarge': [5630, 0.740, 8650, 0.740],
     'hi1.4xlarge': [5973, 0.909, 9133, 0.705],
+    'hs1.8xlarge': [9200, 1.380,14103, 1.110],
   },
   'us-west-1' : {
     'm1.small'  : [ 160, 0.031,  250, 0.025],
@@ -563,7 +568,8 @@ var __calcMediumRIWindowsMonthlyAmount__rateSheets = {
     'cc1.4xlarge': [3286, 0.630, 5056, 0.630],
     'cc2.8xlarge': [4146, 0.750, 6378, 0.750],
     'cg1.4xlarge': [5630, 1.040, 8650, 1.040],
-    'hi1.4xlarge': [8135, 1.630,20869, 1.185],
+    'hi1.4xlarge': [5973, 1.389, 9133, 1.185],
+    'hs1.8xlarge': [9200, 1.711,14103, 1.441],
   },
   'us-west-1' : {
     'm1.small'   : [ 160, 0.051,  250, 0.045],
@@ -673,6 +679,7 @@ var __calcHeavyRILinuxMonthlyAmount__rateSheets = {
     'cc2.8xlarge': [5000, 0.361,  7670, 0.361],
     'cg1.4xlarge': [6830, 0.494, 10490, 0.494],
     'hi1.4xlarge': [7280, 0.621, 10960, 0.482],
+    'hs1.8xlarge':[11213, 0.920, 16924, 0.760],
   },
   'us-west-1' : {
     'm1.small'  : [ 195, 0.025,  300, 0.020],
@@ -781,7 +788,8 @@ var __calcHeavyRIWindowsMonthlyAmount__rateSheets = {
     'cc1.4xlarge': [4060, 0.477,  6300, 0.477],
     'cc2.8xlarge': [5000, 0.571,  7670, 0.571],
     'cg1.4xlarge': [6830, 0.794, 10490, 0.794],
-    'hi1.4xlarge': [9197, 1.575, 21772, 0.962],
+    'hi1.4xlarge': [7280, 1.101, 10960, 0.962],
+    'hs1.8xlarge':[11213, 1.251, 16924, 1.091],
   },
   'us-west-1' : {
     'm1.small'   : [ 195, 0.045,  300, 0.040],
