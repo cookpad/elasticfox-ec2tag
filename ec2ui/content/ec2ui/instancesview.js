@@ -1600,6 +1600,16 @@ outer:
         argStr = argStr.replace(/\${privateDnsName}/g, instance.privateDnsName);
         argStr = argStr.replace(/\${privateIpAddress}/g, instance.privateIpAddress);
         argStr = argStr.replace(/\${name}/g, instance.name);
+  
+        //replace with any tag's value
+        var tagValuePairs=instance.tag.split(",");
+        for(i in tagValuePairs) {
+            var tagName = tagValuePairs[i].split(":")[0].trim();
+            var tagValue = tagValuePairs[i].split(":")[1].trim();
+
+            var re = new RegExp("\\${" + tagName + "}","g");
+            argStr = argStr.replace(re, tagValue);
+        } 
 
         // Finally, split args into an array
         var args = tokenise(argStr);
