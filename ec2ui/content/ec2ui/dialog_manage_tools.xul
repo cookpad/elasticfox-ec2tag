@@ -92,6 +92,9 @@
         <hbox>
             <description>${pass} - The Administrator password for a Windows instance.</description>
         </hbox>
+        <hbox>
+            <description>${&lt;ec2 tag&gt;} - The EC2 tag will be replaced with its value.  MyGroup:foobar ${MyGroup}  = foobar</description>
+        </hbox>
     </vbox>
 
 </dialog>
