@@ -928,7 +928,7 @@ var ec2ui_controller = {
         return node == null ? "" : node.firstChild.nodeValue
     },
 
-    unpackReservationInstances : function (resId, ownerId, groups, instanceItems) {
+    unpackReservationInstances : function (resId, ownerId, instanceItems) {
         var list = new Array();
 
         for (var j = 0; j < instanceItems.length; j++) {
@@ -971,6 +971,19 @@ var ec2ui_controller = {
             var iamInstanceProfileArn = iamInstanceProfile ? getNodeValueByName(iamInstanceProfile, "arn") : '';
 
             var ebsOptimized = getNodeValueByName(instanceItems[j], "ebsOptimized");
+
+            var groups_h = new Object();
+            var groupNames = instanceItems[j].getElementsByTagName("groupName");
+            var gname = null
+            var groups = []
+
+            for (var k = 0; k < groupNames.length; k++) {
+              if (groupNames[k].firstChild) {
+                gname = groupNames[k].firstChild.nodeValue.toString().trim()
+                if (gname) { groups_h[gname] = 1; }
+              }
+            }
+            for (gname in groups_h) { groups.push(gname); }
 
           list.push(new Instance(resId,
                                    ownerId,
@@ -1096,23 +1109,12 @@ var ec2ui_controller = {
         for(var i=0 ; i < items.snapshotLength; i++) {
             var resId = getNodeValueByName(items.snapshotItem(i), "reservationId");
             var ownerId = getNodeValueByName(items.snapshotItem(i), "ownerId");
-            var groups = new Array();
-            var groups_h = new Object();
-            var groupNames = items.snapshotItem(i).getElementsByTagName("groupName");
-            var gname = null
-            for (var j = 0; j < groupNames.length; j++) {
-              if (groupNames[j].firstChild) {
-                gname = groupNames[j].firstChild.nodeValue.toString().trim()
-                if (gname) { groups_h[gname] = 1; }
-              }
-            }
-            for (gname in groups_h) { groups.push(gname); }
 
             var instancesSet = items.snapshotItem(i).getElementsByTagName("instancesSet")[0];
             var instanceItems = instancesSet.childNodes;
 
             if (instanceItems) {
-                var resList = this.unpackReservationInstances(resId, ownerId, groups, instanceItems);
+                var resList = this.unpackReservationInstances(resId, ownerId, instanceItems);
                 for (var j = 0; j < resList.length; j++) {
                     list.push(resList[j]);
                 }
@@ -1234,22 +1236,12 @@ var ec2ui_controller = {
         for(var i=0 ; i < items.snapshotLength; i++) {
             var resId = getNodeValueByName(items.snapshotItem(i), "reservationId");
             var ownerId = getNodeValueByName(items.snapshotItem(i), "ownerId");
-            var groups = new Array();
-            var groups_h = new Object();
-            var groupNames = items.snapshotItem(i).getElementsByTagName("groupName");
-            var gname = null
-            for (var j = 0; j < groupNames.length; j++) {
-              if (groupNames[j].firstChild) {
-                gname = groupNames[j].firstChild.nodeValue.toString().trim()
-                if (gname) { groups_h[gname] = 1; }
-              }
-            }
-            for (gname in groups_h) { groups.push(gname); }
+
             var instancesSet = items.snapshotItem(i).getElementsByTagName("instancesSet")[0];
             var instanceItems = instancesSet.childNodes;
 
             if (instanceItems) {
-                var resList = this.unpackReservationInstances(resId, ownerId, groups, instanceItems);
+                var resList = this.unpackReservationInstances(resId, ownerId, instanceItems);
                 list = list.concat(resList);
 
                 for (var j = 0; j < instanceItems.length; j++) {
