@@ -54,6 +54,9 @@
           <menuitem id="instances.context.changeShutdownBehavior"
             oncommand="ec2ui_InstancesTreeView.changeShutdownBehavior();"
             label="Change Shutdown Behavior" />
+          <menuitem id="instances.context.showInstanceStatus"
+            oncommand="ec2ui_InstancesTreeView.showInstanceStatus();"
+            label="Show Instance Status" />
           <menu label="VPC">
             <menupopup>
               <menuitem id="instances.context.changeSecurityGroup"
