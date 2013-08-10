@@ -2911,6 +2911,58 @@ var ec2ui_controller = {
         }
     },
 
+    describeInstanceStatus2 : function (instanceIds, callback) {
+        var params = new Array();
+        params.push(["IncludeAllInstances", true]);
+
+        for (var i = 0; i < instanceIds.length; i++) {
+            params.push(["InstanceId." + i, instanceIds[i]]);
+        }
+
+        ec2_httpclient.queryEC2("DescribeInstanceStatus", params, this, true, "onCompleteDescribeInstanceStatus2", callback);
+    },
+
+    onCompleteDescribeInstanceStatus2 : function (objResponse) {
+        var xmlDoc = objResponse.xmlDoc;
+
+        var items = xmlDoc.evaluate("/ec2:DescribeInstanceStatusResponse/ec2:instanceStatusSet/ec2:item",
+                                    xmlDoc,
+                                    this.getNsResolver(),
+                                    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                                    null);
+
+        var list = new Array();
+
+        for(var i = 0 ; i < items.snapshotLength; i++) {
+            var item = items.snapshotItem(i);
+
+            var instanceId = getNodeValueByName(item, "instanceId");
+            if (!instanceId) { continue; }
+
+            var statuses = [instanceId, 'N/A', 'N/A'];
+
+            var systemStatus = item.getElementsByTagName("systemStatus")[0];
+
+            if (systemStatus) {
+                var systemStatusStatus = getNodeValueByName(systemStatus, "status");
+                if (systemStatusStatus) { statuses[1] = systemStatusStatus; }
+            }
+
+            var instanceStatus = item.getElementsByTagName("instanceStatus")[0];
+
+            if (instanceStatus) {
+                var instanceStatusStatus = getNodeValueByName(instanceStatus, "status");
+                if (instanceStatusStatus) { statuses[2] = instanceStatusStatus; }
+            }
+
+            list.push(statuses);
+        }
+
+        if (objResponse.callback) {
+            objResponse.callback(list);
+        }
+    },
+
     describeVolumeStatus : function (callback) {
         ec2_httpclient.queryEC2("DescribeVolumeStatus", [], this, true, "onCompleteDescribeVolumeStatus", callback);
     },

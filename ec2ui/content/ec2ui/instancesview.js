@@ -132,6 +132,22 @@ var ec2ui_InstancesTreeView = {
         return [instanceIds, instances];
     },
 
+    getSelectedInstanceNamedIdHash : function() {
+        var instanceIdsWithName = this.getSelectedInstanceIdsWithName();
+        var instanceIds = new Array();
+        var instances = new Object();
+
+        for (var i = 0; i < instanceIdsWithName.length; i++) {
+            var instanceId = instanceIdsWithName[i][0];
+            var instanceName = instanceIdsWithName[i][1];
+            instanceIds.push(instanceId);
+            if (!instanceName) { instanceName = '(no name)'; }
+            instances[instanceId] = instanceName + '@' + instanceId;
+        }
+
+        return [instanceIds, instances];
+    },
+
     tag : function(event) {
         var instances = this.getSelectedInstances();
 
@@ -1158,33 +1174,23 @@ var ec2ui_InstancesTreeView = {
     },
 
     showInstanceStatus : function() {
-        alert("XXX");
-        /*
-        var instances = this.getSelectedInstanceNamedIds();
+        var instances = this.getSelectedInstanceNamedIdHash();
         var instanceIds = instances[0];
         var instanceLabels = instances[1];
 
-        var statusList = new Array();
+        ec2ui_session.controller.describeInstanceStatus2(instanceIds, function(list) {
+            var statusList = new Array();
 
-        function pushStatusToArray(instanceLabel, status) {
-            statusList.push(status + " | " + instanceLabel);
-
-            if (statusList.length == instanceIds.length) {
-                alert(statusList.join("\n"));
+            for (var i = 0; i < list.length; i++) {
+                var instanceId = list[i][0];
+                var systemStatus = list[i][1];
+                var instanceStatus = list[i][2];
+                var label = instanceLabels[instanceId];
+                statusList.push(label + " | system:" + systemStatus + ", instance:" + instanceStatus);
             }
-        }
 
-        function __describeInstanceAttribute__(instanceId, instanceLabel) {
-            ec2ui_session.controller.describeInstanceAttribute(instanceId, "disableApiTermination", function(value) {
-                value = (value == "true");
-                pushStatusToArray(instanceLabel, (value ? "enable" : "disable"));
-            });
-        }
-
-        for (var i = 0; i < instanceIds.length; i++) {
-            __describeInstanceAttribute__(instanceIds[i], instanceLabels[i]);
-        }
-        */
+            alert(statusList.join("\n"));
+        });
     },
 
     showTerminationProtection : function() {
