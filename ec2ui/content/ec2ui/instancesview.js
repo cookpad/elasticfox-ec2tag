@@ -1186,7 +1186,7 @@ var ec2ui_InstancesTreeView = {
                 var systemStatus = list[i][1];
                 var instanceStatus = list[i][2];
                 var label = instanceLabels[instanceId];
-                statusList.push(label + " | system:" + systemStatus + ", instance:" + instanceStatus);
+                statusList.push(systemStatus + "/" + instanceStatus + " | " + label);
             }
 
             alert(statusList.join("\n"));
