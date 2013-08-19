@@ -1638,10 +1638,14 @@ outer:
         argStr = argStr.replace(/\${name}/g, instance.name);
   
         //replace with any tag's value
-        var tagValuePairs=instance.tag.split(",");
-        for(i in tagValuePairs) {
-            var tagName = tagValuePairs[i].split(":")[0].trim();
-            var tagValue = tagValuePairs[i].split(":")[1].trim();
+        var tagValuePairs = (((instance.tag || '')+ ',').match(/\s*[^,":]+\s*:\s*("(?:[^"]|"")*"|[^,]*)\s*,\s*/g) || []);
+
+        for (var i = 0; i < tagValuePairs.length; i++) {
+            var kv = tagValuePairs[i].split(/\s*:\s*/, 2);
+            var tagName = (kv[0] || "").trim();
+            var tagValue = (kv[1] || "").trim();
+            tagValue = tagValue.replace(/,\s*$/, '').trim();
+            tagValue = tagValue.replace(/^"/, '').replace(/"$/, '').replace(/""/, '"');
 
             var re = new RegExp("\\${" + tagName + "}","g");
             argStr = argStr.replace(re, tagValue);
