@@ -1775,7 +1775,7 @@ function __calcWindowsMonthlyAmount__(types, endpoint) {
 }
 
 function __calcLightRILinuxMonthlyAmount__(types, endpoint) {
-  var rateSheet = __calcLightRIWindowsMonthlyAmount__rateSheets[endpoint];
+  var rateSheet = __calcLightRILinuxMonthlyAmount__rateSheets[endpoint];
   if (!rateSheet) { return [0, 0, 0, 0]; }
 
   var amounts = [0, 0, 0, 0];
@@ -1811,7 +1811,7 @@ function __calcLightRIWindowsMonthlyAmount__(types, endpoint) {
 }
 
 function __calcMediumRILinuxMonthlyAmount__(types, endpoint) {
-  var rateSheet = __calcMediumRIWindowsMonthlyAmount__rateSheets[endpoint];
+  var rateSheet = __calcMediumRILinuxMonthlyAmount__rateSheets[endpoint];
   if (!rateSheet) { return [0, 0, 0, 0]; }
 
   var amounts = [0, 0, 0, 0];
@@ -1847,7 +1847,7 @@ function __calcMediumRIWindowsMonthlyAmount__(types, endpoint) {
 }
 
 function __calcHeavyRILinuxMonthlyAmount__(types, endpoint) {
-  var rateSheet = __calcHeavyRIWindowsMonthlyAmount__rateSheets[endpoint];
+  var rateSheet = __calcHeavyRILinuxMonthlyAmount__rateSheets[endpoint];
   if (!rateSheet) { return [0, 0, 0, 0]; }
 
   var amounts = [0, 0, 0, 0];
