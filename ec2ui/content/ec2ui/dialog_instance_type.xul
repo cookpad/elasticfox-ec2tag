@@ -30,6 +30,10 @@
       <menuitem label="cg1.4xlarge (64-bit only)" value="cg1.4xlarge" />
       <menuitem label="hi1.4xlarge (64-bit only)" value="hi1.4xlarge" />
       <menuitem label="hs1.8xlarge (64-bit only)" value="hs1.8xlarge" />
+      <menuitem label="i2.xlarge (64-bit only)" value="i2.xlarge" />
+      <menuitem label="i2.2xlarge (64-bit only)" value="i2.2xlarge" />
+      <menuitem label="i2.4xlarge (64-bit only)" value="i2.4xlarge" />
+      <menuitem label="i2.8xlarge (64-bit only)" value="i2.8xlarge" />
       <menuitem label="c3.large (64-bit only)" value="c3.large" />
       <menuitem label="c3.xlarge (64-bit only)" value="c3.xlarge" />
       <menuitem label="c3.2xlarge (64-bit only)" value="c3.2xlarge" />
