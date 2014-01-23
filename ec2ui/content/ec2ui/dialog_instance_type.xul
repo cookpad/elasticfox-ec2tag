@@ -19,6 +19,8 @@
       <menuseparator />
       <menuitem label="m1.large (64-bit only)" value="m1.large" />
       <menuitem label="m1.xlarge (64-bit only)" value="m1.xlarge" />
+      <menuitem label="m3.medium (64-bit only)" value="m3.medium" />
+      <menuitem label="m3.large (64-bit only)" value="m3.large" />
       <menuitem label="m3.xlarge (64-bit only)" value="m3.xlarge" />
       <menuitem label="m3.2xlarge (64-bit only)" value="m3.2xlarge" />
       <menuitem label="m2.xlarge (64-bit only)" value="m2.xlarge" />
