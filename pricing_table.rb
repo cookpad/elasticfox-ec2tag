@@ -14,6 +14,31 @@ require 'json'
 
 BASE_URL = 'http://aws-assets-pricing-prod.s3.amazonaws.com/pricing/ec2'
 
+def conv_region(region)
+  {
+    'us-east'        => 'us-east-1',
+
+    'us-west-2'      => 'us-west-2',
+
+    'us-west'        => 'us-west-1',
+    'us-west-1'      => 'us-west-1',
+
+    'eu-ireland'     => 'eu-west-1',
+    'eu-west-1'      => 'eu-west-1',
+
+    'apac-sin'       => 'ap-southeast-1',
+    'ap-southeast-1' => 'ap-southeast-1',
+
+    'apac-tokyo'     => 'ap-northeast-1',
+    'ap-northeast-1' => 'ap-northeast-1',
+
+    'apac-syd'       => 'ap-southeast-2',
+    'ap-southeast-2' => 'ap-southeast-2',
+
+    'sa-east-1'      => 'sa-east-1',
+  }.fetch(region)
+end
+
 def pricing_table(os, type)
   type = type.to_s.gsub('_', '-')
   url = "#{BASE_URL}/#{os}-#{type}.js"
@@ -28,7 +53,7 @@ def ondemand_sheets(os)
   buf = {}
 
   pricing_table(os, :od)['config']['regions'].each do |region_h|
-    region = region_h['region']
+    region = conv_region(region_h['region'])
     instance_types = region_h['instanceTypes']
 
     instance_types.each do |instance_type_h|
@@ -52,7 +77,7 @@ def ri_sheets(os, weight)
   buf = {}
 
   pricing_table(:linux, "ri_#{weight}")['config']['regions'].each do |region_h|
-    region = region_h['region']
+    region = conv_region(region_h['region'])
     instance_types = region_h['instanceTypes']
 
     instance_types.each do |instance_type_h|
