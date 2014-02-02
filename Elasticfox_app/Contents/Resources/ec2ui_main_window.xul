@@ -70,12 +70,26 @@
   <script type="application/x-javascript" src="chrome://ec2ui/content/volumesevents.js" />
   <script type="application/x-javascript" src="chrome://ec2ui/content/eniview.js" />
 
+  <script>
+    function quit() {
+      var appStartup = Components.classes['@mozilla.org/toolkit/app-startup;1'].
+                       getService(Components.interfaces.nsIAppStartup);
+
+      var quitSeverity = Components.interfaces.nsIAppStartup.eAttemptQuit;
+      appStartup.quit(quitSeverity);
+    }
+  </script>
+
   <stringbundleset id="stringbundleset">
     <stringbundle id="ec2ui.properties.bundle" src="chrome://ec2ui/locale/ec2ui.properties" />
   </stringbundleset>
 
+  <keyset>
+    <key id="main-window-quit-key" modifiers="meta" key="Q" />
+  </keyset>
   <toolbox>
     <menubar id="menubar">
+      <menuitem id="menu_FileQuitItem" label="Quit" key="main-window-quit-key" oncommand="quit();"/>
       <menu id="help-menu" label="Help">
         <menupopup id="version-popup">
           <menuitem label="About" oncommand="alert('Elasticfox-EC2Tag (version 1.7.000116-ec2tag-0.4.5)');"/>
