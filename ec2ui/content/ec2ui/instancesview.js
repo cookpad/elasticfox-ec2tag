@@ -1092,22 +1092,40 @@ var ec2ui_InstancesTreeView = {
         var instanceLabel = instanceLabels[0]
         var returnValue = {accepted:false , result:null};
 
-        ec2ui_session.controller.describeInstanceAttribute(instanceId, "instanceType", function(value) {
-            openDialog('chrome://ec2ui/content/dialog_instance_type.xul',
-                       null,
-                       'chrome,centerscreen,modal',
-                       instanceLabel,
-                       value,
-                       returnValue);
+        ec2ui_session.controller.describeInstanceAttribute(instanceId, "instanceType", function(instanceType) {
+            ec2ui_session.controller.describeInstanceAttribute(instanceId, "ebsOptimized", function(ebsOptimized) {
+                ebsOptimized = (ebsOptimized == 'true')
 
-            if (returnValue.result == null) {
-                return;
-            }
+                openDialog('chrome://ec2ui/content/dialog_instance_type.xul',
+                           null,
+                           'chrome,centerscreen,modal',
+                           instanceLabel,
+                           instanceType,
+                           ebsOptimized,
+                           returnValue);
 
-            var attribute = ['InstanceType', returnValue.result];
-            ec2ui_session.controller.modifyInstanceAttribute(instanceId, attribute, function() {
-                ec2ui_InstancesTreeView.refresh();
-                ec2ui_InstancesTreeView.selectByInstanceIds();
+                if (returnValue.result == null) {
+                    return;
+                }
+
+                if(returnValue.result.instanceType != instanceType) {
+                    var attribute = ['InstanceType', returnValue.result.instanceType];
+                    ec2ui_session.controller.modifyInstanceAttribute(instanceId, attribute, function() {
+                        if(returnValue.result.ebsOptimized == ebsOptimized) {
+                            refreshed = true;
+                            ec2ui_InstancesTreeView.refresh();
+                            ec2ui_InstancesTreeView.selectByInstanceIds();
+                        }
+                    });
+                }
+
+                if(returnValue.result.ebsOptimized != ebsOptimized) {
+                    var attribute = ['EbsOptimized', returnValue.result.ebsOptimized];
+                    ec2ui_session.controller.modifyInstanceAttribute(instanceId, attribute, function() {
+                        ec2ui_InstancesTreeView.refresh();
+                        ec2ui_InstancesTreeView.selectByInstanceIds();
+                    });
+                }
             });
         });
     },

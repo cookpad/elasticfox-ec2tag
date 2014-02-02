@@ -46,22 +46,35 @@
     </menupopup>
   </menulist>
 
+  <hbox>
+    <label control="instance-type-dialog-instance-ebs-optimized" value="EBS-optimized:" />
+    <checkbox id="instance-type-dialog-instance-ebs-optimized" checked="false" />
+  </hbox>
+
   <script><![CDATA[
     function instanceTypeDialogOnLoad() {
       var instanceLabel = window.arguments[0];
-      var currentData = window.arguments[1];
+      var currInstanceType = window.arguments[1];
+      var currEbsOptimized = window.arguments[2];
 
       var label = document.getElementById('instance-type-dialog-instance-type-label');
       label.value = instanceLabel + ' Instance Type';
 
       var instanceType = document.getElementById('instance-type-dialog-instance-type');
-      instanceType.value = currentData;
+      instanceType.value = currInstanceType;
+
+      var ebsOptimized = document.getElementById('instance-type-dialog-instance-ebs-optimized');
+      ebsOptimized.checked = currEbsOptimized;
     }
 
     function instanceTypeDialogDoOK() {
-      var returnValue = window.arguments[2];
+      var returnValue = window.arguments[3];
       var instanceType = document.getElementById('instance-type-dialog-instance-type');
-      returnValue.result = instanceType.selectedItem.value;
+      var ebsOptimized = document.getElementById('instance-type-dialog-instance-ebs-optimized');
+      returnValue.result = {
+        instanceType: instanceType.selectedItem.value,
+        ebsOptimized: ebsOptimized.checked
+      };
       return true;
     }
   ]]></script>
