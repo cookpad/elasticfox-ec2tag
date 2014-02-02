@@ -2527,7 +2527,7 @@ function secondsToYears(secs) {
 function __addNameTagToModel__(tag, model) {
     var kvs = tag.split(/\s*,\s*/);
 
-    if (!model instanceof AMI) {
+    if (!(model instanceof AMI)) {
         model.name = '';
     }
 
@@ -2539,11 +2539,7 @@ function __addNameTagToModel__(tag, model) {
         var value = (kv[1] || "").trim();
 
         if (key == "Name") {
-            value = (value || '').trim();
-
-            if (value) {
-                model.name = value;
-            }
+            model.name = value;
         }
 
         if (key == "Comment") {

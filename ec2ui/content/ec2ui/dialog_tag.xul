@@ -12,30 +12,49 @@
   <label id="tag-dialog-tag-label" control="tag-dialog-tag" value="Tag (ex: Key:Values, Key:Values...) " />
   <textbox id="tag-dialog-tag" multiline="true" flex="1" wrap="false" />
 
+  <hbox>
+    <label control="tag-dialog-tag-skip-name" value="Skip Name tag:" />
+    <checkbox id="tag-dialog-tag-skip-name" checked="true" />
+  </hbox>
+
   <script><![CDATA[
+    function searchTags(text, callback) {
+      var tags = [];
+      var keyValues = ((text + ',').match(/\s*[^,":]+\s*:\s*("(?:[^"]|"")*"|[^,]*)\s*,\s*/g) || []);
+
+      for (var i = 0; i < keyValues.length; i++) {
+        var kv = (keyValues[i] || '').replace(/,\s*$/, '').trim();
+
+        if (kv) {
+          splited = kv.split(/:/, 2);
+          var kv_key  = (splited[0] || '').trim();
+          var kv_value = (splited[1] || '').trim();
+          kv = callback(kv, kv_key, kv_value);
+
+          if (kv) {
+            tags.push(kv);
+          }
+        }
+      }
+
+      return tags;
+    }
+
     function tagDialogOnLoad() {
       var currentTag = (window.arguments[0] || '').trim();
+      var returnValue = window.arguments[1];
       var allowEmpty = window.arguments[2];
 
       if (currentTag) {
-        var tags = [];
-        var keyValues = ((currentTag + ',').match(/\s*[^,":]+\s*:\s*("(?:[^"]|"")*"|[^,]*)\s*,\s*/g) || []);
-
-        for (var i = 0; i < keyValues.length; i++) {
-          var kv = (keyValues[i] || '').replace(/,\s*$/, '').trim();
-
-          if (kv) {
-            var kv_value = (kv.split(/:/, 2)[1] || '').trim();
-
-            if (kv_value || allowEmpty) {
-              tags.push(kv);
-            }
+        currentTag = searchTags(currentTag, function(kv, key, value) {
+          if (key == 'Name') {
+            returnValue.origNameTag = kv;
           }
-        }
 
-        if (tags.length > 0) {
-          currentTag = tags.join(",\n");
-        }
+          if (value || allowEmpty) {
+            return kv;
+          }
+        }).join(",\n");
       }
 
       var tag = document.getElementById('tag-dialog-tag');
@@ -44,9 +63,36 @@
 
     function tagDialogDoOK() {
       var returnValue = window.arguments[1];
+      var allowEmpty = window.arguments[2];
+
       var tag = document.getElementById('tag-dialog-tag');
+      tag = (tag.value || '');
+      var skip_name = document.getElementById('tag-dialog-tag-skip-name').checked;
+
+      if (tag) {
+        var has_name = false;
+
+        var tags = searchTags(tag, function(kv, key, value) {
+          if (key == 'Name') {
+            has_name = true;
+
+            if (skip_name) {
+              return allowEmpty ? null : returnValue.origNameTag;
+            }
+          }
+
+          return kv;
+        });
+
+        if (skip_name && !allowEmpty && !has_name && returnValue.origNameTag) {
+          tags.unshift(returnValue.origNameTag);
+        }
+
+        tag = tags.join(",\n").replace(/(\n|\r)+/g, ' ').trim();
+      }
+
       returnValue.accepted = true;
-      returnValue.result = (tag.value || '').replace(/(\n|\r)+/g, ' ').trim();
+      returnValue.result = tag;
       return true;
     }
   ]]></script>
