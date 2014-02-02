@@ -1944,6 +1944,7 @@ var __calcHeavyRIWindowsMonthlyAmount__rateSheets = {
     "t1.micro": [84.0, 0.007, 135.0, 0.007]
   }
 };
+
 // __END_OF_PRICING_TABLE__
 
 function generateCSVForObject(obj) {
