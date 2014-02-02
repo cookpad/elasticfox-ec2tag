@@ -11,6 +11,7 @@ var ec2ui_InstancesTreeView = {
        'instance.publicDnsName',
        'instance.privateDnsName',
        'instance.privateIpAddress',
+       'instance.ipAddress',
        'instance.keyName',
        'instance.groups',
        'instance.reason',

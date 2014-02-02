@@ -91,7 +91,7 @@ function Volume(id, size, snapshotId, zone, status, createTime, instanceId, devi
 }
 
 function Instance(resId, ownerId, groupList, instanceId, imageId, kernelId,
-        ramdiskId, state, publicDnsName, privateDnsName, privateIpAddress, keyName, reason,
+        ramdiskId, state, publicDnsName, privateDnsName, privateIpAddress, publicIpAddress, keyName, reason,
         amiLaunchIdx, instanceType, launchTime, placement, platform, tag, vpcId, subnetId, rootDeviceType, iamInstanceProfileArn, ebsOptimized) {
     this.resId = resId;
     this.ownerId = ownerId;
@@ -104,6 +104,7 @@ function Instance(resId, ownerId, groupList, instanceId, imageId, kernelId,
     this.publicDnsName = publicDnsName;
     this.privateDnsName = privateDnsName;
     this.privateIpAddress = privateIpAddress;
+    this.ipAddress = publicIpAddress;
     this.keyName = keyName;
     this.reason = reason;
     this.amiLaunchIdx = amiLaunchIdx;
@@ -784,7 +785,7 @@ var ec2ui_model = {
         }
         return this.reservedInstances;
     },
-    
+
     updateLoadbalancer : function(list) {
         this.loadbalancer = list;
         this.notifyComponents("loadbalancer");

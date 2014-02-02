@@ -943,6 +943,7 @@ var ec2ui_controller = {
             var dnsName = getNodeValueByName(instanceItems[j], "dnsName");
             var privateDnsName = getNodeValueByName(instanceItems[j], "privateDnsName");
             var privateIpAddress = getNodeValueByName(instanceItems[j], "privateIpAddress");
+            var publicIpAddress = getNodeValueByName(instanceItems[j], "ipAddress");
             var vpcId = getNodeValueByName(instanceItems[j], "vpcId");
             var subnetId = getNodeValueByName(instanceItems[j], "subnetId");
             var keyName = getNodeValueByName(instanceItems[j], "keyName");
@@ -996,6 +997,7 @@ var ec2ui_controller = {
                                    dnsName,
                                    privateDnsName,
                                    privateIpAddress,
+                                   publicIpAddress,
                                    keyName,
                                    reason,
                                    amiLaunchIdx,

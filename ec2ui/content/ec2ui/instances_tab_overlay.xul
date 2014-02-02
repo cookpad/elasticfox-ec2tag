@@ -96,6 +96,8 @@
                 label="Private DNS Name" />
               <menuitem oncommand="ec2ui_InstancesTreeView.copyToClipBoard('privateIpAddress');"
                 label="Private IP Address" />
+              <menuitem oncommand="ec2ui_InstancesTreeView.copyToClipBoard('ipAddress');"
+                label="IP Address" />
             </menupopup>
           </menu>
           <menuseparator />
@@ -138,7 +140,7 @@
           <toolbarbutton image="images/info.png" style="-moz-box-pack:center;"
             oncommand="ec2ui_InstancesTreeView.tag();"
             tooltiptext="Edit EC2 Tag" />
-          <button 
+          <button
             oncommand="ec2ui_InstancesTreeView.showInstancesSummary();"
             label="Summary" />
           <toolbarseparator />
@@ -201,6 +203,9 @@
             flex="9" persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
           <treecol id="instance.privateIpAddress" label="&ec2ui.instances.privateIpAddress.label;"
+            flex="9" persist="width ordinal hidden sortDirection" />
+          <splitter class="tree-splitter" />
+          <treecol id="instance.ipAddress" label="IP Address"
             flex="9" persist="width ordinal hidden sortDirection" />
           <splitter class="tree-splitter" />
           <treecol id="instance.keyName" label="&ec2ui.instances.keyName.label;"
