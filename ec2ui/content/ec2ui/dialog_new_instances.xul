@@ -74,10 +74,6 @@
             <label control="ec2ui.newinstances.ebsOptimized" value="EBS Optimized:" />
             <checkbox id="ec2ui.newinstances.ebsOptimized" checked="false" />
           </row>
-          <row>
-            <label control="ec2ui.newinstances.assignPublicIp" value="Assign a public IP address:" />
-            <checkbox id="ec2ui.newinstances.assignPublicIp" checked="false" />
-          </row>
         </rows>
       </grid>
       <vbox flex="1">
@@ -147,6 +143,10 @@
               <row>
                 <label control="ec2ui.newinstances.ipAddress" value="IP Address: "/>
                 <textbox id="ec2ui.newinstances.ipAddress" size="40" editable="true"/>
+              </row>
+              <row>
+                <label control="ec2ui.newinstances.assignPublicIp" value="Assign a public IP address:" />
+                <checkbox id="ec2ui.newinstances.assignPublicIp" checked="false" />
               </row>
             </rows>
           </grid>

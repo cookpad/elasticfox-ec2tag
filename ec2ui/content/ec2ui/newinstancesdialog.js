@@ -53,9 +53,11 @@ var ec2_InstanceLauncher = {
 
             this.retVal.securityGroups = null;
             this.retVal.ipAddress = document.getElementById("ec2ui.newinstances.ipAddress").value.trim();
+            this.retVal.assignPublicIp = document.getElementById("ec2ui.newinstances.assignPublicIp").checked;
         } else {
             this.retVal.subnetId = null;
             this.retVal.ipAddress = null;
+            this.retVal.assignPublicIp = false;
         }
 
         // This will be an empty string if <none> is selected
@@ -84,8 +86,6 @@ var ec2_InstanceLauncher = {
         this.retVal.iamInstanceProfileName = document.getElementById("ec2ui.newinstances.iam.name").value.trim();
 
         this.retVal.ebsOptimized = document.getElementById("ec2ui.newinstances.ebsOptimized").checked;
-
-        this.retVal.assignPublicIp = document.getElementById("ec2ui.newinstances.assignPublicIp").checked;
 
         this.retVal.ok = true;
 
@@ -186,6 +186,7 @@ var ec2_InstanceLauncher = {
             this.subnetMenu.disabled = false;
             this.vpcMenu.disabled = false;
             document.getElementById("ec2ui.newinstances.ipAddress").disabled = false;
+            document.getElementById("ec2ui.newinstances.assignPublicIp").disabled = false;
 
             var vpcs = this.ec2ui_session.model.getVpcs();
             for (var i in vpcs) {
@@ -197,6 +198,7 @@ var ec2_InstanceLauncher = {
             this.subnetMenu.disabled = true;
             this.vpcMenu.disabled = true;
             document.getElementById("ec2ui.newinstances.ipAddress").disabled = true;
+            document.getElementById("ec2ui.newinstances.assignPublicIp").disabled = true;
 
             var securityGroups = this.ec2ui_session.model.getSecurityGroups();
 
@@ -378,6 +380,7 @@ var ec2_InstanceLauncher = {
         this.subnetMenu.disabled = true;
 
         document.getElementById("ec2ui.newinstances.ipAddress").disabled = true;
+        document.getElementById("ec2ui.newinstances.assignPublicIp").disabled = true;
 
         // Grab handles to the unused and used security group lists.
         this.unusedSecGroupsList = document.getElementById("ec2ui.newinstances.secgroups.unused");
