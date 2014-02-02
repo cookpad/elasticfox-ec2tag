@@ -13,7 +13,7 @@ var ec2_httpclient = {
 
     USER_AGENT : "Elasticfox/1.7-000116",
 
-    API_VERSION : "2012-12-01",
+    API_VERSION : "2013-10-15",
     ELB_API_VERSION : "2011-11-15",
 
     VPN_CONFIG_PATH : "http://ec2-downloads.s3.amazonaws.com/",
@@ -155,7 +155,7 @@ var ec2_httpclient = {
         }
         return rsp;
     },
-    
+
     queryELB : function (action, params, objActions, isSync, reqType, callback) {
         if (this.accessCode == null || this.accessCode == "") {
             log ("No Access Code for user");
@@ -169,7 +169,7 @@ var ec2_httpclient = {
         var rsp = null;
         while(true) {
             try {
-		rsp = this.queryELBImpl(action, params, objActions, isSync, reqType, callback);    
+		rsp = this.queryELBImpl(action, params, objActions, isSync, reqType, callback);
 		if (rsp.hasErrors) {
                     if (action == 'RegisterInstancesWithLoadBalancer' && rsp.faultCode == 'ValidationError' && rsp.faultString == 'Instance cannot be empty.') {
                         break;

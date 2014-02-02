@@ -208,6 +208,7 @@ var ec2ui_AMIsTreeView = {
                retVal.iamInstanceProfileArn,
                retVal.iamInstanceProfileName,
                retVal.ebsOptimized,
+               retVal.assignPublicIp,
                this.newInstanceCallback);
         }
     },

@@ -85,6 +85,8 @@ var ec2_InstanceLauncher = {
 
         this.retVal.ebsOptimized = document.getElementById("ec2ui.newinstances.ebsOptimized").checked;
 
+        this.retVal.assignPublicIp = document.getElementById("ec2ui.newinstances.assignPublicIp").checked;
+
         this.retVal.ok = true;
 
         return true;

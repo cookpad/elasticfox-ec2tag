@@ -960,6 +960,7 @@ var ec2ui_InstancesTreeView = {
            null,                  // iamInstanceProfileArn
            null,                  // iamInstanceProfileName
            null,                  // ebsOptimized
+           null,                  // assignPublicIp
            wrap);                 // callback
     },
 
@@ -1636,7 +1637,7 @@ outer:
         argStr = argStr.replace(/\${privateDnsName}/g, instance.privateDnsName);
         argStr = argStr.replace(/\${privateIpAddress}/g, instance.privateIpAddress);
         argStr = argStr.replace(/\${name}/g, instance.name);
-  
+
         //replace with any tag's value
         var tagValuePairs = (((instance.tag || '')+ ',').match(/\s*[^,":]+\s*:\s*("(?:[^"]|"")*"|[^,]*)\s*,\s*/g) || []);
 
@@ -1649,7 +1650,7 @@ outer:
 
             var re = new RegExp("\\${" + tagName + "}","g");
             argStr = argStr.replace(re, tagValue);
-        } 
+        }
 
         // Finally, split args into an array
         var args = tokenise(argStr);
