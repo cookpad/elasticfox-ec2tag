@@ -41,6 +41,8 @@
       <menuitem label="c3.2xlarge (64-bit only)" value="c3.2xlarge" />
       <menuitem label="c3.4xlarge (64-bit only)" value="c3.4xlarge" />
       <menuitem label="c3.8xlarge (64-bit only)" value="c3.8xlarge" />
+      <menuitem label="cr1.8xlarge (64-bit only)" value="cr1.8xlarge" />
+      <menuitem label="g2.2xlarge (64-bit only)" value="g2.2xlarge" />
     </menupopup>
   </menulist>
 

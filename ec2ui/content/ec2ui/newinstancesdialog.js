@@ -336,6 +336,8 @@ var ec2_InstanceLauncher = {
             typeMenu.appendItem("c3.2xlarge (28 ECU/15 GB RAM)", "c3.2xlarge");
             typeMenu.appendItem("c3.4xlarge (55 ECU/30 GB RAM)", "c3.4xlarge");
             typeMenu.appendItem("c3.8xlarge (108 ECU/60 GB RAM)", "c3.8xlarge");
+            typeMenu.appendItem("cr1.8xlarge (88 ECU/30 GB RAM)", "cr1.8xlarge");
+            typeMenu.appendItem("g2.2xlarge (26 ECU/244 GB RAM)", "g2.2xlarge");
         } else {
             typeMenu.appendItem("t1.micro (2 ECU/613MB RAM)", "t1.micro");
             typeMenu.appendItem("m1.small (1 ECU/1.7GB RAM)", "m1.small");
