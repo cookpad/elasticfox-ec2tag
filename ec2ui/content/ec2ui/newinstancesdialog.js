@@ -315,6 +315,8 @@ var ec2_InstanceLauncher = {
             typeMenu.appendItem("m1.large (4 ECU/7.5GB RAM)", "m1.large");
             typeMenu.appendItem("m1.xlarge (8 ECU/15GB RAM)", "m1.xlarge");
             typeMenu.appendItem("c1.xlarge (20 ECU/7GB RAM)", "c1.xlarge");
+            typeMenu.appendItem("m3.medium (3 ECU/3.75 GB RAM)", "m3.medium");
+            typeMenu.appendItem("m3.large (6.5 ECU/7 GB RAM)", "m3.large");
             typeMenu.appendItem("m3.xlarge (13 ECU/15 GB RAM)", "m3.xlarge");
             typeMenu.appendItem("m3.2xlarge (26 ECU/30 GB RAM)", "m3.2xlarge");
             typeMenu.appendItem("m2.xlarge (6.5 ECU/17.1GB RAM)", "m2.xlarge");
@@ -325,6 +327,10 @@ var ec2_InstanceLauncher = {
             typeMenu.appendItem("cg1.4xlarge (33.5 ECU/22 GB RAM)", "cg1.4xlarge");
             typeMenu.appendItem("hi1.4xlarge (35 ECU/60.5 GB RAM)", "hi1.4xlarge");
             typeMenu.appendItem("hs1.8xlarge (35 ECU/117 GB RAM)", "hs1.8xlarge");
+            typeMenu.appendItem("i2.xlarge (14 ECU/30.5 GB RAM)", "i2.xlarge");
+            typeMenu.appendItem("i2.2xlarge (27 ECU/61 GB RAM)", "i2.2xlarge");
+            typeMenu.appendItem("i2.4xlarge (53 ECU/122 GB RAM)", "i2.4xlarge");
+            typeMenu.appendItem("i2.8xlarge (104 ECU/244 GB RAM)", "i2.8xlarge");
             typeMenu.appendItem("c3.large (7 ECU/3.75 GB RAM)", "c3.large");
             typeMenu.appendItem("c3.xlarge (14 ECU/7 GB RAM)", "c3.xlarge");
             typeMenu.appendItem("c3.2xlarge (28 ECU/15 GB RAM)", "c3.2xlarge");
