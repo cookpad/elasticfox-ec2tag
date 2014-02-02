@@ -2525,7 +2525,7 @@ function secondsToYears(secs) {
 }
 
 function __addNameTagToModel__(tag, model) {
-    var kvs = tag.split(/\s*,\s*/);
+    var kvs = ((tag + ',').match(/\s*[^,":]+\s*:\s*("(?:[^"]|"")*"|[^,]*)\s*,\s*/g) || []);
 
     if (!(model instanceof AMI)) {
         model.name = '';
@@ -2534,7 +2534,8 @@ function __addNameTagToModel__(tag, model) {
     model.comment = '';
 
     for (var i = 0; i < kvs.length; i++) {
-        var kv = kvs[i].split(/\s*:\s*/, 2);
+        var kv = (kvs[i] || '').replace(/,\s*$/, '').trim();
+        kv = kv.split(/\s*:\s*/, 2);
         var key = kv[0].trim();
         var value = (kv[1] || "").trim();
 
