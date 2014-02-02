@@ -20,6 +20,7 @@ var ec2ui_SnapshotTreeView = {
 
     filterAndDisplaySnapshots : function() {
         var type = document.getElementById("ec2ui_SnapshotTreeView.snapshot.type").value;
+        var currentUser = null;
         if (type == "my_snapshots") {
             var groups = ec2ui_model.getSecurityGroups();
 
@@ -46,7 +47,11 @@ var ec2ui_SnapshotTreeView = {
           snapshots = newSnapshots;
         }
 
-        snapshots = this.filterImages(snapshots, currentUser);
+        if (currentUser) {
+            snapshots = this.filterImages(snapshots, currentUser);
+        }
+
+        snapshots = this.filterImages(snapshots);
 
         this.displayImages(snapshots);
     },
@@ -57,7 +62,7 @@ var ec2ui_SnapshotTreeView = {
     },
 
     searchChanged : function(event) {
-        document.getElementById("ec2ui_SnapshotTreeView.snapshot.type").selectedIndex = 1;
+        //document.getElementById("ec2ui_SnapshotTreeView.snapshot.type").selectedIndex = 1;
         if (this.searchTimer) {
             clearTimeout(this.searchTimer);
         }
@@ -117,7 +122,7 @@ var ec2ui_SnapshotTreeView = {
 
         var selected = {};
 
-        var ok = prompts.select(window, "Copy this volume", "Destination region:", 
+        var ok = prompts.select(window, "Copy this volume", "Destination region:",
                                 region_list.length, region_list, selected);
 
         if (ok) {
