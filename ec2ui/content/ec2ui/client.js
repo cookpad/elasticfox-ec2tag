@@ -14,7 +14,7 @@ var ec2_httpclient = {
     USER_AGENT : "Elasticfox/1.7-000116",
 
     API_VERSION : "2013-10-15",
-    ELB_API_VERSION : "2011-11-15",
+    ELB_API_VERSION : "2012-06-01",
 
     VPN_CONFIG_PATH : "http://ec2-downloads.s3.amazonaws.com/",
 
