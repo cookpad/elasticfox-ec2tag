@@ -1631,20 +1631,22 @@ outer:
                 argStr = argStr.replace(/\${pass}/g, password || "password");
             }
         } else {
-            // ${keyname} and ${key}
-            var keyFile = ec2ui_prefs.getSSHKeyTemplate();
-            keyFile = keyFile.replace(/\${keyname}/g, instance.keyName);
-            keyFile = keyFile.replace(/\${home}/g, home || "");
-            if (!isWindows(navigator.platform)) {
-                keyFile = keyFile.replace(/\s/g, "\\ ");
-            }
+            if (cmd.match(/\${key}/)) {
+                // ${keyname} and ${key}
+                var keyFile = ec2ui_prefs.getSSHKeyTemplate();
+                keyFile = keyFile.replace(/\${keyname}/g, instance.keyName);
+                keyFile = keyFile.replace(/\${home}/g, home || "");
+                if (!isWindows(navigator.platform)) {
+                    keyFile = keyFile.replace(/\s/g, "\\ ");
+                }
 
-            var fileIn = FileIO.open(keyFile);
-            if (!fileIn || !fileIn.exists()) {
-                keyFile = this.promptForKeyFile(instance.keyName);
-            }
+                var fileIn = FileIO.open(keyFile);
+                if (!fileIn || !fileIn.exists()) {
+                    keyFile = this.promptForKeyFile(instance.keyName);
+                }
 
-            argStr = argStr.replace(/\${key}/g, keyFile);
+                argStr = argStr.replace(/\${key}/g, keyFile);
+            }
 
             // ${user}
             argStr = argStr.replace(/\${user}/g, ec2ui_prefs.getSSHUser() || "");
