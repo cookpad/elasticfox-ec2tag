@@ -15,3 +15,5 @@ mkdir Frameworks
 rsync -rl /Library/Frameworks/XUL.framework Frameworks/
 mkdir MacOS
 cp -p /Library/Frameworks/XUL.framework/Versions/Current/xulrunner MacOS/
+cd ../..
+hdiutil create -ov -srcfolder ./Elasticfox.app -fs HFS+ -format UDZO -imagekey zlib-level=6 -volname "Elasticfox-e2tag" Elasticfox-ec2tag_app-0.4.7.dmg
