@@ -6,7 +6,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>{2564a6b0-73ab-11e0-a1f0-0800200c9a66}</em:id>
     <em:type>2</em:type>
-    <em:version>1.7.000116-ec2tag-0.4.6</em:version>
+    <em:version>1.7.000116-ec2tag-0.4.7</em:version>
     <em:file resource="urn:mozilla:extension:file:ec2ui.jar"/>
 
     <!-- Target Application this extension can install into,
