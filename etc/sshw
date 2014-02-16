@@ -1,0 +1,14 @@
+#!/usr/bin/osascript
+on run argv
+  tell application "iTerm"
+    activate
+    set cmd to "ssh " & item 1 of argv
+    set myterm to the last terminal
+    tell myterm
+      launch session "Default Session"
+      tell the last session
+        write text the cmd
+      end tell
+    end tell
+  end tell
+end run
