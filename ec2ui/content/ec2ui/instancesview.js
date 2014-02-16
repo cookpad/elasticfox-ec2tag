@@ -1655,6 +1655,7 @@ outer:
         argStr = argStr.replace(/\${publicDnsName}/g, instance.publicDnsName);
         argStr = argStr.replace(/\${privateDnsName}/g, instance.privateDnsName);
         argStr = argStr.replace(/\${privateIpAddress}/g, instance.privateIpAddress);
+        argStr = argStr.replace(/\${ipAddress}/g, instance.ipAddress);
         argStr = argStr.replace(/\${name}/g, instance.name);
 
         //replace with any tag's value

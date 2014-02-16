@@ -81,6 +81,9 @@
             <description>${privateIpAddress} - The private IP address name of the EC2 instance.</description>
         </hbox>
         <hbox>
+            <description>${ipAddress} - The IP address name of the EC2 instance.</description>
+        </hbox>
+        <hbox>
             <description>${name} - The "Name" tag of the EC2 instance.</description>
         </hbox>
         <hbox>
