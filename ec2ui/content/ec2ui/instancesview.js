@@ -1383,12 +1383,19 @@ var ec2ui_InstancesTreeView = {
     },
 
     copyToClipBoard : function(fieldName) {
-        var instance = this.getSelectedInstance();
-        if (instance == null) {
+        var instances = this.getSelectedInstances();
+
+        if (instances == null || instances.length < 1) {
             return;
         }
 
-        copyToClipboard(instance[fieldName]);
+        var fieldValues = [];
+
+        for (var i = 0; i < instances.length; i++) {
+            fieldValues.push(instances[i][fieldName]);
+        }
+
+        copyToClipboard(fieldValues.join("\n"));
     },
 
     authorizeProtocolForGroup : function(name, transport, protocol, instGroups, vpcId) {
