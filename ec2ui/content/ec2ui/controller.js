@@ -2717,8 +2717,14 @@ var ec2ui_controller = {
         var params = new Array();
 
         for (var i = 0; i < resIds.length; i++) {
+            var tagKey = tags[i][0];
+
+            if (/^aws:/.test(tagKey)) {
+                continue;
+            }
+
             params.push(["ResourceId." + (i + 1)   , resIds[i]]);
-            params.push(["Tag." + (i + 1) + ".Key"  , tags[i][0]]);
+            params.push(["Tag." + (i + 1) + ".Key"  , tagKey]);
             params.push(["Tag." + (i + 1) + ".Value", tags[i][1]]);
         }
 
@@ -2735,8 +2741,14 @@ var ec2ui_controller = {
         var params = new Array();
 
         for (var i = 0; i < resIds.length; i++) {
+            var tagKey = keys[i];
+
+            if (/^aws:/.test(tagKey)) {
+                continue;
+            }
+
             params.push(["ResourceId." + (i + 1), resIds[i]]);
-            params.push(["Tag." + (i + 1) + ".Key", keys[i]]);
+            params.push(["Tag." + (i + 1) + ".Key", tagKey]);
         }
 
         ec2_httpclient.queryEC2("DeleteTags", params, this, true, "onCompleteDeleteTags", callback);
