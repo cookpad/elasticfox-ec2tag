@@ -1,5 +1,6 @@
-#!/usr/bin/env ruby
+ #!/usr/bin/env ruby
 require 'net/http'
+require 'execjs'
 require 'json'
 
 # http://aws-assets-pricing-prod.s3.amazonaws.com/pricing/ec2/linux-od.js
@@ -12,7 +13,7 @@ require 'json'
 # http://aws-assets-pricing-prod.s3.amazonaws.com/pricing/ec2/mswin-ri-medium.js
 # http://aws-assets-pricing-prod.s3.amazonaws.com/pricing/ec2/mswin-ri-heavy.js
 
-BASE_URL = 'http://aws-assets-pricing-prod.s3.amazonaws.com/pricing/ec2'
+BASE_URL = 'http://a0.awsstatic.com/pricing/1/ec2'
 
 def conv_region(region)
   {
@@ -41,10 +42,10 @@ end
 
 def pricing_table(os, type)
   type = type.to_s.gsub('_', '-')
-  url = "#{BASE_URL}/#{os}-#{type}.js"
+  url = "#{BASE_URL}/#{os}-#{type}.min.js"
   url = URI.parse(url)
   body = Net::HTTP.start(url.host, url.port) {|http| http.get(url.path).body }
-  JSON.parse(body.gsub(/\A\s*callback\s*\((.*)\)\s*;?\s*\Z/m) { $1 })
+  ExecJS.eval(body.gsub(/\A.*callback\s*\((.*)\)\s*;?\s*\Z/m) { $1 })
 end
 
 require 'pp'
