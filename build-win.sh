@@ -15,4 +15,4 @@ rsync -rl /usr/local/xulrunner ./
 cp /usr/local/xulrunner/xulrunner-stub.exe ./elasticfox.exe
 cd ../
 cygstart -w elasticfox.ci
-mv setup.exe Elasticfox-ec2tag-0.4.9-setup.exe
+mv setup.exe Elasticfox-ec2tag-0.4.10-setup.exe
