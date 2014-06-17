@@ -91,7 +91,7 @@ var ec2ui_controller = {
         if (snapshotId != null) params.push(["SnapshotId", snapshotId]);
         if (zone != null) params.push(["AvailabilityZone", zone]);
         if (volumeType != null) params.push(["VolumeType", volumeType]);
-        if (volumeType && volumeType != 'standard' && iops != null) params.push(["Iops", iops]);
+        if (volumeType && volumeType == 'io1' && iops != null) params.push(["Iops", iops]);
         if (encrypted != null) params.push(["Encrypted", encrypted]);
         ec2_httpclient.queryEC2("CreateVolume", params, this, true, "onCompleteCreateVolume", callback);
     },

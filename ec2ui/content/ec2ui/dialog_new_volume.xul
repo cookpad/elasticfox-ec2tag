@@ -31,7 +31,7 @@
         </row>
         <row>
           <label control="ec2ui.newvolume.volumetypelist" value="&ec2ui.volumes.volumeType.label;" />
-          <menulist id="ec2ui.newvolume.volumetypelist" oncommand="document.getElementById('ec2ui.newvolume.iops').disabled = (this.value == 'standard');" />
+          <menulist id="ec2ui.newvolume.volumetypelist" oncommand="document.getElementById('ec2ui.newvolume.iops').disabled = (this.value != 'io1');" />
         </row>
         <row>
           <label control="ec2ui.newvolume.iops" value="&ec2ui.volumes.iops.label;" />

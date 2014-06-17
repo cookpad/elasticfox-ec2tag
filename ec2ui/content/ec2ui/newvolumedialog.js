@@ -88,6 +88,7 @@ var ec2_VolumeCreator = {
         var volTypeMenu = document.getElementById("ec2ui.newvolume.volumetypelist");
         volTypeMenu.appendItem("standard", "standard");
         volTypeMenu.appendItem("io1", "io1");
+        volTypeMenu.appendItem("gp2", "gp2");
         volTypeMenu.selectedIndex = 0;
 
         // To accommodate the <NONE> element added at the head of the list
