@@ -135,6 +135,9 @@
             <treecol id="vol.iops" label="&ec2ui.volumes.attachment.iops.label;"
               flex="1" persist="width ordinal hidden sortDirection" />
             <splitter class="tree-splitter" />
+            <treecol id="vol.encrypted" label="&ec2ui.volumes.attachment.encrypted.label;"
+              flex="1" persist="width ordinal hidden sortDirection" />
+            <splitter class="tree-splitter" />
             <treecol id="vol.tag" label="Tag" flex="1"
               persist="width ordinal hidden sortDirection" />
             <splitter class="tree-splitter" />

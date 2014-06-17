@@ -182,6 +182,7 @@ var ec2ui_controller = {
             createTime.setISO8601(getNodeValueByName(items.snapshotItem(i), "createTime"));
             var volumeType = getNodeValueByName(items.snapshotItem(i), "volumeType");
             var iops = getNodeValueByName(items.snapshotItem(i), "iops");
+            var encrypted = getNodeValueByName(items.snapshotItem(i), "encrypted");
 
             // Zero out the values for attachment
             var instanceId = "";
@@ -198,7 +199,7 @@ var ec2ui_controller = {
                 }
                 attachTime.setISO8601(getNodeValueByName(items.snapshotItem(i), "attachTime"));
             }
-            list.push(new Volume(id, size, snapshotId, zone, status, createTime, instanceId, device, attachStatus, attachTime, volumeType, iops));
+            list.push(new Volume(id, size, snapshotId, zone, status, createTime, instanceId, device, attachStatus, attachTime, volumeType, iops, encrypted));
 
             this.walkTagSet(items.snapshotItem(i), "volumeId", tags);
         }

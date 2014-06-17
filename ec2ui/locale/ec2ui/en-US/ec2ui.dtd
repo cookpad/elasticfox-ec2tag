@@ -109,6 +109,7 @@
 <!ENTITY ec2ui.volumes.attachment.attachTime.label "Attach Time">
 <!ENTITY ec2ui.volumes.attachment.volumeType.label "Volume Type">
 <!ENTITY ec2ui.volumes.attachment.iops.label "IOPS">
+<!ENTITY ec2ui.volumes.attachment.encrypted.label "Encrypted">
 <!ENTITY ec2ui.volumes.attachment.description.device "Linux devices: /dev/sda through /dev/sdp">
 
 <!ENTITY ec2ui.snapshots.id.label "SNAP ID">

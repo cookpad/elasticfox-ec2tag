@@ -69,7 +69,7 @@ function Snapshot(id, volumeId, status, startTime, progress, volumeSize, descrip
     }
 }
 
-function Volume(id, size, snapshotId, zone, status, createTime, instanceId, device, attachStatus, attachTime, volumeType, iops, tag) {
+function Volume(id, size, snapshotId, zone, status, createTime, instanceId, device, attachStatus, attachTime, volumeType, iops, encrypted, tag) {
     this.id = id;
     this.size = size;
     this.snapshotId = snapshotId;
@@ -84,6 +84,7 @@ function Volume(id, size, snapshotId, zone, status, createTime, instanceId, devi
     }
     this.volumeType = volumeType;
     this.iops = iops;
+    this.encrypted = encrypted;
     if (tag) {
       this.tag = tag;
       __addNameTagToModel__(tag, this);
