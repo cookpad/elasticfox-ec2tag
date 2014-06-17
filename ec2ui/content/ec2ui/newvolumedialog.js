@@ -19,6 +19,8 @@ var ec2_VolumeCreator = {
         this.retVal.iops = document.getElementById("ec2ui.newvolume.iops").value.trim();
         if (this.retVal.iops.length == 0) this.retVal.iops = null;
 
+        this.retVal.checked = document.getElementById("ec2ui.newvolume.encrypted").checked;
+
         if (!this.validateSize()) return false;
         if (!this.validateIops()) return false;
 

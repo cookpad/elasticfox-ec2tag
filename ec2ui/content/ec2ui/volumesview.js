@@ -151,6 +151,7 @@ var ec2ui_VolumeTreeView = {
                                                   retVal.zone,
                                                   retVal.volumeType,
                                                   retVal.iops,
+                                                  retVal.encrypted,
                                                   wrap);
 
             // Let's tag this volume

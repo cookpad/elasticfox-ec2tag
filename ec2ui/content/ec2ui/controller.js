@@ -85,13 +85,14 @@ var ec2ui_controller = {
             objResponse.callback();
     },
 
-    createVolume : function (size, snapshotId, zone, volumeType, iops, callback) {
+    createVolume : function (size, snapshotId, zone, volumeType, iops, encrypted, callback) {
         var params = []
         if (size != null) params.push(["Size", size]);
         if (snapshotId != null) params.push(["SnapshotId", snapshotId]);
         if (zone != null) params.push(["AvailabilityZone", zone]);
         if (volumeType != null) params.push(["VolumeType", volumeType]);
         if (volumeType && volumeType != 'standard' && iops != null) params.push(["Iops", iops]);
+        if (encrypted != null) params.push(["Encrypted", encrypted]);
         ec2_httpclient.queryEC2("CreateVolume", params, this, true, "onCompleteCreateVolume", callback);
     },
 

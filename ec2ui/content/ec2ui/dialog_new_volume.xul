@@ -38,6 +38,10 @@
           <textbox id="ec2ui.newvolume.iops" size="40" value="100" disabled="true" />
         </row>
         <row>
+          <label control="ec2ui.newvolume.encrypted" value="&ec2ui.volumes.encrypted.label;" />
+          <checkbox id="ec2ui.newvolume.encrypted" />
+        </row>
+        <row>
           <label control="ec2ui.newvolume.tag" value="Tag" />
           <textbox id="ec2ui.newvolume.tag" size="40" />
         </row>
