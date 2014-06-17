@@ -19,6 +19,8 @@ var ec2_VolumeCreator = {
         this.retVal.iops = document.getElementById("ec2ui.newvolume.iops").value.trim();
         if (this.retVal.iops.length == 0) this.retVal.iops = null;
 
+        this.retVal.encrypted = document.getElementById("ec2ui.newvolume.encrypted").checked;
+
         if (!this.validateSize()) return false;
         if (!this.validateIops()) return false;
 
@@ -86,6 +88,7 @@ var ec2_VolumeCreator = {
         var volTypeMenu = document.getElementById("ec2ui.newvolume.volumetypelist");
         volTypeMenu.appendItem("standard", "standard");
         volTypeMenu.appendItem("io1", "io1");
+        volTypeMenu.appendItem("gp2", "gp2");
         volTypeMenu.selectedIndex = 0;
 
         // To accommodate the <NONE> element added at the head of the list

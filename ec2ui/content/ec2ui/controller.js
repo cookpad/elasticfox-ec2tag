@@ -85,13 +85,14 @@ var ec2ui_controller = {
             objResponse.callback();
     },
 
-    createVolume : function (size, snapshotId, zone, volumeType, iops, callback) {
+    createVolume : function (size, snapshotId, zone, volumeType, iops, encrypted, callback) {
         var params = []
         if (size != null) params.push(["Size", size]);
         if (snapshotId != null) params.push(["SnapshotId", snapshotId]);
         if (zone != null) params.push(["AvailabilityZone", zone]);
         if (volumeType != null) params.push(["VolumeType", volumeType]);
-        if (volumeType && volumeType != 'standard' && iops != null) params.push(["Iops", iops]);
+        if (volumeType && volumeType == 'io1' && iops != null) params.push(["Iops", iops]);
+        if (encrypted != null) params.push(["Encrypted", encrypted]);
         ec2_httpclient.queryEC2("CreateVolume", params, this, true, "onCompleteCreateVolume", callback);
     },
 
@@ -181,6 +182,7 @@ var ec2ui_controller = {
             createTime.setISO8601(getNodeValueByName(items.snapshotItem(i), "createTime"));
             var volumeType = getNodeValueByName(items.snapshotItem(i), "volumeType");
             var iops = getNodeValueByName(items.snapshotItem(i), "iops");
+            var encrypted = getNodeValueByName(items.snapshotItem(i), "encrypted");
 
             // Zero out the values for attachment
             var instanceId = "";
@@ -197,7 +199,7 @@ var ec2ui_controller = {
                 }
                 attachTime.setISO8601(getNodeValueByName(items.snapshotItem(i), "attachTime"));
             }
-            list.push(new Volume(id, size, snapshotId, zone, status, createTime, instanceId, device, attachStatus, attachTime, volumeType, iops));
+            list.push(new Volume(id, size, snapshotId, zone, status, createTime, instanceId, device, attachStatus, attachTime, volumeType, iops, encrypted));
 
             this.walkTagSet(items.snapshotItem(i), "volumeId", tags);
         }

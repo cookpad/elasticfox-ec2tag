@@ -103,11 +103,13 @@
 <!ENTITY ec2ui.volumes.createTime.label "Local Creation Date">
 <!ENTITY ec2ui.volumes.volumeType.label "Volume Type">
 <!ENTITY ec2ui.volumes.iops.label "IOPS">
+<!ENTITY ec2ui.volumes.encrypted.label "Encrypted">
 <!ENTITY ec2ui.volumes.attachment.device.label "Device">
 <!ENTITY ec2ui.volumes.attachment.status.label "Attachment Status">
 <!ENTITY ec2ui.volumes.attachment.attachTime.label "Attach Time">
 <!ENTITY ec2ui.volumes.attachment.volumeType.label "Volume Type">
 <!ENTITY ec2ui.volumes.attachment.iops.label "IOPS">
+<!ENTITY ec2ui.volumes.attachment.encrypted.label "Encrypted">
 <!ENTITY ec2ui.volumes.attachment.description.device "Linux devices: /dev/sda through /dev/sdp">
 
 <!ENTITY ec2ui.snapshots.id.label "SNAP ID">
