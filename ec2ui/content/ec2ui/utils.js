@@ -400,6 +400,7 @@ var __calcWindowsMonthlyAmount__rateSheets = {
   "eu-west-1": {
     "t2.micro": 0.019,
     "t2.small": 0.038,
+    "t2.medium": 0.076,
     "m3.medium": 0.133,
     "m3.large": 0.266,
     "m3.xlarge": 0.532,
