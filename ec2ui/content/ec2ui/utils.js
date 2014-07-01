@@ -243,6 +243,7 @@ var __calcLinuxMonthlyAmount__rateSheets = {
     "c3.8xlarge": 2.117,
     "c1.medium": 0.164,
     "c1.xlarge": 0.655,
+    "g2.2xlarge": 0.898,
     "r3.large": 0.21,
     "r3.xlarge": 0.42,
     "r3.2xlarge": 0.84,
