@@ -2,6 +2,9 @@
 // On-Demand Instances
 var __calcLinuxMonthlyAmount__rateSheets = {
   "us-east-1": {
+    "t2.micro": 0.013,
+    "t2.small": 0.026,
+    "t2.medium": 0.052,
     "m3.medium": 0.07,
     "m3.large": 0.14,
     "m3.xlarge": 0.28,
@@ -38,6 +41,9 @@ var __calcLinuxMonthlyAmount__rateSheets = {
     "t1.micro": 0.02
   },
   "us-west-2": {
+    "t2.micro": 0.013,
+    "t2.small": 0.026,
+    "t2.medium": 0.052,
     "m3.medium": 0.07,
     "m3.large": 0.14,
     "m3.xlarge": 0.28,
@@ -73,6 +79,9 @@ var __calcLinuxMonthlyAmount__rateSheets = {
     "t1.micro": 0.02
   },
   "us-west-1": {
+    "t2.micro": 0.017,
+    "t2.small": 0.034,
+    "t2.medium": 0.068,
     "m3.medium": 0.077,
     "m3.large": 0.154,
     "m3.xlarge": 0.308,
@@ -104,6 +113,9 @@ var __calcLinuxMonthlyAmount__rateSheets = {
     "t1.micro": 0.025
   },
   "eu-west-1": {
+    "t2.micro": 0.014,
+    "t2.small": 0.028,
+    "t2.medium": 0.056,
     "m3.medium": 0.077,
     "m3.large": 0.154,
     "m3.xlarge": 0.308,
@@ -140,6 +152,9 @@ var __calcLinuxMonthlyAmount__rateSheets = {
     "t1.micro": 0.02
   },
   "ap-southeast-1": {
+    "t2.micro": 0.02,
+    "t2.small": 0.04,
+    "t2.medium": 0.08,
     "m3.medium": 0.098,
     "m3.large": 0.196,
     "m3.xlarge": 0.392,
@@ -155,6 +170,7 @@ var __calcLinuxMonthlyAmount__rateSheets = {
     "c3.8xlarge": 2.117,
     "c1.medium": 0.164,
     "c1.xlarge": 0.655,
+    "g2.2xlarge": 1.0,
     "r3.large": 0.21,
     "r3.xlarge": 0.42,
     "r3.2xlarge": 0.84,
@@ -171,6 +187,9 @@ var __calcLinuxMonthlyAmount__rateSheets = {
     "t1.micro": 0.02
   },
   "ap-northeast-1": {
+    "t2.micro": 0.02,
+    "t2.small": 0.04,
+    "t2.medium": 0.08,
     "m3.medium": 0.101,
     "m3.large": 0.203,
     "m3.xlarge": 0.405,
@@ -206,6 +225,9 @@ var __calcLinuxMonthlyAmount__rateSheets = {
     "t1.micro": 0.026
   },
   "ap-southeast-2": {
+    "t2.micro": 0.02,
+    "t2.small": 0.04,
+    "t2.medium": 0.08,
     "m3.medium": 0.098,
     "m3.large": 0.196,
     "m3.xlarge": 0.392,
@@ -237,6 +259,9 @@ var __calcLinuxMonthlyAmount__rateSheets = {
     "t1.micro": 0.02
   },
   "sa-east-1": {
+    "t2.micro": 0.027,
+    "t2.small": 0.054,
+    "t2.medium": 0.108,
     "m3.medium": 0.095,
     "m3.large": 0.19,
     "m3.xlarge": 0.381,
@@ -245,6 +270,11 @@ var __calcLinuxMonthlyAmount__rateSheets = {
     "m1.medium": 0.117,
     "m1.large": 0.233,
     "m1.xlarge": 0.467,
+    "c3.large": 0.163,
+    "c3.xlarge": 0.325,
+    "c3.2xlarge": 0.65,
+    "c3.4xlarge": 1.3,
+    "c3.8xlarge": 2.6,
     "c1.medium": 0.179,
     "c1.xlarge": 0.718,
     "m2.xlarge": 0.323,
@@ -256,6 +286,9 @@ var __calcLinuxMonthlyAmount__rateSheets = {
 
 var __calcWindowsMonthlyAmount__rateSheets = {
   "us-east-1": {
+    "t2.micro": 0.018,
+    "t2.small": 0.036,
+    "t2.medium": 0.072,
     "m3.medium": 0.133,
     "m3.large": 0.266,
     "m3.xlarge": 0.532,
@@ -292,6 +325,9 @@ var __calcWindowsMonthlyAmount__rateSheets = {
     "t1.micro": 0.02
   },
   "us-west-2": {
+    "t2.micro": 0.018,
+    "t2.small": 0.036,
+    "t2.medium": 0.072,
     "m3.medium": 0.133,
     "m3.large": 0.266,
     "m3.xlarge": 0.532,
@@ -327,6 +363,9 @@ var __calcWindowsMonthlyAmount__rateSheets = {
     "t1.micro": 0.02
   },
   "us-west-1": {
+    "t2.micro": 0.022,
+    "t2.small": 0.044,
+    "t2.medium": 0.088,
     "m3.medium": 0.14,
     "m3.large": 0.28,
     "m3.xlarge": 0.56,
@@ -358,6 +397,8 @@ var __calcWindowsMonthlyAmount__rateSheets = {
     "t1.micro": 0.035
   },
   "eu-west-1": {
+    "t2.micro": 0.019,
+    "t2.small": 0.038,
     "m3.medium": 0.133,
     "m3.large": 0.266,
     "m3.xlarge": 0.532,
@@ -394,6 +435,9 @@ var __calcWindowsMonthlyAmount__rateSheets = {
     "t1.micro": 0.02
   },
   "ap-southeast-1": {
+    "t2.micro": 0.02,
+    "t2.small": 0.05,
+    "t2.medium": 0.1,
     "m3.medium": 0.161,
     "m3.large": 0.322,
     "m3.xlarge": 0.644,
@@ -409,6 +453,7 @@ var __calcWindowsMonthlyAmount__rateSheets = {
     "c3.8xlarge": 3.813,
     "c1.medium": 0.266,
     "c1.xlarge": 1.065,
+    "g2.2xlarge": 1.16,
     "r3.large": 0.323,
     "r3.xlarge": 0.646,
     "r3.2xlarge": 1.292,
@@ -425,6 +470,9 @@ var __calcWindowsMonthlyAmount__rateSheets = {
     "t1.micro": 0.02
   },
   "ap-northeast-1": {
+    "t2.micro": 0.025,
+    "t2.small": 0.05,
+    "t2.medium": 0.1,
     "m3.medium": 0.151,
     "m3.large": 0.302,
     "m3.xlarge": 0.603,
@@ -441,7 +489,7 @@ var __calcWindowsMonthlyAmount__rateSheets = {
     "c1.medium": 0.258,
     "c1.xlarge": 1.032,
     "cc2.8xlarge": 2.919,
-    "g2.2xlarge": 1.015,
+    "g2.2xlarge": 1.01,
     "r3.large": 0.31,
     "r3.xlarge": 0.62,
     "r3.2xlarge": 1.219,
@@ -451,15 +499,18 @@ var __calcWindowsMonthlyAmount__rateSheets = {
     "m2.2xlarge": 0.705,
     "m2.4xlarge": 1.41,
     "cr1.8xlarge": 4.436,
-    "i2.xlarge": 1.119,
-    "i2.2xlarge": 2.237,
-    "i2.4xlarge": 4.474,
-    "i2.8xlarge": 8.948,
+    "i2.xlarge": 1.113,
+    "i2.2xlarge": 2.226,
+    "i2.4xlarge": 4.451,
+    "i2.8xlarge": 8.903,
     "hs1.8xlarge": 5.73,
-    "hi1.4xlarge": 3.706,
+    "hs1.8xlarge": 5.714
     "t1.micro": 0.034
   },
   "ap-southeast-2": {
+    "t2.micro": 0.02,
+    "t2.small": 0.05,
+    "t2.medium": 0.1,
     "m3.medium": 0.161,
     "m3.large": 0.322,
     "m3.xlarge": 0.644,
@@ -475,6 +526,7 @@ var __calcWindowsMonthlyAmount__rateSheets = {
     "c3.8xlarge": 3.813,
     "c1.medium": 0.266,
     "c1.xlarge": 1.065,
+    "g2.2xlarge": 1.058,
     "r3.large": 0.323,
     "r3.xlarge": 0.646,
     "r3.2xlarge": 1.292,
@@ -491,6 +543,9 @@ var __calcWindowsMonthlyAmount__rateSheets = {
     "t1.micro": 0.02
   },
   "sa-east-1": {
+    "t2.micro": 0.032,
+    "t2.small": 0.064,
+    "t2.medium": 0.128,
     "m3.medium": 0.158,
     "m3.large": 0.316,
     "m3.xlarge": 0.633,
@@ -499,6 +554,11 @@ var __calcWindowsMonthlyAmount__rateSheets = {
     "m1.medium": 0.179,
     "m1.large": 0.357,
     "m1.xlarge": 0.715,
+    "c3.large": 0.246,
+    "c3.xlarge": 0.491,
+    "c3.2xlarge": 0.982,
+    "c3.4xlarge": 1.964,
+    "c3.8xlarge": 3.928
     "c1.medium": 0.259,
     "c1.xlarge": 1.038,
     "m2.xlarge": 0.423,
