@@ -506,7 +506,7 @@ var __calcWindowsMonthlyAmount__rateSheets = {
     "i2.4xlarge": 4.451,
     "i2.8xlarge": 8.903,
     "hs1.8xlarge": 5.73,
-    "hs1.8xlarge": 5.714
+    "hs1.8xlarge": 5.714,
     "t1.micro": 0.034
   },
   "ap-southeast-2": {
