@@ -573,6 +573,9 @@ var __calcWindowsMonthlyAmount__rateSheets = {
 // Reserved Instances (Light)
 var __calcLightRILinuxMonthlyAmount__rateSheets = {
   "us-east-1": {
+    "t2.micro": [0.0, 0.0, 0.0, 0.0],
+    "t2.small": [0.0, 0.0, 0.0, 0.0],
+    "t2.medium": [0.0, 0.0, 0.0, 0.0],
     "m3.medium": [110.0, 0.064, 172.0, 0.05],
     "m3.large": [220.0, 0.127, 343.0, 0.101],
     "m3.xlarge": [439.0, 0.254, 686.0, 0.201],
@@ -608,6 +611,9 @@ var __calcLightRILinuxMonthlyAmount__rateSheets = {
     "t1.micro": [23.0, 0.012, 35.0, 0.012]
   },
   "us-west-1": {
+    "t2.micro": [0.0, 0.0, 0.0, 0.0],
+    "t2.small": [0.0, 0.0, 0.0, 0.0],
+    "t2.medium": [0.0, 0.0, 0.0, 0.0],
     "m3.medium": [110.0, 0.077, 172.0, 0.063],
     "m3.large": [220.0, 0.154, 343.0, 0.126],
     "m3.xlarge": [439.0, 0.308, 686.0, 0.252],
@@ -643,6 +649,9 @@ var __calcLightRILinuxMonthlyAmount__rateSheets = {
     "t1.micro": [23.0, 0.015, 35.0, 0.015]
   },
   "us-west-2": {
+    "t2.micro": [0.0, 0.0, 0.0, 0.0],
+    "t2.small": [0.0, 0.0, 0.0, 0.0],
+    "t2.medium": [0.0, 0.0, 0.0, 0.0],
     "m3.medium": [110.0, 0.064, 172.0, 0.05],
     "m3.large": [220.0, 0.127, 343.0, 0.101],
     "m3.xlarge": [439.0, 0.254, 686.0, 0.201],
@@ -678,6 +687,9 @@ var __calcLightRILinuxMonthlyAmount__rateSheets = {
     "t1.micro": [23.0, 0.012, 35.0, 0.012]
   },
   "eu-west-1": {
+    "t2.micro": [0.0, 0.0, 0.0, 0.0],
+    "t2.small": [0.0, 0.0, 0.0, 0.0],
+    "t2.medium": [0.0, 0.0, 0.0, 0.0],
     "m3.medium": [110.0, 0.077, 172.0, 0.063],
     "m3.large": [220.0, 0.154, 343.0, 0.126],
     "m3.xlarge": [439.0, 0.308, 686.0, 0.252],
@@ -713,6 +725,9 @@ var __calcLightRILinuxMonthlyAmount__rateSheets = {
     "t1.micro": [23.0, 0.015, 35.0, 0.015]
   },
   "ap-southeast-1": {
+    "t2.micro": [0.0, 0.0, 0.0, 0.0],
+    "t2.small": [0.0, 0.0, 0.0, 0.0],
+    "t2.medium": [0.0, 0.0, 0.0, 0.0],
     "m3.medium": [124.0, 0.087, 191.0, 0.069],
     "m3.large": [249.0, 0.175, 382.0, 0.139],
     "m3.xlarge": [497.0, 0.349, 764.0, 0.277],
@@ -748,6 +763,9 @@ var __calcLightRILinuxMonthlyAmount__rateSheets = {
     "t1.micro": [23.0, 0.015, 35.0, 0.015]
   },
   "ap-northeast-1": {
+    "t2.micro": [0.0, 0.0, 0.0, 0.0],
+    "t2.small": [0.0, 0.0, 0.0, 0.0],
+    "t2.medium": [0.0, 0.0, 0.0, 0.0],
     "m3.medium": [120.0, 0.091, 190.0, 0.072],
     "m3.large": [240.0, 0.184, 378.0, 0.146],
     "m3.xlarge": [480.0, 0.367, 756.0, 0.29],
@@ -783,6 +801,9 @@ var __calcLightRILinuxMonthlyAmount__rateSheets = {
     "t1.micro": [23.0, 0.016, 35.0, 0.016]
   },
   "ap-southeast-2": {
+    "t2.micro": [0.0, 0.0, 0.0, 0.0],
+    "t2.small": [0.0, 0.0, 0.0, 0.0],
+    "t2.medium": [0.0, 0.0, 0.0, 0.0],
     "m3.medium": [124.0, 0.087, 191.0, 0.069],
     "m3.large": [249.0, 0.175, 382.0, 0.139],
     "m3.xlarge": [497.0, 0.349, 764.0, 0.277],
@@ -818,6 +839,9 @@ var __calcLightRILinuxMonthlyAmount__rateSheets = {
     "t1.micro": [23.0, 0.015, 35.0, 0.015]
   },
   "sa-east-1": {
+    "t2.micro": [0.0, 0.0, 0.0, 0.0],
+    "t2.small": [0.0, 0.0, 0.0, 0.0],
+    "t2.medium": [0.0, 0.0, 0.0, 0.0],
     "m3.medium": [141.0, 0.091, 209.0, 0.072],
     "m3.large": [282.0, 0.183, 418.0, 0.143],
     "m3.xlarge": [564.0, 0.365, 836.0, 0.286],
