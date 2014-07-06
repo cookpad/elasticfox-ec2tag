@@ -1018,7 +1018,7 @@ var ec2ui_controller = {
         return list;
     },
 
-    runInstances : function (imageId, kernelId, ramdiskId, minCount, maxCount, keyName, securityGroups, userData, properties, ephemeral0, ephemeral1, ephemeral2, ephemeral3, instanceType, placement, subnetId, ipAddress, securityGroupIds, iamInstanceProfileArn, iamInstanceProfileName, ebsOptimized, assignPublicIp, callback) {
+    runInstances : function (imageId, kernelId, ramdiskId, minCount, maxCount, keyName, securityGroups, userData, properties, ephemeral0, ephemeral1, ephemeral2, ephemeral3, instanceType, placement, subnetId, ipAddress, securityGroupIds, iamInstanceProfileArn, iamInstanceProfileName, ebsOptimized, assignPublicIp, rootDeviceSize, rootDeviceType, rootDeviceIops, callback) {
         var params = []
         params.push(["ImageId", imageId]);
         if (kernelId != null && kernelId != "") {
@@ -1056,26 +1056,55 @@ var ec2ui_controller = {
             params.push(["AdditionalInfo", properties]);
         }
 
+        var deviceIndex = 0;
+
+        rootDeviceSize = (rootDeviceSize || '').trim();
+        rootDeviceType = (rootDeviceType || '').trim();
+
+        if (rootDeviceSize || rootDeviceType) {
+            params.push(["BlockDeviceMapping." + deviceIndex + ".DeviceName", '/dev/sda1']);
+
+            if (rootDeviceSize) {
+                params.push(["BlockDeviceMapping." + deviceIndex + ".Ebs.VolumeSize", rootDeviceSize]);
+            }
+
+            if (rootDeviceType) {
+                params.push(["BlockDeviceMapping." + deviceIndex + ".Ebs.VolumeType", rootDeviceType]);
+
+
+                if (rootDeviceType == 'io1') {
+                    params.push(["BlockDeviceMapping." + deviceIndex + ".Ebs.Iops", rootDeviceIops]);
+                }
+            }
+
+            deviceIndex++;
+        }
+
+
         ephemeral0 = (ephemeral0 || '').trim();
         ephemeral1 = (ephemeral1 || '').trim();
         ephemeral2 = (ephemeral2 || '').trim();
         ephemeral3 = (ephemeral3 || '').trim();
 
         if (ephemeral0) {
-          params.push(["BlockDeviceMapping.0.DeviceName", ephemeral0]);
-          params.push(["BlockDeviceMapping.0.VirtualName", "ephemeral0"]);
+          params.push(["BlockDeviceMapping." + deviceIndex + ".DeviceName", ephemeral0]);
+          params.push(["BlockDeviceMapping." + deviceIndex + ".VirtualName", "ephemeral0"]);
+          deviceIndex++;
         }
         if (ephemeral1) {
-          params.push(["BlockDeviceMapping.1.DeviceName", ephemeral1]);
-          params.push(["BlockDeviceMapping.1.VirtualName", "ephemeral1"]);
+          params.push(["BlockDeviceMapping." + deviceIndex + ".DeviceName", ephemeral1]);
+          params.push(["BlockDeviceMapping." + deviceIndex + ".VirtualName", "ephemeral1"]);
+          deviceIndex++;
         }
         if (ephemeral2) {
-          params.push(["BlockDeviceMapping.2.DeviceName", ephemeral2]);
-          params.push(["BlockDeviceMapping.2.VirtualName", "ephemeral2"]);
+          params.push(["BlockDeviceMapping." + deviceIndex + ".DeviceName", ephemeral2]);
+          params.push(["BlockDeviceMapping." + deviceIndex + ".VirtualName", "ephemeral2"]);
+          deviceIndex++;
         }
         if (ephemeral3) {
-          params.push(["BlockDeviceMapping.3.DeviceName", ephemeral3]);
-          params.push(["BlockDeviceMapping.3.VirtualName", "ephemeral3"]);
+          params.push(["BlockDeviceMapping." + deviceIndex + ".DeviceName", ephemeral3]);
+          params.push(["BlockDeviceMapping." + deviceIndex + ".VirtualName", "ephemeral3"]);
+          deviceIndex++;
         }
         if (placement.availabilityZone != null && placement.availabilityZone != "") {
             params.push(["Placement.AvailabilityZone", placement.availabilityZone]);

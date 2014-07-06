@@ -560,7 +560,7 @@ var __calcWindowsMonthlyAmount__rateSheets = {
     "c3.xlarge": 0.491,
     "c3.2xlarge": 0.982,
     "c3.4xlarge": 1.964,
-    "c3.8xlarge": 3.928
+    "c3.8xlarge": 3.928,
     "c1.medium": 0.259,
     "c1.xlarge": 1.038,
     "m2.xlarge": 0.423,
@@ -2416,6 +2416,47 @@ var __calcHeavyRIWindowsMonthlyAmount__rateSheets = {
 };
 
 // __END_OF_PRICING_TABLE__
+
+AllInstanceTypes = [
+    ["t1.micro",      1,   0.613],
+    ["t2.micro",      1,   1    ],
+    ["t2.small",      1,   2    ],
+    ["t2.medium",     2,   4    ],
+    ["m3.medium",     1,   3.75 ],
+    ["m3.large",      2,   7.5  ],
+    ["m3.xlarge",     4,  15    ],
+    ["m3.2xlarge",    8,  30    ],
+    ["m1.small",      1,   1.7  ],
+    ["m1.medium",     1,   3.7  ],
+    ["m1.large",      2,   7.5  ],
+    ["m1.xlarge",     4,  15    ],
+    ["c3.large",      2,   3.75 ],
+    ["c3.xlarge",     4,   7.5  ],
+    ["c3.2xlarge",    8,  15    ],
+    ["c3.4xlarge",   16,  30    ],
+    ["c3.8xlarge",   32,  60    ],
+    ["c1.medium",     2,   1.7  ],
+    ["c1.xlarge",     8,   7    ],
+    ["cc1.4xlarge", '-',  23    ],
+    ["cc2.8xlarge",  32,  60.5  ],
+    ["g2.2xlarge",    8,  15    ],
+    ["cg1.4xlarge", '-',  22    ],
+    ["r3.large",      2,  15    ],
+    ["r3.xlarge",     4,  30.5  ],
+    ["r3.2xlarge",    8,  61    ],
+    ["r3.4xlarge",   16, 122    ],
+    ["r3.8xlarge",   32, 244    ],
+    ["m2.xlarge",     2,  17.1  ],
+    ["m2.2xlarge",    4,  34.2  ],
+    ["m2.4xlarge",    8,  68.4  ],
+    ["cr1.8xlarge",  32,  244   ],
+    ["i3.xlarge",     4,  30.5  ],
+    ["i3.2xlarge",    8,  61    ],
+    ["i3.4xlarge",   16, 122    ],
+    ["i3.8xlarge",   32, 244    ],
+    ["hi1.4xlarge",  16,  60.5  ],
+    ["hs1.8xlarge",  16, 117    ]
+];
 
 function generateCSVForObject(obj) {
     var pairs = new Array();

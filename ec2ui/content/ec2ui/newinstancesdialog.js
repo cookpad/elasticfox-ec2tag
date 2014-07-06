@@ -69,6 +69,16 @@ var ec2_InstanceLauncher = {
             "availabilityZone": document.getElementById("ec2ui.newinstances.availabilityzonelist").selectedItem.value
         };
 
+
+        var ebsVolumeSize = (document.getElementById("ec2ui.newinstances.ebsVolumeSize").value || '').trim();
+        if (ebsVolumeSize) { this.retVal.ebsVolumeSize = ebsVolumeSize; }
+
+        var ebsVolumeType = (document.getElementById("ec2ui.newinstances.ebsVolumeType").selectedItem.value || '').trim();
+        if (ebsVolumeType) { this.retVal.ebsVolumeType = ebsVolumeType; }
+
+        var ebsVolumeIops = (document.getElementById("ec2ui.newinstances.ebsVolumeIops").value || '').trim();
+        if (ebsVolumeIops) { this.retVal.ebsVolumeIops = ebsVolumeIops; }
+
         this.retVal.userData = document.getElementById("ec2ui.newinstances.userdata").value;
         if (this.retVal.userData == "") {
             this.retVal.userData = null;
@@ -311,48 +321,17 @@ var ec2_InstanceLauncher = {
 
         var typeMenu = document.getElementById("ec2ui.newinstances.instancetypelist");
         // Add the instance sizes based on AMI architecture
-        if (this.image.arch == "x86_64") {
-            typeMenu.appendItem("t1.micro (2 ECU/613MB RAM)", "t1.micro");
-            typeMenu.appendItem("m1.small (1 ECU/1.7GB RAM)", "m1.small");
-            typeMenu.appendItem("m1.medium (2 ECU/3.75GB RAM)", "m1.medium");
-            typeMenu.appendItem("c1.medium (5 ECU/1.7GB RAM)", "c1.medium");
-            typeMenu.appendItem("m1.large (4 ECU/7.5GB RAM)", "m1.large");
-            typeMenu.appendItem("m1.xlarge (8 ECU/15GB RAM)", "m1.xlarge");
-            typeMenu.appendItem("c1.xlarge (20 ECU/7GB RAM)", "c1.xlarge");
-            typeMenu.appendItem("m3.medium (3 ECU/3.75 GB RAM)", "m3.medium");
-            typeMenu.appendItem("m3.large (6.5 ECU/7 GB RAM)", "m3.large");
-            typeMenu.appendItem("m3.xlarge (13 ECU/15 GB RAM)", "m3.xlarge");
-            typeMenu.appendItem("m3.2xlarge (26 ECU/30 GB RAM)", "m3.2xlarge");
-            typeMenu.appendItem("m2.xlarge (6.5 ECU/17.1GB RAM)", "m2.xlarge");
-            typeMenu.appendItem("m2.2xlarge (13 ECU/34.2 GB RAM)", "m2.2xlarge");
-            typeMenu.appendItem("m2.4xlarge (26 ECU/68.4 GB RAM)", "m2.4xlarge");
-            typeMenu.appendItem("cc1.4xlarge (33.5 ECU/23 GB RAM)", "cc1.4xlarge");
-            typeMenu.appendItem("cc2.8xlarge (88 ECU/60.5 GB RAM)", "cc2.8xlarge");
-            typeMenu.appendItem("cg1.4xlarge (33.5 ECU/22 GB RAM)", "cg1.4xlarge");
-            typeMenu.appendItem("hi1.4xlarge (35 ECU/60.5 GB RAM)", "hi1.4xlarge");
-            typeMenu.appendItem("hs1.8xlarge (35 ECU/117 GB RAM)", "hs1.8xlarge");
-            typeMenu.appendItem("i2.xlarge (14 ECU/30.5 GB RAM)", "i2.xlarge");
-            typeMenu.appendItem("i2.2xlarge (27 ECU/61 GB RAM)", "i2.2xlarge");
-            typeMenu.appendItem("i2.4xlarge (53 ECU/122 GB RAM)", "i2.4xlarge");
-            typeMenu.appendItem("i2.8xlarge (104 ECU/244 GB RAM)", "i2.8xlarge");
-            typeMenu.appendItem("c3.large (7 ECU/3.75 GB RAM)", "c3.large");
-            typeMenu.appendItem("c3.xlarge (14 ECU/7 GB RAM)", "c3.xlarge");
-            typeMenu.appendItem("c3.2xlarge (28 ECU/15 GB RAM)", "c3.2xlarge");
-            typeMenu.appendItem("c3.4xlarge (55 ECU/30 GB RAM)", "c3.4xlarge");
-            typeMenu.appendItem("c3.8xlarge (108 ECU/60 GB RAM)", "c3.8xlarge");
-            typeMenu.appendItem("r3.large (6.5 ECU/15 GB RAM)", "r3.large");
-            typeMenu.appendItem("r3.xlarge (13 ECU/30.5 GB RAM)", "r3.xlarge");
-            typeMenu.appendItem("r3.2xlarge (26 ECU/61 GB RAM)", "r3.2xlarge");
-            typeMenu.appendItem("r3.4xlarge (52 ECU/122 GB RAM)", "r3.4xlarge");
-            typeMenu.appendItem("r3.8xlarge (104 ECU/244 GB RAM)", "c3.8xlarge");
-            typeMenu.appendItem("cr1.8xlarge (88 ECU/30 GB RAM)", "cr1.8xlarge");
-            typeMenu.appendItem("g2.2xlarge (26 ECU/244 GB RAM)", "g2.2xlarge");
-        } else {
-            typeMenu.appendItem("t1.micro (2 ECU/613MB RAM)", "t1.micro");
-            typeMenu.appendItem("m1.small (1 ECU/1.7GB RAM)", "m1.small");
-            typeMenu.appendItem("m1.medium (2 ECU/3.75GB RAM)", "m1.medium");
-            typeMenu.appendItem("c1.medium (5 ECU/1.7GB RAM)", "c1.medium");
+
+        for (var i = 0; i < AllInstanceTypes.length; i++) {
+            var instanceType = AllInstanceTypes[i];
+            var name = instanceType[0];
+            var cpu  = instanceType[1];
+            var ram  = instanceType[2];
+
+            var label = name + "    (" + cpu + "vCPU  " + ram + "GiB)";
+            typeMenu.appendItem(label, name);
         }
+
         typeMenu.selectedIndex = 0;
 
         var textBox = document.getElementById("ec2ui.newinstances.ami");
