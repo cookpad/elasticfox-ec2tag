@@ -1018,7 +1018,7 @@ var ec2ui_controller = {
         return list;
     },
 
-    runInstances : function (imageId, kernelId, ramdiskId, minCount, maxCount, keyName, securityGroups, userData, properties, ephemeral0, ephemeral1, ephemeral2, ephemeral3, instanceType, placement, subnetId, ipAddress, securityGroupIds, iamInstanceProfileArn, iamInstanceProfileName, ebsOptimized, assignPublicIp, rootDeviceSize, rootDeviceType, rootDeviceIops, callback) {
+    runInstances : function (imageId, kernelId, ramdiskId, minCount, maxCount, keyName, securityGroups, userData, properties, ephemeral0, ephemeral1, ephemeral2, ephemeral3, instanceType, placement, subnetId, ipAddress, securityGroupIds, iamInstanceProfileArn, iamInstanceProfileName, ebsOptimized, assignPublicIp, rootDeviceName, rootDeviceSize, rootDeviceType, rootDeviceIops, callback) {
         var params = []
         params.push(["ImageId", imageId]);
         if (kernelId != null && kernelId != "") {
@@ -1061,8 +1061,8 @@ var ec2ui_controller = {
         rootDeviceSize = (rootDeviceSize || '').trim();
         rootDeviceType = (rootDeviceType || '').trim();
 
-        if (rootDeviceSize || rootDeviceType) {
-            params.push(["BlockDeviceMapping." + deviceIndex + ".DeviceName", '/dev/sda1']);
+        if (rootDeviceName && (rootDeviceSize || rootDeviceType)) {
+            params.push(["BlockDeviceMapping." + deviceIndex + ".DeviceName", rootDeviceName]);
 
             if (rootDeviceSize) {
                 params.push(["BlockDeviceMapping." + deviceIndex + ".Ebs.VolumeSize", rootDeviceSize]);

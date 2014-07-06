@@ -962,6 +962,7 @@ var ec2ui_InstancesTreeView = {
            null,                  // iamInstanceProfileName
            null,                  // ebsOptimized
            null,                  // assignPublicIp
+           null,                  // rootDeviceName
            null,                  // rootDeviceSize
            null,                  // rootDeviceType
            null,                  // rootDeviceIops
