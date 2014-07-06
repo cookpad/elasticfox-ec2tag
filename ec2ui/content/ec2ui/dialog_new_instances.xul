@@ -216,49 +216,51 @@
         </rows>
       </grid>
     </groupbox>
-    <groupbox flex="1" id="ec2ui.newinstances.secgroups.box">
-      <caption label="&ec2ui.captions.images.launchsecgroups.label;" />
-      <grid flex="1">
-        <columns>
-          <column />
-          <column />
-          <column />
-        </columns>
-        <rows>
-          <row>
-            <label control="ec2ui.newinstances.secgroups.unused" value="Available Groups" />
-            <spacer flex="1" />
-            <label control="ec2ui.newinstances.secgroups.used" value="Launch in" />
-          </row>
-          <row>
-            <listbox rows="3" id="ec2ui.newinstances.secgroups.unused" seltype="multiple">
-              <listcols>
-                <listcol flex="1" />
-              </listcols>
-            </listbox>
-            <vbox flex="1" pack="center">
-              <button image="images/right.png"
-                oncommand="ec2_InstanceLauncher.addSecurityGroup();" />
-              <button image="images/left.png"
-                oncommand="ec2_InstanceLauncher.removeSecurityGroup();" />
-            </vbox>
-            <listbox rows="3" id="ec2ui.newinstances.secgroups.used" seltype="multiple">
-              <listcols>
-                <listcol flex="1" />
-              </listcols>
-            </listbox>
-          </row>
-        </rows>
-      </grid>
-    </groupbox>
-    <groupbox flex="1">
-      <caption label="&ec2ui.captions.images.launchparams.label;" />
-      <textbox id="ec2ui.newinstances.userdata" multiline="true" cols="50" rows="2" wrap="false"
-        style="font-family: monospace;" />
-      <hbox pack="end" flex="1">
-        <button label="Open File" oncommand="ec2_InstanceLauncher.loadUserDataFromFile(false);" />
-        <button label="Open Binary File" oncommand="ec2_InstanceLauncher.loadUserDataFromFile(true);" />
-      </hbox>
-    </groupbox>
+    <hbox flex="1">
+      <groupbox flex="1" id="ec2ui.newinstances.secgroups.box">
+        <caption label="&ec2ui.captions.images.launchsecgroups.label;" />
+        <grid flex="1">
+          <columns>
+            <column />
+            <column />
+            <column />
+          </columns>
+          <rows>
+            <row>
+              <label control="ec2ui.newinstances.secgroups.unused" value="Available Groups" />
+              <spacer flex="1" />
+              <label control="ec2ui.newinstances.secgroups.used" value="Launch in" />
+            </row>
+            <row>
+              <listbox rows="3" id="ec2ui.newinstances.secgroups.unused" seltype="multiple">
+                <listcols>
+                  <listcol flex="1" />
+                </listcols>
+              </listbox>
+              <vbox flex="1" pack="center">
+                <button image="images/right.png"
+                  oncommand="ec2_InstanceLauncher.addSecurityGroup();" />
+                <button image="images/left.png"
+                  oncommand="ec2_InstanceLauncher.removeSecurityGroup();" />
+              </vbox>
+              <listbox rows="3" id="ec2ui.newinstances.secgroups.used" seltype="multiple">
+                <listcols>
+                  <listcol flex="1" />
+                </listcols>
+              </listbox>
+            </row>
+          </rows>
+        </grid>
+      </groupbox>
+      <groupbox flex="1">
+        <caption label="&ec2ui.captions.images.launchparams.label;" />
+        <textbox id="ec2ui.newinstances.userdata" multiline="true" cols="50" rows="2" wrap="false"
+          style="font-family: monospace;" />
+        <hbox pack="end" flex="1">
+          <button label="Open File" oncommand="ec2_InstanceLauncher.loadUserDataFromFile(false);" />
+          <button label="Open Binary File" oncommand="ec2_InstanceLauncher.loadUserDataFromFile(true);" />
+        </hbox>
+      </groupbox>
+    </hbox>
   </vbox>
 </dialog>

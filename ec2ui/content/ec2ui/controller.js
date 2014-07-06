@@ -1062,7 +1062,7 @@ var ec2ui_controller = {
         rootDeviceType = (rootDeviceType || '').trim();
 
         if (rootDeviceName && (rootDeviceSize || rootDeviceType)) {
-            params.push(["BlockDeviceMapping." + deviceIndex + ".DeviceName", ebsVolumeName]);
+            params.push(["BlockDeviceMapping." + deviceIndex + ".DeviceName", rootDeviceName]);
 
             if (rootDeviceSize) {
                 params.push(["BlockDeviceMapping." + deviceIndex + ".Ebs.VolumeSize", rootDeviceSize]);
