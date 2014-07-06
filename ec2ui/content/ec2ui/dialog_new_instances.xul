@@ -80,8 +80,8 @@
           </row>
           <row>
             <label control="ec2ui.newinstances.ebsVolumeType" value="EBS Volume Type:" />
-            <menulist id="ec2ui.newinstances.ebsVolumeTypeList">
-              <menupopup id="ec2ui.createlb.pingprotocol">
+            <menulist id="ec2ui.newinstances.ebsVolumeType">
+              <menupopup>
                 <menuitem label="default" value="" />
                 <menuitem label="standard" value="standard" />
                 <menuitem label="io1" value="io1" />
@@ -90,8 +90,8 @@
             </menulist>
           </row>
           <row>
-            <label control="ec2ui.newinstances.ebsIops" value="EBS IOPS:" />
-            <textbox id="ec2ui.newinstances.ebsIops" size="40" />
+            <label control="ec2ui.newinstances.ebsVolumeIops" value="EBS IOPS:" />
+            <textbox id="ec2ui.newinstances.ebsVolumeIops" size="40" />
           </row>
         </rows>
       </grid>

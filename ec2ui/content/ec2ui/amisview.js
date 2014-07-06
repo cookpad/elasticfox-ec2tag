@@ -209,9 +209,9 @@ var ec2ui_AMIsTreeView = {
                retVal.iamInstanceProfileName,
                retVal.ebsOptimized,
                retVal.assignPublicIp,
-               null,
-               null,
-               null,
+               retVal.ebsVolumeSize,
+               retVal.ebsVolumeType,
+               retVal.ebsVolumeIops,
                this.newInstanceCallback);
         }
     },

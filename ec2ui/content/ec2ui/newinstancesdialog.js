@@ -69,6 +69,16 @@ var ec2_InstanceLauncher = {
             "availabilityZone": document.getElementById("ec2ui.newinstances.availabilityzonelist").selectedItem.value
         };
 
+
+        var ebsVolumeSize = (document.getElementById("ec2ui.newinstances.ebsVolumeSize").value || '').trim();
+        if (ebsVolumeSize) { this.retVal.ebsVolumeSize = ebsVolumeSize; }
+
+        var ebsVolumeType = (document.getElementById("ec2ui.newinstances.ebsVolumeType").selectedItem.value || '').trim();
+        if (ebsVolumeType) { this.retVal.ebsVolumeType = ebsVolumeType; }
+
+        var ebsVolumeIops = (document.getElementById("ec2ui.newinstances.ebsVolumeIops").value || '').trim();
+        if (ebsVolumeIops) { this.retVal.ebsVolumeIops = ebsVolumeIops; }
+
         this.retVal.userData = document.getElementById("ec2ui.newinstances.userdata").value;
         if (this.retVal.userData == "") {
             this.retVal.userData = null;
