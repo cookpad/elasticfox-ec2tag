@@ -74,29 +74,6 @@
             <label control="ec2ui.newinstances.ebsOptimized" value="EBS Optimized:" />
             <checkbox id="ec2ui.newinstances.ebsOptimized" checked="false" />
           </row>
-          <row>
-            <label control="ec2ui.newinstances.ebsVolumeName" value="Root EBS Volume Name:" />
-            <textbox id="ec2ui.newinstances.ebsVolumeName" size="40" value="/dev/sda1" />
-          </row>
-          <row>
-            <label control="ec2ui.newinstances.ebsVolumeSize" value="Root EBS Volume Size:" />
-            <textbox id="ec2ui.newinstances.ebsVolumeSize" size="40" />
-          </row>
-          <row>
-            <label control="ec2ui.newinstances.ebsVolumeType" value="Root EBS Volume Type:" />
-            <menulist id="ec2ui.newinstances.ebsVolumeType">
-              <menupopup>
-                <menuitem label="default" value="" />
-                <menuitem label="standard" value="standard" />
-                <menuitem label="io1" value="io1" />
-                <menuitem label="gp2" value="gp2" />
-              </menupopup>
-            </menulist>
-          </row>
-          <row>
-            <label control="ec2ui.newinstances.ebsVolumeIops" value="Root EBS IOPS:" />
-            <textbox id="ec2ui.newinstances.ebsVolumeIops" size="40" />
-          </row>
         </rows>
       </grid>
       <vbox flex="1">
@@ -176,6 +153,50 @@
         </groupbox>
       </vbox>
     </hbox>
+    <groupbox flex="1" id="ec2ui.newinstances.root.ebs.box">
+      <caption label="Root EBS Volume" />
+      <hbox flex="1">
+        <grid flex="1">
+          <columns>
+            <column />
+            <column />
+          </columns>
+          <rows>
+            <row>
+              <label control="ec2ui.newinstances.ebsVolumeName" value="Root EBS Volume Name:" />
+              <textbox id="ec2ui.newinstances.ebsVolumeName" size="40" value="/dev/sda1" />
+            </row>
+            <row>
+              <label control="ec2ui.newinstances.ebsVolumeSize" value="Root EBS Volume Size:" />
+              <textbox id="ec2ui.newinstances.ebsVolumeSize" size="40" />
+            </row>
+          </rows>
+        </grid>
+        <grid flex="1">
+          <columns>
+            <column />
+            <column />
+          </columns>
+          <rows>
+            <row>
+              <label control="ec2ui.newinstances.ebsVolumeType" value="Root EBS Volume Type:" />
+              <menulist id="ec2ui.newinstances.ebsVolumeType">
+                <menupopup>
+                  <menuitem label="default" value="" />
+                  <menuitem label="standard" value="standard" />
+                  <menuitem label="io1" value="io1" />
+                  <menuitem label="gp2" value="gp2" />
+                </menupopup>
+              </menulist>
+            </row>
+            <row>
+              <label control="ec2ui.newinstances.ebsVolumeIops" value="Root EBS IOPS:" />
+              <textbox id="ec2ui.newinstances.ebsVolumeIops" size="40" />
+            </row>
+          </rows>
+        </grid>
+      </hbox>
+    </groupbox>
     <groupbox flex="1" id="ec2ui.newinstances.iam.box">
       <caption label="IAM Instance Profile" />
       <grid flex="1">
