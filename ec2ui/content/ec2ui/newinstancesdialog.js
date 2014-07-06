@@ -9,6 +9,47 @@ var ec2_InstanceLauncher = {
     unused : new Array(),
     used : new Array(),
 
+    instancTypes: [
+        ["t1.micro",      1,   0.613],
+        ["t2.micro",      1,   1    ],
+        ["t2.small",      1,   2    ],
+        ["t2.medium",     2,   4    ],
+        ["m3.medium",     1,   3.75 ],
+        ["m3.large",      2,   7.5  ],
+        ["m3.xlarge",     4,  15    ],
+        ["m3.2xlarge",    8,  30    ],
+        ["m1.small",      1,   1.7  ],
+        ["m1.medium",     1,   3.7  ],
+        ["m1.large",      2,   7.5  ],
+        ["m1.xlarge",     4,  15    ],
+        ["c3.large",      2,   3.75 ],
+        ["c3.xlarge",     4,   7.5  ],
+        ["c3.2xlarge",    8,  15    ],
+        ["c3.4xlarge",   16,  30    ],
+        ["c3.8xlarge",   32,  60    ],
+        ["c1.medium",     2,   1.7  ],
+        ["c1.large",      8,   7    ],
+        ["cc1.4xlarge", '-',  23    ],
+        ["cc2.8xlarge",  32,  60.5  ],
+        ["g2.2xlarge",    8,  15    ],
+        ["cg1.4xlarge", '-',  22    ],
+        ["r3.large",      2,  15    ],
+        ["r3.xlarge",     4,  30.5  ],
+        ["r3.2xlarge",    8,  61    ],
+        ["r3.4xlarge",   16, 122    ],
+        ["r3.8xlarge",   32, 244    ],
+        ["m2.xlarge",     2,  17.1  ],
+        ["m2.2xlarge",    4,  34.2  ],
+        ["m2.4xlarge",    8,  68.4  ],
+        ["cr1.8xlarge",  32,  244   ],
+        ["i3.xlarge",     4,  30.5  ],
+        ["i3.2xlarge",    8,  61    ],
+        ["i3.4xlarge",   16, 122    ],
+        ["i3.8xlarge",   32, 244    ],
+        ["hi1.4xlarge",  16,  60.5  ],
+        ["hs1.8xlarge",  16, 117    ]
+    ],
+
     launch : function() {
         if (!this.validateMin()) return false;
         if (!this.validateMax()) return false;
@@ -311,48 +352,17 @@ var ec2_InstanceLauncher = {
 
         var typeMenu = document.getElementById("ec2ui.newinstances.instancetypelist");
         // Add the instance sizes based on AMI architecture
-        if (this.image.arch == "x86_64") {
-            typeMenu.appendItem("t1.micro (2 ECU/613MB RAM)", "t1.micro");
-            typeMenu.appendItem("m1.small (1 ECU/1.7GB RAM)", "m1.small");
-            typeMenu.appendItem("m1.medium (2 ECU/3.75GB RAM)", "m1.medium");
-            typeMenu.appendItem("c1.medium (5 ECU/1.7GB RAM)", "c1.medium");
-            typeMenu.appendItem("m1.large (4 ECU/7.5GB RAM)", "m1.large");
-            typeMenu.appendItem("m1.xlarge (8 ECU/15GB RAM)", "m1.xlarge");
-            typeMenu.appendItem("c1.xlarge (20 ECU/7GB RAM)", "c1.xlarge");
-            typeMenu.appendItem("m3.medium (3 ECU/3.75 GB RAM)", "m3.medium");
-            typeMenu.appendItem("m3.large (6.5 ECU/7 GB RAM)", "m3.large");
-            typeMenu.appendItem("m3.xlarge (13 ECU/15 GB RAM)", "m3.xlarge");
-            typeMenu.appendItem("m3.2xlarge (26 ECU/30 GB RAM)", "m3.2xlarge");
-            typeMenu.appendItem("m2.xlarge (6.5 ECU/17.1GB RAM)", "m2.xlarge");
-            typeMenu.appendItem("m2.2xlarge (13 ECU/34.2 GB RAM)", "m2.2xlarge");
-            typeMenu.appendItem("m2.4xlarge (26 ECU/68.4 GB RAM)", "m2.4xlarge");
-            typeMenu.appendItem("cc1.4xlarge (33.5 ECU/23 GB RAM)", "cc1.4xlarge");
-            typeMenu.appendItem("cc2.8xlarge (88 ECU/60.5 GB RAM)", "cc2.8xlarge");
-            typeMenu.appendItem("cg1.4xlarge (33.5 ECU/22 GB RAM)", "cg1.4xlarge");
-            typeMenu.appendItem("hi1.4xlarge (35 ECU/60.5 GB RAM)", "hi1.4xlarge");
-            typeMenu.appendItem("hs1.8xlarge (35 ECU/117 GB RAM)", "hs1.8xlarge");
-            typeMenu.appendItem("i2.xlarge (14 ECU/30.5 GB RAM)", "i2.xlarge");
-            typeMenu.appendItem("i2.2xlarge (27 ECU/61 GB RAM)", "i2.2xlarge");
-            typeMenu.appendItem("i2.4xlarge (53 ECU/122 GB RAM)", "i2.4xlarge");
-            typeMenu.appendItem("i2.8xlarge (104 ECU/244 GB RAM)", "i2.8xlarge");
-            typeMenu.appendItem("c3.large (7 ECU/3.75 GB RAM)", "c3.large");
-            typeMenu.appendItem("c3.xlarge (14 ECU/7 GB RAM)", "c3.xlarge");
-            typeMenu.appendItem("c3.2xlarge (28 ECU/15 GB RAM)", "c3.2xlarge");
-            typeMenu.appendItem("c3.4xlarge (55 ECU/30 GB RAM)", "c3.4xlarge");
-            typeMenu.appendItem("c3.8xlarge (108 ECU/60 GB RAM)", "c3.8xlarge");
-            typeMenu.appendItem("r3.large (6.5 ECU/15 GB RAM)", "r3.large");
-            typeMenu.appendItem("r3.xlarge (13 ECU/30.5 GB RAM)", "r3.xlarge");
-            typeMenu.appendItem("r3.2xlarge (26 ECU/61 GB RAM)", "r3.2xlarge");
-            typeMenu.appendItem("r3.4xlarge (52 ECU/122 GB RAM)", "r3.4xlarge");
-            typeMenu.appendItem("r3.8xlarge (104 ECU/244 GB RAM)", "c3.8xlarge");
-            typeMenu.appendItem("cr1.8xlarge (88 ECU/30 GB RAM)", "cr1.8xlarge");
-            typeMenu.appendItem("g2.2xlarge (26 ECU/244 GB RAM)", "g2.2xlarge");
-        } else {
-            typeMenu.appendItem("t1.micro (2 ECU/613MB RAM)", "t1.micro");
-            typeMenu.appendItem("m1.small (1 ECU/1.7GB RAM)", "m1.small");
-            typeMenu.appendItem("m1.medium (2 ECU/3.75GB RAM)", "m1.medium");
-            typeMenu.appendItem("c1.medium (5 ECU/1.7GB RAM)", "c1.medium");
+
+        for (var i = 0; i < this.instancTypes.length; i++) {
+            var instancType = this.instancTypes[i];
+            var name = instancType[0];
+            var cpu  = instancType[1];
+            var ram  = instancType[2];
+
+            var label = name + "    (" + cpu + "vCPU  " + ram + "GiB)";
+            typeMenu.appendItem(label, name);
         }
+
         typeMenu.selectedIndex = 0;
 
         var textBox = document.getElementById("ec2ui.newinstances.ami");
