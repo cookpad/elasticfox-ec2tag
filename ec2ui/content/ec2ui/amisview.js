@@ -211,6 +211,7 @@ var ec2ui_AMIsTreeView = {
                retVal.assignPublicIp,
                null,
                null,
+               null,
                this.newInstanceCallback);
         }
     },

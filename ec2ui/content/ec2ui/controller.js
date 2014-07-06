@@ -1018,7 +1018,7 @@ var ec2ui_controller = {
         return list;
     },
 
-    runInstances : function (imageId, kernelId, ramdiskId, minCount, maxCount, keyName, securityGroups, userData, properties, ephemeral0, ephemeral1, ephemeral2, ephemeral3, instanceType, placement, subnetId, ipAddress, securityGroupIds, iamInstanceProfileArn, iamInstanceProfileName, ebsOptimized, assignPublicIp, rootDeviceType, rootDeviceSize, callback) {
+    runInstances : function (imageId, kernelId, ramdiskId, minCount, maxCount, keyName, securityGroups, userData, properties, ephemeral0, ephemeral1, ephemeral2, ephemeral3, instanceType, placement, subnetId, ipAddress, securityGroupIds, iamInstanceProfileArn, iamInstanceProfileName, ebsOptimized, assignPublicIp, rootDeviceSize, rootDeviceType, rootDeviceIops, callback) {
         var params = []
         params.push(["ImageId", imageId]);
         if (kernelId != null && kernelId != "") {
@@ -1058,18 +1058,23 @@ var ec2ui_controller = {
 
         var deviceIndex = 0;
 
-        rootDeviceType = (rootDeviceType || '').trim();
         rootDeviceSize = (rootDeviceSize || '').trim();
+        rootDeviceType = (rootDeviceType || '').trim();
 
-        if (rootDeviceType || rootDeviceSize) {
+        if (rootDeviceSize || rootDeviceType) {
             params.push(["BlockDeviceMapping." + deviceIndex + ".DeviceName", '/dev/sda1']);
-
-            if (rootDeviceType) {
-                params.push(["BlockDeviceMapping." + deviceIndex + ".Ebs.VolumeType", rootDeviceType]);
-            }
 
             if (rootDeviceSize) {
                 params.push(["BlockDeviceMapping." + deviceIndex + ".Ebs.VolumeSize", rootDeviceSize]);
+            }
+
+            if (rootDeviceType) {
+                params.push(["BlockDeviceMapping." + deviceIndex + ".Ebs.VolumeType", rootDeviceType]);
+
+
+                if (rootDeviceType == 'io1') {
+                    params.push(["BlockDeviceMapping." + deviceIndex + ".Ebs.Iops", rootDeviceIops]);
+                }
             }
 
             deviceIndex++;

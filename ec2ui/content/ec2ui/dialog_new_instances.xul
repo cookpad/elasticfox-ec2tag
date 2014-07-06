@@ -74,6 +74,25 @@
             <label control="ec2ui.newinstances.ebsOptimized" value="EBS Optimized:" />
             <checkbox id="ec2ui.newinstances.ebsOptimized" checked="false" />
           </row>
+          <row>
+            <label control="ec2ui.newinstances.ebsVolumeSize" value="EBS Volume Size:" />
+            <textbox id="ec2ui.newinstances.ebsVolumeSize" size="40" />
+          </row>
+          <row>
+            <label control="ec2ui.newinstances.ebsVolumeType" value="EBS Volume Type:" />
+            <menulist id="ec2ui.newinstances.ebsVolumeTypeList">
+              <menupopup id="ec2ui.createlb.pingprotocol">
+                <menuitem label="default" value="" />
+                <menuitem label="standard" value="standard" />
+                <menuitem label="io1" value="io1" />
+                <menuitem label="gp2" value="gp2" />
+              </menupopup>
+            </menulist>
+          </row>
+          <row>
+            <label control="ec2ui.newinstances.ebsIops" value="EBS IOPS:" />
+            <textbox id="ec2ui.newinstances.ebsIops" size="40" />
+          </row>
         </rows>
       </grid>
       <vbox flex="1">
