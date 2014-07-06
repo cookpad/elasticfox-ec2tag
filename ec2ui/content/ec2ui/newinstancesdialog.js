@@ -70,6 +70,9 @@ var ec2_InstanceLauncher = {
         };
 
 
+        var ebsVolumeName = (document.getElementById("ec2ui.newinstances.ebsVolumeName").value || '').trim();
+        if (ebsVolumeName) { this.retVal.ebsVolumeName = ebsVolumeName; }
+
         var ebsVolumeSize = (document.getElementById("ec2ui.newinstances.ebsVolumeSize").value || '').trim();
         if (ebsVolumeSize) { this.retVal.ebsVolumeSize = ebsVolumeSize; }
 
