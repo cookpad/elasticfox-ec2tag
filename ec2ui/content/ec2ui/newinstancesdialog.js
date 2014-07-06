@@ -9,47 +9,6 @@ var ec2_InstanceLauncher = {
     unused : new Array(),
     used : new Array(),
 
-    instancTypes: [
-        ["t1.micro",      1,   0.613],
-        ["t2.micro",      1,   1    ],
-        ["t2.small",      1,   2    ],
-        ["t2.medium",     2,   4    ],
-        ["m3.medium",     1,   3.75 ],
-        ["m3.large",      2,   7.5  ],
-        ["m3.xlarge",     4,  15    ],
-        ["m3.2xlarge",    8,  30    ],
-        ["m1.small",      1,   1.7  ],
-        ["m1.medium",     1,   3.7  ],
-        ["m1.large",      2,   7.5  ],
-        ["m1.xlarge",     4,  15    ],
-        ["c3.large",      2,   3.75 ],
-        ["c3.xlarge",     4,   7.5  ],
-        ["c3.2xlarge",    8,  15    ],
-        ["c3.4xlarge",   16,  30    ],
-        ["c3.8xlarge",   32,  60    ],
-        ["c1.medium",     2,   1.7  ],
-        ["c1.large",      8,   7    ],
-        ["cc1.4xlarge", '-',  23    ],
-        ["cc2.8xlarge",  32,  60.5  ],
-        ["g2.2xlarge",    8,  15    ],
-        ["cg1.4xlarge", '-',  22    ],
-        ["r3.large",      2,  15    ],
-        ["r3.xlarge",     4,  30.5  ],
-        ["r3.2xlarge",    8,  61    ],
-        ["r3.4xlarge",   16, 122    ],
-        ["r3.8xlarge",   32, 244    ],
-        ["m2.xlarge",     2,  17.1  ],
-        ["m2.2xlarge",    4,  34.2  ],
-        ["m2.4xlarge",    8,  68.4  ],
-        ["cr1.8xlarge",  32,  244   ],
-        ["i3.xlarge",     4,  30.5  ],
-        ["i3.2xlarge",    8,  61    ],
-        ["i3.4xlarge",   16, 122    ],
-        ["i3.8xlarge",   32, 244    ],
-        ["hi1.4xlarge",  16,  60.5  ],
-        ["hs1.8xlarge",  16, 117    ]
-    ],
-
     launch : function() {
         if (!this.validateMin()) return false;
         if (!this.validateMax()) return false;
@@ -353,11 +312,11 @@ var ec2_InstanceLauncher = {
         var typeMenu = document.getElementById("ec2ui.newinstances.instancetypelist");
         // Add the instance sizes based on AMI architecture
 
-        for (var i = 0; i < this.instancTypes.length; i++) {
-            var instancType = this.instancTypes[i];
-            var name = instancType[0];
-            var cpu  = instancType[1];
-            var ram  = instancType[2];
+        for (var i = 0; i < AllInstanceTypes.length; i++) {
+            var instanceType = AllInstanceTypes[i];
+            var name = instanceType[0];
+            var cpu  = instanceType[1];
+            var ram  = instanceType[2];
 
             var label = name + "    (" + cpu + "vCPU  " + ram + "GiB)";
             typeMenu.appendItem(label, name);

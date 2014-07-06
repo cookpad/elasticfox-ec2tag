@@ -11,44 +11,7 @@
 
   <label id="instance-type-dialog-instance-type-label" control="instance-type-dialog-instance-type" />
   <menulist id="instance-type-dialog-instance-type">
-    <menupopup>
-      <menuitem label="t1.micro" value="t1.micro" />
-      <menuitem label="m1.small" value="m1.small" />
-      <menuitem label="c1.medium" value="c1.medium" />
-      <menuitem label="m1.medium" value="m1.medium" />
-      <menuseparator />
-      <menuitem label="m1.large (64-bit only)" value="m1.large" />
-      <menuitem label="m1.xlarge (64-bit only)" value="m1.xlarge" />
-      <menuitem label="m3.medium (64-bit only)" value="m3.medium" />
-      <menuitem label="m3.large (64-bit only)" value="m3.large" />
-      <menuitem label="m3.xlarge (64-bit only)" value="m3.xlarge" />
-      <menuitem label="m3.2xlarge (64-bit only)" value="m3.2xlarge" />
-      <menuitem label="m2.xlarge (64-bit only)" value="m2.xlarge" />
-      <menuitem label="m2.2xlarge (64-bit only)" value="m2.2xlarge" />
-      <menuitem label="m2.4xlarge (64-bit only)" value="m2.4xlarge" />
-      <menuitem label="c1.xlarge (64-bit only)" value="c1.xlarge" />
-      <menuitem label="cc1.4xlarge (64-bit only)" value="cc1.4xlarge" />
-      <menuitem label="cc2.8xlarge (64-bit only)" value="cc2.8xlarge" />
-      <menuitem label="cg1.4xlarge (64-bit only)" value="cg1.4xlarge" />
-      <menuitem label="hi1.4xlarge (64-bit only)" value="hi1.4xlarge" />
-      <menuitem label="hs1.8xlarge (64-bit only)" value="hs1.8xlarge" />
-      <menuitem label="i2.xlarge (64-bit only)" value="i2.xlarge" />
-      <menuitem label="i2.2xlarge (64-bit only)" value="i2.2xlarge" />
-      <menuitem label="i2.4xlarge (64-bit only)" value="i2.4xlarge" />
-      <menuitem label="i2.8xlarge (64-bit only)" value="i2.8xlarge" />
-      <menuitem label="c3.large (64-bit only)" value="c3.large" />
-      <menuitem label="c3.xlarge (64-bit only)" value="c3.xlarge" />
-      <menuitem label="c3.2xlarge (64-bit only)" value="c3.2xlarge" />
-      <menuitem label="c3.4xlarge (64-bit only)" value="c3.4xlarge" />
-      <menuitem label="c3.8xlarge (64-bit only)" value="c3.8xlarge" />
-      <menuitem label="cr1.8xlarge (64-bit only)" value="cr1.8xlarge" />
-      <menuitem label="g2.2xlarge (64-bit only)" value="g2.2xlarge" />
-      <menuitem label="r3.large (64-bit only)" value="r3.large" />
-      <menuitem label="r3.xlarge (64-bit only)" value="r3.xlarge" />
-      <menuitem label="r3.2xlarge (64-bit only)" value="r3.2xlarge" />
-      <menuitem label="r3.4xlarge (64-bit only)" value="r3.4xlarge" />
-      <menuitem label="r3.8xlarge (64-bit only)" value="r3.8xlarge" />
-    </menupopup>
+    <menupopup></menupopup>
   </menulist>
 
   <hbox>
@@ -61,9 +24,22 @@
       var instanceLabel = window.arguments[0];
       var currInstanceType = window.arguments[1];
       var currEbsOptimized = window.arguments[2];
+      var instanceTypes = window.arguments[3];
 
       var label = document.getElementById('instance-type-dialog-instance-type-label');
       label.value = instanceLabel + ' Instance Type';
+
+      var instanceType = document.getElementById('instance-type-dialog-instance-type');
+
+      for (var i = 0; i < instanceTypes.length; i++) {
+          var t = instanceTypes[i];
+          var name = t[0];
+          var cpu  = t[1];
+          var ram  = t[2];
+
+          var label = name + "    (" + cpu + "vCPU  " + ram + "GiB)";
+          instanceType.appendItem(label, name);
+      }
 
       var instanceType = document.getElementById('instance-type-dialog-instance-type');
       instanceType.value = currInstanceType;
@@ -73,7 +49,7 @@
     }
 
     function instanceTypeDialogDoOK() {
-      var returnValue = window.arguments[3];
+      var returnValue = window.arguments[4];
       var instanceType = document.getElementById('instance-type-dialog-instance-type');
       var ebsOptimized = document.getElementById('instance-type-dialog-instance-ebs-optimized');
       returnValue.result = {

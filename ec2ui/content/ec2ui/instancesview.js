@@ -1102,6 +1102,7 @@ var ec2ui_InstancesTreeView = {
                            instanceLabel,
                            instanceType,
                            ebsOptimized,
+                           AllInstanceTypes,
                            returnValue);
 
                 if (returnValue.result == null) {
