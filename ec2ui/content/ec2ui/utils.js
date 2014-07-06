@@ -560,7 +560,7 @@ var __calcWindowsMonthlyAmount__rateSheets = {
     "c3.xlarge": 0.491,
     "c3.2xlarge": 0.982,
     "c3.4xlarge": 1.964,
-    "c3.8xlarge": 3.928
+    "c3.8xlarge": 3.928,
     "c1.medium": 0.259,
     "c1.xlarge": 1.038,
     "m2.xlarge": 0.423,
