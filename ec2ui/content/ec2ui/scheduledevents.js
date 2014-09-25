@@ -61,6 +61,18 @@ var ec2ui_ScheduledEventsTreeView = {
         return this.scheduledEventList[index];
     },
 
+    getSelectedScheduledEvents : function() {
+        var events = new Array();
+
+        for(var i in this.scheduledEventList) {
+            if (this.selection.isSelected(i)) {
+                events.push(this.scheduledEventList[i]);
+            }
+        }
+
+        return events;
+    },
+
     register: function() {
         if (!this.registered) {
             this.registered = true;
@@ -130,9 +142,19 @@ var ec2ui_ScheduledEventsTreeView = {
     },
 
     copyToClipBoard: function(fieldName) {
-        var scheduledEvent = this.getSelectedScheduledEvent();
-        if (scheduledEvent == null) { return; }
-        copyToClipboard(scheduledEvent[fieldName]);
+        var events = this.getSelectedScheduledEvents();
+
+        if (events == null || events.length < 1) {
+            return;
+        }
+
+        var fieldValues = [];
+
+        for (var i = 0; i < events.length; i++) {
+            fieldValues.push(events[i][fieldName]);
+        }
+
+        copyToClipboard(fieldValues.join("\n"));
     },
 
     selectInstance: function() {
