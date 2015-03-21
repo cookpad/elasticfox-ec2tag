@@ -92,7 +92,7 @@
       <menuitem id="menu_FileQuitItem" label="Quit" key="main-window-quit-key" oncommand="quit();"/>
       <menu id="help-menu" label="Help">
         <menupopup id="version-popup">
-          <menuitem label="About" oncommand="alert('Elasticfox-EC2Tag (version 1.7.000116-ec2tag-0.4.14)');"/>
+          <menuitem label="About" oncommand="alert('Elasticfox-EC2Tag (version 1.7.000116-ec2tag-0.4.15)');"/>
         </menupopup>
       </menu>
     </menubar>
