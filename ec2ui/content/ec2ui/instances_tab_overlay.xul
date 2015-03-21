@@ -143,6 +143,9 @@
           <button
             oncommand="ec2ui_InstancesTreeView.showInstancesSummary();"
             label="Summary" />
+          <button
+            oncommand="ec2ui_InstancesTreeView.exportList();"
+            label="Export" />
           <toolbarseparator />
           <checkbox id="ec2ui.instances.noterminated" label="Hide Terminated"
             checked="false" oncommand="ec2ui_InstancesTreeView.invalidate();"/>

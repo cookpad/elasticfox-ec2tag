@@ -25,6 +25,9 @@ var ec2ui_session =
 
     initialize : function () {
         if (!this.initialized) {
+            var loader = Components.classes["@mozilla.org/moz/jssubscript-loader;1"].getService(Components.interfaces.mozIJSSubScriptLoader);
+            loader.loadSubScript("chrome://ec2ui/content/io.jsm");
+
             this.controller = ec2ui_controller;
             this.model = ec2ui_model;
             this.client = ec2_httpclient;

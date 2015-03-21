@@ -3258,4 +3258,23 @@ var ec2ui_utils = {
             return "";
         }
     },
+
+    createFilePicker : function(name, initializer) {
+        if (!window.$cachedPicker) {
+            window.$cachedPicker = {};
+        }
+
+        if (!window.$cachedPicker[name]) {
+            var nsIFilePicker = Components.interfaces.nsIFilePicker;
+            var picker =  Components.classes['@mozilla.org/filepicker;1'].createInstance(nsIFilePicker);
+
+            if (initializer) {
+                initializer(picker);
+            }
+
+            window.$cachedPicker[name] = picker;
+        }
+
+        return window.$cachedPicker[name];
+    }
 };

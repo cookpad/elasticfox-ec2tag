@@ -1840,6 +1840,51 @@ outer:
             this.stopRefreshTimer();
         }
         this.sort();
+    },
+
+    exportList: function() {
+        try {
+        var fp = ec2ui_utils.createFilePicker('impexp', function(picker) {
+            picker.defaultString = 'instances.tsv';
+        });
+
+        fp.init(window, 'Export List', Components.interfaces.nsIFilePicker.modeSave);
+
+        var result = fp.show();
+
+        switch (result) {
+        case Components.interfaces.nsIFilePicker.returnOK:
+        case Components.interfaces.nsIFilePicker.returnReplace:
+            this.writeDataToFile(fp.file);
+            break;
+        }
+        } catch(e) {
+            alert(e);
+        }
+    },
+
+    writeDataToFile: function(fout) {
+        var cols = [];
+
+        this.COLNAMES.forEach(function(name) {
+            name = name.split('.', 2)[1];
+            cols.push(name);
+        });
+
+        var tsv = [cols.join("\t")];
+
+        this.instanceList.forEach(function(instance) {
+            var line = [];
+
+            cols.forEach(function(col) {
+                line.push(instance[col]);
+            });
+
+            tsv.push(line.join("\t"));
+        });
+
+        var rv = FileIO.write(fout, tsv.join("\n"));
+        return rv;
     }
 };
 
